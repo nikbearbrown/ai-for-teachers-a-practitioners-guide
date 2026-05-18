@@ -1,455 +1,187 @@
 # Chapter 4 — Lesson Planning and Curriculum Design with AI
 
-**TL;DR.** An AI can produce a structurally correct lesson plan in seconds, and the most rigorous published trial to date — the NFER/EEF "ChatGPT in Lesson Preparation" RCT — found a 31% reduction in lesson preparation time, with no observed loss of resource quality on blind expert review. That same trial measured time and resource quality — not student learning — and that distinction is the entire chapter.
+*The plan that looks right and the plan that lands are not the same document.*
 
 ---
 
-## Learning objectives
+Here is a thing that happened to a researcher named Lee Shulman in the 1980s. He was trying to figure out what teachers actually know — not what they know about their subjects, and not what they know about general pedagogy, but the specific thing that distinguishes an expert teacher from someone who merely knows the content. He called it pedagogical content knowledge, or PCK, and his 1986 paper in *Educational Researcher* is the closest thing educational research has to a founding document on the question.[^shulman86]
 
-By the end of this chapter, you should be able to:
+The concept is easier to see than to define. A chemistry teacher who has taught the weight-versus-mass unit for ten years knows that students will say, confidently, that a brick has more mass on Earth than on the Moon. She knows they will say it in week two and again in week four and get it wrong on the unit test even after three weeks of correction. She knows this because she has watched it happen. She has tried the textbook definition. She has tried the diagram. She has tried the analogy. What finally worked, for this class in this school, was a bathroom scale in an elevator accelerating downward — the weight drops, the mass is obviously unchanged because the student has not gotten smaller. A different teacher with a different class might need a different move. That knowledge — which move works on which students for which misconception — is PCK. It is not in the textbook. The textbook has the correct definition of mass. PCK is the knowledge of why the correct definition is not enough.
 
-1. **Apply.** Use AI to generate a lesson plan skeleton with learning objectives, an activity sequence, and an assessment aligned to a named standard.
-2. **Apply.** Write a lesson planning prompt that includes grade level, subject, standard, prior-knowledge context, and student-population detail.
-3. **Analyze.** Identify which elements of an AI-generated lesson plan require teacher revision before the plan is usable in your room.
-4. **Evaluate.** Apply the lesson-planning phase gate: AI generates the structure; you retain the pedagogical content knowledge decisions.
-5. **Create.** Adapt an AI-generated lesson plan for a specific real class using knowledge the AI does not have.
+I am starting the chapter on AI and lesson planning here because the distinction Shulman named is the entire chapter. AI can produce a structurally correct lesson plan in seconds. It cannot supply PCK. Understanding what that means, precisely, is the difference between a lesson-planning workflow that earns the time savings the evidence says are available, and one that produces a document that looks right and then fails in the room.
 
 ---
 
-## 1. Opening case — the Sunday-afternoon desk
+## What the evidence actually shows
 
-*This case is composite-illustrative. The teacher is not a single documented person. The workflow described matches the pattern the NFER/EEF (2024) trial found at the population level — about a third of lesson preparation time recovered for KS3 science teachers using ChatGPT plus a structured guide ([NFER/EEF 2024](https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/chatgpt_in_lesson_planning_-_evaluation_report.pdf?v=1736353004)) — but the specific 4-hour-to-45-minute arithmetic for an individual teacher is illustrative, not measured. [verify the individual-teacher arithmetic against any documented case study before publication.]*
+The best evidence we have on AI in lesson planning is the NFER / Education Endowment Foundation randomized controlled trial, published in 2024.[^nfer] Sixty-eight secondary schools in England. Two hundred and fifty-nine Key Stage 3 science teachers. Ten weeks. Treatment teachers were given access to ChatGPT plus a structured usage guide. Control teachers planned normally. At the end, both groups kept time logs. A panel of five expert science teachers evaluated thirty lesson resources — fifteen from each group — without knowing which was which, scoring on clarity, engagement, age-appropriateness, and scientific accuracy.
 
-It is 3:14 on a Sunday afternoon, late February. A tenth-grade biology teacher — call her Ms. Alvarez — has the cellular respiration unit open on her laptop. Twenty-eight students. Three newcomer ELLs at intermediate Spanish-L1 proficiency. Two IEPs — one ADHD with extended time, one specific learning disability in reading. The class has just finished a unit on thermodynamics and can balance equations, but most of them cannot label the organelles of a cell. Photosynthesis is next, in three weeks. The cellular respiration unit has to leave a clean ATP foundation or photosynthesis collapses.
+The results: treatment teachers spent 56.2 minutes per week on lesson and resource preparation; control teachers spent 81.5 minutes. The difference is about 25 minutes per week — roughly 31 percent of the baseline. The blind panel found no statistically significant difference in resource quality on any of the four dimensions.
 
-A year ago, this is a four-hour Sunday. The blank document. The textbook. The state framework PDF. The slow build of objectives, activities, exit tickets, differentiated handouts. The pre-emptive worry about what will and won't land. Dinner cold by the time the unit is done.
+That is the finding. Time went down. Blind-rated quality held. This is a real randomized trial with a real control group, and I want to be honest about what it is and is not. It measured teacher time and expert-rated resource quality. It did not measure student learning. Whether students taught from AI-assisted lesson plans learn more, less, or the same as students taught from teacher-prepared plans is a question the trial was not designed to answer. That distinction — between a lesson plan looking good to expert reviewers and a lesson plan producing learning in actual students — is not a minor caveat. It is where the whole question of PCK lives.
 
-Today, Ms. Alvarez opens Claude. She types a four-paragraph prompt: class profile, prior unit, learning targets (already written on a sticky note from Friday), a sketch of how she will assess understanding by next Thursday, the differentiation she needs, and a request for a five-day unit skeleton plus one detailed lesson for Monday. She hits enter. Fifteen minutes later, she has a draft. Reasonable structure. Three activity options per day. A first-pass exit ticket. An NGSS HS-LS1-7 label on the assessment that she has not yet verified.
+The 31 percent time saving is real. What the saved time actually buys students is not yet established at the level of evidence the trial provides. Keep that in tension as you read the rest of this chapter.
 
-Then she works for thirty minutes. She crosses out "powerhouse of the cell" and writes "phosphate transfer" in the margin — her class has the chemistry vocabulary, and the powerhouse metaphor will stop them asking *how*, which is the whole point of the unit. She swaps the order of days 2 and 3 because she remembers last year's class getting stuck for two days on glycolysis vs. Krebs cycle when the contrast came too late. She rewrites the ELL sentence frame around the word *oxidation* — the AI's frame was generic; hers references the redox unit they did in chemistry. She throws out the AI's exit ticket and pastes in last year's version, which surfaced the specific misconception she wants surfaced again. She opens NGSS HS-LS1-7 in another tab, reads the actual standard language, and confirms that the assessment she has planned actually produces the evidence the standard asks for.
-
-Forty-five minutes. The dishes are still warm.
-
-Three things are worth naming about that forty-five minutes. First, the AI did not "plan the lesson." It produced a structural draft for a target Ms. Alvarez had already specified. Second, the thirty minutes of revision are not waste — they are the work, and they are the part of the job that AI cannot do. Third, the dividend is not in the fifteen minutes of generation. The dividend is in the substitution of *judgment time* for *typing time*. Production becomes revision. The blank page becomes a draft to argue with.
-
-This chapter is about that substitution: what AI can productively draft, what only you can supply, and where the gate sits between them.
+<!-- → [TABLE: NFER/EEF trial summary — columns: Metric, Treatment (ChatGPT + guide), Control, Difference — rows: Weekly lesson prep time (56.2 min vs 81.5 min, −25.3 min / −31%), Resource quality on four dimensions (no statistically significant difference), Student learning outcomes (not measured / not measured / open question) — reader should immediately see what the trial can and cannot claim, and where the evidentiary gap lives] -->
 
 ---
 
-## 2. The core concept — a task taxonomy for lesson planning
+## Why a lesson plan is not one task
 
-A lesson plan is not one task. It is many tasks the profession has chosen to bundle into a single document. AI does some of them well. AI does some of them badly. AI cannot do others at all. Here is how to sort them.
+Here is what I mean when I say AI does lesson planning well. It can produce, in seconds, a structurally correct plan: learning objectives in standard verb-list form, a timed activity sequence, a formative check, differentiation frameworks in template form, a homework prompt. It does this reliably. The NFER blind reviewers looked at the output and could not distinguish it from teacher-produced work on the dimensions they measured.
 
-### 2.1 What AI does well — the structural layer
+Here is what I mean when I say AI cannot do lesson planning. It has never taught your class. It does not know which students confuse photosynthesis and respiration in a particular persistent way that requires a particular move to dislodge. It does not know which analogy will backfire because of something that happened in a prior unit. It does not know that the sequence you are about to use caused two days of confusion last year, and that swapping days two and three would have prevented it. It cannot tell you which exit ticket question will surface the exact misconception the unit needs to address, as opposed to the misconception that looks similar but is actually downstream of the real problem.
 
-A current large language model — GPT-5, Claude, Gemini — can produce, in seconds, a lesson plan skeleton that is structurally correct. Specifically, it does well at:
+These are not minor gaps. They are the gaps where teaching lives.
 
-- **Objectives** written in standard verb-list form ("Students will be able to explain... compare... analyze...").
-- **Activity variety** — three ways to teach the same concept (lab, simulation, case study, jigsaw).
-- **Time blocking and transitions** — a 50-minute lesson with reasonable pacing.
-- **Resource suggestions** — videos, articles, simulations, lab procedures to consider.
-- **Differentiation frameworks** — tiered tasks, sentence frames, vocabulary supports, in standard templates.
-- **Exit ticket and check-for-understanding prompts** — generic but serviceable.
-- **First-draft worksheets and handouts.**
+A lesson plan is a bundle of tasks that the profession has chosen to represent as a single document. Some of those tasks are structural: write objectives, sequence activities, align to a standard, produce a worksheet. Those are the tasks AI does well. Some of those tasks are PCK: anticipate the misconception this class will carry, choose the analogy that lands for these students, sequence the content in the order that does not collapse on itself for this population. Those are the tasks AI cannot do because they require knowledge of a particular room acquired over time.
 
-The NFER/EEF trial confirms the time savings here. In a cluster-randomised RCT across 68 English secondary schools and 259 Key Stage 3 science teachers, treatment teachers using ChatGPT plus a structured guide spent 56.2 minutes per week on lesson and resource preparation, compared with 81.5 minutes per week in the control group — a 25.3-minute weekly saving, or 31% ([NFER/EEF 2024](https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/chatgpt_in_lesson_planning_-_evaluation_report.pdf?v=1736353004); [EEF news summary](https://educationendowmentfoundation.org.uk/news/teachers-using-chatgpt-alongside-a-guide-to-support-them-to-use-it-effectively-can-cut-lesson-planning-time-by-over-30-per-cent)). A blind expert panel of five science teachers scored thirty resources — fifteen treatment, fifteen control — on clarity, engagement, age-appropriateness, and scientific accuracy. They found no statistically significant difference on any dimension. The time went down. The quality, as the panel could measure it, held.
+The plan that the AI produces in fifteen minutes is complete at the structural layer. It is a draft at the PCK layer. These are different claims, and treating the structural completeness as overall completeness is the trap.
 
-<!-- FACT-CHECK FLAG: UNVERIFIED — "35% with templates" sub-condition not located in NFER report; recommend removal. See factchecks/04-lesson-planning-with-ai-assertions.md -->
-This is, to my reading, the cleanest single piece of evidence in the field. It is also bounded in ways the chapter must say plainly. [verify whether the TIKTOC-cited "35% with templates" condition exists as a sub-analysis in the NFER evaluation report Appendix; the headline I can confirm is 31% for the ChatGPT-plus-guide arm vs. comparison.]
-
-### 2.2 What AI cannot do — the PCK layer
-
-Lee Shulman, in his 1986 *Educational Researcher* article "Those Who Understand: Knowledge Growth in Teaching," named a category of professional knowledge that the field had been treating as either subject knowledge or general pedagogy: **pedagogical content knowledge**, PCK ([Shulman 1986](https://journals.sagepub.com/doi/10.3102/0013189X015002004)). His 1987 *Harvard Educational Review* paper, "Knowledge and Teaching: Foundations of the New Reform," developed the construct into a model of pedagogical reasoning ([Shulman 1987](https://www.harvardeducationalreview.org/content/57/1/1)).
-
-Strip the jargon. PCK is the blend a teacher acquires by teaching a particular thing to particular students over time. It is the answer to four questions a textbook cannot answer:
-
-1. **What do students predictably get wrong about this concept, in this grade, in this room?**
-2. **Which analogy lands and which one backfires?**
-3. **Which sub-topic has to come first for the next one to make sense, given what this class already knows?**
-4. **What is the smallest example that exposes the deepest confusion?**
-
-Here is the worked example I keep coming back to. A chemistry teacher knows that students will confuse *weight* and *mass* in a particular way every year. They will say a brick has more mass on Earth than on the Moon. They will say it confidently. They will get it wrong on the same item on the unit test no matter how many times the textbook defines the difference. The teacher knows this because the teacher has taught it. The teacher knows that the move which actually works is not the textbook definition — it is the bathroom scale on an elevator floor that accelerates downward, where the *weight* drops and the *mass* is obviously unchanged because nothing about the student has gotten smaller. A different teacher with a different class might need a different move. PCK is not the textbook. PCK is the knowledge of which textbook moves work on which students.
-
-An LLM has read the textbook. It has read many textbooks. It can produce the textbook definition of weight versus mass in any of nine grade-band registers. It has never taught the unit. It has never watched a tenth-grader stick to *weight equals heaviness* through three weeks of correction. It has no PCK for your room.
-
-This matters because lesson plans live and die at the PCK layer. The structurally correct plan is the plan that names objectives, sequences activities, aligns to standards, and proposes assessment. The pedagogically correct plan is the one that *anticipates the actual confusion in the room*. AI gives you the first. You supply the second.
-
-A reasonable misreading of this paragraph would be: *AI is just not very useful for lesson planning, then*. That is wrong. The PCK gap is exactly why AI is useful — it does the structural work fast, which leaves you the time and the bandwidth to do the PCK work well. The phase gate is the boundary between the two.
-
-### 2.3 The phase gate, stated
-
-Here is the gate, in two sentences:
-
-> **AI generates the structure. You confirm — for this class, this week — that every learning objective is achievable, every activity is contextually appropriate, every misconception is anticipated, and every standard alignment is real, before the plan touches a student.**
-
-Two sentences. Read them again. That is the entire skill.
-
-### 2.4 Backward design — why most AI prompts get this wrong
-
-Grant Wiggins and Jay McTighe's *Understanding by Design* (ASCD, 2nd ed. 2005) makes a discipline of not-starting-with-activities ([Wiggins & McTighe 2005](https://andymatuschak.org/files/papers/Wiggins,%20McTighe%20-%202005%20-%20Understanding%20by%20design.pdf)). Their method has three stages, in order:
-
-1. **Identify desired results.** What should students understand? Know? Be able to do?
-2. **Determine acceptable evidence.** How will we know they got there? What does the assessment look like?
-3. **Plan learning experiences and instruction.** Only now, given (1) and (2), choose activities and resources.
-
-A default LLM prompt — "Write a 50-minute lesson on cellular respiration for 10th-grade biology" — collapses Stages 1 and 2 into an implicit guess and runs straight to Stage 3. The output is fine on its own terms. It is also Stage 3 work done before the targets were set. The teacher who accepts the output has not skipped lesson planning; the teacher has skipped backward design *by accident*.
-
-The fix is mechanical. Before opening the prompt, write down — on paper, on a sticky note, in a notes app — two things:
-
-- **Stage 1, one sentence:** What should students understand by the end of this unit / lesson?
-- **Stage 2, one sentence:** What evidence would convince me they understand it?
-
-Then the prompt is a Stage 3 brief: *Given these targets and this evidence, propose activities and resources*. The AI is now doing what it does well — proposing structure for targets you have already chosen.
-
-This is the move most teachers skip on the first six months of AI use, then discover, then never go back from.
-
-### 2.5 Unit scope vs. single lesson — where the dividend actually sits
-
-Counter-intuitively, AI is more useful for unit-scale planning than for next-day lesson planning. The reason: unit-scale planning is largely structural — sequencing, mid-unit formative checks, cognitive-load staging. The model is reasonable at this. Next-day planning is heavily context-bound — what students did yesterday, what confused them, who is absent on Thursday, what energy the room had at the end of last period. The model knows none of this.
-
-So the dividend is largest when you give AI the work it has the most context for, and smallest when you give AI the work it has the least context for. Many teachers do the opposite — they ask for tomorrow's lesson because tomorrow's lesson is what's burning. That is exactly the scope where the AI knows the least. The dividend is in Sunday's unit-design work, not in Monday-night triage. (I have to remind myself of this every Monday night.)
-
-### 2.6 Standards alignment — cross-reference, not authority
-
-A current LLM can name standards. It can write "NGSS HS-LS1-7" next to an assessment and produce the kind of confident citation that *looks* like alignment. The look is not the alignment. A 2025 preprint by Xincheng Liu evaluated AI-generated lesson plans across five models and three prompt frameworks in high-school physics (the Electromagnetic Spectrum), and found that prompt framework dominated curricular alignment accuracy — not model size ([arXiv 2510.19866](https://arxiv.org/abs/2510.19866)). This is a preprint, not yet peer-reviewed.
-
-The rule: treat any AI standards citation as a **cross-reference to verify**, not as an **authority to accept**. Open the actual standard. Read the actual language. Confirm that the assessment in Stage 2 produces work that *demonstrates* the standard rather than merely *mentions* the topic. Standards alignment is one of the highest-stakes places where a model can be confidently wrong because the citation looks exactly like correct citation.
-
-### 2.7 Differentiation as a prompt component, not an afterthought
-
-If the prompt does not name your class, the model produces a plan for a generic class — which means a plan you have to differentiate from scratch. That is the work the AI dividend was supposed to remove. The fix is to put differentiation *into the prompt*, not into the revision pass. At minimum:
-
-- ELL students and proficiency level
-- IEP / 504 accommodations
-- Reading-level distribution
-- Prior-knowledge strengths and gaps
-- Anything else that changes what counts as an accessible task
-
-A prompt with this metadata produces tiered tasks and scaffolds that are at least plausible. A prompt without it produces a generic plan and a long Sunday. We will see this directly in the worked example.
+<!-- → [INFOGRAPHIC: Two-column split — "Structural layer (AI does well)" vs "PCK layer (teacher supplies)" — left column lists: objectives in verb-list form, timed activity sequence, differentiation templates, exit ticket prompts, standards citations, worksheet first drafts; right column lists: which misconception this class will carry, which analogy backfires here, correct sub-topic sequence for this population, the exit ticket question that surfaces the right confusion — reader should be able to sort any lesson plan element into one column on sight] -->
 
 ---
 
-## 3. The worked example — cellular respiration, prompt to plan to revision
+## Backward design and why most AI prompts get it wrong
 
-Take the case from Section 1. Here is what the actual workflow looks like, with the prompt and the revision moves visible.
+Grant Wiggins and Jay McTighe's *Understanding by Design* makes a discipline of where to start.[^ubd] Their sequence: first identify what students should understand; then determine what evidence would demonstrate that understanding; then, and only then, choose the activities and resources that produce the evidence. They call these Stage 1, Stage 2, and Stage 3.
 
-### 3.1 Stage 1 and Stage 2, on a sticky note
+A default AI prompt — "Write a 50-minute lesson on cellular respiration for tenth-grade biology" — collapses Stages 1 and 2 into an implicit guess and runs immediately to Stage 3. The model produces activities and resources. It has no idea what the teacher's specific learning target is, what assessment will follow the lesson, or what understanding the activities are supposed to produce. The output looks complete. It is Stage 3 work done before Stages 1 and 2 were set.
 
-Before opening the prompt:
+This matters in practice because a Stage 3 lesson plan is a plan for a class that is not yours. It is a plan for a generic tenth-grade biology student, aimed at an implicit target the model chose on your behalf, with activities designed to produce evidence for a standard the model cited but did not verify.
 
-- **Stage 1.** Students will explain how cellular respiration converts the chemical energy in glucose into the chemical energy in ATP, including where in the cell each major stage happens and what each stage produces.
-- **Stage 2.** A short written response in which a student traces one glucose molecule from cytoplasm through the mitochondrion, naming inputs and outputs at each stage, plus a labelled diagram. The exit ticket on day five asks the same thing in miniature.
+The fix is mechanical. Before opening the AI, write two things down. One sentence for Stage 1: what should students understand by the end of this lesson or unit? One sentence for Stage 2: what evidence would show me they understand it? These two sentences are the brief. The AI prompt becomes a Stage 3 request: *given these targets and this evidence, propose activities, resources, and a formative check*.
 
-This took ninety seconds with a pen. It is the most important ninety seconds of the workflow.
+This switch changes the nature of the output entirely. The model is no longer guessing at your purpose. It is proposing structure for a purpose you have already specified. And the revision pass you run on the output has a clear test: does each element of this plan serve the Stage 1 target and produce the Stage 2 evidence? Yes — keep. No — revise.
 
-### 3.2 The prompt — the single-lesson generator
+The ninety seconds you spend writing the two sentences before opening the prompt is the most important ninety seconds in the workflow. It is also the step that most teachers skip for the first six months of AI lesson planning, then discover, and never skip again.
 
-```
-ROLE: You are an experienced 10th-grade biology teacher in the United States,
-familiar with NGSS performance expectations and with the specific
-challenges of teaching cellular respiration to chemistry-strong,
-biology-weak students.
-
-CONTEXT:
-- Class: 10th grade biology, 28 students, 50-minute periods.
-- Prior unit: thermodynamics (students can balance equations and
-  reason about energy transfer).
-- Prior knowledge gaps: most cannot label cell organelles; "ATP"
-  and "energy" are used interchangeably.
-- Student population: 3 newcomer ELLs (Spanish L1, intermediate
-  proficiency), 2 IEPs (1 ADHD with extended time on assessments,
-  1 specific learning disability in reading).
-- Targeted standard: NGSS HS-LS1-7.
-- Next unit: photosynthesis (the ATP foundation here must be clean).
-
-TASK:
-- Produce a 5-day unit skeleton (one paragraph per day: objective,
-  activities, formative check).
-- Then produce a fully detailed Day 1 lesson plan (50 minutes:
-  opening hook, three activity blocks with timings, exit ticket,
-  homework).
-- Include differentiation explicitly for ELLs (sentence frames,
-  visual supports) and for the IEP students (extended time,
-  text-light alternatives where possible).
-
-CONSTRAINTS:
-- Do not use the "powerhouse of the cell" framing — students need
-  to ask HOW, not be told WHAT.
-- Use the chemistry vocabulary students already have (redox,
-  electron transfer).
-- Cite NGSS HS-LS1-7 explicitly in the assessment design but flag
-  the alignment as draft pending teacher verification.
-- Format the unit skeleton as a 5-row table; format Day 1 as a
-  numbered list with timings in parentheses.
-```
-
-That is roughly four hundred words. It looks like a lot. It is half a Sunday morning's worth of typing, done once, and it is the difference between fifteen minutes of generation that produces a usable draft and fifteen minutes of generation that produces wallpaper.
-
-### 3.3 What the AI produces
-
-The model returns a 5-row unit table and a detailed Day 1 lesson plan. The structure is reasonable. The objectives use SWBAT-style verbs. The activity blocks are timed. The exit ticket asks students to label a diagram and write two sentences. The differentiation includes sentence frames for ELLs and a text-light alternative for the IEP-reading student. The plan cites NGSS HS-LS1-7 — flagged as draft, as instructed.
-
-Read in isolation, the plan looks done. It is not done. It is a draft.
-
-### 3.4 Three revisions only the teacher can make
-
-These three are the kinds of moves that distinguish an AI plan a teacher accepts from an AI plan a teacher uses.
-
-**Revision 1 — the misconception this class will actually carry.**
-The plan's Day 1 hook is a video on the chemistry of glucose oxidation. Reasonable. But Ms. Alvarez knows from last year that this class will hit the same wall at the same moment: students will say "ATP is energy" and not be able to say what *energy* is. The AI does not know this. The revision: replace the video hook with a five-minute opening in which students try to explain, from the thermodynamics unit they just finished, what the word "energy" actually means in the equation `glucose + O2 -> CO2 + H2O + energy`. Surface the misconception on day one, before the rest of the unit calcifies on top of it. This is a PCK move. The AI could not have made it.
-
-**Revision 2 — the order of days 2 and 3.**
-The AI proposes cellular respiration overview on Day 2, photosynthesis-vs-respiration contrast on Day 3. Last year, Ms. Alvarez tried this order and lost two days to glycolysis vs. Krebs-cycle confusion. This year she puts the photosynthesis-vs-respiration contrast first: students compare the two equations as inverse processes, which gives them a framework into which glycolysis and Krebs then slot. The AI had no way to know this — it has not taught the unit. The revision is one minute of clicking. The decision behind it is two years of teaching.
-
-**Revision 3 — the exit ticket.**
-The AI's exit ticket asks students to label a diagram and write two sentences explaining what happens in each stage. Structurally fine. But Ms. Alvarez's exit ticket from last year asked students to draw the path of one glucose molecule from cytoplasm to mitochondrion and label every input and output. That version surfaced the specific misconception — that students think glucose enters the mitochondrion whole, rather than as pyruvate after glycolysis — that the unit is trying to dislodge. She replaces the AI's exit ticket with last year's. Two minutes. PCK pure and simple.
-
-There is also a fourth revision that is not strictly PCK but is the chapter's other discipline: she opens NGSS HS-LS1-7 in another tab, reads the actual standard text ("Use a model to illustrate that cellular respiration is a chemical process whereby the bonds of food molecules and oxygen molecules are broken and the bonds in new compounds are formed resulting in a net transfer of energy" — and the related HS-LS1-5 on photosynthesis as the upcoming next unit), and confirms that the assessment in Stage 2 produces evidence the standard asks for. It does. If it had not, the assessment would be revised before the plan moved a step further.
-
-### 3.5 The arithmetic
-
-Fifteen minutes generating. Thirty minutes revising. Forty-five minutes total. The four-hour Sunday becomes a forty-five-minute Sunday because the substitution is from *typing time* (where the dividend lives) to *judgment time* (where the work lives). The 31% population figure from NFER/EEF and the individual arithmetic here are not the same kind of number — the trial measures group averages over ten weeks of KS3 science teachers in England, not a specific tenth-grade biology teacher's specific Sunday in February ([NFER/EEF 2024](https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/chatgpt_in_lesson_planning_-_evaluation_report.pdf?v=1736353004)). The individual case is illustrative of a pattern the trial supports at the population level. [The "8-hour baseline" cited in Chapter 1 needs a primary source — verify against the UK DfE workload survey or against Walton/Gallup self-report data before treating it as load-bearing.]
-
-### 3.6 The lesson, and the limit
-
-Here is the lesson, stated plainly. AI accelerates the production of structurally correct lesson plans. It does not, and cannot, supply the PCK that makes a plan land in your specific room. The 31% time saving in the NFER/EEF trial is real. The trial measured *teacher time* and *resource quality*. It did not measure *student learning outcomes*. We do not yet have rigorous evidence on whether students taught from AI-assisted lesson plans learn more, less, or the same as students taught from teacher-prepared plans. That is the central empirical question of this chapter, and the answer is *not yet established*. [This is a flag I will name again in the "still puzzling" section. It matters.]
-
-The dividend exists. The dividend's pedagogical value is, at the level of evidence we currently have, an open question.
+<!-- → [DIAGRAM: Backward design flow — three boxes left to right labeled Stage 1 / Stage 2 / Stage 3, with arrows between; below Stage 1 "What should students understand?" below Stage 2 "What evidence shows they understand it?" below Stage 3 "What activities produce that evidence?" — a red X on the arrow from a default AI prompt jumping straight to Stage 3; a green check on the two-sentence sticky note entering at Stage 1 → Stage 2 → AI prompt at Stage 3 — reader sees exactly where the workflow skips and what the fix costs (ninety seconds)] -->
 
 ---
 
-## 4. The three prompt templates
+## The prompt is the primary lever
 
-These three templates are the chapter's takeaway artifact. They build on the four-component prompt structure from Chapter 3 (role / context / task / constraints) and specialise it for lesson planning. Save them to your prompt library. Edit them in place. They are starting points, not commandments.
+The NFER trial treated all treatment teachers as receiving essentially the same intervention — ChatGPT plus a structured guide. A 2025 preprint by Xincheng Liu evaluated AI-generated physics lesson plans across multiple models and prompt frameworks and found that prompt framework dominated curricular alignment accuracy — not the model being used.[^liu25] That is consistent with my experience and with the argument of the prior chapter: the quality of the AI output is, more than anything else, a function of the specificity and completeness of the prompt you send it.
 
-### 4.1 Template — single lesson generator
+A vague prompt produces a generic plan that requires heavy revision. A specified prompt — with grade level, subject, standards target, prior-knowledge context, student population detail, differentiation needs, and explicit constraints on framing to avoid — produces a draft that is much closer to usable, at the structural layer, before revision.
 
-```
-ROLE: You are an experienced [grade level] [subject] teacher in
-[country/state], familiar with [standards framework] and with the
-specific challenges of teaching [concept] to [population descriptor].
+The practical implication is uncomfortable because it means the dividend requires work upfront. The fifteen-minute generation time in the NFER trial is preceded by however long it takes to write a prompt that includes all of that context. A teacher who sends a one-sentence prompt and gets back a generic plan and then spends forty minutes revising it has not captured the dividend. A teacher who spends ten minutes writing a rich prompt, gets back a contextually appropriate draft, and spends twenty minutes on PCK revision has. The time savings live in the second workflow, not the first.
 
-CONTEXT:
-- Class: [grade], [subject], [N] students, [period length] periods.
-- Prior unit: [what students just finished and what they can now do].
-- Prior knowledge gaps: [what most students cannot yet do].
-- Student population: [ELL count and proficiency; IEP/504 counts
-  and accommodations; reading-level distribution].
-- Targeted standard: [code and one-sentence content].
-- Next unit: [what this lesson must set up].
-
-TASK:
-- Produce a [N]-minute lesson plan for [concept] with:
-  - Opening (timed)
-  - [2-3] activity blocks (timed)
-  - Exit ticket
-  - Homework or follow-up
-- Include differentiation for [named subgroups].
-- Format as a numbered list with timings in parentheses.
-
-CONSTRAINTS:
-- Do not use [framing(s) to avoid] — explain why if needed.
-- Use the [prior-unit vocabulary] students already have.
-- Cite the standard explicitly in the assessment, flagged as draft
-  pending teacher verification.
-- [Any other class-specific constraint.]
-```
-
-### 4.2 Template — unit scope-and-sequence generator
-
-```
-ROLE: You are an experienced [grade level] [subject] teacher
-designing a [N]-day unit on [topic] for [population descriptor].
-
-CONTEXT:
-- Class: [grade], [subject], [N] students.
-- Stage 1 (desired understanding, one sentence):
-  [What students should understand by end of unit.]
-- Stage 2 (acceptable evidence, one sentence):
-  [What assessment will show they understand it.]
-- Prior unit / prior knowledge:
-  [What students bring in.]
-- Differentiation needs:
-  [ELL, IEP/504, reading-level, prior-knowledge specifics.]
-- Standards: [codes].
-
-TASK:
-- Produce a [N]-day unit skeleton as a table with columns:
-  Day | Objective | Activities | Formative check | Homework
-- Identify the day(s) most likely to need PCK revision and flag.
-- Identify the mid-unit formative checkpoint and what it should
-  reveal.
-
-CONSTRAINTS:
-- Sequence sub-topics in an order learnable for this class.
-- Do not assume prior knowledge of [topics not yet covered].
-- Treat all standard alignments as draft pending teacher
-  verification.
-- Format as a markdown table.
-```
-
-### 4.3 Template — differentiation layer generator
-
-```
-ROLE: You are an experienced [grade level] [subject] teacher
-adapting a lesson for differentiated learners.
-
-CONTEXT:
-- The existing lesson plan is below.
-- Class population:
-  - ELLs: [count, L1, proficiency level]
-  - IEP/504: [accommodation details, anonymised]
-  - Reading-level range: [Lexile band or grade equivalent]
-  - Other relevant variation: [sensory, attention, prior-knowledge gaps]
-
-TASK:
-For the lesson plan below, produce:
-- One sentence-frame set for ELLs around the lesson's key concept
-- One scaffolded version of the main activity for students reading
-  below grade level (preserve content; reduce reading load)
-- One extension version of the main activity for students who finish
-  early or need more challenge
-- One adapted exit ticket variant for the IEP-reading student
-
-CONSTRAINTS:
-- Do not change the lesson's learning objective.
-- Do not include any student name, ID, or identifying detail in
-  your output.
-- Flag any accommodation that requires specialist authorisation
-  (IEP/504 modifications) rather than producing it as final.
-
-[Paste lesson plan here.]
-```
-
-A note on the differentiation template: never paste student-identifying information into an external AI tool. The anonymisation discipline belongs to Chapter 6, but it applies here too. Describe the class profile abstractly; never name a specific student.
+Here is what a rich single-lesson prompt includes: class profile (grade, subject, number of students, period length), the prior unit and what students can now do, the specific prior-knowledge gaps that this lesson needs to build on, the student population in enough detail to make differentiation plausible (ELL count and proficiency level, IEP and 504 specifics, reading-level range), the targeted standard, what this lesson must set up for the next unit, explicit constraints on framing to avoid, and a format specification for the output. That is roughly four hundred words of prompt. That is the difference between a draft you argue with productively for twenty minutes and a draft you argue with unproductively for an hour.
 
 ---
 
-## 5. Common misconceptions
+## The phase gate, stated
 
-Four misreadings that show up in workshops and emails. Each fails in a slightly different way.
+Here is the gate that sits between the AI's draft and a plan that touches students:
 
-### 5.1 "AI replaces my lesson planning."
+> AI generates the structure. You confirm — for this class, this week — that every learning objective is achievable, every activity is contextually appropriate, every misconception is anticipated, and every standard alignment is real.
 
-It doesn't. It produces Stage 3 of a backward-designed lesson — the activities and resources, given the targets and evidence. If you skip Stages 1 and 2, the AI does Stage 3 fluently for a target you didn't choose. The output is a lesson plan for a class that is not yours, taught to a target you did not set. The fluency makes this hard to notice. The phase gate exists to make you notice.
+Two sentences. The gate is not a procedure; it is a question you ask about each element of the draft. *What does this plan assume about the room, and is that assumption true?* When the assumption is true, accept. When the assumption is false — when the analogy will backfire, when the exit ticket misses the actual misconception, when the sequence is wrong for this class — revise. The model cannot ask itself this question because it does not know the room. You ask it on every section of every draft, every time.
 
-The deeper failure: lesson planning is not a production task. It is a judgment task that produces a document as a side effect. The document looking right is necessary but not sufficient. AI is excellent at making documents look right. Looking right is the trap.
-
-### 5.2 "AI knows my standards."
-
-It does not. It knows what standards look like — the codes, the formatting, the verb registers — and it can produce alignment claims that are syntactically correct. Whether the assessment in Stage 2 actually produces evidence the standard asks for is a separate question, and the model has no way to verify it.
-
-Treat every AI standards citation as a cross-reference to verify by opening the actual standard text. The Liu 2025 preprint suggests prompt framework dominates alignment accuracy, not model size ([arXiv 2510.19866](https://arxiv.org/abs/2510.19866)) — but even strong prompt frameworks do not eliminate the need for the teacher to read the standard. The check takes ninety seconds. Skipping it is a Sunday-night habit; it is also the one place a confident-looking lesson plan can quietly miss its target.
-
-### 5.3 "The plan is done when AI hands it back."
-
-This is the fluency trap, in Trust the Teacher's vocabulary (see [TrustTeacher.md](../pantry/TrustTeacher.md)). Smooth output produces the feeling that the work has been done. The feeling is not the work. The AI plan is a draft. The plan is done when *you* have made the PCK revisions, verified the standards, and authorised the plan for *this* class.
-
-The mechanical check is the question Ms. Alvarez ran on every section of her draft: *what does this plan assume about the room, and is that assumption true?* When the assumption is false — when the analogy will backfire, when the exit ticket misses the misconception, when the sequence is wrong for this class — revise. When the assumption is true, accept. The AI cannot ask itself this question because it does not know the room.
-
-### 5.4 "I should generate a year of plans at once."
-
-A reasonable instinct that produces unusable output. Two reasons.
-
-First, a year of plans generated up front cannot reflect what you will learn about your class in the first three weeks. The Tuesday-of-week-eight lesson is going to depend on what surfaced in Tuesday-of-week-seven's exit ticket. PCK accumulates through the year; locking in a year of plans in August discards that accumulation.
-
-Second, AI's dividend scales with the specificity of the prompt. A year-of-plans prompt is by definition generic — you don't yet know what specifics to put in. Generic prompt, generic output, more revision work downstream, not less.
-
-The right unit of AI lesson planning is the unit, not the year. Generate a unit at a time, a week or two ahead, with class-specific context that has accumulated over the prior weeks.
+The standards verification is a specific case of this. A current large language model can cite a standard with the confidence of a correct citation. Whether the assessment in your Stage 2 actually produces the evidence the standard requires is a separate question, and the model has no reliable way to verify it. The rule is: treat every AI standards citation as a cross-reference to verify, not an authority to accept. Open the actual standard. Read the actual language. Confirm that the assessment produces work that demonstrates the standard rather than merely mentions the topic. This check takes ninety seconds. The lesson that skips it has an alignment claim on its cover sheet and may have no alignment in its bones.
 
 ---
 
-## 6. Exercises
+## A worked example: cellular respiration, prompt to plan to revision
 
-The exercises are graduated: a warm-up that gets your hands on the workflow, a synthesis exercise that documents what you learned, a creation exercise that builds the artifact you will use Monday morning.
+Take a tenth-grade biology teacher planning a five-day unit on cellular respiration. Twenty-eight students. Three newcomer ELLs at intermediate Spanish-L1 proficiency. Two IEPs. The class has just finished thermodynamics and can balance equations, but most cannot label the organelles of a cell. Photosynthesis follows in three weeks; the ATP foundation has to be clean or photosynthesis collapses.
 
-### Exercise 1 — Generate, review, and document the PCK gaps
+Before the prompt, on a sticky note, she writes the two sentences.
 
-This is the chapter's core exercise.
+Stage 1: Students will explain how cellular respiration converts the chemical energy in glucose into the chemical energy in ATP, including where in the cell each major stage occurs and what each stage produces.
 
-1. Pick an upcoming unit you have to plan anyway.
-2. Use the unit scope-and-sequence template (4.2) to generate a draft. Spend no more than fifteen minutes on the prompt and generation.
-3. Read the draft against the four PCK questions from Section 2.2:
-   - What will students predictably get wrong?
-   - Which analogy lands and which will backfire?
-   - What sub-topic order does this class need?
-   - What is the smallest example that exposes the deepest confusion?
-4. List every revision you make. Categorise each as: (a) PCK — knowledge of this class; (b) standards verification; (c) structural correction; (d) stylistic preference.
-5. Calculate the ratio of PCK revisions to total revisions. That ratio is roughly the share of the work AI cannot do for you. The higher the ratio, the more the AI is buying you focus on the work that matters.
+Stage 2: A short written response in which a student traces one glucose molecule from cytoplasm through the mitochondrion, naming inputs and outputs at each stage, plus a labeled diagram. The day-five exit ticket asks the same thing in miniature.
 
-Expected output: a one-page document with the prompt, the draft, the revised plan, and the categorised revision list.
+The prompt runs to about four hundred words — class profile, prior unit, knowledge gaps, student population, standard, next unit, constraints on framing, format specification. She hits send. Fifteen minutes later, she has a five-day unit skeleton and a detailed Day 1 lesson plan. Reasonable structure. Three activity options per day. A first-pass exit ticket. An NGSS HS-LS1-7 citation flagged as draft pending verification, because the prompt asked for that flag.
 
-### Exercise 2 — Vague vs. specified prompt comparison
+Then she works for thirty minutes.
 
-A diagnostic exercise. Take one upcoming lesson. Generate it twice.
+She crosses out the opening video on glucose oxidation chemistry and replaces it with a five-minute opening in which students try to explain, using the thermodynamics vocabulary they just learned, what the word "energy" means in the equation `glucose + O2 → CO2 + H2O + energy`. She knows from last year that this class will arrive with "ATP is energy" as an undisturbed prior belief, and she wants that belief surfaced on day one before the rest of the unit calcifies on top of it. The AI did not know this. The AI could not have known this. This is a PCK move.
 
-- **Prompt A.** One sentence: "Write a [N]-minute [grade] [subject] lesson on [concept]."
-- **Prompt B.** The full single-lesson template (4.1), filled in for your actual class.
+She swaps the order of days two and three. The AI had the cellular respiration overview before the photosynthesis-versus-respiration contrast. Last year this order produced two days of confusion at the glycolysis-versus-Krebs-cycle boundary. Putting the contrast first gives students a framework — the two processes as inverse reactions — into which glycolysis and Krebs then slot. This decision is two years of teaching this unit in this school. The AI had no access to it.
 
-Compare the two outputs side by side. Document:
+She replaces the AI's exit ticket with last year's version, which asked students to draw the path of one glucose molecule from cytoplasm to mitochondrion and label every input and output. That version surfaced the specific misconception the unit is trying to dislodge — that students think glucose enters the mitochondrion whole, rather than as pyruvate after glycolysis. The AI's version was structurally correct and missed the target.
 
-- Which output required less revision to make usable?
-- What did Prompt B's class-specific context get you that Prompt A could not?
-- Which prompt produced a plan you would actually teach from?
+She opens NGSS HS-LS1-7 in another tab, reads the actual standard language, and confirms that the Stage 2 assessment produces the evidence the standard asks for. It does.
 
-The point of this exercise is not to prove that specified prompts work — they do — but to feel, in your own room, how much of the AI dividend is a function of what you put into the prompt rather than what the model knows.
+Fifteen minutes of generation. Thirty minutes of PCK revision. Forty-five minutes total. The revision is not waste — the revision is the work. What AI replaced was the blank-page production time. What AI preserved was the judgment time. The dividend lives in that substitution.
 
-### Exercise 3 — Create your unit-scope prompt template
-
-A creation exercise. By the end of this exercise you should have one reusable artifact saved to your prompt library.
-
-1. Take the unit scope-and-sequence template (4.2).
-2. Customise it for *your* subject, *your* grade, *your* state's standards framework, and *your* typical class profile. Fill in the recurring elements so the template is ready to use with minimum editing each unit.
-3. Add a "PCK notes" section at the bottom — three bullet points naming the misconceptions, analogies-to-avoid, and prior-knowledge gaps you know this class carries year after year. These are PCK notes you can paste into any unit prompt for this class.
-4. Save the customised template, with the PCK notes, to a single document you can reopen for every unit you plan this year.
-
-Expected output: one reusable template, saved and named, ready to use on the next unit. This is the first entry in your prompt library (Chapter 12).
+<!-- → [TABLE: Cellular respiration worked example — three revision moves — columns: Element revised, What AI produced, What the teacher changed it to, Why (PCK basis) — rows: Day 1 hook (glucose oxidation video → thermodynamics-vocabulary opening to surface ATP misconception), Day sequence (overview before contrast → contrast first to give framework for glycolysis/Krebs), Exit ticket (label diagram + two sentences → trace one glucose molecule to surface pyruvate misconception) — reader sees PCK revision as a concrete, learnable practice rather than abstract expertise] -->
 
 ---
 
-## 7. What would change my mind
+## The unit-versus-lesson asymmetry
 
-The argument in this chapter — that AI generates structure, the teacher supplies PCK, and the phase gate is where the two meet — would revise if a rigorous randomised trial with student learning outcomes as the primary endpoint showed that students taught from AI-generated lesson plans, *without* substantive teacher PCK revision, learn at least as much as students taught from teacher-revised plans, across diverse populations and subjects. That trial does not yet exist. If it appears — with pre-registered outcomes, blinded scoring of student learning, and stratification by ELL, IEP, and prior-knowledge subgroups — the chapter's central claim about the necessity of the PCK revision step would need to be revised, possibly significantly.
+Counter-intuitively, AI is more useful for unit-scale planning than for next-day lesson planning. Unit-scale planning is largely structural: sequencing, cognitive-load staging, mid-unit formative checkpoints, identification of the sub-topics that must come before others can land. The model is reasonable at this, and the context it lacks — specific knowledge of the room — is less critical at this scale.
 
-A weaker but still consequential update: a long-running observational study showing that teachers using AI lesson planning at steady state for a full academic year, across multiple subjects and grade bands, produce student outcomes statistically indistinguishable from a matched non-AI cohort. That would soften the time-vs-learning ambiguity even without a randomised intervention on student outcomes directly.
+Next-day lesson planning is heavily context-bound. What students did yesterday. What confused them on Thursday's exit ticket. Who is absent on Friday. What energy the room had at the end of last period. The model knows none of this.
 
----
+This means the dividend is largest when you give AI the work where it has the most context and smallest when you give it the work where context is everything. Most teachers do the opposite: they reach for AI on Monday night for Tuesday's lesson because Tuesday's lesson is what is burning. That is exactly the scope where the AI knows the least about the room and where the PCK revision pass will be heaviest.
 
-## 8. Still puzzling
+The practical rule: use AI at the unit level, planned a week or two ahead, with class-specific context that has accumulated over the prior weeks. Reserve Monday night for the context-dependent revisions to whatever draft you generated on Sunday afternoon.
 
-A few questions I cannot yet answer.
+And do not generate a year of plans at once. A year of plans generated in August cannot reflect what you will learn about your class in September. The Tuesday-of-week-eight lesson depends on what surfaced in Tuesday-of-week-seven's exit ticket. PCK accumulates through the year. Locking in annual plans in advance discards that accumulation.
 
-**Time saved vs. learning gained.** The NFER/EEF trial measured time and resource quality. It did not measure student learning ([NFER/EEF 2024](https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/chatgpt_in_lesson_planning_-_evaluation_report.pdf?v=1736353004)). The Walton/Gallup self-reports ([Gallup 2025](https://news.gallup.com/poll/691967/three-teachers-weekly-saving-six-weeks-year.aspx)) measure teacher-reported hours. Neither tells us whether students taught from AI-assisted plans learn more, less, or the same. This is the central empirical question of this chapter, and it is unanswered. The whole chapter's pedagogical argument rests on a finding (PCK matters) that has been measured for decades, applied to a workflow (AI lesson planning) for which the learning-outcome evidence has not yet been collected. That is not a comfortable place to write a chapter from. It is the honest place.
-
-**Equity of access.** RAND finds that higher-poverty schools use AI *less* than lower-poverty schools, and that principals in those schools provide AI guidance less often ([RAND 2025, RR-A134-25](https://www.rand.org/pubs/research_reports/RRA134-25.html); [RAND 2025, RR-A4180-1](https://www.rand.org/pubs/research_reports/RRA4180-1.html)). The pattern is the opposite of what one might hope: the schools whose teachers stand to gain the most from a competent structural-draft tool are the schools where the tool is least available and least supported. If the PCK revision step is the part that turns a structural draft into a usable plan, and the front-end access to the draft itself is uneven, the technology that should be most useful for closing gaps could quietly widen them. I do not yet know what this gap produces at the student-outcome level. I want to know.
-
-**Daily steady-state vs. ten-week summer term.** The NFER trial ran ten weeks in summer. Steady-state daily use across a full academic year — with novelty worn off, with prompts decaying, with the model versions changing under you — is not what the trial measured. The 31% might hold. It might drift up. It might drift down. I would like to see a longitudinal replication.
-
-**Cross-model variance.** A current preprint suggests that prompt framework dominates alignment accuracy, not model ([Liu 2025, arXiv 2510.19866](https://arxiv.org/abs/2510.19866)). That is consistent with the chapter's argument that the prompt is the primary lever. But I have not seen an independent, like-for-like comparison of GPT-5, Claude, and Gemini on lesson plans for the same class profile and the same standards, scored on PCK-relevant dimensions. The vendor-internal numbers do not substitute for it.
+<!-- → [CHART: AI usefulness vs. planning horizon — x-axis: planning horizon from "tomorrow's lesson" to "next week's lesson" to "unit (2–3 weeks)" to "semester" to "full year"; y-axis: AI dividend (time saved minus revision cost); curve rises steeply from tomorrow to unit level, then flattens and dips toward full year — reader sees at a glance why unit-level planning is the sweet spot and why Monday-night single-lesson generation captures less of the dividend] -->
 
 ---
 
-## Bridge to Chapter 5
+## What the dividend actually costs
 
-Lesson planning is preparation. What students *produce* in response to the lesson — essays, short answers, problem sets, exit tickets — is the next time sink, and the place where the phase gate sits at a much sharper angle. Chapter 5 takes the same framework into assessment and feedback, where the time savings are larger, the failure modes are louder, and the question of who is doing the cognitive work cuts both at the teacher's grading desk and at the student's writing desk.
+The NFER trial's 31 percent time saving is real and I believe it is reproducible for teachers who write rich prompts and run proper PCK revision passes. But it is a population average over ten weeks of a specific trial condition. It is not a guarantee for week one.
 
----
+The learning curve exists. Teachers new to AI lesson planning typically spend more time in the first weeks, not less — they are learning what a rich prompt requires, what the model can and cannot produce, where the PCK gaps predictably live. The dividend accrues after that learning, not before. A teacher who tries AI on a Monday, finds it slower than her normal workflow, and concludes the dividend is fictional is reading week one as if it were steady state.
 
-**Tags:** lesson-planning, pedagogical-content-knowledge, NFER-EEF-RCT, backward-design, Shulman, prompt-templates, phase-gate, AI-in-education
-
-*Voice anchor: workshop default (Feynman). Composite-illustrative opening case clearly labelled. NFER/EEF figures bounded to trial conditions. Student-outcome gap flagged repeatedly. [verify] markers retained inline where primary-source confirmation is pending.*
+There is also the equity question, which I want to name even though I cannot resolve it. RAND's 2025 survey of U.S. teachers found that higher-poverty schools use AI less than lower-poverty schools, and that principals in those schools provide AI guidance less often.[^rand] The schools whose teachers stand to gain the most from a competent structural-draft tool are the schools where the tool is least available and least supported. If the PCK revision step is the part that turns a structural draft into a usable plan, and front-end access to the draft is uneven, the technology could quietly widen the gaps it might have closed. I do not yet know what this produces at the student-outcome level. It is the question I would most want answered by a researcher with access to the data.
 
 ---
 
-## References
+## Three things that would make me revise this chapter
 
-- NFER (2024). *ChatGPT in Lesson Preparation: A Teacher Choices Trial — Evaluation Report.* National Foundation for Educational Research and Education Endowment Foundation. https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/chatgpt_in_lesson_planning_-_evaluation_report.pdf?v=1736353004
-- EEF (2024). *Teachers using ChatGPT — alongside a guide to support them to use it effectively — can cut lesson planning time by over 30 per cent* (news summary). Education Endowment Foundation. https://educationendowmentfoundation.org.uk/news/teachers-using-chatgpt-alongside-a-guide-to-support-them-to-use-it-effectively-can-cut-lesson-planning-time-by-over-30-per-cent
-- Shulman, L. S. (1986). Those Who Understand: Knowledge Growth in Teaching. *Educational Researcher*, 15(2), 4–14. https://journals.sagepub.com/doi/10.3102/0013189X015002004
-- Shulman, L. S. (1987). Knowledge and Teaching: Foundations of the New Reform. *Harvard Educational Review*, 57(1), 1–22.
-- Wiggins, G., & McTighe, J. (2005). *Understanding by Design* (2nd ed.). Alexandria, VA: ASCD. https://www.ascd.org/books/understanding-by-design-expanded-2nd-edition?variant=103055
-- Liu, X. (2025). *An Evaluation of the Pedagogical Soundness and Usability of AI-Generated Lesson Plans Across Different Models and Prompt Frameworks in High-School Physics.* arXiv:2510.19866. https://arxiv.org/abs/2510.19866
-- Walton Family Foundation / Gallup (2025). *Teaching for Tomorrow: Unlocking Six Weeks a Year With AI.* https://news.gallup.com/poll/691967/three-teachers-weekly-saving-six-weeks-year.aspx
-- RAND Corporation (2025). *Uneven Adoption of Artificial Intelligence Tools Among U.S. Teachers and Principals in the 2023–2024 School Year* (RR-A134-25). https://www.rand.org/pubs/research_reports/RRA134-25.html
-- RAND Corporation (2025). *AI Use in Schools Is Quickly Increasing but Guidance Lags Behind* (RR-A4180-1). https://www.rand.org/pubs/research_reports/RRA4180-1.html
-- NGSS Lead States (2013). *Next Generation Science Standards*, HS-LS1-7 (cellular respiration) and HS-LS1-5 (photosynthesis). https://www.nextgenscience.org/pe/hs-ls1-7-molecules-organisms-structures-and-processes
+The argument rests on three claims: AI saves time at the structural layer; PCK revision is necessary and non-delegable; and the combination produces better outcomes than either AI or the teacher working alone. The first claim has RCT support. The second has decades of educational research behind it. The third is, at the level of student learning outcomes, an open empirical question.
+
+A rigorous randomized trial with student learning as the primary endpoint — showing that students taught from AI-generated plans without substantive PCK revision learn at least as much as students taught from teacher-revised plans, across diverse populations and subjects — would require a significant revision to the chapter's central argument about the necessity of the revision step. That trial does not yet exist.
+
+A long-running observational study showing that teachers using AI lesson planning at steady state across a full academic year produce student outcomes statistically indistinguishable from a matched non-AI cohort would partially close the gap between the resource-quality finding and the student-learning question. Also does not yet exist.
+
+The NFER follow-up Aila trial, measuring lesson quality and exploring student outcomes for AI-assisted lesson planning with roughly 450 Key Stage 2 teachers, is expected to report in 2026.[^aila] That result will be the most important piece of new evidence on this question in the near term.
+
+---
+
+## Exercises: using AI to understand AI lesson planning
+
+These exercises are done with an AI tool. That is the point — using the thing you are learning about to understand it more precisely.
+
+**Exercise 1: The vague-versus-specified prompt comparison.**
+
+Take one upcoming lesson. Generate it twice. Prompt A is one sentence: "Write a [N]-minute [grade] [subject] lesson on [concept]." Prompt B uses the full template structure described in this chapter, filled in for your actual class. Compare the outputs side by side. Document which required less revision to make usable, what the class-specific context in Prompt B got you that Prompt A could not, and which plan you would actually teach from. The exercise is not to prove that specified prompts work — they do — but to feel, in your own room, how much of the dividend is a function of what you put in rather than what the model knows.
+
+**Exercise 2: The PCK revision audit.**
+
+Use AI to generate a unit skeleton for an upcoming unit you have to plan anyway. Then read the draft against the four PCK questions: what will students predictably get wrong? Which analogy will backfire? What sub-topic order does this class need? What is the smallest example that exposes the deepest confusion? List every revision you make and categorize each as: PCK (knowledge of this class), standards verification, structural correction, or stylistic preference. Calculate the ratio of PCK revisions to total revisions. That ratio is the share of the work the AI cannot do for you. The higher the ratio, the more the AI is buying you time on the work that matters.
+
+**Exercise 3: The phase gate interview.**
+
+Pick the hybrid lesson planning task you are most nervous about delegating — the one where an AI mistake would have real classroom consequences. Describe the task to an AI assistant. Ask it: *What information would you need from me to produce a first draft that I would need to substantially revise?* Then ask: *What would be the most likely ways this draft would be wrong?* Its answer to the second question is your phase gate for this task — the checklist you run before any draft from this task moves toward students. Write the gate down before you use the tool for the task the first time.
+
+---
+
+The lesson plan that looks right to a blind expert panel and the lesson plan that anticipates the misconception this class will carry into Tuesday are not the same document. AI produces the first reliably. You produce the second, and only you can. The dividend is what you get when you let AI handle the first so you have bandwidth left for the second.
+
+Chapter 5 takes the same framework into assessment and feedback — where the time savings are larger, the failure modes are louder, and the question of who is doing the cognitive work cuts at both the teacher's grading desk and the student's writing desk.
+
+---
+
+[^shulman86]: Shulman, L. S. (1986). Those Who Understand: Knowledge Growth in Teaching. *Educational Researcher*, 15(2), 4–14. <https://journals.sagepub.com/doi/10.3102/0013189X015002004>. The 1987 companion piece: Shulman, L. S. (1987). Knowledge and Teaching: Foundations of the New Reform. *Harvard Educational Review*, 57(1), 1–22.
+
+[^nfer]: NFER & Education Endowment Foundation (2024). *ChatGPT in Lesson Preparation: A Teacher Choices Trial — Evaluation Report.* Cluster-randomised trial, 68 secondary schools, 259 KS3 science teachers, ten weeks. <https://d2tic4wvo1iusb.cloudfront.net/production/documents/projects/chatgpt_in_lesson_planning_-_evaluation_report.pdf?v=1736353004>. EEF news summary: <https://educationendowmentfoundation.org.uk/news/teachers-using-chatgpt-alongside-a-guide-to-support-them-to-use-it-effectively-can-cut-lesson-planning-time-by-over-30-per-cent>.
+
+[^ubd]: Wiggins, G., & McTighe, J. (2005). *Understanding by Design* (2nd ed.). Alexandria, VA: ASCD. <https://www.ascd.org/books/understanding-by-design-expanded-2nd-edition?variant=103055>.
+
+[^liu25]: Liu, X. (2025). *An Evaluation of the Pedagogical Soundness and Usability of AI-Generated Lesson Plans Across Different Models and Prompt Frameworks in High-School Physics.* arXiv:2510.19866. <https://arxiv.org/abs/2510.19866>. Preprint, not yet peer-reviewed.
+
+[^rand]: RAND Corporation (2025). *Uneven Adoption of Artificial Intelligence Tools Among U.S. Teachers and Principals in the 2023–2024 School Year* (RR-A134-25). <https://www.rand.org/pubs/research_reports/RRA134-25.html>.
+
+[^aila]: Education Endowment Foundation (2025). *Lesson planning using AI lesson assistant, Aila — Teacher Choices Trial.* ~450 Key Stage 2 teachers, 86 English primary schools; results expected 2026. <https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/aila-teacher-choices-trial>.
