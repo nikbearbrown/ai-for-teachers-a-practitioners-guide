@@ -1,9 +1,6 @@
 # Chapter 10 — Writing with AI: An Introduction
 *The artifact is cheap now. The process is what's left. The process was always the thing.*
 
----
-
-*Same tool, twenty minutes apart, opposite jobs. That's the whole chapter.*
 
 ---
 
