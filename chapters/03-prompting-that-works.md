@@ -1,285 +1,181 @@
 # Chapter 3 — Prompting That Works: The Foundation Skill
 
-**TL;DR.** A prompt is not a search query. It is a specification — role, context, task, constraints — and the teachers who get usable output from AI write specifications, iterate on the gaps, and save the prompts that worked.
+*The model has no context the prompt does not supply. Everything else follows from that.*
 
 ---
 
-## 3.1 Learning objectives
+Two 8th-grade U.S. History teachers are in the same building. Same standard. Same textbook chapter. Same week of school. On a Sunday evening they both open the same chatbot to write a formative quiz on the causes of the American Revolution.
 
-By the end of this chapter you will be able to:
+Teacher A types: *Generate quiz questions about the American Revolution.*
 
-1. **Describe** why prompt quality determines output quality — the model has no context the prompt does not supply.
-2. **Write** a basic prompt using the four-component structure: role, context, task, constraints.
-3. **Add** grade level, subject, standard alignment, and student population detail to a prompt and compare output quality.
-4. **Use** iterative prompting: evaluate the first output, identify the specific gap, write a follow-up that closes it.
-5. **Distinguish** a feeling-prompt ("make this more engaging") from a specification.
-6. **Create** prompts for three recurring tasks from your own workweek.
+Five questions come back. Three are date-recall. One has the correct answer obviously longer than the distractors. The reading level lands around eleventh grade. None of the items touch the misconception this class is carrying — that "no taxation without representation" meant Americans paid *higher* taxes than Britons. They did not. They paid lower taxes. The problem was the absence of parliamentary representation, not the size of the bill. The questions are technically correct. They are not usable for Monday.
 
-Prerequisite reading: Chapter 1 (which tasks are AI-suitable in the first place) and Chapter 2 (where the human handoff sits, so you know what the prompt is producing *for*).
+Teacher B types a longer prompt. Six sentences. She names the standard. She names the grade. She names which causes the unit has covered and which it has not yet reached. She asks for eight multiple-choice items, one per cause, four choices per item, with one distractor per item targeting a documented 8th-grade misconception. She bans date-recall items. She specifies 6th-grade reading level because three students read below grade level.
 
----
+Eight items come back. One per cause. The distractors are sharp — including the exact "Americans paid more" misconception her class is carrying into the quiz. She edits two stems and saves the prompt to a file.
 
-## 3.2 Opening case — same tool, same minute, two outputs
+Same tool. Same minute. One teacher got trivia. The other got something she will reuse next quarter.
 
-It is a Sunday in late October. Two 8th-grade U.S. History teachers in the same building are writing a formative quiz on the causes of the American Revolution. Same standard. Same textbook chapter. Same week of school. Both open the same chatbot. Both type.
+The chatbot did not change. The prompt did.
 
-Teacher A types:
-
-> Generate quiz questions about the American Revolution.
-
-Five questions come back. Three are date-recall ("In what year did the Boston Tea Party occur?"). One is a multiple-choice item with the correct answer obviously longer than the distractors. The reading level lands somewhere around 11th grade. None of the items target the misconception this teacher knows her class carries — that "no taxation without representation" meant Americans paid higher taxes than Britons (they did not; they paid lower, but had no parliamentary voice). The questions are technically correct. They are not usable for this class on Monday. Teacher A rewrites them by hand. Forty minutes.
-
-Teacher B types a longer prompt. Six sentences. It names the standard (C3 D2.His.14.6-8). It names the grade. It names which causes the unit has covered and which it has not yet. It asks for eight multiple-choice items with one item per cause, four answer choices per item, and one distractor per item that targets a documented 8th-grade misconception. It bans date-recall items and the phrase "the colonists were angry." It specifies 6th-grade reading level because three of the students read below grade level.
-
-The output comes back. Eight items. One per cause. The distractors are sharp — one is the exact "Americans paid more tax" misconception the class is going to carry into the quiz. Teacher B edits two stems, swaps one distractor, and saves the prompt to a file called `quizzes/causes-of-revolution.md`. Twelve minutes start to finish. Next quarter, when she teaches the same unit, she will change one line — the standard reference — and run it again.
-
-Same tool. Same minute. One teacher got generic trivia. The other got a usable draft she can reuse for years. The chatbot did not change. The prompt did.
-
-That difference is what this chapter teaches.
+<!-- → [TABLE: side-by-side anatomy of Teacher A's prompt vs. Teacher B's prompt — rows: standard cited, grade level stated, reading level specified, misconception named, format specified, item count, distractor criteria — cells show what each teacher supplied or left blank — reader should see at a glance precisely where the specification gap opened] -->
 
 ---
 
-## 3.3 The core idea — prompting is task decomposition
+The question worth asking is why. Not just "the prompt was more detailed" — that is description, not explanation. The *why* is what you need if you want to do this reliably, not just accidentally.
 
-A search engine takes keywords and looks up documents. A generative language model does something different. It samples the next word from a probability distribution that depends on every word preceding it. The prompt *is* the conditioning. The more your prompt narrows the probability space, the more the output collapses toward the slice you actually want. The less it narrows, the more the output drifts toward the average of what its training data contains for those keywords — which, for "quiz questions on the American Revolution," is a generic mix of trivia at an unspecified grade level in an unspecified format ([Liu et al., 2023](https://arxiv.org/abs/2107.13586)).
+Here is the structural reason.
 
-A useful way to hold this: **a vague prompt is a request for the average.** An average is rarely useful for a specific class.
+When you type a question into a search engine, documents come back that already existed. The engine looked up what matched your keywords in an index and returned the top results. Your words pointed at things in the world. The thing you got was already there before you typed.
 
-The reason this matters is structural, not magical. The model does not know your school. It does not know the standard. It does not know that three of your students are ELLs at WIDA level 2, that the unit started two weeks ago, that last year's class tripped over taxation-without-representation, or that the assistant principal wants quizzes formatted as Markdown lists. **The model has no context the prompt does not supply.** Everything that is not in the prompt is filled in by the model's average guess. Average guesses produce average output.
+A generative language model does something entirely different. When you type into a chatbot, nothing is retrieved. The model samples the next word from a probability distribution that depends on every word before it. Then it samples the next word, and the next, building the output one token at a time — conditioned on the entire prompt. The prompt is not a query pointing at stored knowledge. The prompt *is* the conditioning. The output is being constructed in response to it, from scratch, every single time.
 
-### 3.3.1 The four-component structure
+This means the prompt is carrying a weight that a search query never does. A search query is a pointer. A prompt is the entire specification of what gets built.
 
-There is a structure that forces you to supply what an ad-hoc prompt forgets. Different people call it different things — CO-STAR, PAST, PLFR, role-task-format — but the structure underneath is the same. <!-- FACT-CHECK FLAG: UNVERIFIED — CO-STAR (GovTech Singapore) and role-task-format are attested; PAST and PLFR are not well-attested as canonical prompt frameworks. See factchecks/03-prompting-that-works-assertions.md (F2). --> This book uses four components because four is enough:
+<!-- → [INFOGRAPHIC: two-panel diagram — left panel: search engine (user keywords → index lookup → ranked list of pre-existing documents, arrow labeled "retrieval"); right panel: generative model (prompt tokens → probability distribution → token-by-token construction, arrow labeled "conditioning") — caption: the left panel points at something already in the world; the right panel builds something that did not exist until you asked] -->
 
-```
-ROLE: You are [specific role relevant to this task].
-CONTEXT: [Grade level, subject, standard, class profile, constraints].
-TASK: [Specific deliverable with format, length, and quality criteria].
-CONSTRAINTS: [What to avoid, what format to use, what the output will be used for].
-```
+And here is the consequence that matters for teachers: the model has no context the prompt does not supply.
 
-Each line does distinct work.
+It does not know your school. It does not know the standard. It does not know that three of your students are ELLs at WIDA level 2, that the unit started two weeks ago, that last year's class tripped on the taxation misconception, or that your assistant principal wants quizzes formatted as numbered Markdown lists. The model has access to one thing: the words in the prompt. Everything not in the prompt is filled in by the model's average guess — and the average of what "quiz questions on the American Revolution" looks like across a training corpus is generic trivia at an unspecified grade level, because that is what most of the internet's American Revolution quiz content is.
 
-**Role** tells the model which slice of its training corpus to draw from. "You are a veteran 8th-grade U.S. History teacher" pulls the vocabulary, pacing, and pedagogical instincts the corpus associates with that role. The evidence on role-prompting is mixed and we will be honest about it in §3.6 — but for tasks where register and style matter (most teacher tasks), it does work.
+A vague prompt is a request for the average. An average is rarely useful for a specific class.
 
-**Context** is the part teachers under-supply most. Grade. Subject. Standard. Class profile. What the class has already covered. What it has not. Without this, the model defaults to a generic high-school-adult reading level and a generic topic treatment. Context is what makes the output land in *your* classroom rather than in a hypothetical average classroom.
-
-**Task** is the deliverable. Format, length, quality criteria. "Make quiz questions" is a task in the same way "make food" is a task at a restaurant. The model can comply with both, and you will not like either result. "Write eight multiple-choice questions, each with four answer choices and a one-sentence rationale for the correct answer and each distractor, output as a numbered Markdown list" is a task.
-
-**Constraints** is what to avoid and what the output will be used for. Anthropic's own guidance recommends positive instructions over negative ones — telling Claude what *to* do is more reliable than telling it what *not* to do ([Anthropic prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)). But negative constraints earn their place when paired with a positive direction and used sparingly: "Do not include date-recall items; this is for a formative quiz, not a unit exam." The pattern that works is *positive direction + a few sharp negatives + stated downstream use*. Long lists of "do not" rules degrade output more than they sharpen it (see §3.3.4).
-
-The template is scaffolding. After thirty or forty prompts, the structure becomes reflex and disappears the way grammar disappears for a fluent speaker. But the moves underneath — name the role, supply the context, specify the task, set the constraints — those do not disappear. They become how you think about handing work to a model.
-
-### 3.3.2 Specification beats feeling
-
-Here is the most common way teacher prompts fail.
-
-A teacher asks AI to draft a parent email. The draft sounds clinical. The teacher prompts back: *make it warmer and more personal*. The next version arrives with three exclamation points, a smiley face, and the phrase "we're all in this together!" That is the model's stereotype of "warm" — the average of what "warm" looks like in its training data. It is not warm. It is performative warmth. The teacher has asked for a feeling, and the model has produced the average impression of that feeling.
-
-Now watch the specification version. Same teacher. Same email. The follow-up:
-
-> Rewrite the email so the second sentence references one specific strength the student showed last week (her participation in the Tuesday group discussion on volcanoes). Replace "is struggling" with "is finding [specific skill] challenging." End with one specific concrete invitation: "Could we meet this Friday at 3:15 to look at the recent quiz together?" Remove any sentence that begins with "I just wanted to."
-
-The specification version sounds personal because it *is* personal. The feeling version sounds like generic warmth because that is what the model produces when asked for a feeling without a specification.
-
-The trap is that feeling-prompts feel natural. They are how humans talk to humans, who can interpret intent. Models do not interpret intent. They pattern-match. Asking for a feeling produces a stereotype of that feeling. Asking for a *move* — the specific operation that would produce the feeling — produces the move.
-
-Cut on sight, in your own prompts: *make it engaging*, *make it pop*, *make it sound more like a teacher*, *make it rigorous*, *tighten it up*, *make it better*. Replace each with the operation underneath. *Engaging* might mean "open each section with a one-sentence concrete scene." *Rigorous* might mean "every claim links to a primary source." *Tighten* might mean "cut any sentence longer than 25 words to two shorter sentences." Those are operations the model can execute and you can verify.
-
-### 3.3.3 Iterative prompting — the first output is a draft
-
-Both Anthropic and OpenAI describe prompt engineering the same way: start with a prompt, look at the output, refine ([Anthropic](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview); [OpenAI](https://platform.openai.com/docs/guides/prompt-engineering)). The skill is not writing the perfect first prompt. The skill is the loop. Evaluate the output, identify the specific gap, write the follow-up that closes it.
-
-The first output's job is to reveal what you forgot to specify. If the questions are too easy, "increase difficulty" is the wrong follow-up — it is a feeling. The specification follow-up names what to keep and what to change: *Rewrite items 3, 5, and 7 so the distractors target the taxation-without-representation misconception rather than date-recall errors. Keep items 1, 2, 4, 6, and 8.* That is bounded. The teacher does not have to re-read the whole quiz after the model responds. She only has to re-read items 3, 5, and 7.
-
-Two prompts in a session is normal. Four is normal. Eight is a sign the prompt structure was wrong from the start and the teacher is debugging at the wrong level — better to rewrite the whole prompt than to keep patching it.
-
-### 3.3.4 Negative prompting — telling the model what *not* to do
-
-"Avoid emoji." "Do not include trivia about dates or numerical recall." "Do not use the phrase 'students will learn.'" These are negative constraints. They are first-class moves, not afterthoughts. What you tell a model *not* to do sharpens the output as much as what you tell it to do.
-
-Two cautions. First: a negative constraint works best when paired with a positive direction. "Do not use emoji" leaves the model uncertain about how to fill the space; "Do not use emoji; use a short declarative sentence instead" gives it somewhere to go. Second: long lists of negative constraints degrade attention. A model that reliably honors three "do not" instructions may drop the fourteenth. Three or four well-chosen negatives beat fifteen.
-
-### 3.3.5 Platform differences as task fit, not vendor ranking
-
-This section is the most dangerous section in the chapter, because anything specific about a specific model is going to be wrong within a year. So we will frame it in terms of *task fit*, which has been stable across the 2024–2026 model generation, rather than in terms of which company is winning this month.
-
-- **Long-document synthesis** — you upload three PDFs of curriculum materials and want a unit plan grounded in those documents. **NotebookLM** is built for this. It grounds answers in the uploaded sources and cites passages. The trade-off: it is conservative — it will refuse to extrapolate beyond what you uploaded. For synthesis that needs to bring in outside knowledge, a general chatbot does more.
-- **Long-form drafting and writing-task feedback** — you want a 600-word lesson plan or a feedback paragraph on student writing. **Claude** tends to produce longer, more structurally coherent first drafts and follows complex multi-part instructions reliably. Anthropic's documentation leans heavily on prompt structure ([Anthropic best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)).
-- **Conversational ideation and quick iteration** — you are brainstorming, refining as you go, talking it through. **ChatGPT**'s conversational tuning makes turn-by-turn refinement feel fluid.
-- **Integration with Google Workspace artifacts** — you live in Google Slides, Docs, Classroom, and Forms. **Gemini** is inside those tools. Gemini in Classroom is free to Workspace-for-Education educators ([Google blog, 2024](https://blog.google/products-and-platforms/products/education/classroom-ai-features/)).
-
-The point is not to rank vendors. The point is: **the four-component prompt works on all of them.** Vendor differences are real but secondary to specification discipline. Switching to a different AI rarely fixes bad output. Switching your prompt does.
-
-### 3.3.6 Prompt libraries — saving what worked
-
-The prompt that produced a usable quiz today will produce a usable quiz next quarter for the next unit. The teacher who writes prompts ad hoc pays the specification cost every time. The teacher who saves prompts pays it once and amortizes it across every reuse. This is the single highest-leverage move in this chapter.
-
-A starter library is small. Five to fifteen prompts per recurring task category. A folder structure that is searchable. Each prompt has the four components filled in with the teacher's recurring context — grade, subject, standards, class profile — and the parts that change per use (the specific text, the specific unit, the specific student situation) marked as slots to fill. Chapter 12 builds this systematically; for now, the rule is: **if a prompt worked, save it.** You will not remember what you did differently three weeks from now. Save the prompt.
+This is not a criticism of the model. It is a structural description. The model is doing exactly what it should: drawing on everything the prompt implies. The problem is that a short, casual prompt implies things the writer never intended. Specification is how you close the gap between what you typed and what you meant.
 
 ---
 
-## 3.4 Worked example — one task, three prompts
+There is a structure that forces you to supply what an ad-hoc prompt forgets. Different practitioners call it different things; this book uses four components: role, context, task, and constraints.
 
-Let us run the loop end to end on a single concrete task. A 5th-grade teacher wants a lesson plan on photosynthesis aligned to NGSS 5-LS1-1, the standard that requires students to support an argument that plants get the materials they need for growth chiefly from air and water (not, as the most common 5th-grade misconception holds, from the soil).
+    ROLE:        You are [specific role relevant to this task].
+    CONTEXT:     [Grade level, subject, standard, class profile, what's been covered].
+    TASK:        [Specific deliverable with format, length, and quality criteria].
+    CONSTRAINTS: [What to avoid, what format to use, what the output will be used for.]
 
-### Round 1 — the vague prompt and what it returns
+<!-- → [INFOGRAPHIC: the four-component template as a labeled reference card — each line of the template has a callout annotation: ROLE → "pulls the corpus region: vocabulary, register, pacing"; CONTEXT → "replaces the model's average guess with your classroom facts"; TASK → "names a deliverable you can verify, not a feeling you can only sense"; CONSTRAINTS → "closes the gap between what you typed and what you meant" — designed to print as a half-page laminated card] -->
 
-**Prompt:**
+Each line does distinct work, and it is worth understanding what that work is — because once you do, the structure becomes reflex rather than a checklist.
 
-> Write a lesson plan on photosynthesis for 5th grade.
+The *role* tells the model which region of its training to draw from. "You are a veteran 8th-grade U.S. History teacher" pulls the vocabulary, pacing, and pedagogical instincts the corpus associates with that role. The evidence on this is mixed — more on that honestly in a moment — but for tasks where register and style matter, which most teacher tasks are, it helps.
 
-**What comes back** (paraphrased — the exact wording varies by model and by run):
+The *context* is the part teachers under-supply most. Grade. Subject. Standard. Class profile. What the class has covered. What it has not. Without this, the model defaults to a generic high-school treatment at an adult reading level. Context is what makes the output land in your classroom rather than in some hypothetical average one.
 
-> **Photosynthesis Lesson Plan (Grade 5)** — Objective: students will learn about photosynthesis. Materials: paper, pencils, optional plant. Procedure: (1) Introduce the concept of photosynthesis. (2) Show a diagram. (3) Have students label the parts. (4) Discuss. Assessment: students will demonstrate understanding.
+The *task* is the deliverable. Format, length, quality criteria. "Make quiz questions" is a task the same way "make food" is a task at a restaurant. The model can comply with both. You will not like either result. "Write eight multiple-choice questions, each with four answer choices and a one-sentence rationale for the correct answer and each distractor, output as a numbered Markdown list" is a task the model can execute and you can verify.
 
-This is a draft of the *shape* of a lesson plan, not a usable plan. There is no standard alignment. There is no formative check. There is no differentiation. The objective is "students will learn about photosynthesis," which is not an objective — it is a topic. The materials list says "optional plant." The procedure does not address the misconception the standard exists to correct.
+The *constraints* are what to avoid and what the output is for. Anthropic's own guidance — and the research behind it — recommends positive instructions over negative ones: telling the model what *to* do is more reliable than telling it what *not* to do. But negative constraints earn their place when they are few, sharp, and paired with a positive direction. "Do not include date-recall items; write conceptual application items instead." That works. A list of fifteen "do not" rules does not — models drop them the way a reader skims footnotes. Three well-chosen negatives beat fifteen scattered ones.
 
-This is what a vague prompt produces. Not bad. Not usable. Generic.
+After thirty or forty prompts, this structure becomes invisible — the way grammar becomes invisible for a fluent speaker. You no longer think "I need to supply the role." You think in specifications. But the moves underneath stay: name the role, give the context, specify the deliverable, set the constraints.
 
-### Round 2 — add role, context, task, constraints
+---
 
-**Prompt:**
+There is a failure mode so common that most people do not recognize it as a failure mode. They think they are specifying. They are not. They are asking for a feeling.
+
+A teacher asks the model to draft a parent email. The draft sounds clinical. She prompts back: *make it warmer and more personal.*
+
+The next version arrives with three exclamation points, a smiley, and the phrase "we're all in this together." That is the model's stereotype of warm. It is the average of what warmth looks like across its training data. It is not warm. It is performative warmth — the look of warmth without the substance of it. She asked for a feeling and got the average impression of that feeling.
+
+Now watch the specification version. Same teacher, same email, same problem:
+
+> Rewrite the email so the second sentence references one specific strength the student showed last week — her participation in Tuesday's group discussion on volcanoes. Replace "is struggling" with "is finding [specific skill] challenging." End with one specific concrete invitation: "Could we meet this Friday at 3:15 to look at the recent quiz together?" Remove any sentence that begins with "I just wanted to."
+
+The specification version sounds personal because it *is* personal. Each instruction names an actual move that produces the experience of care: a specific detail, a reframed word, a concrete ask. There are no feelings in the prompt. There are operations. And the model can execute operations.
+
+The feeling-prompt trap is that it feels natural. It is how humans talk to humans, who can interpret intent and fill in the gap between "warmer" and the specific moves that warmth requires. Models do not interpret intent. They pattern-match. Ask for a feeling and you get the stereotype. Ask for the move that produces the feeling and you get the move.
+
+Cut these from your prompts on sight: *make it engaging*, *make it pop*, *make it rigorous*, *tighten it up*, *make it better*. Each is a feeling masquerading as an instruction. Replace each with the operation underneath. *Engaging* might mean: open each section with a one-sentence concrete scene. *Rigorous* might mean: every claim links to a primary source. *Tighten* might mean: cut any sentence over 25 words into two. Those are instructions. The model can execute them. You can verify the result.
+
+<!-- → [TABLE: feeling-prompt conversion table — two columns, six rows — left: the feeling phrase ("make it warmer," "make it more engaging," "make it rigorous," "tighten it up," "make it pop," "make it better") — right: the specification operation that produces the intended effect — a quick-reference card for rewriting vague follow-up prompts into executable instructions] -->
+
+---
+
+The skill is not writing the perfect first prompt. The skill is the loop.
+
+Both Anthropic and OpenAI describe prompt engineering the same way: draft, evaluate the output, refine. The first output's job is to reveal what you forgot to specify. Every gap in the output points to something missing from the prompt. The second prompt closes that specific gap. This is not trial and error — it is diagnosis. Each round narrows the probability space.
+
+Here is the loop run end to end on a real task.
+
+A 5th-grade teacher wants a lesson plan on photosynthesis, aligned to NGSS 5-LS1-1 — the standard requiring students to argue, with evidence, that plants get the materials they need for growth chiefly from air and water, not from the soil, which is where most 5th-graders believe the food comes from.
+
+Round one: *Write a lesson plan on photosynthesis for 5th grade.*
+
+What comes back: "Objective: students will learn about photosynthesis. Materials: paper, pencils, optional plant. Procedure: introduce the concept, show a diagram, have students label the parts, discuss. Assessment: students will demonstrate understanding."
+
+This is a lesson plan the way a ghost is a person — it has the shape, none of the substance. The objective is a topic, not a capability. The materials list says "optional plant." The procedure does not name the misconception the standard exists to correct. Every detail that makes a lesson plan usable for a specific class in a specific week is missing, because the prompt did not supply it. The model filled in the average.
+
+Round two, with structure:
 
 > ROLE: You are a veteran 5th-grade science teacher writing a 60-minute lesson plan.
 >
-> CONTEXT: 5th grade, class of 26 students, including three ELLs at WIDA level 2 and two students reading two grade levels above. Standard: NGSS 5-LS1-1 (support an argument that plants get the materials they need for growth chiefly from air and water). The class has covered: parts of a plant, the water cycle. The class has NOT yet covered: cellular respiration, the carbon cycle. The most common student misconception we need to address is that plants get their food from the soil.
+> CONTEXT: 5th grade, class of 26, including three ELLs at WIDA level 2 and two students reading two grade levels above. Standard: NGSS 5-LS1-1. The class has covered: parts of a plant, the water cycle. It has NOT yet covered: cellular respiration, the carbon cycle. The dominant student misconception to address: plants get their food from the soil.
 >
-> TASK: Write a 60-minute lesson plan with: (1) one student-facing objective written in "students will be able to" form, (2) a 5-minute hook that surfaces the soil misconception, (3) a 15-minute direct-instruction segment, (4) a 25-minute lab using only paper plates, plastic cups, soil, bean seeds, and a lamp, (5) a 10-minute discussion, (6) a 5-minute exit ticket with two formative-check questions. Output as Markdown with headers for each segment.
+> TASK: Write a 60-minute lesson plan with — (1) one student-facing objective in "students will be able to" form, (2) a 5-minute hook that surfaces the soil misconception, (3) a 15-minute direct-instruction segment, (4) a 25-minute lab using only paper plates, plastic cups, soil, bean seeds, and a lamp, (5) a 10-minute discussion, (6) a 5-minute exit ticket with two formative-check questions. Output as Markdown with headers for each segment.
 >
-> CONSTRAINTS: Reading level for any student-facing text: 5th grade. Do not use the word "produce" — students at this grade often parse it as "fruit." Do not include any segment that requires materials beyond those listed. Output is for tomorrow's class, so the lab must work with what is already in the room.
+> CONSTRAINTS: Reading level for student-facing text: 5th grade. Do not use the word "produce" — students at this grade often parse it as fruit. Do not include any segment requiring materials beyond those listed.
 
-**What comes back:** the plan now has a real objective ("students will be able to argue, with evidence from a controlled investigation, that bean plants gain mass primarily from air and water rather than from soil"). The hook is a one-minute scenario where students predict whether a sealed bean seedling kept in light will gain or lose soil mass over a week. The lab uses paper plates and cups. The exit ticket asks students to weigh a hypothesis claim against two pieces of evidence. The differentiation section names one accommodation for ELLs (a labeled diagram for the lab) and one extension for above-level readers (a primary source from Joseph Priestley's 1771 experiment on mice and plants).
+What comes back is a real lesson plan. The objective: "students will be able to argue, with evidence from a controlled investigation, that bean plants gain mass primarily from air and water rather than from soil." The hook has students predict whether a sealed seedling will gain or lose soil mass over a week under a lamp — a prediction that surfaces the misconception directly. The lab uses the materials listed. The exit ticket asks students to weigh a hypothesis against two pieces of evidence. The differentiation section names labeled diagrams for ELLs and a primary source from Joseph Priestley's 1771 mice-and-plants experiment for above-level readers.
 
-This is now a draft a teacher could edit in ten minutes and teach tomorrow.
+This is a draft she can edit in ten minutes and teach tomorrow.
 
-### Round 3 — close the specific gap
+Round three reveals one gap: the lab as written requires a week of observation. Tomorrow's class is the only class on this topic before Monday. The argument needs to happen in 25 minutes.
 
-The teacher reads it. One problem. The lab as written requires a week of observation before students can support an argument, but tomorrow's class is the only class on this topic before next Monday. She does not need a week-long investigation. She needs the *argument move* to happen tomorrow on data she can produce in the classroom.
+> Revise the lab so it produces observable evidence within the 25-minute class segment. The argument students make at the end of class should be supported by evidence they collect that day. Keep the rest of the plan.
 
-**Prompt:**
+What comes back: a revised lab where students observe condensation forming inside a sealed bag containing a sprouting bean and a damp paper towel after 20 minutes under a lamp. They discuss what the water vapor implies about where a growing plant's mass comes from — which is the argument the standard asks for, landed entirely within the class period. The rest of the plan is unchanged.
 
-> Revise the lab so it produces observable evidence within the 25-minute class segment, not over a week. The argument students make at the end of class should be supported by evidence they collect in that 25 minutes. Keep the rest of the plan.
+Three prompts. Seven minutes of typing. A lesson plan reusable next year by changing one line.
 
-**What comes back:** a revised lab in which students mass a sealed bag containing a sprouting bean and damp paper towel before and after a 20-minute exposure to a lamp, observing the rise in water vapor inside the bag. The mass change is too small to measure with classroom scales, so the lab instead has students observe and measure the condensation on the inside of the bag and discuss what it implies about where the mass of a growing plant must come from. The rest of the plan is unchanged.
+<!-- → [INFOGRAPHIC: iterative loop as a three-node flowchart — node 1: vague prompt → generic output (annotated: "the model fills in the average"); node 2: four-component prompt → usable draft (annotated: "specification narrows the probability space"); node 3: gap-closing follow-up → final draft (annotated: "name what to change, name what to keep") — arrows between nodes labeled with the diagnostic observation that triggered the next round: "objective is a topic, not a capability" and "lab requires a week, class has 25 minutes"] -->
 
-Now it is a tomorrow-class lesson plan. Three prompts. Maybe seven minutes of typing. The teacher edits two sentences, swaps one vocabulary term, and saves the whole exchange to `lessons/05-photosynthesis-misconception.md` with a top comment: *next year, do the week-long version if the unit calendar allows.*
-
-### What the worked example teaches — and what it does not
-
-The teaches: each round of the loop narrowed the output. The first prompt was a request for the average. The second prompt was a specification. The third prompt named a specific gap (the time horizon of the lab) and asked the model to close that one gap without disturbing the rest.
-
-The does not: **specification cannot substitute for domain knowledge you do not have.** A teacher who does not know that "plants get their food from soil" is the common 5th-grade misconception cannot ask the model to address that misconception. A teacher who does not know that "produce" is ambiguous for 5th-graders cannot constrain the model away from it. The four-component prompt is a tool for getting the model to deploy *your* knowledge of your classroom. It is not a substitute for having that knowledge. If you are teaching outside your subject area, the missing knowledge is the missing knowledge — the prompt cannot supply it.
-
-This is the same limit the rest of the book will name in different ways. AI extends teacher judgment. It does not replace it. The prompt is where that distinction lives in practice.
+Notice what made round two so much better than round one. The teacher knew that "plants get food from soil" is the misconception to address. She knew that "produce" is ambiguous for 5th-graders. A teacher without that domain knowledge cannot write those constraints. The four-component structure is a tool for getting the model to deploy *your* knowledge of your classroom. It is not a substitute for having the knowledge. AI extends teacher judgment. The prompt is where that extension happens.
 
 ---
 
-## 3.5 Common misconceptions
+Two things in this chapter I could have written as rules but should not.
 
-### "Prompting is like Googling."
+The first is role-prompting. Telling the model "You are a veteran 8th-grade U.S. History teacher" often helps — on tasks where register and style matter, which most teacher tasks are. But Zheng et al. (2023), in a careful study across four LLM families, found that adding personas produced no improvement or small negative effects on objective-knowledge benchmarks. The synthesis that holds: role-prompting helps when the task pulls on a coherent corpus region the persona names — vocabulary, pacing, pedagogical instinct. It helps less when the task requires a calibrated factual answer the model should already have without role-priming. For teachers: role works in lesson planning and feedback drafting. It does less work in fact-checking.
 
-It is not. Google takes keywords and retrieves documents that already exist. A generative model takes the entire prompt as conditioning and produces output that does not exist until you ask for it. Keywords are sparse input. Sparse input produces output that is the *average* of what those keywords mean in the model's training data. A vague keyword search returns 50,000 documents and you pick. A vague prompt returns one document — and the picking already happened, badly, before you saw it. Specification is how you do the picking on the way in.
+The second is magic phrases. "Think step by step." "Take a deep breath." There is real evidence behind some of these — chain-of-thought prompting genuinely improves multi-step reasoning on sufficiently large models (Wei et al., 2022). But the gains vary widely by model, task, and release date. A phrase that helped on a 2023 model may do nothing on a 2026 one. Try them when stuck. Do not build a workflow around them.
 
-### "Magic phrases work universally."
-
-You will hear that adding "think step by step" or "take a deep breath" to a prompt unlocks better answers. There is real evidence behind some of this — chain-of-thought prompting genuinely improves multi-step reasoning on sufficiently large models ([Wei et al., 2022](https://arxiv.org/abs/2201.11903)). But the gains vary wildly by model, by task, by benchmark, and by release. A phrase that helped on a 2023 model may have no effect or a negative effect on a 2026 model. Treat magic phrases as worth trying when you are stuck, not as rules. The four-component structure is durable across model generations because it is about specification, which models will always need. Specific phrases come and go.
-
-### "Longer prompt = better."
-
-Up to a point. Then no. Adding context that does work — the grade, the standard, the misconception, the constraints — improves output. Adding fifteen "do not" instructions makes models drop some of them. Adding three paragraphs of background a model does not need increases the noise the model has to filter. A 300-word prompt that supplies the right context outperforms a 1,500-word prompt that pads it. The discipline is *which* details to add, not how many.
-
-### "The same prompt should work across models."
-
-The structure does. The exact wording often does not. A prompt that produced an excellent output on Claude in March may produce a different output on a successor model in November, or on a different vendor's model on the same day. This is one reason to save prompts and to revisit your library annually. Treat prompt libraries as living documents, not as one-and-done assets. The structure (role-context-task-constraints) is the part you carry forward; the wording is the part you re-tune.
+The four-component structure is durable across model generations because it is about specification, which models will always need. Specific phrases are features of specific models at specific moments. They come and go.
 
 ---
 
-## 3.6 Where the evidence is contested
+A note on which tool to use, framed carefully, because any specific claim about which model is best this month will be wrong within a year.
 
-Two places in the chapter so far would have been easier to write as rules. They are not rules. They are worth-trying moves that the evidence is mixed on, and a textbook that pretended otherwise would age badly.
+The more durable frame is task fit. For long-document synthesis — uploading curriculum PDFs and asking for a unit plan grounded in those materials — NotebookLM is built for this. It grounds answers in what you uploaded, cites passages, and will not extrapolate beyond them. For synthesis that needs outside knowledge, a general chatbot does more. For long-form drafting — lesson plans, feedback paragraphs, complex multi-part instructions — Claude tends to produce structurally coherent first drafts and follows specification reliably. For conversational ideation, where you are thinking out loud and refining turn by turn, ChatGPT's conversational tuning makes that loop feel fluid. For teachers who live in Google Slides, Docs, Classroom, and Forms, Gemini is inside those tools and is free to Workspace for Education educators.
 
-**Persona prompting.** Telling the model "You are a veteran 8th-grade U.S. History teacher" feels like it should help and often does — on tasks where the output's *register* and *style* matter (most teacher tasks). But on factual benchmarks, the evidence is mixed. Zheng et al. (2023) ran a careful study across four LLM families and found that adding personas in the system prompt produced no improvement or small negative effects on objective-knowledge benchmarks ([Zheng et al., 2023, arXiv 2311.10054](https://arxiv.org/abs/2311.10054)). The synthesis that holds up: role-prompting helps when the task pulls on a coherent corpus region the persona names (vocabulary, register, pedagogical pacing), and helps less or hurts when the task is asking for a calibrated factual answer the model should already know without role-priming. For teachers: role works in lesson planning and writing feedback. It does less work in fact-checking.
+The point is not to rank. The four-component structure works on all of them. Vendor differences are real and secondary. Switching to a different AI rarely fixes bad output. Rewriting the prompt does.
 
-**"Magic phrases."** Same posture. Some phrases really do help some models on some tasks. None of them help every model on every task. Try them when stuck. Do not build a workflow around them.
-
-The chapter is honest about this because **the empirical research on teacher-specific prompting is thin.** The closest systematic reviews are Chen et al. (2024) on K-12 STEM ([arXiv 2410.11123](https://arxiv.org/abs/2410.11123)) and Qian (2025) on education broadly ([SAGE](https://journals.sagepub.com/doi/10.1177/07356331251365189)), and both note that the field is young. Most claims you will read about teacher prompting effectiveness — including some of the ones in this chapter — rest on practitioner reports and vendor documentation, not on randomized trials with teacher participants. This is a place to hold beliefs loosely and to update them when better evidence arrives.
+<!-- → [TABLE: platform-by-task-fit matrix — rows: NotebookLM, Claude, ChatGPT, Gemini — columns: long-document synthesis, long-form drafting, conversational ideation, Google Workspace integration — each strong-fit cell has a one-phrase label ("built for this," "reliable first drafts," "fluid turn-by-turn," "native") plus the key trade-off — reader picks a platform by task, not by brand preference] -->
 
 ---
 
-## 3.7 Exercises
+The prompt that produced a usable quiz today will produce a usable quiz next quarter for the next unit. A teacher who writes prompts ad hoc pays the specification cost every time. A teacher who saves prompts pays it once and compounds it across every reuse.
 
-### Exercise 1 — Prompt workshop (the chapter's keystone)
+A starter library is small — five to fifteen prompts per recurring task category. Each prompt has the four components filled in with the context that does not change across uses: grade, subject, the standards you teach, your general class profile. The parts that change — the specific text, the specific topic, the specific misconception — are marked as slots. `[INSERT UNIT TOPIC]`. `[INSERT PASSAGE HERE]`. `[INSERT SPECIFIC MISCONCEPTION]`. Run the template. Fill the slots. Edit the draft. Save the prompt back with any refinements.
 
-Choose one high-frequency task from your recent week: the next quiz, the next parent email, the next reading-level rewrite, the next lesson plan. Then do the following, in order, in writing.
-
-1. Write a one-line vague prompt of the kind you might type without thinking. Run it. Save the output as `output-A.md`.
-2. Rewrite the prompt using the four-component structure. Role. Context (grade, subject, standard, class profile). Task (format, length, criteria). Constraints (what to avoid, downstream use). Run it. Save the output as `output-B.md`.
-3. Read `output-B.md` carefully. Identify *one specific gap*. Not a feeling — a gap. ("The distractors are wrong" is a gap. "The tone is off" is a feeling. Convert feelings to gaps.) Write the follow-up prompt that names what to change and what to keep. Run it. Save the output as `output-C.md`.
-4. Save the final prompt — the version from step 3 — as the first entry in your personal prompt library. Give it a filename that you will be able to find in three months.
-
-The output of this exercise is one prompt and three outputs. The point is to feel the difference between step 1 and step 3 in your own work. If you do not feel a difference, the prompt at step 2 was not specific enough — go back.
-
-### Exercise 2 — Rewrite drill (vague to specific)
-
-Below are three feeling-prompts. Rewrite each as a specification. Name the operation the model can execute, not the feeling you want it to evoke.
-
-1. *Make this lesson plan more engaging.*
-2. *Tighten up this parent email.*
-3. *Make this rubric more rigorous.*
-
-There is no single right answer. There is a wrong one — leaving the prompt as a feeling.
-
-### Exercise 3 — Build a three-prompt starter library
-
-Build three reusable prompt templates for three recurring tasks you do every week or every unit. Examples: quiz generator, differentiated rewrite at three reading levels, parent-email draft from bullet notes. Each template should have the four components filled in with the parts of your context that *do not change* (grade, subject, standards you teach, class profile in general terms), and the parts that *do change* (the specific text, the specific topic, the specific student situation) marked as slots — for example, `[INSERT PASSAGE HERE]` or `[INSERT STUDENT-SPECIFIC NOTE HERE]`.
-
-Test each template on a real task this week. If it produces a usable draft with light editing, the template earned its place. If it took more editing than writing from scratch, revise the template and try again next week. The library is built one test at a time.
+Chapter 12 builds this systematically. The rule for now is simple: if a prompt worked, save it before you close the tab. You will not remember what you did differently three weeks from now. The output disappears when the session ends. The prompt is the thing that lasts.
 
 ---
 
-## 3.8 What would change my mind
+## LLM exercises
 
-This chapter argues that structured, specification-heavy prompts outperform unstructured conversational prompts for teacher tasks. The chapter would revise if a randomized trial — teachers using a four-component template versus teachers writing freeform prompts — measured time-to-usable-output, output quality (independently rated against rubrics), and time-saved-over-month, and found that the freeform group performed comparably or better at scale. As of this writing no such trial exists; the closest evidence is vendor documentation, practitioner reports, and adjacent research on prompt-engineering effects in non-teacher contexts. The chapter's confidence in the four-component structure rests on that adjacent evidence plus the structural argument that specification is the only way to give a model context it does not have. If a trial showed the structure did not matter — that conversational refinement converged to the same quality with comparable total time — the chapter would need to be rewritten around the iteration loop alone, dropping the template as the recommended starting point.
+**Exercise 1 — The comparison run.** Choose one high-frequency task from your week: a quiz, a parent email, a reading-level rewrite, a lesson plan. Write the one-line vague version you might type without thinking and run it. Then write the four-component version — role, context, task, constraints fully filled in — and run it on the same task. Save both outputs. Do not use any subjective adjective to compare them. Name three specific differences between the outputs.
 
----
+**Exercise 2 — Close one gap.** Take the output from Exercise 1's four-component prompt. Identify one specific gap — not a feeling, a gap. Write the follow-up that names what to change and what to keep. Run it. The output of this exercise is the follow-up prompt, not the revised output.
 
-## 3.9 Still puzzling
-
-A few things this chapter does not yet answer.
-
-- **What is the right teacher prompt-library size?** Five prompts feels under-built. Fifty feels unmaintainable. The right answer is probably "as many as the recurring tasks require, no more," but I do not know what that number is empirically for a full-time teacher.
-- **How fast do good prompts go stale across model releases?** The structure transfers. The wording sometimes does not. I do not know the typical half-life for a teacher prompt — whether it is six months, two years, or longer — and I have not found published data on this.
-- **Does prompting *for student-facing material* preserve or bypass the friction traces the rest of this book argues are the mechanism of learning?** A differentiated reading written by AI lands in front of a student who reads it. The student's processing of that text is where the friction lives, not the production of it. But the further upstream prompting moves — generating practice problems, drafting Socratic questions — start to interact with the student's cognitive work in ways the literature has not measured. Chapters 13 and 14 will press on this.
-- **Are there teacher tasks where the four-component template actively hurts?** I suspect yes — brainstorming and ideation may benefit from conversational openness. But I have not seen the comparison run.
-
----
-
-## 3.10 Bridge to Chapter 4
-
-Part I ends here. You have the dividend (Chapter 1), the phase gate (Chapter 2), and the foundation skill (this chapter). Part II is where the framework meets specific tasks — the six categories of work that consume most of a teacher's week.
-
-Chapter 4 takes the foundation skill and applies it to the highest-frequency teacher use: lesson planning. Same four-component structure. New context: lesson-plan-specific role, grade-band-specific scope, the pedagogical content knowledge problem (the model has encyclopedic content knowledge and zero knowledge of *this* classroom), and the phase gate that protects the teacher's professional judgment over what to actually teach Monday morning. The prompt is the substrate. Chapter 4 builds the first thing on top of it.
-
----
-
-**Tags:** prompting, foundation-skill, role-context-task-constraints, iterative-prompting, prompt-library, specification, teacher-AI
-
-*What would change my mind:* an RCT comparing structured-template prompting to unstructured conversational prompting on teacher tasks, finding no meaningful difference in output quality or time-to-usable-output at scale.
-
-*Still puzzling:* the half-life of a good teacher prompt across model releases, and whether prompting for student-facing material interacts with the friction traces the rest of the book argues are the mechanism of learning.
+**Exercise 3 — Build three reusable templates.** Choose three recurring tasks from your workweek. For each, write a four-component template with static context filled in and changing parts marked as slots. Test each template on a real task this week. If the template required more editing than writing from scratch, it failed the test — revise it.
 
 ---
 
 ## References
 
-- Anthropic. *Prompt engineering overview.* Claude API Docs. https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
+- Anthropic. *Prompt engineering overview.* Claude API Docs. https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
 - Anthropic. *Prompting best practices.* Claude API Docs. https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-- Chen, E., Wang, D., Xu, L., Cao, C., Fang, X., & Lin, J. (2024). *A Systematic Review on Prompt Engineering in Large Language Models for K-12 STEM Education.* arXiv:2410.11123. https://arxiv.org/abs/2410.11123
-- Google. (2024). *Gemini in Classroom: No-cost AI tools that amplify teaching and learning.* Google Blog. https://blog.google/products-and-platforms/products/education/classroom-ai-features/
-- Liu, P., Yuan, W., Fu, J., Jiang, Z., Hayashi, H., & Neubig, G. (2023). Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing. *ACM Computing Surveys, 55*(9). arXiv:2107.13586. https://arxiv.org/abs/2107.13586
-- NGSS Lead States. (2013). *Next Generation Science Standards: For States, By States.* Standard 5-LS1-1. https://www.nextgenscience.org/
+- Chen, E., Wang, D., Xu, L., Cao, C., Fang, X., & Lin, J. (2024). *A Systematic Review on Prompt Engineering in Large Language Models for K-12 STEM Education.* arXiv:2410.11123.
+- Google. (2024). *Gemini in Classroom: No-cost AI tools that amplify teaching and learning.* Google Blog.
+- Liu, P., Yuan, W., Fu, J., Jiang, Z., Hayashi, H., & Neubig, G. (2023). Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing. *ACM Computing Surveys, 55*(9). arXiv:2107.13586.
+- NGSS Lead States. (2013). *Next Generation Science Standards.* Standard 5-LS1-1.
 - OpenAI. *Prompt engineering.* OpenAI API. https://platform.openai.com/docs/guides/prompt-engineering
-- Qian, Y. (2025). Prompt Engineering in Education: A Systematic Review of Approaches and Educational Applications. *Journal of Educational Computing Research, 63*(7-8), 1782–1818. https://journals.sagepub.com/doi/10.1177/07356331251365189
-- Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E., Le, Q. V., & Zhou, D. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.* arXiv:2201.11903. https://arxiv.org/abs/2201.11903
-- Zheng, M., Pei, J., Logeswaran, L., Lee, M., & Jurgens, D. (2023/2024). *When "A Helpful Assistant" Is Not Really Helpful: Personas in System Prompts Do Not Improve Performances of Large Language Models.* Findings of EMNLP 2024. arXiv:2311.10054. https://arxiv.org/abs/2311.10054
+- Qian, Y. (2025). Prompt Engineering in Education: A Systematic Review. *Journal of Educational Computing Research, 63*(7-8), 1782–1818.
+- Wei, J. et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.* arXiv:2201.11903.
+- Zheng, M. et al. (2023/2024). *When "A Helpful Assistant" Is Not Really Helpful.* Findings of EMNLP 2024. arXiv:2311.10054.
