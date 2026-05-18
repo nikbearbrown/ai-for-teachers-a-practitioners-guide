@@ -1,178 +1,120 @@
 # Chapter 9 — Making Graphs and Data Visualizations with AI
 
-<!-- FACT-CHECK FLAG: MIXED — see factchecks/09-making-graphs-and-data-visualizations-with-ai-assertions.md -->
-
-**Suggested titles:**
-- Chapter 9 — Making Graphs and Data Visualizations with AI
-- Chapter 9 — The Department Chair's Spreadsheet: A Chart Honesty Checklist
-- Chapter 9 — Why the Mean Bar Chart Is the Wrong Tool for Your Equity Question
-
-**TL;DR:** AI can produce a publication-quality chart from a plain-language description in seconds, and most of those charts will quietly lie — truncated y-axes, topic-label titles, decorative color, mean bars that hide the distribution where the equity story actually lives. The fix is not a better tool but a five-question chart checklist, anchored to Cairo's "compared with what?" and Tufte's proportional ink, that the teacher runs on every chart before it leaves the building.
+*The chart looks professional. The chart is wrong. The professional appearance is the problem.*
 
 ---
 
-## Learning objectives
+In 1954 Darrell Huff published a small book called *How to Lie with Statistics*. The chapter on graphs showed readers exactly how to make a modest numerical difference look dramatic: start the y-axis at something other than zero. The bar that represents 78 looks three times taller than the bar that represents 72 when the axis starts at 68 instead of 0. The data says these numbers differ by 8 percent. The chart says they differ by a lot. The chart is lying.
 
-By the end of this chapter you will be able to:
+Huff's example was hand-drawn, and the lie required a human decision to start the axis somewhere misleading. The modern version of the same problem is different in one important way. Nobody decided. The axis truncation is the default. Every spreadsheet tool, every AI chart generator, every data analysis platform auto-fits the y-axis to the data range because that default makes charts look dramatic and dramatic-looking charts are what most users want. The tool is optimizing for visual appeal, and visual appeal and accuracy are not the same thing.
 
-1. **(Understand)** Identify the five functional categories most useful for teacher data — comparison, change over time, distribution, relationship, part-to-whole — and explain which category each question requires.
-2. **(Apply)** Write a plain-language chart request prompt that specifies what the chart is trying to show, what the data contains, and what the reader should understand in five seconds.
-3. **(Apply)** Identify the three most common chart errors in education data: truncated y-axes, overcrowded pie charts, and mean bar charts where distribution is the question.
-4. **(Analyze)** Apply Cairo's "compared with what?" check — every quantitative claim a chart makes requires an explicit reference.
-5. **(Evaluate)** Run Tufte's proportional-ink check and the honest-title check on any chart in under five minutes.
-6. **(Create)** Produce a chart of real assessment data using the AI prompting workflow, then audit and rewrite it against the five-question checklist.
+AI makes this problem faster. A teacher with a spreadsheet of student scores can now get a publication-quality bar chart in thirty seconds. The chart will have a truncated y-axis, decorative color, a title that names the topic rather than the finding, and — if the data contains any means — no indication of the distribution the means came from. All of these are defaults. All of them are wrong for most education questions. None of them will be flagged by the tool that produced the chart, because the tool does not know what question the chart is trying to answer.
 
-**Prerequisites:** Chapter 3 (the four-component prompt structure — role, context, task, constraints) and basic numeracy (mean, median, quartile, percentile). Familiarity with a spreadsheet tool is assumed; D3 or programming experience is not.
+This chapter is about the five-question audit that catches what AI gets wrong, and about one equity move that changes what education charts reveal. You will need neither statistics training nor programming experience. You will need to run five questions on every chart before it leaves the building.
 
-**Phase gate:** Teacher runs the five-question chart checklist on every AI-generated chart before using it in a presentation, report, or parent communication. AI generates; teacher audits and authorizes.
+<!-- → [IMAGE: Side-by-side comparison of the same six-teacher bar chart — left version: y-axis starting at 70, bars dramatically different heights, Sandoval's bar appears ~6x shorter than Adams's; right version: y-axis starting at 0, same bars now visually similar, clustered near the top — caption: "Same data. The left chart's lie factor is ~5.5. The right chart's is 1.0. Only one of these is the default."] -->
 
 ---
 
-## 1. The department chair with three years of data
+## The question before the chart
 
-It is a Saturday in March. Maya Okonkwo, math department chair at a 1,400-student public high school, is sitting at her kitchen table with three years of student performance data open in Excel. The file has 4,200 rows. Each row is one student, one unit, one assessment — score, teacher, period, race/ethnicity, English-learner status, IEP status, free-and-reduced lunch eligibility. The principal has asked for a five-slide presentation by Wednesday on "where the program is and where it's going."
+Here is the move that makes everything else in this chapter work, and it has nothing to do with AI. Before you open a chart tool, write the question you are trying to answer in one sentence. Not "I have scores by teacher" — that describes the data. Not "a chart of attendance" — that describes a topic. A question: *Are there meaningful differences in mean outcomes across these six classrooms?* or *Did attendance change after the February break and did it recover?*
 
-Maya knows the data contains a story. She can feel it the way you can feel a draft in an old house without finding the window. The freshman scores have moved over three years. The sophomore scores have not, but she thinks the distribution has shifted. There is something in the Algebra II numbers that does not match what teachers say in department meetings. She does not have words for these patterns yet. She has Excel. She has, sitting on her phone, the same AI tools her students use. What she does not have is the next thirty hours that learning a real data-visualization stack — Tableau, R, Python, D3 — would require, and she has a class of juniors on Monday morning.
+The reason this matters is that chart types are not interchangeable. Each one is designed to make a particular kind of comparison easy for a human eye to do accurately. William Cleveland and Robert McGill established this empirically in 1984 by running experiments on how accurately readers can decode quantitative information from different visual channels.[^cleveland] Their ranking, from most to least accurate: position on a common scale, then length, then angle, then area. Bars use length on a common scale — near the top of the ranking. Pie charts use angle — fourth on the ranking. This is why a pie chart cannot reliably distinguish 19 percent from 21 percent, while a bar chart can. It is not a stylistic preference. It is a measurable difference in how accurately the human visual system extracts numbers from different geometric forms.
 
-So she does what any teacher in 2026 with a deadline and a laptop does. She opens her AI tool of choice and types: *Make me a chart of these scores by teacher.*
+The practical consequence for teachers is one rule: pie charts are wrong for any comparison where the slices are close in size, which is most comparisons in education data. Replace the pie with a sorted horizontal bar chart. Every time. The bar is more accurate, works for any number of categories, and does not require a legend.
 
-What comes back is a six-color bar chart with a y-axis starting at 62, a title that reads "Average Score by Teacher," and a legend in a font too small to read at projection distance. The chart looks professional. It also makes Mr. Sandoval's class look like it is failing — the bars create a visual gap of roughly 4× between his bar and the highest one, and his class's mean is 71.4 against the highest class's 78.2. The data difference is 9.5%. The visual difference is dramatic. The chart claimed a story the data did not support.
+The broader consequence is that the question drives the chart type. Andy Kirk and the Financial Times' Visual Vocabulary identify five functional categories that cover nearly everything teachers need.[^ft]
 
-Maya does not catch this. Most teachers won't. The chart looks like the charts she has seen in board presentations for fifteen years. *That* is the failure mode. AI did not invent the truncated y-axis. AI scaled it. The chart looks done. It looks professional. It is wrong.
+**Comparison** — which category is larger? Use a sorted bar chart, ranked by value, not alphabetically. Alphabetical ordering is the default and forces the reader to do the comparison work the chart was supposed to do. Sorted order makes the ranking visible immediately.
 
-This chapter is about catching what Maya almost missed. It is about a five-question audit, anchored in three names that matter — **Cairo**, **Tufte**, **Knaflic** — that any teacher can run on any chart in under five minutes. By the end of the chapter you will know what the AI gets right (production speed, breadth of options, decent first drafts), what it gets wrong (axis defaults, title defaults, color defaults, the choice of chart type itself), and what you have to keep in your own head.
+**Change over time** — which way is it moving? Use a line chart when the shape of the trend is the message, a bar chart when the magnitude in each specific period is the message. These are different questions with different answers.
 
-The principle to carry through: **AI accelerates production. AI does not accelerate decision.** The decision step *is* the work, and it is the work that protects the chart from lying to its reader.
+**Distribution** — what does the spread look like within a group? Histograms, box plots, violin plots, strip plots. This is the category teachers most often skip, and it is where most equity stories live. We will return to it.
 
----
+**Relationship** — do two variables move together? Scatterplots for two quantitative variables. Useful for attendance-versus-grade, formative-versus-summative performance, time-on-task versus mastery.
 
-## 2. Concept I — Five functional categories: pick the chart by question, not by data type
+**Part-to-whole** — what fraction of the total? Stacked bars for more than three parts. Pies or donuts only for two or three parts when the part-to-whole gestalt — not the comparison among parts — is the point.
 
-The most common chart mistake teachers make — and the one AI tools cheerfully amplify — is picking a chart type by what the data *is* instead of by what the question *asks*. "I have percentages" produces a pie chart. "I have scores over time" produces a line chart. "I have two columns of numbers" produces a scatterplot. The data type drives the visual.
+The move is: write the question, name the category, then ask the AI for the chart. Watch what happens when you do this.
 
-This is backwards. The question drives the visual. The data type is a constraint, not a recommendation.
+Vague request: *Make me a chart of these scores by teacher.* The AI produces a six-color bar chart with alphabetical ordering, a y-axis starting at 70, and a title that reads *Average Score by Teacher*.
 
-Andy Kirk, in *Data Visualisation: A Handbook for Data Driven Design* (SAGE, 2nd ed. 2019), and the Financial Times' open-source [Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary) (FT Visual Journalism Team, lead designer Alan Smith) name nine functional categories of chart question — Deviation, Correlation, Ranking, Distribution, Change over Time, Part-to-Whole, Magnitude, Spatial, and Flow. For teacher data, five of them carry almost everything you'll need.
+Question-first request: *I want to compare mean scores across six teachers teaching the same course, sorted by mean, with the y-axis at zero, no decorative color, and a title that states the finding rather than the topic.* Same data. Different chart. Different story.
 
-**Comparison — *which is bigger?*** Across categories — teachers, sections, schools, demographic groups. The default form is a sorted bar chart, ranked by value rather than alphabetically. *Sorted* is load-bearing: an unsorted bar chart asks the reader to do the comparison work that the chart was supposed to do.
-
-**Change over time — *which way is it moving?*** Across periods — weeks, units, terms, years. Line charts when the time axis is continuous and the shape of the trend is the message. Bar charts when the periods are discrete and the magnitude in each period is the message.
-
-**Distribution — *what does the spread look like?*** Across students within a group. Histograms, box plots, violin plots, strip plots, jittered dot plots. This is the category teachers most often skip and the category where most equity stories actually live. We will return to it in §4.
-
-**Relationship — *do these two variables move together?*** Scatterplots when both are quantitative. Bubble charts when a third quantitative variable enters. Useful for attendance-vs-grade, formative-vs-summative, time-on-task-vs-mastery.
-
-**Part-to-whole — *what fraction of the total?*** Stacked bars when there are more than three parts. Pies, donuts, waffle charts only when there are three parts or fewer *and* the part-to-whole gestalt is the point, not the comparison among parts. (More on pies in §5 — they are the most overused chart in education reporting.)
-
-Here is the move. Before you open the AI tool, write the question in one sentence. Then name the category. Then ask for the chart. Watch what happens when you do this in the Maya scene:
-
-- Vague request: *Make me a chart of these scores by teacher.* (AI produces the truncated bar chart.)
-- Question-first request: *Compare mean scores across six teachers in the same course, sorted by mean, with the y-axis at zero, no decorative color, title stating the finding rather than the topic.*
-
-Same data. Different chart. Different reader experience. Different professional judgment.
-
-A misconception worth naming. *Choosing by question* is sometimes mistaken for *choosing by personal preference*. It is not. The question is constrained by the data and by what the reader needs to do with the chart. "I want to compare 19% to 21%" is a comparison question. A pie chart cannot show a 2-point difference; the wedges look identical. A side-by-side bar can. The pie is *wrong for this question*, not wrong as personal taste.
-
-Cole Nussbaumer Knaflic, in *Storytelling with Data: A Data Visualization Guide for Business Professionals* (Wiley, 2015), titles her Chapter 2 "Choosing an Effective Visual." Her instruction is simple: name the audience, name the single takeaway, then pick the form. Stephen Few, in *Show Me the Numbers* (Analytics Press, 2nd ed. 2012), gives a fuller decision tree built on the same move. The instruction translates to the AI context cleanly: the prompt that names the question and the takeaway produces a better chart than the prompt that describes the data.
+<!-- → [TABLE: Five functional categories quick-reference — columns: Category, The question it answers, Default chart form, Common wrong choice — rows: Comparison (which is bigger? / sorted horizontal bar / alphabetical bar or pie), Change over time (which way is it moving? / line or bar by period / multi-series spaghetti chart), Distribution (what does the spread look like? / box plot, violin, strip plot / bar of means), Relationship (do these move together? / scatterplot / stacked bar), Part-to-whole (what fraction of the total? / stacked bar for 4+ parts; pie for 2–3 / pie with 7 wedges) — reader can use as a one-page decision guide before any AI prompt] -->
 
 ---
 
-## 3. Concept II — Cairo's "compared with what?" and Tufte's proportional ink
+## Two instruments that catch most chart dishonesty
 
-Two instruments do most of the work in chart honesty. Both are decades old. Both apply directly to AI output. Neither is hard to run.
+Alberto Cairo, in *The Truthful Art* and *How Charts Lie*, names the single most useful diagnostic for evaluating a chart: *compared with what?*[^cairo] Every quantitative claim a chart makes — this is high, this is low, this rose, this fell — requires an explicit reference to be meaningful. A chart without a reference makes a claim without a basis, and the reader will invent one, usually a wrong one.
 
-### Cairo: every claim has a reference
+There are four common ways this check exposes a lying chart.
 
-Alberto Cairo, in *The Truthful Art: Data, Charts, and Maps for Communication* (New Riders, 2016) and *How Charts Lie* (W. W. Norton, 2019), names the single most useful diagnostic for chart honesty: *compared with what?* Every quantitative claim a chart makes — *this is high, this is low, this rose, this fell* — must be set against an explicit reference. A chart that fails the check makes a claim without a reference and gives the reader a meaningless number.
+**Absolute counts where rates are needed.** Thirty students proficient in one teacher's class, twenty-two in another's. Compared with what? With class size. If the first class has thirty-two students and the second has twenty-four, the rates are 94 percent and 92 percent. The raw count chart told the wrong story entirely.
 
-Four ways the check exposes a chart that lies:
+**Time series without baseline.** Scores rose from 72 to 78 this year. Compared with what? If the prior three years went 70, 73, 76, then 78 is the slope continuing — not evidence that anything changed. The chart claims progress attributable to a new program or initiative. The data shows a line that was already moving.
 
-1. **Absolute counts where ratios are needed.** *30 students proficient in Mr. Smith's class, 22 in Mrs. Jones's.* Compared with what? With class size. Smith's class has 32 students; Jones's has 24. The rates are 94% and 92%. The raw count chart told the wrong story by a wide margin.
-2. **Time series without baseline.** *Scores rose from 72 to 78 this year.* Compared with what? With the previous trajectory. If the three prior years were 70 → 73 → 76, then 78 is the slope continuing, not a new effect attributable to a new principal or program.
-3. **Cross-sectional comparison without controls.** Comparing AP students to non-AP students on any outcome ignores selection into the groups. The honest answer to "compared with what?" requires matched controls or an explicit footnote saying no honest comparison is available.
-4. **Single-value claims.** A chart that shows one number — *76% proficient* — and implies it is good or bad. Compared with what? The state average, the prior year's value, the district target — one of these has to anchor the number, or the reader has nothing to do with it.
+**Cross-sectional comparison without controls.** Comparing AP enrollment to overall enrollment, or honors-track students to general-track students, on any outcome, ignores selection into the groups. No honest comparison is available without matched controls. The chart cannot show what it appears to claim.
 
-Cairo's frame is the load-bearing one for this chapter. He treats chart choice not as an aesthetic decision but as an **ethical** one. A chart that misleads its reader is not a stylistic misstep; it is a professional failure with consequences for whoever acts on the chart. A board that allocates resources based on a truncated-y-axis bar chart of teacher scores has been deceived by the chart. The chart is testimony. The witness has an obligation.
+**Single-value claims.** A chart that shows one number — 76 percent proficient — and implies it is good or bad. Compared with what? The state average, the prior year, the district target — one of these must anchor the number or the reader has nothing to do with it.
 
-This frame should not be softened. It is the strongest single instrument in this domain, and it changes the way a teacher reads charts permanently.
+Cairo's framework treats chart choice not as an aesthetic decision but as an ethical one. A chart that misleads its reader is testimony, and the witness has a professional obligation to the accuracy of what the chart claims. This framing should not be softened. It permanently changes how you read charts, which is the point.
 
-### Tufte: proportional ink and the lie factor
+<!-- → [INFOGRAPHIC: Cairo's "compared with what?" four failure modes — four boxes, each with a failing chart thumbnail and a one-sentence diagnosis: (1) raw counts without class sizes — "30 proficient" (misleading) vs "94% proficient" (honest); (2) time series without baseline — single year's rise without prior trajectory; (3) cross-sectional comparison without controls — AP vs non-AP on any outcome; (4) single-value with no anchor — "76% proficient" floating with no benchmark — each box shows the missing reference and what happens when you add it] -->
 
-Edward Tufte's *The Visual Display of Quantitative Information* (Graphics Press, 1st ed. 1983; 2nd ed. 2001), Chapter 2 ("Graphical Integrity"), gives the mechanical version of Cairo's ethics. Two instruments matter.
+The mechanical version of the same principle comes from Edward Tufte's *The Visual Display of Quantitative Information*.[^tufte] His **proportional ink** rule is simple: the visual magnitude of a mark should be proportional to the quantity it encodes. For a bar chart, this means the bar starts at zero. Its visible length encodes the magnitude of the value. A bar chart with a y-axis that starts at 60 encodes (value − 60), not value. The reader's eye does not correct for the truncation. The reader perceives the bar at face length and draws the wrong conclusion about the difference.
 
-**Lie factor** = (size of effect shown in graphic) / (size of effect in data). Tufte's rule: the lie factor should be 1.0, with an acceptable range of 0.95 to 1.05. His textbook example reports a lie factor of 14.8 — a 53% numerical change displayed as a 783% visual change. The chart claims 15× the effect the data supports.
+The empirical evidence that this effect is real and large is now extensive. Anshul Pandey and colleagues, in a 2015 CHI paper, measured systematic viewer misperception from y-axis truncation. Yang and colleagues replicated across five studies in 2021; in some conditions, 83.5 percent of participants overestimated the data effect when the y-axis was truncated. Michael Correll and colleagues reviewed the field in 2020 and confirmed the effect is robust even when the truncation is explicitly labeled — a scale break mark on the axis does not save the chart.[^correll]
 
-**Proportional ink** (a refinement of his data-ink ratio): the visual magnitude of each mark on a chart should be proportional to the quantity it encodes. For a bar chart, this means the bar starts at zero and its length is the magnitude. A bar chart with a y-axis truncated at 60 breaks proportional ink — the bar's visible length encodes (score − 60), not score. The reader's eye does not correct for the truncation. The reader perceives the bar at face length.
+AI tools produce truncated axes by default. Excel produces truncated axes by default. Every chart tool auto-fits the y-axis to the data range because that default looks dramatic and the tool does not know your question. **Treat this as a known defect of the tool, not an occasional accident.** Every bar chart prompt must specify zero baseline, or every output must be audited for one.
 
-The empirical case is settled. Anshul Pandey and colleagues, "How Deceptive Are Deceptive Visualizations? An Empirical Analysis of Common Distortion Techniques" (*CHI 2015*), measured systematic, large viewer-misperception effects from y-axis truncation. Yang and colleagues (2021) replicated across five studies; in some conditions 83.5% of participants overestimated the data effect when the y-axis was truncated. Michael Correll, Enrico Bertini, and Steven Franconeri, in "Truncating the Y-Axis: Threat or Menace?" ([*CHI 2020*, arXiv:1907.02035](https://arxiv.org/abs/1907.02035)), reviewed the field and confirmed the effect is robust even when the truncation is explicitly labeled. Putting a "scale break" mark on the axis does not save the chart.
-
-This is the pedagogical point. AI tools — Excel's default behavior, ChatGPT's matplotlib output, Claude's Artifact charts, Julius.ai — almost all auto-fit the y-axis to the data range by default. They produce truncated bars unless you tell them not to. *Treat this as a known defect of the tool, not an occasional accident.* Every bar-chart prompt must specify zero baseline, or every output must be audited for one.
-
-A contested edge worth naming. Tufte holds that line charts can start anywhere because they encode shape, not magnitude. Stephen Few argues line charts with non-zero baselines are nearly as dishonest as truncated bars when the visual is meant to communicate magnitude rather than trend shape. Cairo splits the difference: for change-over-time where magnitude is the message, zero baseline; for trend identification where shape is the message, the baseline can be data-fit with a clear label. The disagreement is real. The honest move is to know which message your line chart is carrying and to make the baseline decision deliberately rather than by default.
+One contested edge worth naming because it comes up: line charts. Tufte argues that line charts can start anywhere because they encode shape rather than magnitude. Stephen Few argues that non-zero baselines on line charts are nearly as dishonest when magnitude is the message. Cairo splits the difference: if the chart is showing magnitude, zero baseline; if the chart is showing trend shape, a data-fit baseline is acceptable with a clear label. The honest move is to know which message your line chart is carrying and to make the baseline decision deliberately rather than accepting the default.
 
 ---
 
-## 4. Concept III — Distributions over means: where the equity story lives
+## Distributions over means: where the equity story lives
 
-This is the chapter's load-bearing move. It connects directly to the running thread of the book.
+Here is the chapter's load-bearing move.
 
-The standard education report shows mean scores. *6th-grade ELA mean = 72. Algebra I unit 4 mean = 68. Period 3 mean = 76.* A bar chart of means by group is the default move in board presentations, parent newsletters, and district dashboards. AI tools default to it. Excel defaults to it. It feels like the responsible thing to show.
+A class with a mean score of 72 could have produced that number three different ways. Everyone scored between 70 and 74 — the class is uniformly near the mean. Half the class scored around 60, half around 84 — the mean is a number nobody actually achieved. Most students scored 75 to 78, but eight students scored between 45 and 55 and pulled the mean down. The bar chart shows the same bar height in all three cases. The teaching response to each case should be completely different. In the bimodal case, two groups of students need different things. In the long-tail case, eight students need targeted intervention this week. In the tight cluster, the class is moving together and the curriculum is working. A bar chart of means cannot tell you which situation you are in.
 
-Watch what it hides.
+A **box plot** shows the median, the interquartile range, and the outliers. A **violin plot** adds the full shape of the distribution. A **strip plot** or **jittered dot plot** shows every student as a single point — you can literally see who is where. All three reveal what the mean conceals. All three are producible with an AI prompt in the same time it takes to produce the bar chart that hides the answer to your question.
 
-A class with a mean of 72 could have produced that mean three different ways. **Tight cluster:** everyone scored between 70 and 74 — the class is uniformly near the mean. **Bimodal split:** half the class scored around 60, half around 84 — the mean is a number nobody achieved. **Long left tail:** most students scored 75–78, but eight students scored 45–55 and pulled the mean down. The bar chart shows the same height in all three cases. The teaching response should be different in each. In the bimodal case, two groups need different things; in the long-tail case, eight students need targeted intervention now; in the tight cluster, the class is moving together and the curriculum is doing its job.
+The equity research makes the cost explicit. Eli Holder and Cindy Xiong published a series of experiments in 2022 and 2023 comparing bar-chart-of-means presentations of group differences against variance-revealing alternatives.[^holder] The finding: when subgroup differences are shown as bar charts of means, readers infer larger, more essentialist group differences than when the same data is shown with variability visible. Hiding the variance does not merely fail to show the spread; it actively encourages stereotyping by making within-group variation invisible. A bar chart of demographic group means implies the bars are properties of the groups rather than descriptions of distributions. A strip plot or box plot shows the distributions and makes visible that the variation within any group is larger than the variation between groups — which is true of almost every K–12 dataset.
 
-A bar chart of means hides this. A **box plot** shows the median, the interquartile range, and the outliers. A **violin plot** adds the shape of the distribution. A **strip plot** or **jittered dot plot** shows every student as a single dot, so you can literally see who is where. All three reveal what the mean conceals.
+The sentence to carry out of this section: if your equity question is *who is being left behind?* and your chart is a bar of means, your chart cannot answer your question.
 
-Here is the equity claim, and it is direct. The research is explicit. Eli Holder and Cindy Xiong, in "Dispersion vs. Disparity: Hiding Variability Can Encourage Stereotyping When Visualizing Social Outcomes" ([arXiv:2208.04440](https://arxiv.org/abs/2208.04440), 2022; published in *IEEE Transactions on Visualization and Computer Graphics*, 2023), ran a series of experiments comparing bar-chart-of-means presentations of group differences against variance-revealing alternatives (jitter, box plots, violin plots). The finding: when subgroup differences are shown as bar charts of means, readers infer *larger, more essentialist* group differences than when the same data is shown with variability visible. Hiding the variance hardens the category in the reader's mind. A bar chart of means by demographic group does not merely fail to show the spread; it actively encourages stereotyping by making within-group variability invisible.
+The prompting consequence is direct. When the question is about subgroup performance, the AI tool's default is wrong. The prompt must specify the chart type — a box plot faceted by demographic group, a strip plot with median overlaid — or the output will be a bar chart that hides the answer to your own question.
 
-This is the connection to the *Frictional* argument that runs through this book. Genuine learning leaves traces — variation in error patterns, in pacing, in retrieval strength. Mean scores erase those traces. The classroom whose mean rose because the top quartile pulled away while the bottom quartile slid is a classroom with an equity story the mean obscures. The board sees improvement; the data shows that improvement came at the cost of widening the gap. A distribution chart surfaces it. A bar chart of means is, in design terms, the equivalent of removing the friction trace — the appearance of progress without the evidence of who progressed.
-
-The single sentence to carry out of this section: **if your equity question is "who is being left behind?" and your chart is a bar of means, your chart cannot answer your question.**
-
-This has direct prompting consequences. When the question is about subgroup performance, the AI tool's default is wrong. The prompt must specify the chart type — *box plot, faceted by demographic group* or *strip plot with median overlaid* — or the output will be a bar chart that hides the answer to your own question.
-
-### Cleveland & McGill, briefly
-
-While the box-plot move is the equity-critical one, it is worth knowing why some encodings are more accurate than others. William Cleveland and Robert McGill, in "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods" (*Journal of the American Statistical Association* 79(387), 1984; [JSTOR](https://www.jstor.org/stable/2288400)), tested how accurately readers can decode quantitative information from different visual channels. The ranking, in decreasing order of accuracy:
-
-**position on a common scale > position on non-aligned scales > length > angle > area > volume > color luminance > color hue.**
-
-Bars use length on a common scale. Box plots and dot plots use position. Both are near the top of the accuracy ranking. Pies use angle — fourth on the ranking, and the reason a pie cannot distinguish 19% from 21% the way a bar can. Choropleth maps use color luminance — near the bottom, and the reason a population map shaded by total population mostly just shows where the people are, not whatever variable you meant to show. The ranking tells you, before you choose a chart, which forms preserve information accurately and which do not.
-
-### Color: encoding, not decoration
-
-Three rules for color in teacher charts, derived from Cleveland & McGill and from Cynthia Brewer's ColorBrewer work ([colorbrewer2.org](https://colorbrewer2.org); Harrower & Brewer, "ColorBrewer.org: An Online Tool for Selecting Colour Schemes for Maps," *The Cartographic Journal* 40(1), 2003):
-
-1. **Color encodes when nothing else can.** If position or length can carry the data — and for almost all teacher data they can — let them. Color is the weakest perceptual channel.
-2. **Hue is categorical; luminance is ordered.** Use distinct hues for distinct categories (girls/boys, ELL/non-ELL, intervention/control). Use luminance gradients (light-to-dark of one hue) for ordered categories (below grade level / approaching / on / above). A rainbow palette for proficiency levels is dishonest because hue carries no natural order.
-3. **Decoration is not encoding.** A bar chart in which each bar is a different color but the color carries no information is cognitive load with no payoff. AI tools default to this almost universally — every category gets its own color whether the colors mean anything or not. Strip them out unless they encode.
-
-A defensible default for AI-generated charts: ColorBrewer's *Set2* for categorical and *YlOrRd* or *Blues* for sequential, in colorblind-safe variants where available. Specify the palette by name in the prompt. The AI tool will use it.
+<!-- → [IMAGE: Three charts of the same class with mean = 72 — left: bar chart showing a single bar at 72 (identical for all three scenarios); center row showing three different distributions that all produce mean 72: (a) tight cluster 70–74, (b) bimodal split ~60 and ~84, (c) long left tail with most scores 75–78 and 8 students at 45–55 — caption: "The bar chart on the left is identical in all three cases. The teaching response should be completely different. The bar chart cannot tell you which situation you are in."] -->
 
 ---
 
-## 5. The five-question chart checklist
+## The five-question audit
 
-The audit before any chart leaves the building.
+Five questions. Run them on every chart before it leaves the building. The full checklist runs in about five minutes.
 
-> **CALLOUT: The five-question chart checklist (Appendix C)**
->
-> 1. **What question does this chart answer?** State it in one sentence. If you cannot, the chart is not ready.
-> 2. **Compared with what?** Cairo's check. Every quantitative claim must have an explicit reference — a baseline, a benchmark, a prior period, a peer group.
-> 3. **Does the y-axis start at zero?** For a bar chart, always. For a line chart, when magnitude is the message — and the choice must be defended either way, not defaulted.
-> 4. **Is the title a finding or a topic?** A finding states what the chart shows in a sentence with a verb. A topic states the subject of the chart. Knaflic's rule: write the verb.
-> 5. **Did you check for hidden variance?** If the chart shows means, ask whether the distribution matters. If it does, replace or supplement with a distribution chart.
+**One: What question does this chart answer?** State it in one sentence. If you cannot, the chart is not ready. A chart that cannot be described by a one-sentence question has not been designed; it has been generated.
 
-A sixth question lives below the surface and matters whenever AI is in the loop: **does the chart match the data I gave it?** AI tools hallucinate. Claude's Artifact charts will, under ambiguous prompts, occasionally invent tick values or relabel axes. ChatGPT's Advanced Data Analysis sometimes auto-rounds or auto-groups data in ways the prompt did not ask for. The 2025 FACTS benchmark on grounded reasoning reports hallucination rates of 3–10% on frontier models depending on task and reasoning mode [verify exact figure]. Three percent of charts is enough to embarrass you in a board meeting. Always verify chart values against the source spreadsheet.
+**Two: Compared with what?** Cairo's check. Every quantitative claim must have an explicit reference — a baseline, a benchmark, a prior period, a peer group. If the chart shows 76 percent proficient and nothing else, the reader has no anchor. Add the reference or the chart is not yet a claim.
 
-A useful sequence: write the question, then run questions 1–5, then run question 6. Five questions take about three minutes per chart. Question 6 takes another two. Five minutes per chart. That is the audit. That is the work.
+**Three: Does the y-axis start at zero?** For a bar chart, always. For a line chart, when magnitude is the message — and the choice must be defended in either case, not defaulted.
+
+**Four: Is the title a finding or a topic?** A topic names the subject: *Average Score by Teacher*. A finding states what the chart shows: *Six sections cluster within 7 points; all are within one standard deviation of each other*. Cole Nussbaumer Knaflic's rule in *Storytelling with Data* is to write the verb.[^knaflic] The title is not the label on the data. The title is the claim the chart is making.
+
+**Five: Did you check for hidden variance?** If the chart shows means, ask whether the distribution matters for your question. If it does, replace the bar chart or add a distribution chart alongside it.
+
+A sixth question applies whenever AI is in the loop and it takes two additional minutes: **does the chart match the data you gave it?** AI tools hallucinate. They occasionally invent tick values, relabel axes, auto-round data, or group categories in ways the prompt did not request. Always verify chart values against the source spreadsheet for at least a sample of the values. Three percent of charts containing a fabricated value is enough to embarrass you at a board meeting. The verification is not optional.
+
+<!-- → [INFOGRAPHIC: Five-question audit as a checklist card — five numbered rows with a checkbox, question text, and one-line pass/fail test: (1) What question? — can you state it in one sentence? If no → not ready; (2) Compared with what? — is there an explicit reference on the chart? If no → add it; (3) Y-axis at zero? — for bar charts, always; for line charts, defend the choice; (4) Finding or topic? — does the title contain a verb? If no → rewrite; (5) Hidden variance? — if means shown and equity is the question → add distribution chart; plus a sixth row for AI: (6) Does chart match source data? — spot-check 3 values against spreadsheet — designed to be printable and taped near a monitor] -->
 
 ---
 
-## 6. Worked example — Maya's chart, fixed
+## A worked example: the truncated bar chart and its replacement
 
-Back to Maya at the kitchen table. Six teachers, same course, three years of unit assessments. The data she has:
+Take a math department chair with aggregate data from six teachers teaching the same course.
 
 | Teacher | Mean | SD | n |
 |---|---|---|---|
@@ -183,277 +125,145 @@ Back to Maya at the kitchen table. Six teachers, same course, three years of uni
 | Edelstein | 73.6 | 16.1 | 139 |
 | Sandoval | 71.4 | 9.2 | 137 |
 
-Numbers above are composite-illustrative — drawn from typical patterns in district reports, not from a real school.
+*(Composite-illustrative data. The pattern reflects realistic district profiles.)*
 
-### The AI default
-
-She types: *Make me a chart of average scores by teacher.*
-
-What comes back: a six-color bar chart with bars in alphabetical order, a y-axis running from 70 to 80, a title that reads *Average Score by Teacher*, a legend repeating the teacher names already on the x-axis, and decorative gridlines every 0.5 units.
+She types: *Make me a chart of average scores by teacher.* The AI returns a six-color bar chart with bars in alphabetical order, a y-axis running from 70 to 80, and a title that reads *Average Score by Teacher*.
 
 Run the five questions.
 
-**Q1 — What question does this chart answer?** Unclear. The chart shows that the bars are different heights. The question — *are there meaningful differences in mean outcomes across these six classrooms?* — is implied but not answered, because the chart does not tell the reader whether a 6.8-point difference matters.
+**What question does this chart answer?** Unclear. It shows different bar heights. Whether those differences are meaningful is not stated.
 
-**Q2 — Compared with what?** Nothing on the chart says. State average? Prior year? Department target? Within-class variance? None of it is visible. Cairo's check fails immediately.
+**Compared with what?** Nothing. No state benchmark, no prior year, no department target, no measure of within-class variance. Cairo's check fails.
 
-**Q3 — Does the y-axis start at zero?** No. It starts at 70. The visible bar lengths encode (score − 70), not score. With Adams at 82.3 and Sandoval at 75.5, the visible-segment ratio is (82.3 − 70)/(75.5 − 70) = 12.3/5.5 ≈ 2.24× — so Adams's bar reads as more than twice Sandoval's. The actual score ratio is 82.3/75.5 ≈ 1.09× — about 9% higher. The lie factor — visual ratio over data ratio — is roughly 2.24/1.09 ≈ 2.05. The chart inflates a 9% difference into a 124% visual difference; the chart is misleading.
+**Does the y-axis start at zero?** No — it starts at 70. With Adams at 78.2 and Sandoval at 71.4, the visible bar lengths encode (score − 70). Adams's visible bar is 8.2 units tall; Sandoval's is 1.4 units tall. The visual ratio is roughly 6 to 1. The actual score ratio is 78.2/71.4, which is about 1.1 to 1. The chart inflates a 9-percent difference into a 6-to-1 visual difference. The lie factor is approximately 5.5. Sandoval's class looks like it is failing. The data says it is 9 percent below the highest class mean, well within normal classroom variation. These are different stories.
 
-**Q4 — Is the title a finding or a topic?** A topic. *Average Score by Teacher* names the chart's subject. It says nothing about what the reader is supposed to take away.
+**Is the title a finding or a topic?** A topic.
 
-**Q5 — Did you check for hidden variance?** No. Edelstein's standard deviation is 16.1; Connor's is 8.9. Edelstein's class is nearly twice as variable as Connor's. The mean bar chart does not show this. If the question is about teaching effectiveness or about which students are being served, the within-class variance is most of the story.
+**Did you check for hidden variance?** No. Edelstein's standard deviation is 16.1; Connor's is 8.9. Edelstein's class has nearly twice the within-class spread. The bar chart does not show this. If the question is which students are not being served, the variance is most of the answer.
 
-### The rewrite
-
-Maya rewrites the prompt:
+Now she rewrites the prompt:
 
 ```
-ROLE: You are a data visualization assistant trained on Cairo, Tufte,
-and Knaflic.
+ROLE: You are a data visualization assistant following Cairo's
+"compared with what?" check, Tufte's proportional-ink rule,
+and Knaflic's finding-as-title principle.
 
-CONTEXT: I have unit assessment data from six teachers teaching the
-same course. Sample sizes range 137–145 students per teacher. I will
-paste the full dataset below.
+CONTEXT: Unit assessment data from six teachers, same course.
+Sample sizes 137–145 per teacher. I will paste the aggregate
+data below with means, SDs, and n per class.
 
-TASK: Produce two charts side by side.
+TASK: Produce two charts.
 
-Chart 1 — Comparison of class means with confidence:
-- Horizontal bar chart, sorted descending by mean
-- Y-axis starts at zero, full 0–100 score range
-- Error bars showing 95% CI (use the standard deviation and n provided)
-- Annotation marking the state proficiency benchmark at 70
-- Title: state the finding about the spread of means
-  ("Mean scores across six sections span 6.8 points; all classes
-  cluster within one standard deviation of each other")
+Chart 1: horizontal bar chart, sorted descending by mean.
+- Y-axis starts at zero, runs 0–100
+- Error bars: 95% CI from the SD and n provided
+- Annotation: proficiency benchmark line at 70
+- Title: a sentence stating the finding about spread
+  ("Six sections cluster within 7 points; all within one
+  standard deviation of each other")
+- One color for all bars. No legend.
 
-Chart 2 — Distribution view of the same data:
-- Faceted box plot, one panel per teacher, sorted the same way
-- Shows median, IQR, and outliers
-- Same x-axis (0–100) across all panels
-- Title: state the finding about within-class variance
-  ("Within-class variance differs more than between-class means do")
+Chart 2: faceted box plot, one panel per teacher, same sort order.
+- X-axis 0–100 across all panels
+- Title: a sentence stating the finding about within-class variance
+  ("Within-class variance differs more than between-class means")
 
 CONSTRAINTS:
-- No decorative color. Use a single color across all bars in Chart 1.
-  Use the same color across all boxes in Chart 2.
-- Sans-serif font, 14pt minimum.
-- Use ColorBrewer Set2's first color (#66c2a5) or a colorblind-safe
-  equivalent.
-- Print the chart-generation code so I can verify the data binding.
-- Restate what you understood before generating, and flag any defaults
-  you chose to apply.
+- Use a single colorblind-safe color across both charts.
+- Print the generation code so I can verify data binding.
+- Restate what you understood before generating. Flag any
+  default you applied that I did not specify.
 ```
 
-What the AI returns now is two charts that disagree with the original story. Chart 1 — bars at full scale — shows the six means as a tight cluster between 71.4 and 78.2, all within roughly one standard deviation of each other. The visual gap that made Sandoval's class look like it was failing collapses into what it actually is: small. Chart 2 — the box plots — shows that Edelstein's class has the widest distribution; her median is roughly at the middle of the pack, but her lower quartile reaches 55 and her upper quartile reaches 92. Three of Edelstein's students fall in the bottom 10% of all 841 students in the dataset. Sandoval's class is the second-tightest distribution; his low mean reflects a class that is performing uniformly, not a class with a long tail.
+What comes back: Chart 1 shows six bars as a tight cluster between 71.4 and 78.2, all within about one standard deviation of each other. The visual gap that made Sandoval's class look like it was failing collapses into what it actually is — small variation within a department that is otherwise performing consistently. Chart 2 shows that Edelstein's class has the widest distribution: her median is near the pack, but her lower quartile reaches 55 and her upper quartile reaches 92. Three of Edelstein's students fall in the bottom tenth percent of all 841 students in the dataset. Sandoval's class is the second-tightest distribution; his lower mean reflects a class performing uniformly, not a class with a failing tail.
 
-Maya's takeaway changes. The chart she was about to bring to the principal would have started a conversation about Sandoval. The chart she now has starts a conversation about the eight students in Edelstein's lower quartile — and about whether the district's intervention resources are reaching them. *The chart shifted the question.* That is what a chart is for.
-
-### The lesson and the limit
-
-What worked: specifying the question, specifying the form, specifying the constraints. The AI produced both charts in under a minute once the specification was complete. The decision step — *we need a distribution view here, not a comparison view* — was the work. The production step was nearly free.
-
-What did not work, and would have if the prompt were thinner: the AI's default. Every default (axis range, title, color, chart type) was wrong for this question. None of them were wrong as defaults; they are reasonable defaults for the average request. They were wrong for *this* request, and only the teacher could know that.
-
-What still requires Maya's eyes: did the AI compute the confidence intervals correctly? She has to spot-check at least two against a calculator. Did it use the right standard deviations? She has to verify against the spreadsheet. Did it round the medians? She has to compare the box-plot percentile labels against the underlying data. The AI hallucinates rarely on this scale of dataset, but rarely is not never. The verification is the second half of the audit.
+The conversation the first chart would have started: what is happening with Sandoval? The conversation the second chart starts: what is happening with the eight students in Edelstein's lower quartile, and are intervention resources reaching them? The chart shifted the question. That is what a chart is for.
 
 ---
 
-## 7. Common misconceptions
+## Color, briefly
 
-Four worth naming, each a load-bearing failure mode in education chart-making.
+One default AI tools get wrong that is not about axes. Every category gets its own color — six teachers, six colors. Each color sends the reader's eye to the legend to decode it, which is cognitive load with no payoff if the teacher names are already on the axis. Color is the weakest perceptual channel in Cleveland and McGill's ranking. Use it only when it is encoding a variable that is not already encoded by position or length.
 
-### Misconception 1: "AI-generated charts are objective."
-
-The chart looks professional. The chart was generated by a machine. Therefore the chart is neutral. None of these inferences follow. The chart inherits the defaults of the tool that produced it — and those defaults were chosen by humans, optimized for typical use, and tested mostly on business and finance data, not education data. The default y-axis behavior, default color palette, default chart type, default title style — all of these encode aesthetic and analytic choices that may be wrong for your data. The chart is not objective. It is the output of a pipeline whose defaults you did not configure. Auditing is not optional.
-
-### Misconception 2: "Bar charts of means tell the story."
-
-They tell *a* story — the story of central tendency. They hide every other story: distribution, outliers, within-group variance, the shape of the curve, who is in the lower quartile. For most education questions — especially equity questions — the hidden stories are the ones that matter. Holder & Xiong's finding makes the cost explicit: mean bar charts of group differences produce stronger essentialist inferences in readers than variance-revealing alternatives. Showing the spread is not a stylistic preference; it is a check against a specific, measurable failure of inference.
-
-### Misconception 3: "Pie charts are fine for percentages."
-
-Pie charts encode quantity in angle, which Cleveland & McGill ranked fourth in perceptual accuracy. Bars encode quantity in length, which ranked first. A pie cannot reliably distinguish 19% from 21%. A pie with more than three or four wedges asks the reader to compare angles whose perceptual difference is below threshold. The replacement — a sorted horizontal bar chart — is more accurate, easier to read, and works at any number of categories. Stephen Few argues to cut pies entirely. Cairo and Knaflic allow three or fewer parts when the part-to-whole gestalt is the point and comparison among parts is not. Neither would defend a five-wedge pie of district demographics in a school board slide. Replace it with a bar.
-
-### Misconception 4: "Color makes a chart readable."
-
-Six colors on a bar chart of three categorical variables make the chart busier, not clearer. Each color asks the reader's eye to look up something in the legend and remember it across the chart. If the data already has a position-on-common-scale encoding (the bars), the color is doing no work — except adding cognitive load and potentially excluding the 8% of male readers and 0.5% of female readers with color-vision deficiency. The defensible default is one color per chart unless color is encoding a categorical variable that is not already on an axis. AI tools default to rainbow palettes. Strip them.
+When color must encode something, use Cynthia Brewer's ColorBrewer palettes, which were designed and tested for perceptual accuracy and colorblind safety.[^brewer] *Set2* for categorical variables. *YlOrRd* or *Blues* for ordered variables. A rainbow gradient for a proficiency scale is actively wrong — hue has no natural order, so the rainbow implies a sequence the data does not support. Specify the palette by name in the prompt. The AI tool will use it.
 
 ---
 
-## 8. Three prompt templates
+## The prompt structure that prevents the defaults
 
-These are starting points, not finished prompts. Each one assumes Chapter 3's four-component structure — role, context, task, constraints — and each one builds in the audit moves from this chapter.
+Every chart prompt needs four things: what the chart is trying to show, what the data contains, what the reader should understand in five seconds, and explicit constraints overriding the defaults. The constraints are not optional decoration. They are the corrections for the known defects of the tool.
 
-### Template 1 — Chart type selector
-
-Use when you have data but are not sure which chart form fits the question.
+Here is the minimum constraint block that handles the most common errors:
 
 ```
-ROLE: You are a data visualization advisor trained on Cairo's
-"compared with what?" framework, Cleveland & McGill's perceptual
-ranking, and Knaflic's question-first chart selection.
-
-CONTEXT: I have the following data: [paste 5-10 rows including
-column headers and types]. My question is: [state in one sentence].
-My audience is: [board / parents / staff / colleagues]. The reader
-should understand [single takeaway] in five seconds.
-
-TASK:
-1. Restate the question and the takeaway in your own words.
-2. Name the functional category (comparison, change over time,
-   distribution, relationship, part-to-whole).
-3. Recommend a chart form and name one alternative.
-4. State what each form would let the reader see, and what each
-   would hide.
-5. Flag any reason the data is not yet ready to chart (missing
-   reference, no controls for comparison, no measure of variance,
-   confounded categories).
-
 CONSTRAINTS:
-- Do not produce a chart in this step. Recommend the form only.
-- If a pie chart would be in the recommendation, justify it against
-  a sorted bar alternative.
-- If the question is about subgroup outcomes, default toward
-  distribution rather than means.
-```
-
-### Template 2 — Bar chart from grade data
-
-Use when you have aggregate data by category and want a sorted, honest bar chart.
-
-```
-ROLE: You are a chart generator following Tufte's proportional-ink
-rule and Cairo's "compared with what?" check.
-
-CONTEXT: I have aggregated data by category. The categories are
-[teachers / sections / grade levels / demographic groups]. The
-quantity is [scores / proficiency rate / attendance rate]. The
-sample sizes per category are [list].
-
-TASK: Produce a horizontal bar chart with the following
-specifications. Print the chart-generation code so I can verify
-data binding.
-
-CONSTRAINTS:
-- Y-axis (the value axis) starts at zero and runs the full natural
-  range of the measure (0–100 for percentages or score-out-of-100;
-  0 to maximum for counts).
+- Y-axis (value axis) starts at zero and runs the full natural
+  range of the measure (0–100 for scores or percentages).
 - Bars sorted descending by value, not alphabetically.
-- One color across all bars. No legend. Use #66c2a5 or specify a
-  colorblind-safe alternative.
-- Include error bars (95% CI) computed from the SD and n provided.
-- Title states the finding as a sentence with a verb, not the
-  topic. Example: "Three sections cluster within 4 points; one
-  section's mean is 9 points lower" — not "Mean Scores by Section."
-- Subtitle names the comparison anchor: state benchmark, prior
-  year value, or department target.
-- Annotate the relevant reference line (benchmark, target, prior).
+- One color across all bars. No legend unless color is encoding
+  a second variable. Use a colorblind-safe palette (ColorBrewer
+  Set2 or Blues).
+- Title states the finding as a sentence with a verb. Example:
+  "Three sections cluster within 4 points; one is 9 points lower."
+  Not: "Mean Scores by Section."
+- Annotate the relevant reference line (benchmark, prior year,
+  target).
 - Restate what you understood before generating. Flag any default
   you applied that I did not specify.
 ```
 
-### Template 3 — Trend chart for attendance or assessment over time
-
-Use when you have a measure over time and want to show change.
-
-```
-ROLE: You are a chart generator following Cairo, Tufte, and
-Knaflic's guidance for change-over-time visualization.
-
-CONTEXT: I have [attendance / assessment / behavior] data by
-[week / month / unit / term] over [duration]. The grouping
-variable is [single overall trend / by section / by demographic
-subgroup]. Sample sizes per period: [list or note if constant].
-
-TASK: Produce a line chart of the trend. Print the chart-
-generation code.
-
-CONSTRAINTS:
-- If the magnitude of the values matters (these are raw scores or
-  percentages where "where the value sits" is the message), use a
-  zero-baseline y-axis. If only the shape of the trend matters,
-  use a data-fit y-axis with a clearly labeled axis range AND a
-  one-sentence note explaining the baseline choice.
-- If grouping by subgroup, show each group as a separate line. Use
-  at most five lines on one chart; if more groups, facet into small
-  multiples.
-- Annotate any specific event the reader should associate with a
-  visible inflection (curriculum change, policy change, calendar
-  disruption). Without annotation, the reader will invent a
-  reason for any change they see.
-- Title states the finding ("Attendance dropped 6 points after
-  February break and has not recovered" — not "Attendance by
-  Month").
-- Include the comparison anchor: prior year's trend on the same
-  axes, or a benchmark target line.
-- Restate what you understood before generating. Flag any default
-  applied.
-```
-
-Three notes that apply across all three templates. **Restate before generating** forces the model to surface its interpretation of the request before it commits to code; if its restatement is wrong, you catch it before you spend time auditing wrong output. **Flag any default applied** turns silent decisions into visible ones; you can accept or reject them. **Print the code** lets you (or a colleague, or a student) verify that the chart binds to the right columns. AI tools do not always bind correctly. The code is the receipt.
-
-A practical note on tool choice as of this writing. **ChatGPT Advanced Data Analysis** (OpenAI) ingests CSV/XLSX directly and produces matplotlib output you can download. **Claude Artifacts** (Anthropic) produces interactive HTML/D3 charts you can iterate on in the chat window. **Julius.ai** is a dedicated data-analyst platform built on frontier models; it connects directly to spreadsheets and exports the code (Julius.ai company materials; *TechCrunch*, July 2025 [verify exact date]). All three accelerate the production step. None of them replace the decision step. The five-question checklist is the same checklist regardless of which tool you use, and the checklist is what protects you against the parts of the chart the AI does not get right.
-
-A caveat that matters: tools change quarterly. The list of platforms above will be incomplete or partially obsolete within a year of this book's publication. The principles — chart by question, zero baseline, finding as title, distribution over means, audit before sending — do not change quarterly. Anchor on the principles. Re-shop the tools annually.
+The last two lines — restate before generating, flag applied defaults — are the prompting version of the audit. If the model's restatement of the question is wrong, you catch it before it produces code. If it flags a default it applied, you can accept or reject it. These lines make silent decisions visible.
 
 ---
 
-## 9. Exercises
+## Three things that would make me revise this chapter
 
-Three exercises. Run them in order. The chapter is not complete until you have done at least the first two.
+The chapter rests on three claims: that chart defaults in AI tools are systematically wrong for education questions; that the five-question audit catches the most important errors; and that variance-revealing distribution charts reduce essentialist inference in readers.
 
-### Exercise 1 — Chart real assessment data and write the finding
+For the third claim, I would update if a well-powered replication showed that distribution charts do not reduce essentialist inference — or that the inferential improvement comes at a comprehension cost that makes the charts less useful in practice for non-expert audiences like school boards and parents. The current evidence runs in one direction. A clean reversal would change the recommendation on when to use box plots versus bar charts of means in public-facing presentations.
 
-Take one set of assessment data from your current semester — a unit test by section, a benchmark by demographic group, attendance by week, anything where the data is real and the question is one you actually need to answer. Use Template 2 (for comparison) or Template 3 (for trend) as your starting prompt. Generate the chart. Run the five-question checklist. Iterate the prompt at least once based on what the checklist flags. Then write **one sentence** describing what the chart reveals about student learning that you did not see in the raw data.
+For the second claim, I would update if a controlled study of AI-assisted chart-making with teachers showed that the five-question checklist did not improve chart honesty in real workflows — that teachers skipped it under time pressure, or that the bottleneck was elsewhere in the process. The chapter assumes the audit is the protective move. That assumption is currently unmeasured in the teacher-AI context.
 
-The single-sentence finding is the deliverable. If you cannot write the sentence, the chart did not answer your question. Re-prompt.
-
-### Exercise 2 — Cairo audit of an existing report chart
-
-Find a chart in a current district report, board presentation, state DOE dashboard, EdTech vendor brochure, or news story about your school or district. Run Cairo's "compared with what?" check on it explicitly. Identify the most serious failure mode (truncated axis, missing reference, mean bar where distribution is the question, decorative color, topic-label title). Then write the AI prompt that would have produced a more honest version of the same chart. You do not need to actually generate the corrected chart — the prompt is the artifact, because the prompt is where the audit becomes a habit.
-
-A note. You will find these charts everywhere. State DOE dashboards are full of them. So are board slides. So is much of the press coverage of K-12 outcomes. This is not because the people producing them are dishonest; it is because the defaults are dishonest, and the production speed has outpaced the audit habit. Your job, after this chapter, is to slow the next chart down by five minutes.
-
-### Exercise 3 — Create a distribution chart for an equity question
-
-Take a measure for which subgroup performance is the actual policy question — proficiency by race/ethnicity, growth by ELL status, discipline referrals by IEP status, AP enrollment by free-and-reduced-lunch eligibility, anything where the question is *who is being served and who is not*. Generate **two** versions of the same data using AI:
-
-- **Version A:** a bar chart of subgroup means.
-- **Version B:** a faceted box plot or strip plot showing the distribution within each subgroup.
-
-Compare them side by side. Write a paragraph (200–400 words) on what each version shows, what each hides, and which one you would use in a board meeting if your goal were honest reporting. Then write a sentence on which version is the *standard* board-meeting move at your institution, and why. The gap between those two answers is the chapter, restated as a local question about your own practice.
+For the first claim — AI defaults are wrong — the evidence is the defaults themselves, and I observe them every time I run a chart prompt without constraints. If the tools change their defaults to start bar axes at zero and use finding-as-title by default, that section of the chapter becomes unnecessary rather than wrong.
 
 ---
 
-## 10. What would change my mind
+## Exercises: using AI to understand AI charts
 
-The chapter's strongest claim — *if your equity question is "who is being left behind?" and your chart is a bar of means, your chart cannot answer your question* — rests on Holder & Xiong (2023) and the broader perceptual literature on chart misperception (Pandey 2015, Correll 2020, Yang 2021). I would update if a well-powered replication showed that variance-revealing distribution charts did **not** reduce essentialist inference in readers — or that the inferential improvement comes at a comprehension cost that makes the charts less useful in practice for non-expert audiences (administrators, parents, board members). The current evidence runs in one direction. A clean reversal would change the recommendation.
+These exercises are done with an AI tool. The second one is the most important.
 
-I would also update the broader chapter if a controlled study of AI-assisted chart-making with teachers showed that the five-question checklist did *not* improve chart honesty in real workflows — that teachers either skipped it, ran it superficially, or that the bottleneck was elsewhere (data literacy, statistical numeracy, time). The chapter assumes the audit is the protective move; that assumption is currently unmeasured in the teacher-AI context.
+**Exercise 1: Generate a chart, run the audit.**
 
-## 11. Still puzzling
+Take one set of assessment data from your current semester — a unit test by section, attendance by week, a benchmark by student group, anything where the data is real and the question matters. Write the one-sentence question before opening the prompt. Use the constraint block from this chapter as your starting point. Generate the chart. Run the five-question audit. Iterate the prompt at least once based on what the audit flags. Then write one sentence describing what the chart reveals about student learning that you did not see in the raw data. If you cannot write the sentence, the chart did not answer your question. Re-prompt.
 
-A few things I do not yet have a clean answer to:
+**Exercise 2: Cairo audit of an existing chart.**
 
-- **Hallucination rate as a function of data size.** Frontier models hallucinate data labels and tick values at 3–10% on grounded chart tasks [verify FACTS 2025]. Does this rate scale with dataset size, prompt complexity, or chart type? The 2025 multimodal-perception literature suggests AI is also worse than humans at *reading* Cleveland & McGill's perceptual tasks (Evaluating Graphical Perception with Multimodal LLMs, [arXiv:2504.04221](https://arxiv.org/abs/2504.04221), 2025). If models cannot reliably audit charts, the audit habit has to remain entirely human. How long does that remain true?
-- **When to break the zero-baseline rule.** Tufte and Few disagree. Cairo splits the difference. The honest rule for teachers is probably *always zero unless you can defend the alternative in one sentence*, but I have not seen a teacher-context study that measures the cost of zero baselines in trend identification against the cost of non-zero baselines in magnitude misperception.
-- **Whether the proportional-ink rule survives the move to small multiples.** A faceted distribution chart with six panels and individual x-axis ranges per panel is more readable than a single panel with everyone smashed together. But the per-panel ranges break the strict reading of proportional ink across panels. Is the local readability gain worth the cross-panel comparison loss? My current intuition is yes; my evidence is thin.
-- **The right way to teach this to students.** The chapter is about teacher chart-making, but the deeper question is whether students should learn the same audit before they leave high school. If a board can be deceived by a truncated y-axis, so can a citizen. Is graphicacy a 12th-grade civics requirement? It probably should be. That is a conversation Chapter 14 (What to Tell Your Students) will continue.
+Find a chart in a current district report, board presentation, state education department dashboard, or EdTech vendor brochure. Run Cairo's "compared with what?" check explicitly. Identify the most serious failure mode — truncated axis, missing reference, mean bar where distribution is the question, decorative color, topic-label title. Then write the AI prompt that would have produced a more honest version of the same chart. You do not have to generate the corrected chart. The prompt is the artifact, because the prompt is where the audit becomes a habit. You will find these charts everywhere — in board slides, state dashboards, news coverage of school outcomes. They are not produced by dishonest people. They are produced by defaults that no one overrode.
 
----
+**Exercise 3: Distribution chart for an equity question.**
 
-## 12. Chapter summary and connection forward
-
-This chapter named five functional categories — comparison, change over time, distribution, relationship, part-to-whole — and made one move with each: pick by question, not by data type. It introduced three instruments that catch most chart dishonesty: Cairo's "compared with what?", Tufte's proportional ink, and Knaflic's finding-as-title rule. It made one load-bearing equity move — *distributions over means* — and connected it directly to the running *Frictional* argument: a chart that hides the variance is the design equivalent of hiding the friction trace. It named the AI tools' systematic defaults (truncated axes, topic-label titles, decorative color, mean bars) and treated them as defects to audit, not occasional accidents. It gave a five-question checklist that takes five minutes per chart and protects you against the part of chart-making AI does not yet do well.
-
-The teacher who runs this checklist on every chart will not produce flawless visualizations. They will produce charts that fail honestly when they fail — charts whose limits are visible, whose comparisons are anchored, whose claims have references. That is enough. That is the work.
-
-**Bridge to Chapter 10.** Charts and slides are visual deliverables. Chapter 10 turns toward writing — both the writing you do as a teacher (syllabi, recommendation letters, departmental memos) and the writing your students do. The phase-gate question gets sharper there because writing is more entangled with the cognitive work of learning. A bar chart of means hides the equity story; an AI-generated essay can hide whether the student learned at all. Same family of problem; higher stakes.
+Take a measure for which subgroup performance is the actual policy question — proficiency by race or ethnicity, growth by English-learner status, discipline referrals by IEP status, AP enrollment by free-and-reduced-lunch eligibility. Generate two versions of the same data: a bar chart of subgroup means, and a faceted box plot or strip plot showing the distribution within each subgroup. Compare them side by side. Write a paragraph on what each version shows, what each hides, and which one you would use in a board meeting if your goal were honest reporting. Then write one sentence about which version is the standard board-meeting move at your institution, and why. The gap between those two answers is the chapter, restated as a local question about your own practice.
 
 ---
 
-**Tags:** data-visualization, charts, Cairo, Tufte, Knaflic, Cleveland-McGill, proportional-ink, distribution-vs-mean, equity-reporting, education-data, chart-honesty, AI-prompting
+A bar chart of means is not the wrong chart. It is the wrong chart for questions where the distribution is the answer. Most equity questions in education are questions where the distribution is the answer. AI produces bar charts of means by default. Run the audit. Change the default. The five minutes that takes is the work.
+
+Chapter 10 turns toward writing — the writing you do as a teacher and the writing your students do — where the same family of problem takes a different form. A chart that hides the distribution hides who is being left behind. A student essay generated by AI hides whether the student learned at all. Same structure, higher stakes.
 
 ---
 
-*Chapter 9 draft for review. Voice anchored to root style/ and book voice notes. Worked example is composite-illustrative; the underlying data shape is realistic for a public high-school math department, not drawn from a specific school. The truncated-y-axis failure-case search in research notes (find a real, named, citable public-facing chart with a truncated baseline) is still open and should be added before publication if a strong primary source can be located.*
+[^cleveland]: Cleveland, W. S., & McGill, R. (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. *Journal of the American Statistical Association*, 79(387), 531–554. <https://www.jstor.org/stable/2288400>.
+
+[^ft]: Financial Times Visual Vocabulary, designed by Alan Smith, FT Visual Journalism Team. <https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary>. See also Kirk, A. (2019). *Data Visualisation: A Handbook for Data Driven Design* (2nd ed.). SAGE.
+
+[^cairo]: Cairo, A. (2016). *The Truthful Art: Data, Charts, and Maps for Communication.* New Riders. Cairo, A. (2019). *How Charts Lie: Getting Smarter about Visual Information.* W. W. Norton.
+
+[^tufte]: Tufte, E. R. (2001). *The Visual Display of Quantitative Information* (2nd ed.). Graphics Press. Chapter 2, "Graphical Integrity," pp. 53–87.
+
+[^correll]: Correll, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? *CHI 2020*. <https://arxiv.org/abs/1907.02035>. Pandey, A. V., et al. (2015). How deceptive are deceptive visualizations? An empirical analysis of common distortion techniques. *CHI 2015*. Yang, W., et al. (2021). Truncating the y-axis: A replication study. Multiple conditions showing up to 83.5% overestimation of effect.
+
+[^holder]: Holder, E., & Xiong, C. (2022/2023). Dispersion vs. disparity: Hiding variability can encourage stereotyping when visualizing social outcomes. arXiv:2208.04440. Published in *IEEE Transactions on Visualization and Computer Graphics* (2023). <https://arxiv.org/abs/2208.04440>.
+
+[^knaflic]: Knaflic, C. N. (2015). *Storytelling with Data: A Data Visualization Guide for Business Professionals.* Wiley. Chapter 2, "Choosing an Effective Visual."
+
+[^brewer]: Brewer, C. A. ColorBrewer: Color advice for maps and data. <https://colorbrewer2.org>. Harrower, M., & Brewer, C. A. (2003). ColorBrewer.org: An online tool for selecting colour schemes for maps. *The Cartographic Journal*, 40(1), 27–37.
