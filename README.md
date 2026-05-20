@@ -146,4 +146,65 @@ Copyright © 2026 Nik Bear Brown. All rights reserved. See [LICENSE.md](./LICENS
 
 ---
 
+## How to Read It
+
+Three parts. Fourteen chapters. The Preface and Appendix G frame the argument; the chapters do the work.
+
+**Part I — The Framework (Chapters 1–3).** The argument and the foundation skill.
+
+- **Chapter 1 — The AI Dividend.** What the research actually says about teacher time savings (5.9 hours/week is the floor) and what the systematic ceiling would look like (a projected 16.7 hours, not yet measured). The honest version of the number, and the task taxonomy that earns it.
+- **Chapter 2 — The Phase Gate.** The twelve gates. Where AI stops, where you begin, what crossing the gate costs. The chapter that makes everything else operational.
+- **Chapter 3 — Prompting That Works.** The four-component template (role, context, task, constraints) and the iterative loop. Not a magic-phrase tour; the structural skill that makes the rest of the book usable.
+
+**Part II — Core Tasks (Chapters 4–9).** The six task areas that cover the most teacher hours.
+
+- **Chapter 4 — Lesson Planning.** AI generates structure; you bring the pedagogical content knowledge (PCK) that AI cannot have. NFER/EEF RCT evidence anchors the time-savings claim.
+- **Chapter 5 — Assessment, Grading, and Feedback.** The rubric calibration gate. The four failure conditions for AI grading. The Bastani parallel applied to feedback at the student level.
+- **Chapter 6 — Differentiation.** Lexile, scaffolds, IEP/504 — what AI proposes and what licensed humans must authorize. The anonymization gate that protects FERPA compliance.
+- **Chapter 7 — Communication.** Parent notes, meeting summaries, behavioral reports. The routine-vs-sensitive split, and the translation accuracy problem nobody warns you about.
+- **Chapter 8 — Slides.** The slideument problem (Reynolds), Mayer's Redundancy Principle, and the five-question diagnostic for telling a slide that teaches from one that merely displays.
+- **Chapter 9 — Graphs and Data Visualizations.** Cairo's "compared with what?" <!-- FACT-CHECK FLAG: UNVERIFIED — see factchecks/00-introduction-assertions.md (phrase more commonly attributed to Tukey/Tufte; verify Cairo attribution in chapter 9) --> The truncated y-axis problem in education data. Why bar charts of means hide the equity story.
+
+**Part III — Implementation and Integrity (Chapters 10–14).** What to do with the time, and how to run the system honestly.
+
+- **Chapter 10 — Writing with AI.** Teacher writing (AI reduces workload) vs writing instruction (AI changes what must be taught). Three instructional uses: Socratic AI, feedback AI, elaboration AI. Points to the $1 Kindle companion *Writing with AI*.
+- **Chapter 11 — Coding with AI.** Specification, not syntax. How a non-coding teacher builds workflow automations and interactive tools. The accountability principle. Points to the $1 Kindle companion *Coding with AI*.
+- **Chapter 12 — Building Your AI Workflow.** The synthesis chapter. The prompt library, the weekly schedule, the platform strategy. Two teachers, same tools, very different outcomes — and what separates them.
+- **Chapter 13 — Academic Integrity, Privacy, and Honest Use.** The Bastani finding in full. The AI-survivable assignment framework. Why detection-and-discipline is the wrong design move.
+- **Chapter 14 — What to Tell Your Students.** Capability-building vs capability-borrowing. The Feynman test. The performance-paradox demonstration. The student-facing version of the whole argument.
+
+The Conclusion frames what the book gets right (the 5.9-hour finding) and what remains hypothesis (the 16.7-hour ceiling, the longitudinal effect on learning). The seven appendices are reference material: the full phase-gate map, fifty starter prompts, the diagnostic checklists, the research bibliography, the series map, the deployable Claude Project that operationalizes the framework as an AI assistant, and the *Frictional* theoretical foundation.
+
+---
+
+## Signature Simulations
+
+<!-- TODO: populate from chapter content -->
+
+---
+
+## Copyright
+
+Copyright © 2026 Nik Bear Brown. All rights reserved.
+
+Published by Bear Brown, LLC.
+
+No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.
+
+ISBN: [INSERT ISBN]
+
+First edition: 2026.
+
+For permission requests, write to the publisher at the address below or via [bear@bearbrown.co](mailto:bear@bearbrown.co).
+
+Bear Brown, LLC
+Boston, Massachusetts
+[bearbrown.co](https://www.bearbrown.co)
+
+The author and publisher have made every effort to ensure the accuracy of the information herein. The information in this book is provided without warranty, either express or implied. Neither the author nor the publisher shall be liable for any damages arising from use of the information contained herein. Legal, clinical, and professional guidance specific to your jurisdiction, your district, and your students should be obtained from qualified counsel. Phase gates 6 (IEP/504 compliance) and 12 (student anonymization) in particular touch federal law (IDEA, FERPA, COPPA) that varies by state, district, and student; the book provides principles, not legal advice.
+
+References to third-party products, services, and frameworks (Claude, ChatGPT, Gemini, NotebookLM, MagicSchool, Khanmigo, Lexile, WIDA, UDL, FERPA, COPPA, IDEA, and others) are for identification only and do not imply endorsement by, or affiliation with, those entities.
+
+---
+
 *Last updated: 2026-05-18*
