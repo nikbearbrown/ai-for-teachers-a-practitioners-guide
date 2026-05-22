@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 1.1 — The 5.9-hour anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'Inter', sans-serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-size: 13px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 460px; position: relative; }
+  .eyebrow { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 2px; fill: var(--color-secondary); }
+  .hero-num { font-family: 'EB Garamond', Georgia, serif; font-size: 150px; font-weight: 400; fill: var(--color-red); }
+  .hero-unit { font-family: 'EB Garamond', Georgia, serif; font-size: 20px; font-style: italic; fill: var(--color-ink); }
+  .eyebrow-rule { stroke: var(--color-border); stroke-width: 1; }
+  .call-title { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: var(--color-ink); cursor: default; }
+  .call-body { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; fill: var(--color-secondary); }
+  .leader { stroke: var(--color-secondary); stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
+  .leader-dot { fill: var(--color-ink); }
+  .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .callout-hit { fill: transparent; cursor: pointer; }
+  .callout-hit:focus { outline: 2px solid var(--color-red); outline-offset: 2px; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 8px 12px; font-family: 'Inter', sans-serif; font-size: 12px; max-width: 280px; transition: opacity 150ms cubic-bezier(0.2,0.8,0.2,1); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>The 5.9-hour anchor</h1>
+<p class="subtitle">The measured AI time savings for U.S. teachers — and the three boundaries the number lives inside.</p>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+  const FALLBACK_DATA = {
+    anchor: { value: '5.9', unit: 'hours per week' },
+    eyebrow: 'THE MEASURED DIVIDEND',
+    caption: 'Source: Walton Family Foundation & Gallup (2025), n = 2,232 U.S. public K-12 teachers.',
+    callouts: [
+      {
+        id: 'pop',
+        title: 'Weekly users only',
+        body: 'The ~30% of U.S. public K-12 teachers reaching for AI at least once a week — not all teachers.',
+        position: 'tl',
+        tooltip: 'Gallup-Walton 2025: 60% of teachers used AI for at least one task in the 2024-25 year; 30% used it weekly. The 5.9-hour figure describes the weekly group only.'
+      },
+      {
+        id: 'use',
+        title: 'Ad hoc use',
+        body: 'Reaching for a tool when a task feels heavy. No systematic workflow redesign assumed.',
+        position: 'tr',
+        tooltip: 'This is what you get from picking up a tool when it helps — not from redesigning the week around it. The systematic-deployment ceiling is much higher and far less certain.'
+      },
+      {
+        id: 'time',
+        title: 'After the learning curve',
+        body: 'Not week one. The return after the investment clears.',
+        position: 'br',
+        tooltip: 'A teacher whose first session with an AI tool feels slower than doing the task by hand is not seeing a contradiction. The 5.9 hours is the dividend after the learning curve, not during it.'
+      }
+    ]
+  };
+
+  async function loadData() {
+    try { return await d3.json('./01-the-ai-dividend-fig-01.json'); }
+    catch { return FALLBACK_DATA; }
+  }
+
+  function draw(data) {
+    d3.select('#chart').selectAll('*').remove();
+    const container = document.getElementById('chart');
+    const totalWidth  = container.clientWidth  || 800;
+    const totalHeight = 460;
+
+    const svg = d3.select('#chart')
+      .append('svg')
+        .attr('width',  totalWidth)
+        .attr('height', totalHeight)
+        .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
+        .attr('role', 'img')
+        .attr('aria-labelledby', 'chart-title chart-desc');
+
+    svg.append('title').attr('id', 'chart-title').text('The 5.9-hour anchor');
+    svg.append('desc').attr('id', 'chart-desc').text('A central display number of 5.9 hours per week, surrounded by three callouts naming the population, the use pattern, and the timing assumption.');
+
+    const cx = totalWidth / 2;
+    const cyEyebrow = 70;
+    const cyHero = 245;
+
+    // Eyebrow + rule
+    svg.append('text').attr('class', 'eyebrow')
+      .attr('x', cx).attr('y', cyEyebrow).attr('text-anchor', 'middle').text(data.eyebrow);
+    svg.append('line').attr('class', 'eyebrow-rule')
+      .attr('x1', cx - 80).attr('x2', cx + 80).attr('y1', cyEyebrow + 12).attr('y2', cyEyebrow + 12);
+
+    // Hero number + unit
+    svg.append('text').attr('class', 'hero-num')
+      .attr('x', cx).attr('y', cyHero).attr('text-anchor', 'middle').text(data.anchor.value);
+    svg.append('text').attr('class', 'hero-unit')
+      .attr('x', cx).attr('y', cyHero + 36).attr('text-anchor', 'middle').text(data.anchor.unit);
+
+    // Callout anchor points around the hero number
+    const positions = {
+      tl: { textX: 30,                 textY: 80,                  anchorX: cx - 90, anchorY: cyHero - 70, align: 'start' },
+      tr: { textX: totalWidth - 30,    textY: 80,                  anchorX: cx + 90, anchorY: cyHero - 70, align: 'end' },
+      br: { textX: totalWidth - 30,    textY: totalHeight - 90,    anchorX: cx + 70, anchorY: cyHero + 60, align: 'end' }
+    };
+
+    const tooltip = d3.select('body').selectAll('.tooltip-fig1').data([0]).join('div')
+      .attr('class', 'tooltip tooltip-fig1');
+
+    data.callouts.forEach(c => {
+      const p = positions[c.position];
+
+      // Leader line + dot at hero side
+      svg.append('line').attr('class', 'leader')
+        .attr('x1', p.textX + (p.align === 'start' ? 120 : -120))
+        .attr('y1', p.textY + 6)
+        .attr('x2', p.anchorX)
+        .attr('y2', p.anchorY);
+      svg.append('circle').attr('class', 'leader-dot')
+        .attr('cx', p.anchorX).attr('cy', p.anchorY).attr('r', 2.5);
+
+      // Title
+      svg.append('text').attr('class', 'call-title')
+        .attr('x', p.textX).attr('y', p.textY).attr('text-anchor', p.align).text(c.title);
+
+      // Body (manual line wrap)
+      const words = c.body.split(' ');
+      const maxChars = 28;
+      const lines = [];
+      let line = '';
+      words.forEach(w => {
+        if ((line + ' ' + w).trim().length > maxChars) { lines.push(line.trim()); line = w; }
+        else { line += ' ' + w; }
+      });
+      if (line.trim()) lines.push(line.trim());
+
+      lines.forEach((ln, i) => {
+        svg.append('text').attr('class', 'call-body')
+          .attr('x', p.textX).attr('y', p.textY + 20 + i * 18).attr('text-anchor', p.align).text(ln);
+      });
+
+      // Hit area for tooltip + keyboard focus
+      const hitW = 240, hitH = 20 + lines.length * 18;
+      const hitX = p.align === 'start' ? p.textX - 4 : p.textX - hitW + 4;
+      svg.append('rect')
+        .attr('class', 'callout-hit')
+        .attr('x', hitX).attr('y', p.textY - 16).attr('width', hitW).attr('height', hitH)
+        .attr('tabindex', 0)
+        .attr('aria-label', `${c.title}: ${c.body}`)
+        .on('mouseover', (event) => tooltip.html(`<strong>${c.title}</strong><br>${c.tooltip}`).style('opacity', 1))
+        .on('mousemove', (event) => tooltip.style('left', (event.pageX + 14) + 'px').style('top', (event.pageY - 12) + 'px'))
+        .on('mouseout', () => tooltip.style('opacity', 0))
+        .on('focus', (event) => {
+          const r = event.currentTarget.getBoundingClientRect();
+          tooltip.html(`<strong>${c.title}</strong><br>${c.tooltip}`)
+            .style('left', (window.scrollX + r.left + 14) + 'px')
+            .style('top', (window.scrollY + r.top - 4) + 'px')
+            .style('opacity', 1);
+        })
+        .on('blur', () => tooltip.style('opacity', 0));
+    });
+
+    // Caption
+    svg.append('text').attr('class', 'cap')
+      .attr('x', 30).attr('y', totalHeight - 16).text(data.caption);
+  }
+
+  loadData().then(data => {
+    draw(data);
+    const ro = new ResizeObserver(() => draw(data));
+    ro.observe(document.getElementById('chart'));
+  });
+</script>
+</body>
+</html>

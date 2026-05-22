@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 12.4 — Prompt quality with and without maintenance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #2a1a0e;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'Inter', sans-serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-size: 13px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 480px; }
+  .axis path, .axis line { stroke: var(--color-ink); }
+  .axis text { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: var(--color-secondary); }
+  .axis-title { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; fill: var(--color-ink); }
+  .gridline { stroke: var(--color-border); stroke-opacity: 0.6; stroke-dasharray: 2 3; }
+  .series-no   { fill: none; stroke: var(--color-red); stroke-width: 2.4; }
+  .series-yes  { fill: none; stroke: var(--color-ink); stroke-width: 2.6; }
+  .maint-line  { stroke: var(--color-ochre); stroke-width: 1.4; stroke-dasharray: 4 3; }
+  .maint-label { font-family: 'Inter', sans-serif; font-size: 10px; font-style: italic; fill: var(--color-ochre); }
+  .legend-text { font-family: 'Inter', sans-serif; font-size: 12px; fill: var(--color-ink); }
+  .legend-sub  { font-family: 'Inter', sans-serif; font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+  .dot         { stroke: var(--color-white); stroke-width: 1.4; cursor: pointer; }
+  .caption { color: var(--color-secondary); font-size: 13px; margin-top: 16px; max-width: 65ch; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 8px 12px; font-family: 'Inter', sans-serif; font-size: 12px; max-width: 260px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 12.4 — Prompt quality with and without maintenance</h1>
+<p class="subtitle">Same library, two policies. The maintenance events are 30 minutes apiece, twice a year.</p>
+<div id="chart" role="img" aria-labelledby="chart-title chart-desc"></div>
+<p class="caption">Working heuristic, not a measured shelf life — calibrated to roughly two model generations across the 24-month window.</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+// Data: month -> quality 0..1
+// Series "no maintenance": smooth decay from 1.0 to ~0.30
+function noMaintQuality(m) {
+  // exponential-ish decay: q(0)=1, q(12)≈0.6, q(24)≈0.3
+  return Math.pow(0.5, m / 12) * 0.6 + 0.4 * Math.exp(-m / 14);
+  // values: 0 -> 1.0; 6 -> ~0.81; 12 -> ~0.475; 24 -> ~0.226
+}
+function noMaintCurve() {
+  // shape it explicitly to land closer to the stated anchors
+  // (0,1.0), (6,0.80), (12,0.60), (18,0.45), (24,0.30)
+  const anchors = [[0,1.0],[3,0.92],[6,0.80],[9,0.70],[12,0.60],[15,0.52],[18,0.45],[21,0.37],[24,0.30]];
+  return anchors.map(([m,q]) => ({ month: m, quality: q }));
+}
+
+// Series "six-month maintenance": small dips with snap-back at months 6, 12, 18
+function maintainedCurve() {
+  const points = [];
+  // 0 to 6: decay from 1.0 to 0.85
+  for (let m = 0; m <= 6; m++) {
+    const q = 1.0 - (0.15 * m / 6);
+    points.push({ month: m, quality: q });
+  }
+  // snap back: same month 6, quality 1.0 (segment break handled in render by detecting jumps)
+  points.push({ month: 6, quality: 1.0, snap: true });
+  for (let m = 7; m <= 12; m++) {
+    const q = 1.0 - (0.15 * (m - 6) / 6);
+    points.push({ month: m, quality: q });
+  }
+  points.push({ month: 12, quality: 1.0, snap: true });
+  for (let m = 13; m <= 18; m++) {
+    const q = 1.0 - (0.15 * (m - 12) / 6);
+    points.push({ month: m, quality: q });
+  }
+  points.push({ month: 18, quality: 1.0, snap: true });
+  for (let m = 19; m <= 24; m++) {
+    const q = 1.0 - (0.08 * (m - 18) / 6);
+    points.push({ month: m, quality: q });
+  }
+  return points;
+}
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(event, html) {
+  tooltip.html(html).style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px')
+    .transition().duration(150).style('opacity', 1);
+}
+function moveTip(event) { tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+function draw() {
+  const container = document.getElementById('chart');
+  d3.select('#chart').selectAll('*').remove();
+  const totalWidth  = container.clientWidth  || 900;
+  const totalHeight = container.clientHeight || 480;
+
+  const margin = { top: 56, right: 40, bottom: 72, left: 72 };
+  const chartWidth  = totalWidth  - margin.left - margin.right;
+  const chartHeight = totalHeight - margin.top  - margin.bottom;
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('width', totalWidth).attr('height', totalHeight)
+    .attr('role', 'img').attr('aria-labelledby', 'chart-title chart-desc');
+  svg.append('title').attr('id', 'chart-title').text('Prompt quality decay over 24 months');
+  svg.append('desc').attr('id', 'chart-desc').text('Two lines on the same axis: an unmaintained prompt decays smoothly to about 0.30 by month 24; a maintained prompt snaps back to baseline at months 6, 12, and 18.');
+
+  const gChart = svg.append('g').attr('class', 'g-chart')
+    .attr('transform', `translate(${margin.left},${margin.top})`);
+
+  const xScaleLinear = d3.scaleLinear().domain([0, 24]).range([0, chartWidth]);
+  const yScaleLinear = d3.scaleLinear().domain([0, 1]).range([chartHeight, 0]);
+
+  // Gridlines (horizontal, low-opacity)
+  const yTicks = [0, 0.25, 0.5, 0.75, 1.0];
+  gChart.append('g').selectAll('line').data(yTicks).join('line')
+    .attr('class', 'gridline')
+    .attr('x1', 0).attr('x2', chartWidth)
+    .attr('y1', d => yScaleLinear(d)).attr('y2', d => yScaleLinear(d))
+    .attr('aria-hidden', 'true');
+
+  // Axes
+  const xAxis = d3.axisBottom(xScaleLinear).tickValues([0,3,6,9,12,15,18,21,24]).tickFormat(d => d);
+  const yAxis = d3.axisLeft(yScaleLinear).tickValues(yTicks).tickFormat(d3.format('.2f'));
+
+  gChart.append('g').attr('class', 'axis').attr('transform', `translate(0,${chartHeight})`).call(xAxis);
+  gChart.append('g').attr('class', 'axis').call(yAxis);
+
+  // Axis titles
+  svg.append('text').attr('class', 'axis-title')
+    .attr('x', margin.left + chartWidth / 2).attr('y', totalHeight - 24).attr('text-anchor', 'middle')
+    .text('months since the prompt was first captured');
+  svg.append('text').attr('class', 'axis-title')
+    .attr('transform', `translate(20,${margin.top + chartHeight / 2}) rotate(-90)`).attr('text-anchor', 'middle')
+    .text('prompt output quality (relative)');
+
+  // Maintenance vertical tick lines at months 6, 12, 18
+  [6, 12, 18].forEach(m => {
+    gChart.append('line').attr('class', 'maint-line')
+      .attr('x1', xScaleLinear(m)).attr('x2', xScaleLinear(m))
+      .attr('y1', 0).attr('y2', chartHeight)
+      .attr('aria-hidden', 'true');
+    gChart.append('text').attr('class', 'maint-label')
+      .attr('x', xScaleLinear(m)).attr('y', -8).attr('text-anchor', 'middle')
+      .text('30-min review');
+  });
+
+  // No-maintenance line
+  const noMaint = noMaintCurve();
+  const lineGen = d3.line().x(d => xScaleLinear(d.month)).y(d => yScaleLinear(d.quality)).curve(d3.curveMonotoneX);
+  gChart.append('path').datum(noMaint).attr('class', 'series-no').attr('d', lineGen);
+
+  // Maintained line — render as series of segments, breaking at each snap-back marker
+  const maintained = maintainedCurve();
+  // Build segments: walk through; when "snap" flag occurs at same month, start a new segment
+  const segments = [];
+  let current = [];
+  for (let i = 0; i < maintained.length; i++) {
+    const p = maintained[i];
+    if (p.snap) {
+      // close current at the previous point's month with the new quality (vertical snap visualized)
+      if (current.length > 0) {
+        segments.push(current);
+      }
+      current = [{ month: p.month, quality: p.quality }];
+    } else {
+      current.push({ month: p.month, quality: p.quality });
+    }
+  }
+  if (current.length > 0) segments.push(current);
+
+  segments.forEach(seg => {
+    gChart.append('path').datum(seg).attr('class', 'series-yes')
+      .attr('d', d3.line().x(d => xScaleLinear(d.month)).y(d => yScaleLinear(d.quality)));
+  });
+
+  // Snap-back vertical lines and dots
+  [6, 12, 18].forEach(m => {
+    const dipY = yScaleLinear(0.85);
+    const topY = yScaleLinear(1.0);
+    gChart.append('line')
+      .attr('x1', xScaleLinear(m)).attr('x2', xScaleLinear(m))
+      .attr('y1', dipY).attr('y2', topY)
+      .attr('stroke', 'var(--color-ink)').attr('stroke-width', 2.4);
+    gChart.append('circle').attr('class', 'dot')
+      .attr('cx', xScaleLinear(m)).attr('cy', topY).attr('r', 4.5)
+      .attr('fill', 'var(--color-ink)')
+      .attr('tabindex', 0).attr('aria-label', `Month ${m}: 30-minute maintenance restores quality to 1.00`)
+      .on('mouseover', (event) => showTip(event, `<strong>Month ${m} maintenance</strong><br/>30-minute review restores entry quality to 1.00. Renewed / revised / retired.`))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+  });
+
+  // End-point dots and labels
+  // No-maintenance endpoint at month 24
+  const noEnd = noMaint[noMaint.length - 1];
+  gChart.append('circle').attr('class', 'dot')
+    .attr('cx', xScaleLinear(noEnd.month)).attr('cy', yScaleLinear(noEnd.quality)).attr('r', 4.5)
+    .attr('fill', 'var(--color-red)')
+    .attr('tabindex', 0).attr('aria-label', `No maintenance, month 24: quality ${noEnd.quality.toFixed(2)}`)
+    .on('mouseover', (event) => showTip(event, `<strong>No maintenance</strong><br/>Month 24: quality ${noEnd.quality.toFixed(2)}. The drift nobody notices.`))
+    .on('mousemove', moveTip).on('mouseout', hideTip);
+
+  // Maintained endpoint
+  const lastMaint = maintained[maintained.length - 1];
+  gChart.append('circle').attr('class', 'dot')
+    .attr('cx', xScaleLinear(lastMaint.month)).attr('cy', yScaleLinear(lastMaint.quality)).attr('r', 4.5)
+    .attr('fill', 'var(--color-ink)')
+    .attr('tabindex', 0).attr('aria-label', `Six-month maintenance, month 24: quality ${lastMaint.quality.toFixed(2)}`)
+    .on('mouseover', (event) => showTip(event, `<strong>Six-month maintenance</strong><br/>Month 24: quality ${lastMaint.quality.toFixed(2)}. Held near baseline.`))
+    .on('mousemove', moveTip).on('mouseout', hideTip);
+
+  // Inline labels at right
+  gChart.append('text').attr('class', 'legend-text')
+    .attr('x', xScaleLinear(noEnd.month) - 6).attr('y', yScaleLinear(noEnd.quality) + 18).attr('text-anchor', 'end')
+    .style('fill', 'var(--color-red)')
+    .text('no maintenance');
+  gChart.append('text').attr('class', 'legend-text')
+    .attr('x', xScaleLinear(lastMaint.month) - 6).attr('y', yScaleLinear(lastMaint.quality) - 10).attr('text-anchor', 'end')
+    .text('six-month maintenance');
+
+  // Hover targets along no-maintenance line
+  noMaint.forEach(d => {
+    gChart.append('circle').attr('class', 'dot')
+      .attr('cx', xScaleLinear(d.month)).attr('cy', yScaleLinear(d.quality)).attr('r', 3)
+      .attr('fill', 'var(--color-red)').attr('opacity', 0.35)
+      .attr('tabindex', 0)
+      .attr('aria-label', `No maintenance, month ${d.month}: quality ${d.quality.toFixed(2)}`)
+      .on('mouseover', (event) => showTip(event, `<strong>No maintenance</strong><br/>Month ${d.month}: quality ${d.quality.toFixed(2)}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+  });
+}
+
+draw();
+const ro = new ResizeObserver(() => draw());
+ro.observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

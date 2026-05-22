@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 10.4 — Liang 2023 GPT detector bias</title>
+<style>
+  :root {
+    --color-canvas:    #fdfcfb;
+    --color-ink:       #2a1a0e;
+    --color-secondary: #4a4540;
+    --color-muted:     #8a8480;
+    --color-light:     #c8c4c0;
+    --color-panel:     #f5f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-canvas:    #1a120a;
+      --color-ink:       #f5f2ee;
+      --color-secondary: #c8c4c0;
+      --color-muted:     #8a8480;
+      --color-light:     #4a4540;
+      --color-panel:     #251a10;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-canvas); color: var(--color-ink); font-family: 'EB Garamond', Garamond, Georgia, serif; padding: 16px; }
+  #chart { width: 100%; }
+  .title    { font-size: 20px; fill: var(--color-ink); }
+  .subtitle { font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .axis-tick text { font-size: 11px; fill: var(--color-secondary); font-family: 'EB Garamond', Garamond, Georgia, serif; }
+  .axis-title    { font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .group-label   { font-size: 14px; fill: var(--color-ink); }
+  .group-sub     { font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+  .annotation    { font-size: 13px; font-style: italic; fill: var(--color-ink); }
+  .caption       { font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .gridline      { stroke: var(--color-light); stroke-width: 0.8; stroke-dasharray: 2 3; }
+  .axis-line     { stroke: var(--color-ink); stroke-width: 1.2; }
+  rect.bar-light { fill: var(--color-light); stroke: var(--color-ink); stroke-width: 1; cursor: pointer; }
+  rect.bar-dark  { fill: var(--color-secondary); stroke: var(--color-ink); stroke-width: 1; cursor: pointer; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-panel); color: var(--color-ink); border: 1px solid var(--color-ink); padding: 6px 10px; font-size: 13px; font-family: 'EB Garamond', Garamond, Georgia, serif; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+// 7 detectors, both groups. Native: ~3% avg. Non-native: >50% avg.
+const detectors = ['D1','D2','D3','D4','D5','D6','D7'];
+const native     = [0.03, 0.02, 0.05, 0.04, 0.01, 0.03, 0.02];
+const nonNative  = [0.62, 0.74, 0.55, 0.49, 0.66, 0.53, 0.71];
+
+const tooltip = d3.select('body').append('div').attr('class','tooltip');
+
+function draw() {
+  d3.select('#chart').selectAll('svg').remove();
+  const W = document.getElementById('chart').clientWidth || 760;
+  const H = Math.max(480, W * 0.63);
+  const margin = { top: 80, right: 60, bottom: 100, left: 100 };
+  const innerW = W - margin.left - margin.right;
+  const innerH = H - margin.top - margin.bottom;
+  const groupW = innerW / 2;
+  const groupPad = 40;
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('role','img').attr('aria-labelledby','t-fig04 d-fig04');
+  svg.append('title').attr('id','t-fig04').text('Liang 2023 — GPT detectors flag non-native English writers at high rates');
+  svg.append('desc').attr('id','d-fig04').text('Seven detectors flag native-speaker essays at ~3% on average and non-native TOEFL essays at >50% on average. Both groups never used AI.');
+
+  svg.append('defs').append('marker').attr('id','arr04').attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5)
+    .attr('markerWidth',8).attr('markerHeight',8).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M0,0 L10,5 L0,10 z').attr('fill','var(--color-ink)');
+
+  svg.append('text').attr('class','title').attr('x', W/2).attr('y', 32).attr('text-anchor','middle').text('False-positive rate by writer population');
+  svg.append('text').attr('class','subtitle').attr('x', W/2).attr('y', 54).attr('text-anchor','middle').text('After Liang et al., 2023 — seven detectors, two populations');
+
+  const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+  const y = d3.scaleLinear().domain([0,1]).range([innerH, 0]);
+
+  // axes
+  g.selectAll('.gridline').data(y.ticks(5)).join('line').attr('class','gridline')
+    .attr('x1',0).attr('x2',innerW).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('aria-hidden','true');
+  g.append('line').attr('class','axis-line').attr('x1',0).attr('y1',innerH).attr('x2',innerW).attr('y2',innerH);
+  g.append('line').attr('class','axis-line').attr('x1',0).attr('y1',0).attr('x2',0).attr('y2',innerH);
+
+  const yT = g.append('g').attr('class','axis-tick');
+  yT.selectAll('text').data(y.ticks(5)).join('text')
+    .attr('x',-8).attr('y',d=>y(d)+4).attr('text-anchor','end').text(d=>`${Math.round(d*100)}%`);
+  svg.append('text').attr('class','axis-title')
+    .attr('transform', `translate(${margin.left - 56}, ${margin.top + innerH/2}) rotate(-90)`)
+    .attr('text-anchor','middle').text('Essays flagged as AI-generated');
+
+  // native group bars (left)
+  const nativeX0 = 30;
+  const xN = d3.scaleBand().domain(detectors).range([nativeX0, nativeX0 + groupW - groupPad]).padding(0.18);
+  detectors.forEach((dID,i) => {
+    const v = native[i];
+    g.append('rect').attr('class','bar-light')
+      .attr('x', xN(dID)).attr('y', y(v)).attr('width', xN.bandwidth()).attr('height', innerH - y(v))
+      .attr('tabindex',0).attr('aria-label', `Native ${dID}: ${(v*100).toFixed(1)}%`)
+      .on('mouseover',(event)=>showTip(event,`<strong>Native ${dID}</strong><br>Flagged: ${(v*100).toFixed(1)}%`))
+      .on('mousemove',moveTip).on('mouseout',hideTip);
+  });
+  g.append('text').attr('class','group-label').attr('x', nativeX0 + (groupW-groupPad)/2).attr('y', innerH + 28).attr('text-anchor','middle').text('Native English (US 8th-graders)');
+  g.append('text').attr('class','group-sub').attr('x', nativeX0 + (groupW-groupPad)/2).attr('y', innerH + 46).attr('text-anchor','middle').text('human-written essays, never AI-generated');
+
+  // non-native bars (right)
+  const nnX0 = groupW + 30;
+  const xNN = d3.scaleBand().domain(detectors).range([nnX0, nnX0 + groupW - groupPad]).padding(0.18);
+  detectors.forEach((dID,i) => {
+    const v = nonNative[i];
+    g.append('rect').attr('class','bar-dark')
+      .attr('x', xNN(dID)).attr('y', y(v)).attr('width', xNN.bandwidth()).attr('height', innerH - y(v))
+      .attr('tabindex',0).attr('aria-label', `Non-native ${dID}: ${(v*100).toFixed(1)}%`)
+      .on('mouseover',(event)=>showTip(event,`<strong>Non-native ${dID}</strong><br>Flagged: ${(v*100).toFixed(1)}%`))
+      .on('mousemove',moveTip).on('mouseout',hideTip);
+  });
+  g.append('text').attr('class','group-label').attr('x', nnX0 + (groupW-groupPad)/2).attr('y', innerH + 28).attr('text-anchor','middle').text('Non-native English (TOEFL)');
+  g.append('text').attr('class','group-sub').attr('x', nnX0 + (groupW-groupPad)/2).attr('y', innerH + 46).attr('text-anchor','middle').text('human-written essays, never AI-generated');
+
+  // averages
+  const nativeAvg = d3.mean(native);
+  const nnAvg = d3.mean(nonNative);
+  g.append('line').attr('x1', nativeX0).attr('x2', nativeX0 + groupW - groupPad).attr('y1', y(nativeAvg)).attr('y2', y(nativeAvg)).attr('stroke','var(--color-ink)').attr('stroke-width',1).attr('stroke-dasharray','5 3');
+  g.append('text').attr('class','annotation').attr('x', nativeX0 + groupW - groupPad + 6).attr('y', y(nativeAvg)+4).text(`~${(nativeAvg*100).toFixed(0)}% avg.`);
+
+  g.append('line').attr('x1', nnX0).attr('x2', nnX0 + groupW - groupPad).attr('y1', y(nnAvg)).attr('y2', y(nnAvg)).attr('stroke','var(--color-ink)').attr('stroke-width',1).attr('stroke-dasharray','5 3');
+  g.append('text').attr('class','annotation').attr('x', nnX0 + groupW - groupPad + 6).attr('y', y(nnAvg)+4).text(`>${Math.floor(nnAvg*100)}% avg.`);
+
+  g.append('text').attr('class','annotation').attr('x', innerW/2).attr('y', y(0.35)).attr('text-anchor','middle').text('same prose pattern, opposite mechanism');
+
+  svg.append('text').attr('class','caption').attr('x', W/2).attr('y', H - 10).attr('text-anchor','middle').text('Detectors register low text perplexity, not authorship. Non-native writers and AI both write low-perplexity prose.');
+}
+
+function showTip(event, html) {
+  tooltip.html(html).style('left',(event.pageX+12)+'px').style('top',(event.pageY-28)+'px')
+    .transition().duration(150).style('opacity',1);
+}
+function moveTip(event) { tooltip.style('left',(event.pageX+12)+'px').style('top',(event.pageY-28)+'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity',0); }
+
+draw();
+new ResizeObserver(()=>draw()).observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

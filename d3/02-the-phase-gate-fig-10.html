@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 2.10 — Gate 1 time-cost comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root { --color-white:#FFFFFF; --color-ink:#121212; --color-red:#C8102E; --color-secondary:#545454; --color-border:#D4D4D4; --color-ochre:#C8860E; }
+  @media (prefers-color-scheme: dark) {
+    :root { --color-white:#111111; --color-ink:#F0EBE3; --color-red:#E8243A; --color-secondary:#A0978C; --color-border:#2E2E2E; --color-ochre:#D49A30; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'Inter', sans-serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-size: 13px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 460px; }
+  .seg { stroke: var(--color-ink); stroke-width: 0.5; transition: opacity 200ms cubic-bezier(0.2,0.8,0.2,1); }
+  .seg:hover { opacity: 0.75; cursor: pointer; }
+  .recovered { fill: var(--color-white); stroke: var(--color-secondary); stroke-width: 0.5; stroke-dasharray: 3 3; }
+  .head { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; font-weight: 700; fill: var(--color-ink); }
+  .lb { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; fill: var(--color-ink); }
+  .sm { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; fill: var(--color-secondary); }
+  .val { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: var(--color-white); }
+  .axis-tick { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: var(--color-secondary); }
+  .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-size: 12px; max-width: 260px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 2.10 — 25 minutes saves three to five hours</h1>
+<p class="subtitle">Time-cost of rubric calibration. Same teacher, same bulk grade, two workflows.</p>
+<div id="chart" role="img" aria-labelledby="t-cost d-cost"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+// Hours scale 0..5
+const noGate = [
+  { label: 'bulk', dur: 0.5,  fill: 'var(--color-secondary)', tip: 'AI bulk grade pass without calibration. Looks complete on the dashboard.' },
+  { label: '3–5 hr essay-by-essay second-guessing', dur: 4.0, fill: 'var(--color-ink)', tip: 'Teacher does the calibration anyway, spread across 120 essays. Cognitively wasteful.' }
+];
+const noGateLate = { label: 'bias discovery 4 weeks later', dur: 0.6, hatched: true, tip: 'Systematically biased grade distribution discovered late; recovery costs are open-ended.' };
+
+const withGate = [
+  { label: '25 min calibration', dur: 0.42, fill: 'var(--color-red)', tip: '25 minutes of dense cognitive work concentrated on five essays.' },
+  { label: 'bulk', dur: 0.5, fill: 'var(--color-secondary)', tip: 'AI bulk pass proceeds with the recalibrated rubric. No re-checking needed.' }
+];
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(e, html) { tooltip.html(html).style('left', (e.pageX+12)+'px').style('top', (e.pageY-28)+'px').transition().duration(150).style('opacity', 1); }
+function moveTip(e) { tooltip.style('left', (e.pageX+12)+'px').style('top', (e.pageY-28)+'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+function draw() {
+  d3.select('#chart').selectAll('*').remove();
+  const container = document.getElementById('chart');
+  const W = container.clientWidth || 760, H = container.clientHeight || 460;
+  const margin = { top: 64, right: 40, bottom: 60, left: 200 };
+  const cw = W - margin.left - margin.right;
+  const ch = H - margin.top - margin.bottom;
+
+  const svg = d3.select('#chart').append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', W).attr('height', H)
+    .attr('role', 'img').attr('aria-labelledby', 't-cost d-cost');
+  svg.append('title').attr('id', 't-cost').text('Gate 1 time-cost comparison');
+  svg.append('desc').attr('id', 'd-cost').text('Two stacked horizontal bars: without calibration gate, the workflow incurs hours of essay-by-essay second-guessing plus a late bias discovery; with the gate, 25 minutes upfront and the bulk pass proceeds cleanly.');
+
+  // Hatch pattern
+  const defs = svg.append('defs');
+  const pattern = defs.append('pattern').attr('id', 'hatch10').attr('patternUnits', 'userSpaceOnUse').attr('width', 6).attr('height', 6).attr('patternTransform', 'rotate(45)');
+  pattern.append('line').attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 6).attr('stroke', 'var(--color-ink)').attr('stroke-width', 1.4);
+
+  const x = d3.scaleLinear().domain([0, 5]).range([0, cw]);
+
+  // X axis (top)
+  const ticks = [0, 1, 2, 3, 4, 5];
+  ticks.forEach(t => {
+    svg.append('line').attr('x1', margin.left + x(t)).attr('y1', margin.top - 8).attr('x2', margin.left + x(t)).attr('y2', margin.top - 2)
+      .attr('stroke', 'var(--color-secondary)');
+    svg.append('text').attr('x', margin.left + x(t)).attr('y', margin.top - 14).attr('text-anchor', 'middle').attr('class', 'axis-tick').text(t === 0 ? '0' : t + ' hr');
+  });
+  svg.append('line').attr('x1', margin.left).attr('y1', margin.top - 2).attr('x2', margin.left + cw).attr('y2', margin.top - 2).attr('stroke', 'var(--color-secondary)');
+
+  // BAR 1: no gate
+  const y1 = margin.top + 30;
+  svg.append('text').attr('x', 24).attr('y', y1 + 4).attr('class', 'head').text('Without the gate');
+  svg.append('text').attr('x', 24).attr('y', y1 + 22).attr('class', 'sm').text('Skip calibration; bulk grade;');
+  svg.append('text').attr('x', 24).attr('y', y1 + 36).attr('class', 'sm').text('then re-check.');
+
+  let xCursor = 0;
+  noGate.forEach(seg => {
+    const wPx = x(seg.dur);
+    const xPx = margin.left + x(xCursor);
+    svg.append('rect').attr('class', 'seg').attr('x', xPx).attr('y', y1).attr('width', wPx).attr('height', 38).attr('fill', seg.fill)
+      .attr('tabindex', 0).attr('aria-label', `${seg.label}: ${seg.dur} hours`)
+      .on('mouseover', (e) => showTip(e, `<strong>${seg.label}</strong><br>${seg.tip}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+    if (wPx > 60) svg.append('text').attr('x', xPx + wPx/2).attr('y', y1 + 24).attr('text-anchor', 'middle').attr('class', 'val').text(seg.label);
+    xCursor += seg.dur;
+  });
+  // Late discovery (hatched)
+  const lateX = margin.left + x(xCursor);
+  const lateW = x(noGateLate.dur);
+  svg.append('rect').attr('x', lateX).attr('y', y1).attr('width', lateW).attr('height', 38).attr('fill', 'url(#hatch10)').attr('stroke', 'var(--color-ink)').attr('stroke-width', 1)
+    .attr('tabindex', 0).attr('aria-label', noGateLate.label)
+    .on('mouseover', (e) => showTip(e, `<strong>${noGateLate.label}</strong><br>${noGateLate.tip}`))
+    .on('mousemove', moveTip).on('mouseout', hideTip);
+  svg.append('text').attr('x', lateX + lateW/2).attr('y', y1 + 56).attr('text-anchor', 'middle').attr('class', 'sm').text('bias discovery,');
+  svg.append('text').attr('x', lateX + lateW/2).attr('y', y1 + 68).attr('text-anchor', 'middle').attr('class', 'sm').text('4 weeks later');
+
+  // BAR 2: with gate
+  const y2 = y1 + 140;
+  svg.append('text').attr('x', 24).attr('y', y2 + 4).attr('class', 'head').text('With the gate');
+  svg.append('text').attr('x', 24).attr('y', y2 + 22).attr('class', 'sm').text('25 min calibrate on 5;');
+  svg.append('text').attr('x', 24).attr('y', y2 + 36).attr('class', 'sm').text('bulk grade proceeds.');
+
+  let xC2 = 0;
+  withGate.forEach(seg => {
+    const wPx = x(seg.dur);
+    const xPx = margin.left + x(xC2);
+    svg.append('rect').attr('class', 'seg').attr('x', xPx).attr('y', y2).attr('width', wPx).attr('height', 38).attr('fill', seg.fill)
+      .attr('tabindex', 0).attr('aria-label', `${seg.label}: ${seg.dur} hours`)
+      .on('mouseover', (e) => showTip(e, `<strong>${seg.label}</strong><br>${seg.tip}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+    if (wPx > 50) svg.append('text').attr('x', xPx + wPx/2).attr('y', y2 + 24).attr('text-anchor', 'middle').attr('class', 'val').text(seg.label);
+    xC2 += seg.dur;
+  });
+  // Recovered time band
+  const recX = margin.left + x(xC2);
+  const recW = x(5 - xC2) - 10;
+  svg.append('rect').attr('class', 'recovered').attr('x', recX).attr('y', y2 + 11).attr('width', recW).attr('height', 16);
+  svg.append('text').attr('x', recX + recW/2).attr('y', y2 + 24).attr('text-anchor', 'middle').attr('class', 'sm')
+    .text('time recovered — bulk pass does not need re-checking');
+
+  svg.append('text').attr('x', W/2).attr('y', H - 14).attr('text-anchor', 'middle').attr('class', 'cap')
+    .text('Cognitively dense time on five essays beats cognitively wasteful time across 120.');
+}
+
+draw();
+const ro = new ResizeObserver(() => draw());
+ro.observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

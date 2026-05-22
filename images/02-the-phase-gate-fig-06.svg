@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" role="img" aria-labelledby="t06 d06">
+  <title id="t06">Pedagogical content knowledge &#8212; Shulman 1986</title>
+  <desc id="d06">Two overlapping circles in a Venn diagram. Left: subject-matter knowledge. Right: pedagogical knowledge. The overlap is labeled pedagogical content knowledge. A dashed boundary marks the zone of AI reach, which covers most of the left circle but stops short of the overlap.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .head { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: bold; fill: #2a1a0e; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .pck { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-style: italic; fill: #2a1a0e; }
+      .ai { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+  </defs>
+  <rect width="700" height="460" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">What AI can reach. What it cannot.</text>
+  <text x="32" y="52" class="sub">Shulman&#8217;s pedagogical content knowledge sits in the overlap. AI has zero PCK for the class in front of you.</text>
+
+  <!-- AI reach zone: dashed rounded boundary over left circle, ending just inside the overlap -->
+  <path d="M 50 240 Q 50 100 220 100 Q 360 100 360 240 Q 360 320 330 350 Q 280 380 200 380 Q 80 380 50 280 Z"
+        fill="#f5f2ee" stroke="#8a8480" stroke-width="1.2" stroke-dasharray="6 3"/>
+  <text x="120" y="120" class="ai">AI reach</text>
+
+  <!-- Subject-matter circle (left) -->
+  <circle cx="260" cy="240" r="130" fill="none" stroke="#2a1a0e" stroke-width="1.6"/>
+  <text x="190" y="160" class="head">Subject matter</text>
+  <text x="190" y="178" class="sm">Content, facts, procedures.</text>
+  <text x="190" y="192" class="sm">Encyclopedias. Textbooks.</text>
+  <text x="190" y="206" class="sm">Worked solutions.</text>
+
+  <!-- Pedagogical circle (right) -->
+  <circle cx="440" cy="240" r="130" fill="none" stroke="#2a1a0e" stroke-width="1.6"/>
+  <text x="510" y="160" class="head">Pedagogy</text>
+  <text x="510" y="178" class="sm">Generic teaching moves.</text>
+  <text x="510" y="192" class="sm">Assessment design.</text>
+  <text x="510" y="206" class="sm">Classroom management.</text>
+
+  <!-- Overlap label and contents -->
+  <text x="350" y="200" text-anchor="middle" class="pck">PCK</text>
+  <text x="350" y="220" text-anchor="middle" class="sm">Which mistakes this class makes</text>
+  <text x="350" y="234" text-anchor="middle" class="sm">first. Which analogy lands here.</text>
+  <text x="350" y="248" text-anchor="middle" class="sm">When standard explanation fails,</text>
+  <text x="350" y="262" text-anchor="middle" class="sm">what to reach for next.</text>
+
+  <!-- AI reach annotation pointing -->
+  <line x1="170" y1="320" x2="200" y2="320" stroke="#8a8480" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="60" y="324" class="ai">AI ends here</text>
+  <text x="60" y="340" class="sm">No access to overlap.</text>
+
+  <text x="350" y="430" text-anchor="middle" class="cap">PCK is built by repeated direct contact with learners struggling with exactly this material.</text>
+</svg>

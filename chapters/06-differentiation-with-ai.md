@@ -12,7 +12,8 @@ Here is the deception. The Lexile formula does not measure inferential demand. I
 
 The speed is precisely the problem. AI produces a structurally correct lower-Lexile version in twelve minutes, and the version looks finished. The question of whether the concept the lesson was designed to teach is still in the document — that question is invisible unless you ask it.
 
-<!-- → [INFOGRAPHIC: Lexile formula unpacked — two input boxes labeled "Average sentence length" and "Average word frequency" feeding into a formula box labeled "Lexile score" — with a large red callout beside it: "What the formula does NOT measure: inferential demand / prior knowledge load / causal structure / abstractness of ideas" — reader sees exactly what the AI is optimizing for and what it is blind to] -->
+![Two input boxes labeled "Average sentence length" and "Average word frequency" feeding into a single formula box that outputs a Lexile score. To the right, a callout lists what the formula does not measure: inferential demand, prior knowledge load, causal structure, abstractness of ideas.](../images/06-differentiation-with-ai-fig-01.png)
+*Figure 6.1 — What the Lexile formula measures and what it does not. Two surface statistics in; one number out. Everything that decides whether the concept survived sits in the callout.*
 
 This chapter is about asking it.
 
@@ -34,7 +35,8 @@ This is the failure mode AI-assisted differentiation is particularly susceptible
 
 The discipline: every time you accept a lower-band version of a passage, ask whether the simplification dropped any of the work the lesson was designed to do. There is a one-sentence test. *Would I be teaching the same concept tomorrow if every student were on this version?* If no, you have not differentiated. You have quietly routed some students out of the lesson.
 
-<!-- → [DIAGRAM: Two parallel columns — "Leveling" (left) and "Scaffolding" (right) — Leveling: original text → rewritten text, student reads a different document; arrow labeled "extraneous load reduced" AND "germane load at risk"; Scaffolding: original text stays, supports added around it (sentence frames, glossary, graphic organizer); arrow labeled "extraneous load reduced," "germane load preserved" — both columns end with a student reading, but the Scaffolding column has a green checkmark on "same concept as class"; the Leveling column has a warning symbol on "concept may be lost"] -->
+![Two parallel columns. Leveling on the left shows an original passage being rewritten into a different document; arrows label "extraneous load reduced" and "germane load at risk." Scaffolding on the right shows the original text untouched, surrounded by sentence frames, a glossary, and a graphic organizer; arrows label "extraneous load reduced" and "germane load preserved." Both end with a student reading. The scaffolding column carries a checkmark on "same concept as class"; the leveling column carries a warning on "concept may be lost."](../images/06-differentiation-with-ai-fig-02.png)
+*Figure 6.2 — Leveling versus scaffolding. The same student ends up reading something more accessible in both columns; only one of the two leaves the concept the lesson was designed to teach inside the document.*
 
 ---
 
@@ -76,7 +78,8 @@ The phase gate, stated: AI proposes from an anonymized profile. The licensed spe
 
 The reason this gate exists is not procedural caution. It is that the team holds knowledge the model cannot have: the student's history, the interventions that have and haven't worked, the clinical judgment that distinguishes an accommodation that opens access from one that removes challenge inappropriately. A teacher who accepts AI-generated accommodations without team review has not just violated a procedural requirement under IDEA. She has skipped the substantive judgment the gate exists to protect.
 
-<!-- → [DIAGRAM: IEP/504 phase gate — three sequential boxes with arrows: Box 1 "AI proposes — from anonymized profile, suggests accommodations from standard library"; Box 2 "Licensed specialist and team authorize — review against student history, evaluation results, and response to prior intervention"; Box 3 "Teacher implements — what the team has authorized, no more" — a large red X on a shortcut arrow from Box 1 directly to Box 3, labeled "skips legal authorization and clinical judgment"] -->
+![Three sequential boxes with arrows. Box 1: "AI proposes — from anonymized profile, suggests accommodations from standard library." Box 2: "Licensed specialist and team authorize — review against student history, evaluation results, and response to prior intervention." Box 3: "Teacher implements — what the team has authorized, no more." A red X marks a shortcut arrow from Box 1 directly to Box 3, labeled "skips legal authorization and clinical judgment."](../images/06-differentiation-with-ai-fig-03.png)
+*Figure 6.3 — The IEP and 504 phase gate. The middle box is the legal act, performed by the team. The shortcut arrow looks like efficiency and reads, in court and in practice, as the skipped step.*
 
 ---
 
@@ -90,7 +93,16 @@ What counts as sufficient anonymization in a specific district is not a question
 
 Default outside the walls: the anonymization rule. Strip the name. Keep the profile. The AI's suggestion can be applied back to the specific student by the teacher and team who know who Student A is.
 
-<!-- → [TABLE: Anonymization before/after — two columns: "What you know (do not submit)" and "What the prompt receives (safe to submit)" — rows: Student name (Jordan Martinez / Student A), Grade + school (8th grade, Lincoln Middle School / 8th grade), IEP detail (Jordan has ADHD, struggles to sustain attention during long reading tasks / student with IEP for ADHD, benefits from frequent breaks and chunked reading), Reading level (Jordan reads at about 5th grade / reads at approximately Lexile 750), WIDA level (not applicable here / not applicable), Re-identification risk (high / low) — reader can use as a before/after model for their own anonymization pass] -->
+| Field | What you know (do not submit) | What the prompt receives (safe to submit) |
+|---|---|---|
+| Student name | Jordan Martinez | Student A |
+| Grade and school | 8th grade, Lincoln Middle School | 8th grade |
+| IEP detail | Jordan has ADHD; struggles to sustain attention during long reading tasks | Student with IEP for ADHD; benefits from frequent breaks and chunked reading |
+| Reading level | Jordan reads at about 5th grade | Reads at approximately Lexile 750 |
+| WIDA level | Not applicable here | Not applicable |
+| Re-identification risk | High | Low |
+
+*Table 6.1 — The anonymization rule, applied. The left column is what you carry as the teacher. The right column is what the prompt receives. The translation in between is the discipline that keeps PII inside the room.*
 
 ---
 
@@ -122,7 +134,16 @@ None of these choices is made by the Lexile formula. The formula measured senten
 
 This is the moment the chapter has been building toward. The AI produced three versions in twelve minutes. The differentiation happened in the thirty minutes of spot-checking, choosing, and editing. The speed was real. The dividend was in the judgment that followed it, not in the generation itself.
 
-<!-- → [TABLE: Coral bleaching worked example — spot-check results — columns: Element, Present in original (1050L), Survived in 600L version?, Action required — rows: Dates 2014–2017 (yes / yes / none), Temperature threshold 1°C above long-term max (yes / NO — became "too warm" / edit back in), Zooxanthellae named (yes / yes, in parentheses / none), Photosynthesis as mechanism (yes / NO — became "food the algae made" / edit term back or use 800L version), Starvation outcome (yes / yes / none), Causal chain intact (yes / PARTIAL — sequence present, mechanism lost / choose Option B or C) — reader can use this as a template for their own spot-check on any passage] -->
+| Element | Present in original (1050L) | Survived in 600L version? | Action required |
+|---|---|---|---|
+| Dates 2014–2017 | yes | yes | none |
+| Temperature threshold 1°C above long-term max | yes | NO — became "too warm" | edit back in |
+| Zooxanthellae named | yes | yes (in parentheses) | none |
+| Photosynthesis as mechanism | yes | NO — became "food the algae made" | edit term back, or use 800L version |
+| Starvation outcome | yes | yes | none |
+| Causal chain intact | yes | PARTIAL — sequence present, mechanism lost | choose Option B or C |
+
+*Table 6.2 — The coral bleaching spot-check. A template you can copy onto any passage. The "Action required" column is the differentiation; the rest is bookkeeping.*
 
 ---
 
@@ -241,3 +262,62 @@ The AI hits the Lexile band in seconds. Whether the concept survived is a questi
 [^ferpa]: Family Educational Rights and Privacy Act, 20 U.S.C. § 1232g. U.S. Department of Education Office of Educational Technology (2023). *Artificial Intelligence and the Future of Teaching and Learning.* <https://www.ed.gov/sites/ed/files/documents/ai-report/ai-report.pdf>. Future of Privacy Forum (2024). *Vetting Generative AI Tools for Use in Schools.* <https://fpf.org/wp-content/uploads/2024/10/Ed_AI_legal_compliance.pdf_FInal_OCT24.pdf>.
 
 [^khazanchi]: Khazanchi, R., et al. (2025). Evaluating the accuracy of GPT-4 in simplifying spine imaging reports. *Skeletal Radiology*. <https://doi.org/10.1007/s00256-025-05027-9>. Finding: 34% of simplified outputs omitted at least one clinically relevant fact. Domain and population differ from K–12 education; failure shape is transferable, failure rate is not.
+
+---
+
+## Prompts
+
+These prompts regenerate the figures in this chapter as standalone D3 v7 HTML files. Paste the prompt into Claude, save the response as the named file, and open it in a browser. The reference implementations in `d3/` are the version this chapter was published with — use them as the floor, not the ceiling.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into the Claude project context before running any of these prompts. Those two files pin the D3 v7 CDN, the `var(--color-*)` token palette, the EB Garamond / Inter / JetBrains Mono stack, and the accessibility requirements every figure must satisfy.
+
+---
+
+### Figure 6.1 — What the Lexile formula measures, and what it does not
+
+Build a single-panel D3 v7 infographic that decomposes the Lexile formula. Two labeled input tiles stack on the left — "Average sentence length" and "Average word frequency" — each with a one-line gloss describing how the variable moves the score. Both feed into a centered dark formula box labeled "Lexile score" with the sub-line "a single number." From the formula box, an arrow continues right into a tall "Does NOT measure" callout listing four items as em-dash lines: inferential demand, prior knowledge load, causal structure, abstractness of ideas. The callout carries a 4px `var(--color-ink)` left stripe — no accent color is required since the warm grayscale palette carries the contrast. Add a two-line footer: the formula is what the AI optimizes for; the callout is what stays invisible until you ask. Standalone HTML, pinned D3 v7 CDN, inline CSS/JS, ResizeObserver redraw, `prefers-reduced-motion` honored, `role="img"`, `<title>`, `<desc>`, `aria-label` on each input tile and each callout item, tooltip on hover for inputs and callout items.
+
+> Reference implementation: `d3/06-differentiation-with-ai-fig-01.html`
+
+---
+
+### Figure 6.2 — Leveling versus scaffolding, side by side
+
+Build a two-panel D3 v7 diagram comparing the two moves teachers call "differentiation," divided by a dashed vertical rule. Left panel — Leveling: a tile labeled "Original passage (900L)" with the gloss "the document the lesson was designed around," a downward arrow labeled "rewrite," and a tile labeled "Rewritten passage (600L)" with the gloss "a different document — fewer terms, shorter clauses." Two annotations below: "extraneous load: reduced" and "germane load: at risk." Cap with a `var(--color-secondary)` filled chip reading "concept may be lost." Right panel — Scaffolding: the same "Original passage (900L)" tile, untouched ("same document the class is reading"), with a 2×2 grid of support tiles beneath it: Sentence frame, Glossary, Graphic organizer, Partner read. Two annotations: "extraneous load: reduced" and "germane load: preserved." Cap with a `var(--color-ink)` filled chip reading "same concept as class." Standalone HTML, pinned D3 v7 CDN, inline CSS/JS, ResizeObserver, `prefers-reduced-motion`, accessible tags, tooltips on every tile.
+
+> Reference implementation: `d3/06-differentiation-with-ai-fig-02.html`
+
+---
+
+### Figure 6.3 — The IEP and 504 phase gate
+
+Build a single-row D3 v7 flow diagram of the IEP and 504 phase gate. Three rectangular nodes left to right with step labels (STEP 1, STEP 2 — THE GATE, STEP 3) above them, connected by two solid arrows: (1) "AI proposes" with the sub-lines "from anonymized profile, suggests accommodations from a standard library" and the italic caption "a starting point, not a plan"; (2) "Licensed specialist and team authorize" with sub-lines "review against student history, evaluation results, and response to prior intervention" and a 4px `var(--color-ochre)` left stripe marking the gate; (3) "Teacher implements" with sub-lines "what the team has authorized — no more, no less" and the caption "execution, not authorization." Below the row, render a dashed arc shortcut arrow from node 1 to node 3 in `var(--color-red)`, midpoint crossed by a small white-filled box with a red X and labeled "skips legal authorization & clinical judgment." Pinned D3 v7 CDN, inline CSS/JS, ResizeObserver, `prefers-reduced-motion`, tooltips that expand each sub-line.
+
+> Reference implementation: `d3/06-differentiation-with-ai-fig-03.html`
+
+---
+
+## AI Wayback Machine
+
+The framework this chapter rests on did not start with the Lexile score. It started with a Russian psychologist who died in 1934. **Lev Vygotsky** named the gap between what a student can do alone and what she can do with help the *zone of proximal development*. The support that lives inside that gap — the sentence frame, the partner read, the worked example — is what later researchers called *scaffolding*. The distinction between leveling (which changes the text) and scaffolding (which changes the support around the text) is Vygotsky's distinction made operational. If you take only one idea from the prior literature into your AI-assisted differentiation workflow, take this one.
+
+![Lev Vygotsky, circa 1930. AI-generated portrait based on public domain photographs.](../images/lev-vygotsky.jpg)
+*Lev Vygotsky (1896–1934). AI-generated portrait based on public domain photographs (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Lev Vygotsky, and how does his Zone of Proximal Development
+connect to the distinction between leveling and scaffolding in this
+chapter? Keep it to three paragraphs. End with the single most
+surprising thing about the publication history of his work.
+```
+
+→ Search **"Lev Vygotsky"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to map a specific WIDA Level 2 sentence frame and a graphic-organizer scaffold to Vygotsky's ZPD — which part is the "more knowledgeable other," which part is the "tool," and what does the student supply?
+- Ask it about why Vygotsky's work was suppressed in the USSR for almost three decades, and what that does to the timeline of how scaffolding entered Western education research.
+
+What changes? What gets better? What gets worse?

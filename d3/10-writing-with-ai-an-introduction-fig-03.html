@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 10.3 — Flower-Hayes recursive model</title>
+<style>
+  :root {
+    --color-canvas:    #fdfcfb;
+    --color-ink:       #2a1a0e;
+    --color-secondary: #4a4540;
+    --color-muted:     #8a8480;
+    --color-light:     #c8c4c0;
+    --color-panel:     #f5f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-canvas:    #1a120a;
+      --color-ink:       #f5f2ee;
+      --color-secondary: #c8c4c0;
+      --color-muted:     #8a8480;
+      --color-light:     #4a4540;
+      --color-panel:     #251a10;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-canvas); color: var(--color-ink); font-family: 'EB Garamond', Garamond, Georgia, serif; padding: 16px; }
+  #chart { width: 100%; }
+  .title    { font-size: 20px; fill: var(--color-ink); }
+  .subtitle { font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .node-label { font-size: 17px; fill: var(--color-ink); }
+  .node-sub   { font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+  .frame-label { font-size: 14px; fill: var(--color-ink); }
+  .frame-sub   { font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+  .caption     { font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  ellipse.proc { fill: var(--color-canvas); stroke: var(--color-ink); stroke-width: 1.4; cursor: pointer; }
+  rect.frame   { fill: var(--color-panel); stroke: var(--color-muted); stroke-width: 1; }
+  .recursive   { stroke: var(--color-ink); stroke-width: 1.4; fill: none; }
+  .feed        { stroke: var(--color-muted); stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-panel); color: var(--color-ink); border: 1px solid var(--color-ink); padding: 6px 10px; font-size: 13px; font-family: 'EB Garamond', Garamond, Georgia, serif; max-width: 260px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const processes = [
+  { id: 'plan',     label: 'Planning',    sub: 'generate, organize, set goals',  cx: 0.5,  cy: 0.42, tip: 'Generating ideas, organizing them, setting goals for the next chunk of writing.' },
+  { id: 'translate',label: 'Translating', sub: 'put thought into prose',         cx: 0.29, cy: 0.67, tip: 'Turning a plan into syntactic, lexical English on the page.' },
+  { id: 'review',   label: 'Reviewing',   sub: 'read, evaluate, revise',         cx: 0.71, cy: 0.67, tip: 'Reading what is written, evaluating against goals, deciding what to change.' }
+];
+
+const edges = [
+  ['plan','translate'], ['plan','review'], ['translate','review']
+];
+
+const tooltip = d3.select('body').append('div').attr('class','tooltip');
+
+function draw() {
+  d3.select('#chart').selectAll('svg').remove();
+  const W = document.getElementById('chart').clientWidth || 760;
+  const H = Math.max(480, W * 0.63);
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('role','img').attr('aria-labelledby','t-fig03 d-fig03');
+  svg.append('title').attr('id','t-fig03').text('Flower & Hayes recursive writing model');
+  svg.append('desc').attr('id','d-fig03').text('Planning, Translating, and Reviewing are connected by bidirectional arrows. Task environment and long-term memory frame the loop.');
+
+  const defs = svg.append('defs');
+  defs.append('marker').attr('id','arrEnd').attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5)
+    .attr('markerWidth',9).attr('markerHeight',9).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M0,0 L10,5 L0,10 z').attr('fill','var(--color-ink)');
+  defs.append('marker').attr('id','arrStart').attr('viewBox','0 0 10 10').attr('refX',1).attr('refY',5)
+    .attr('markerWidth',9).attr('markerHeight',9).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M10,0 L0,5 L10,10 z').attr('fill','var(--color-ink)');
+  defs.append('marker').attr('id','arrFeed').attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5)
+    .attr('markerWidth',8).attr('markerHeight',8).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M0,0 L10,5 L0,10 z').attr('fill','var(--color-muted)');
+
+  svg.append('text').attr('class','title').attr('x', W/2).attr('y', 32).attr('text-anchor','middle').text('Writing as recursive orchestration');
+  svg.append('text').attr('class','subtitle').attr('x', W/2).attr('y', 54).attr('text-anchor','middle').text('After Flower & Hayes, 1981 — the artifact is the residue of the process');
+
+  // Frames
+  const frameW = W - 160;
+  svg.append('rect').attr('class','frame').attr('x', 80).attr('y', 80).attr('width', frameW).attr('height', 48);
+  svg.append('text').attr('class','frame-label').attr('x', W/2).attr('y', 104).attr('text-anchor','middle').text('Task environment');
+  svg.append('text').attr('class','frame-sub').attr('x', W/2).attr('y', 120).attr('text-anchor','middle').text('prompt, audience, accumulated text so far');
+
+  svg.append('rect').attr('class','frame').attr('x', 80).attr('y', H - 80).attr('width', frameW).attr('height', 48);
+  svg.append('text').attr('class','frame-label').attr('x', W/2).attr('y', H - 56).attr('text-anchor','middle').text('Long-term memory');
+  svg.append('text').attr('class','frame-sub').attr('x', W/2).attr('y', H - 40).attr('text-anchor','middle').text('knowledge of topic, audience, writing plans');
+
+  // process node positions
+  const nodes = processes.map(p => ({ ...p, x: p.cx * W, y: p.cy * H }));
+  const nodeById = Object.fromEntries(nodes.map(n => [n.id, n]));
+
+  // recursive edges
+  edges.forEach(([a,b]) => {
+    const A = nodeById[a], B = nodeById[b];
+    const dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx,dy);
+    const ux = dx/len, uy = dy/len;
+    const rx = 92, ry = 44;
+    const startR = Math.sqrt(1 / ((ux/rx)**2 + (uy/ry)**2));
+    const endR   = startR;
+    svg.append('line').attr('class','recursive')
+      .attr('x1', A.x + ux*startR).attr('y1', A.y + uy*startR)
+      .attr('x2', B.x - ux*endR).attr('y2', B.y - uy*endR)
+      .attr('marker-end','url(#arrEnd)')
+      .attr('marker-start','url(#arrStart)');
+  });
+
+  // process nodes
+  nodes.forEach(n => {
+    svg.append('ellipse').attr('class','proc')
+      .attr('cx', n.x).attr('cy', n.y).attr('rx', 92).attr('ry', 44)
+      .attr('tabindex',0).attr('aria-label', `${n.label}: ${n.sub}`)
+      .on('mouseover', (event) => showTip(event, `<strong>${n.label}</strong><br>${n.tip}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+    svg.append('text').attr('class','node-label').attr('x', n.x).attr('y', n.y - 2).attr('text-anchor','middle').text(n.label);
+    svg.append('text').attr('class','node-sub').attr('x', n.x).attr('y', n.y + 18).attr('text-anchor','middle').text(n.sub);
+  });
+
+  // feed lines to/from frames
+  svg.append('line').attr('class','feed').attr('x1', nodeById.plan.x).attr('y1', 128).attr('x2', nodeById.plan.x).attr('y2', nodeById.plan.y - 44 - 4).attr('marker-end','url(#arrFeed)');
+  svg.append('line').attr('class','feed').attr('x1', nodeById.translate.x).attr('y1', nodeById.translate.y + 44 + 4).attr('x2', nodeById.translate.x).attr('y2', H - 80).attr('marker-end','url(#arrFeed)');
+  svg.append('line').attr('class','feed').attr('x1', nodeById.review.x).attr('y1', nodeById.review.y + 44 + 4).attr('x2', nodeById.review.x).attr('y2', H - 80).attr('marker-end','url(#arrFeed)');
+
+  svg.append('text').attr('class','caption').attr('x', W/2).attr('y', H - 8).attr('text-anchor','middle').text('Each process can interrupt and call any other. The cognition lives in the loop.');
+}
+
+function showTip(event, html) {
+  tooltip.html(html).style('left',(event.pageX+12)+'px').style('top',(event.pageY-28)+'px')
+    .transition().duration(150).style('opacity',1);
+}
+function moveTip(event) { tooltip.style('left',(event.pageX+12)+'px').style('top',(event.pageY-28)+'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity',0); }
+
+draw();
+new ResizeObserver(()=>draw()).observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

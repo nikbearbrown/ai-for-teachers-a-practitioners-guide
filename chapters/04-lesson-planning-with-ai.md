@@ -22,7 +22,16 @@ That is the finding. Time went down. Blind-rated quality held. This is a real ra
 
 The 31 percent time saving is real. What the saved time actually buys students is not yet established at the level of evidence the trial provides. Keep that in tension as you read the rest of this chapter.
 
-<!-- → [TABLE: NFER/EEF trial summary — columns: Metric, Treatment (ChatGPT + guide), Control, Difference — rows: Weekly lesson prep time (56.2 min vs 81.5 min, −25.3 min / −31%), Resource quality on four dimensions (no statistically significant difference), Student learning outcomes (not measured / not measured / open question) — reader should immediately see what the trial can and cannot claim, and where the evidentiary gap lives] -->
+| Metric | Treatment (ChatGPT + guide) | Control | Difference |
+|---|---|---|---|
+| Weekly lesson prep time | 56.2 min | 81.5 min | −25.3 min (−31%) |
+| Resource quality (clarity) | rated by blind panel | rated by blind panel | no statistically significant difference |
+| Resource quality (engagement) | rated by blind panel | rated by blind panel | no statistically significant difference |
+| Resource quality (age-appropriateness) | rated by blind panel | rated by blind panel | no statistically significant difference |
+| Resource quality (scientific accuracy) | rated by blind panel | rated by blind panel | no statistically significant difference |
+| Student learning outcomes | not measured | not measured | open question |
+
+*Table 4.1 — NFER/EEF Teacher Choices trial (2024). The time finding is real; the quality finding is held; the learning question is unanswered. The gap between expert-rated quality and student-rated learning is where PCK lives.*
 
 ---
 
@@ -38,7 +47,8 @@ A lesson plan is a bundle of tasks that the profession has chosen to represent a
 
 The plan that the AI produces in fifteen minutes is complete at the structural layer. It is a draft at the PCK layer. These are different claims, and treating the structural completeness as overall completeness is the trap.
 
-<!-- → [INFOGRAPHIC: Two-column split — "Structural layer (AI does well)" vs "PCK layer (teacher supplies)" — left column lists: objectives in verb-list form, timed activity sequence, differentiation templates, exit ticket prompts, standards citations, worksheet first drafts; right column lists: which misconception this class will carry, which analogy backfires here, correct sub-topic sequence for this population, the exit ticket question that surfaces the right confusion — reader should be able to sort any lesson plan element into one column on sight] -->
+![Two-column infographic. Left column, headed "Structural layer — AI does well," lists six items: objectives in verb-list form, timed activity sequence, differentiation templates, exit ticket prompts, standards citations, worksheet first drafts. Right column, headed "PCK layer — teacher supplies," lists four items: which misconception this class will carry, which analogy backfires here, correct sub-topic sequence for this population, the exit ticket question that surfaces the right confusion.](../images/04-lesson-planning-with-ai-fig-01.png)
+*Figure 4.1 — Two layers of a lesson plan. The structural layer is delegable; the PCK layer is not. Treating the first as the whole is the trap.*
 
 ---
 
@@ -56,7 +66,8 @@ This switch changes the nature of the output entirely. The model is no longer gu
 
 The ninety seconds you spend writing the two sentences before opening the prompt is the most important ninety seconds in the workflow. It is also the step that most teachers skip for the first six months of AI lesson planning, then discover, and never skip again.
 
-<!-- → [DIAGRAM: Backward design flow — three boxes left to right labeled Stage 1 / Stage 2 / Stage 3, with arrows between; below Stage 1 "What should students understand?" below Stage 2 "What evidence shows they understand it?" below Stage 3 "What activities produce that evidence?" — a red X on the arrow from a default AI prompt jumping straight to Stage 3; a green check on the two-sentence sticky note entering at Stage 1 → Stage 2 → AI prompt at Stage 3 — reader sees exactly where the workflow skips and what the fix costs (ninety seconds)] -->
+![Backward-design flow diagram. Three boxes left to right labeled Stage 1, Stage 2, Stage 3, with arrows between them. Captions beneath each: "What should students understand?" "What evidence shows they understand it?" "What activities produce that evidence?" A skip arrow from a default AI prompt jumps straight to Stage 3, marked with a red X. A second path shows a two-sentence sticky note feeding Stage 1, then Stage 2, then the AI prompt at Stage 3, marked with a green check.](../images/04-lesson-planning-with-ai-fig-02.png)
+*Figure 4.2 — Backward design and where AI prompts collapse it. A default prompt skips Stages 1 and 2 and runs straight to Stage 3; the two-sentence sticky note is the ninety-second fix.*
 
 ---
 
@@ -108,7 +119,13 @@ She opens NGSS HS-LS1-7 in another tab, reads the actual standard language, and 
 
 Fifteen minutes of generation. Thirty minutes of PCK revision. Forty-five minutes total. The revision is not waste — the revision is the work. What AI replaced was the blank-page production time. What AI preserved was the judgment time. The dividend lives in that substitution.
 
-<!-- → [TABLE: Cellular respiration worked example — three revision moves — columns: Element revised, What AI produced, What the teacher changed it to, Why (PCK basis) — rows: Day 1 hook (glucose oxidation video → thermodynamics-vocabulary opening to surface ATP misconception), Day sequence (overview before contrast → contrast first to give framework for glycolysis/Krebs), Exit ticket (label diagram + two sentences → trace one glucose molecule to surface pyruvate misconception) — reader sees PCK revision as a concrete, learnable practice rather than abstract expertise] -->
+| Element revised | What AI produced | What the teacher changed it to | Why (PCK basis) |
+|---|---|---|---|
+| Day 1 hook | Glucose oxidation chemistry video | Five-minute opening using thermodynamics vocabulary on `glucose + O₂ → CO₂ + H₂O + energy` | Surfaces the "ATP is energy" prior belief on day one, before the rest of the unit calcifies on top of it |
+| Day sequence | Cellular respiration overview before photosynthesis/respiration contrast | Contrast first, then overview | Last year, the AI's order produced two days of confusion at the glycolysis/Krebs boundary; the contrast gives a framework into which the stages slot |
+| Exit ticket | Label diagram plus two sentences on stages | Trace one glucose molecule from cytoplasm through the mitochondrion, naming inputs and outputs at each stage | Surfaces the specific misconception that students think glucose enters the mitochondrion whole rather than as pyruvate after glycolysis |
+
+*Table 4.2 — Three PCK revision moves on a single Day 1 plan. Fifteen minutes of generation, thirty minutes of revision. The revision is the work; the AI's job was to clear the blank page.*
 
 ---
 
@@ -124,7 +141,8 @@ The practical rule: use AI at the unit level, planned a week or two ahead, with 
 
 And do not generate a year of plans at once. A year of plans generated in August cannot reflect what you will learn about your class in September. The Tuesday-of-week-eight lesson depends on what surfaced in Tuesday-of-week-seven's exit ticket. PCK accumulates through the year. Locking in annual plans in advance discards that accumulation.
 
-<!-- → [CHART: AI usefulness vs. planning horizon — x-axis: planning horizon from "tomorrow's lesson" to "next week's lesson" to "unit (2–3 weeks)" to "semester" to "full year"; y-axis: AI dividend (time saved minus revision cost); curve rises steeply from tomorrow to unit level, then flattens and dips toward full year — reader sees at a glance why unit-level planning is the sweet spot and why Monday-night single-lesson generation captures less of the dividend] -->
+![Line chart with planning horizon on the x-axis (tomorrow's lesson, next week's lesson, unit at two to three weeks, semester, full year) and AI dividend on the y-axis (time saved minus revision cost). The curve rises steeply from tomorrow to unit level, peaks at the unit, then flattens and dips toward the full-year mark.](../images/04-lesson-planning-with-ai-fig-03.png)
+*Figure 4.3 — AI dividend by planning horizon. Unit-level is the sweet spot; Monday-night single-lesson generation and August year-ahead generation both capture less of the dividend.*
 
 ---
 
@@ -171,6 +189,62 @@ Pick the hybrid lesson planning task you are most nervous about delegating — t
 The lesson plan that looks right to a blind expert panel and the lesson plan that anticipates the misconception this class will carry into Tuesday are not the same document. AI produces the first reliably. You produce the second, and only you can. The dividend is what you get when you let AI handle the first so you have bandwidth left for the second.
 
 Chapter 5 takes the same framework into assessment and feedback — where the time savings are larger, the failure modes are louder, and the question of who is doing the cognitive work cuts at both the teacher's grading desk and the student's writing desk.
+
+---
+
+## Prompts
+
+Use these prompts with Claude (or another agentic LLM) to regenerate the figures in this chapter as standalone D3 v7 HTML files. Each produces a single browser-runnable file you can open, inspect, and modify.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into the model's context before issuing these prompts. They define the stack (D3 v7 from the pinned CDN), naming conventions, the six-variable color system, the EB Garamond / Inter / JetBrains Mono typography stack, and the accessibility requirements every figure must meet.
+
+---
+
+### Figure 4.1 — Two layers of a lesson plan
+
+Build a two-column comparison diagram contrasting what AI does well in lesson planning against what only the teacher can supply. Left column header reads "Structural layer — AI does well" with a `var(--color-secondary)` background and white text. Right column header reads "PCK layer — teacher supplies" with a `var(--color-ink)` background and white text. The left column lists six items as stacked rectangular tiles filled with a near-white warm neutral: objectives in verb-list form, timed activity sequence, differentiation templates, exit ticket prompts (first draft), standards citations (verify), and worksheet first drafts. The right column lists four taller tiles filled with `var(--color-border)` and outlined in `var(--color-ink)`: which misconception this class will carry, which analogy backfires for these students, the sub-topic order that does not collapse, and the exit-ticket question that surfaces the right confusion. Render a vertical "the gap where teaching lives" label rotated between the columns. Each tile is hoverable and keyboard-focusable with a tooltip explaining why the item belongs in that column. Standalone HTML, D3 v7, inline CSS and JS, `role="img"` plus `<title>` and `<desc>`, dark-mode CSS variables, ResizeObserver.
+
+> Reference implementation: `d3/04-lesson-planning-with-ai-fig-01.html`
+
+---
+
+### Figure 4.2 — Backward design and where prompts collapse it
+
+Build a three-stage horizontal flow diagram for backward design. Stages 1, 2, and 3 sit in a row with thin black borders and warm-neutral fills; Stage 3 takes a slightly darker fill to signal it is where the AI lands. Each stage carries its question beneath the stage name: Stage 1 — "What should students understand?"; Stage 2 — "What evidence shows they understand it?"; Stage 3 — "What activities produce that evidence?" Arrows connect Stage 1 to Stage 2 to Stage 3. Above the row, render a "Default AI prompt" rectangle on the far left with a dashed curved arrow jumping over Stages 1 and 2 directly into Stage 3, marked with an X glyph and the verdict "skips Stages 1 and 2." Below the row, render a "Two-sentence sticky note (90 seconds)" rectangle on the far left feeding curved solid arrows into both Stage 1 and Stage 2, then a separate "Stage 3 AI prompt" rectangle beneath Stage 3 marked with a check. Stage and prompt rectangles are hoverable and keyboard-focusable with tooltips. Standalone HTML, D3 v7, inline CSS and JS, accessibility tags, dark-mode CSS variables, ResizeObserver.
+
+> Reference implementation: `d3/04-lesson-planning-with-ai-fig-02.html`
+
+---
+
+### Figure 4.3 — AI dividend by planning horizon
+
+Build a single line-and-area chart on a zero-baselined y-axis. X-axis is a `d3.scalePoint` of five ordered planning horizons: tomorrow's lesson, next week's lesson, unit (2–3 weeks), semester, full year. Y-axis is a linear "dividend index" from 0 to 100, where the dividend is time-saved minus PCK-revision cost. Plot the curve through 18, 52, 88, 64, 32 using `d3.curveMonotoneX`. Shade the area under the curve in a low-opacity warm neutral. Render circles at each point in `var(--color-secondary)`; render the peak (unit, 88) as a larger `var(--color-ink)` circle with a vertical leader line and a bold "Sweet spot" label above it. Place an italic callout near the tomorrow point reading "heavy PCK revision cost" and another near the full-year point reading "discards in-year PCK accumulation." Each data point is keyboard-focusable and hoverable, with a tooltip reporting horizon, dividend index, and the dominant failure mode at that horizon. Standalone HTML, D3 v7, inline CSS and JS, accessibility tags, dark-mode CSS variables, ResizeObserver.
+
+> Reference implementation: `d3/04-lesson-planning-with-ai-fig-03.html`
+
+---
+
+## AI Wayback Machine
+
+The two-sentence sticky note in this chapter — *what should students understand, and what evidence shows they understand it* — did not begin with Grant Wiggins and Jay McTighe in 1998. It began with **Ralph W. Tyler** (1902–1994), the American educator whose 1949 *Basic Principles of Curriculum and Instruction* set out four questions that every curriculum must answer: what educational purposes should the school seek to attain; what educational experiences can be provided that are likely to attain these purposes; how can these educational experiences be effectively organized; and how can we determine whether these purposes are being attained. The *Tyler rationale* — objectives, experiences, organization, evaluation — is the structural skeleton beneath backward design, beneath outcomes-based education, and beneath the lesson-planning workflow in this chapter. When you write Stage 1 and Stage 2 before opening the AI, you are doing Tyler's first and fourth steps; when the AI proposes activities and you sequence them, you are doing his second and third. The chapter's prompt-then-revise workflow is Tyler's rationale with a new tool inserted at the activity-design step.
+
+![Ralph W. Tyler, American educator (1902–1994). AI-generated portrait based on public-domain reference photographs.](../images/ralph-tyler.jpg)
+*Ralph W. Tyler, circa 1950. AI-generated portrait based on public-domain reference photographs.*
+
+**Run this:**
+
+```
+Who was Ralph Tyler, and how does his 1949 Tyler rationale (objectives, experiences, organization, evaluation) connect to the backward-design and prompt-then-revise workflow in this chapter? Keep it to three paragraphs. End with the single most surprising thing about his career or method.
+```
+
+→ Search **"Ralph W. Tyler"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask the model to translate Tyler's four questions into a one-page lesson-planning intake form a teacher could fill out before opening an AI tool — what survives the translation, and what gets lost?
+- Ask whether Tyler's rationale is fundamentally compatible with backward design, or whether Wiggins and McTighe quietly reversed one of his steps.
+
+What changes? What gets better? What gets worse?
 
 ---
 

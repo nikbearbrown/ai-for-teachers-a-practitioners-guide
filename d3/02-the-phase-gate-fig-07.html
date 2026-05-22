@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 2.7 — Twelve-gate cluster map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root { --color-white:#FFFFFF; --color-ink:#121212; --color-red:#C8102E; --color-secondary:#545454; --color-border:#D4D4D4; --color-ochre:#C8860E; }
+  @media (prefers-color-scheme: dark) {
+    :root { --color-white:#111111; --color-ink:#F0EBE3; --color-red:#E8243A; --color-secondary:#A0978C; --color-border:#2E2E2E; --color-ochre:#D49A30; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'Inter', sans-serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-size: 13px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 520px; }
+  .quad-bg { fill: var(--color-white); stroke: var(--color-border); stroke-width: 0.5; }
+  .gate-node { fill: var(--color-white); stroke: var(--color-ink); stroke-width: 1.4; transition: all 200ms cubic-bezier(0.2,0.8,0.2,1); }
+  .gate-node:hover { stroke: var(--color-red); cursor: pointer; }
+  .gate-node.red { stroke: var(--color-red); stroke-width: 2; }
+  .gate-node.yellow { stroke: var(--color-ochre); stroke-width: 2; }
+  .quad-title { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; font-weight: 700; fill: var(--color-ink); }
+  .num { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; font-weight: 700; fill: var(--color-ink); }
+  .lb { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; fill: var(--color-ink); }
+  .sm { font-family: 'EB Garamond', Georgia, serif; font-size: 10px; fill: var(--color-secondary); }
+  .route { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+  .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-size: 12px; max-width: 280px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 2.7 — Twelve gates, four domains</h1>
+<p class="subtitle">A working map of the cognitive operations that must remain with humans. Border weight shows risk tier.</p>
+<div id="chart" role="img" aria-labelledby="t-cluster d-cluster"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const gates = [
+  { n: 1,  quad: 0, label: 'Rubric calibration',  tier: 'yellow', tip: 'Before bulk grading; calibrate on five samples.' },
+  { n: 2,  quad: 0, label: 'Dispute resolution',  tier: 'green',  tip: 'AI barred from resolving contested scores.' },
+  { n: 5,  quad: 0, label: 'Content accuracy',    tier: 'yellow', tip: 'Teacher verifies before distributing AI-generated materials.' },
+  { n: 3,  quad: 1, label: 'Socratic scaffolding',tier: 'yellow', tip: 'Hints only; student performs the cognitive work.' },
+  { n: 4,  quad: 1, label: 'Direct instruction',  tier: 'green',  tip: 'Teacher teaches. AI may analyze afterward.' },
+  { n: 9,  quad: 1, label: 'PCK misconception',   tier: 'yellow', tip: 'Teacher selects analogy for this class.' },
+  { n: 6,  quad: 2, label: 'IEP/504 compliance',  tier: 'red',    tip: 'Licensed specialist authorizes accommodations.' },
+  { n: 8,  quad: 2, label: 'Student intervention',tier: 'green',  tip: 'Teacher designs and executes; AI flags only.' },
+  { n: 11, quad: 2, label: 'Behavioral crisis',   tier: 'red',    tip: 'AI excluded entirely. Trained staff handle.' },
+  { n: 7,  quad: 3, label: 'Parent communication',tier: 'green',  tip: 'Teacher drafts core; AI adjusts tone only.' },
+  { n: 10, quad: 3, label: 'RAG walled garden',   tier: 'green',  tip: 'Only verified curriculum in corpus; teacher checks grounding.' },
+  { n: 12, quad: 3, label: 'Student anonymization',tier: 'red',   tip: 'PII removed before any AI interaction. FERPA / COPPA.' }
+];
+const quads = [
+  'Assessment and feedback',
+  'Instruction and learning',
+  'Student welfare and compliance',
+  'Communication and data stewardship'
+];
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(e, html) { tooltip.html(html).style('left', (e.pageX+12)+'px').style('top', (e.pageY-28)+'px').transition().duration(150).style('opacity', 1); }
+function moveTip(e) { tooltip.style('left', (e.pageX+12)+'px').style('top', (e.pageY-28)+'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+function draw() {
+  d3.select('#chart').selectAll('*').remove();
+  const container = document.getElementById('chart');
+  const W = container.clientWidth || 760, H = container.clientHeight || 520;
+  const svg = d3.select('#chart').append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', W).attr('height', H)
+    .attr('role', 'img').attr('aria-labelledby', 't-cluster d-cluster');
+  svg.append('title').attr('id', 't-cluster').text('Twelve-gate cluster map');
+  svg.append('desc').attr('id', 'd-cluster').text('Twelve gates arranged across four quadrants by domain. Each node has a number and short label, with border weight indicating risk tier.');
+
+  const margin = { top: 16, right: 24, bottom: 56, left: 24 };
+  const cw = W - margin.left - margin.right;
+  const ch = H - margin.top - margin.bottom;
+  const qw = cw / 2, qh = ch / 2;
+
+  for (let qi = 0; qi < 4; qi++) {
+    const qx = margin.left + (qi % 2) * qw;
+    const qy = margin.top + Math.floor(qi / 2) * qh;
+    svg.append('rect').attr('class', 'quad-bg').attr('x', qx).attr('y', qy).attr('width', qw).attr('height', qh);
+    svg.append('text').attr('x', qx + 12).attr('y', qy + 22).attr('class', 'quad-title').text(quads[qi]);
+
+    const list = gates.filter(g => g.quad === qi);
+    list.forEach((g, gi) => {
+      const cx = qx + 60 + gi * ((qw - 120) / Math.max(list.length - 1, 1));
+      const cy = qy + qh / 2;
+      const node = svg.append('g').attr('tabindex', 0).attr('role', 'group').attr('aria-label', `Gate ${g.n}: ${g.label}, tier ${g.tier}`)
+        .on('mouseover', (e) => showTip(e, `<strong>Gate ${g.n}: ${g.label}</strong><br>Tier: ${g.tier}<br>${g.tip}`))
+        .on('mousemove', moveTip).on('mouseout', hideTip);
+      node.append('circle').attr('class', `gate-node ${g.tier !== 'green' ? g.tier : ''}`).attr('cx', cx).attr('cy', cy).attr('r', 16);
+      node.append('text').attr('x', cx).attr('y', cy + 5).attr('text-anchor', 'middle').attr('class', 'num').text(g.n);
+      // label wrap
+      const words = g.label.split(' ');
+      const mid = Math.ceil(words.length / 2);
+      node.append('text').attr('x', cx).attr('y', cy + 36).attr('text-anchor', 'middle').attr('class', 'lb').text(words.slice(0, mid).join(' '));
+      if (words.length > mid) node.append('text').attr('x', cx).attr('y', cy + 50).attr('text-anchor', 'middle').attr('class', 'lb').text(words.slice(mid).join(' '));
+    });
+  }
+
+  // Legend
+  const ly = H - 30;
+  const legend = svg.append('g').attr('transform', `translate(${margin.left}, ${ly})`);
+  legend.append('text').attr('class', 'lb').attr('y', 4).text('Risk tier:');
+  legend.append('circle').attr('cx', 80).attr('cy', 0).attr('r', 7).attr('class', 'gate-node');
+  legend.append('text').attr('x', 92).attr('y', 4).attr('class', 'sm').text('green (recoverable)');
+  legend.append('circle').attr('cx', 220).attr('cy', 0).attr('r', 7).attr('class', 'gate-node yellow');
+  legend.append('text').attr('x', 232).attr('y', 4).attr('class', 'sm').text('yellow (difficult to reverse)');
+  legend.append('circle').attr('cx', 400).attr('cy', 0).attr('r', 7).attr('class', 'gate-node red');
+  legend.append('text').attr('x', 412).attr('y', 4).attr('class', 'sm').text('red (permanent / legal)');
+
+  svg.append('text').attr('x', W/2).attr('y', H - 8).attr('text-anchor', 'middle').attr('class', 'cap')
+    .text('Twelve gates, twelve operations. Adapt to your context.');
+}
+
+draw();
+const ro = new ResizeObserver(() => draw());
+ro.observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

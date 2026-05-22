@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="t1 d1" font-family="'EB Garamond', Garamond, Georgia, 'Times New Roman', serif">
+  <title id="t1">Capability-borrowing versus capability-building</title>
+  <desc id="d1">Two parallel cognitive flows beginning with the same prompt; only the right column moves cognitive work into the student's brain.</desc>
+  <defs>
+    <marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a4540"/>
+    </marker>
+    <marker id="arr1b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="700" height="480" fill="#fdfcfb"/>
+
+  <text x="350" y="32" text-anchor="middle" font-size="22" fill="#2a1a0e">Same tool. Same session. Different arrow.</text>
+  <text x="350" y="56" text-anchor="middle" font-size="14" fill="#4a4540" font-style="italic">Where the cognitive operation lands decides whether a capability builds.</text>
+
+  <line x1="350" y1="76" x2="350" y2="430" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- LEFT: Capability-borrowing -->
+  <text x="175" y="100" text-anchor="middle" font-size="16" fill="#4a4540" font-style="italic">Capability-borrowing</text>
+  <line x1="60" y1="110" x2="290" y2="110" stroke="#8a8480" stroke-width="1"/>
+
+  <rect x="50" y="124" width="250" height="40" fill="#f5f2ee" stroke="#4a4540" stroke-width="1"/>
+  <text x="175" y="148" text-anchor="middle" font-size="14" fill="#2a1a0e">student prompts the AI</text>
+
+  <line x1="175" y1="166" x2="175" y2="186" stroke="#4a4540" stroke-width="1" marker-end="url(#arr1)"/>
+
+  <rect x="50" y="190" width="250" height="40" fill="#f5f2ee" stroke="#4a4540" stroke-width="1"/>
+  <text x="175" y="214" text-anchor="middle" font-size="14" fill="#2a1a0e">AI produces the artifact</text>
+
+  <line x1="175" y1="232" x2="175" y2="252" stroke="#4a4540" stroke-width="1" marker-end="url(#arr1)"/>
+
+  <rect x="50" y="256" width="250" height="40" fill="#f5f2ee" stroke="#4a4540" stroke-width="1"/>
+  <text x="175" y="280" text-anchor="middle" font-size="14" fill="#2a1a0e">student submits or reads it</text>
+
+  <line x1="175" y1="298" x2="175" y2="318" stroke="#4a4540" stroke-width="1" marker-end="url(#arr1)"/>
+
+  <rect x="50" y="322" width="250" height="60" fill="#f5f2ee" stroke="#4a4540" stroke-width="1"/>
+  <text x="175" y="346" text-anchor="middle" font-size="14" fill="#2a1a0e">artifact exists</text>
+  <text x="175" y="366" text-anchor="middle" font-size="13" fill="#4a4540" font-style="italic">capability does not</text>
+
+  <text x="175" y="410" text-anchor="middle" font-size="13" fill="#4a4540" font-style="italic">brain state at the end: unchanged</text>
+
+  <!-- RIGHT: Capability-building -->
+  <text x="525" y="100" text-anchor="middle" font-size="16" fill="#2a1a0e" font-style="italic">Capability-building</text>
+  <line x1="410" y1="110" x2="640" y2="110" stroke="#2a1a0e" stroke-width="1.5"/>
+
+  <rect x="400" y="124" width="250" height="40" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="525" y="148" text-anchor="middle" font-size="14" fill="#2a1a0e">student states reasoning</text>
+
+  <line x1="525" y1="166" x2="525" y2="186" stroke="#2a1a0e" stroke-width="1.5" marker-end="url(#arr1b)"/>
+
+  <rect x="400" y="190" width="250" height="40" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="525" y="214" text-anchor="middle" font-size="14" fill="#2a1a0e">AI asks, probes, points to gaps</text>
+
+  <line x1="525" y1="232" x2="525" y2="252" stroke="#2a1a0e" stroke-width="1.5" marker-end="url(#arr1b)"/>
+
+  <rect x="400" y="256" width="250" height="40" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="525" y="280" text-anchor="middle" font-size="14" fill="#2a1a0e">student retrieves and revises</text>
+
+  <line x1="525" y1="298" x2="525" y2="318" stroke="#2a1a0e" stroke-width="1.5" marker-end="url(#arr1b)"/>
+
+  <rect x="400" y="322" width="250" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="525" y="346" text-anchor="middle" font-size="14" fill="#2a1a0e">artifact sometimes nothing</text>
+  <text x="525" y="366" text-anchor="middle" font-size="13" fill="#2a1a0e" font-style="italic">capability is real</text>
+
+  <text x="525" y="410" text-anchor="middle" font-size="13" fill="#2a1a0e" font-style="italic">brain state at the end: rewired</text>
+
+  <line x1="60" y1="448" x2="640" y2="448" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="350" y="466" text-anchor="middle" font-size="12" fill="#8a8480" font-style="italic">Figure 14.1 &#8212; the cognitive operation, not the tool, determines what the brain takes home.</text>
+</svg>

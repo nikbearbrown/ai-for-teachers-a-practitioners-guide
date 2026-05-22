@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" role="img" aria-labelledby="t09 d09">
+  <title id="t09">Three things people get wrong</title>
+  <desc id="d09">A three-column comparison card. Each column contains a misconception, why it feels true, and what the gate actually does. Three rows cover the distrust misconception, the &#8220;AI is right&#8221; misconception, and the gates-slow-you-down misconception.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .hdr { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #2a1a0e; }
+      .mis { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-style: italic; fill: #4a4540; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .mech { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: bold; fill: #2a1a0e; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+  </defs>
+  <rect width="700" height="460" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">Three misconceptions, three mechanisms</text>
+  <text x="32" y="52" class="sub">The misconception feels true. The mechanism is what the gate is actually doing.</text>
+
+  <!-- Column header row -->
+  <line x1="40" y1="80" x2="660" y2="80" stroke="#c8c4c0" stroke-width="0.5"/>
+  <text x="60" y="100" class="hdr">Misconception</text>
+  <text x="270" y="100" class="hdr">Why it feels true</text>
+  <text x="480" y="100" class="hdr">What the gate actually does</text>
+  <line x1="40" y1="112" x2="660" y2="112" stroke="#2a1a0e" stroke-width="1"/>
+
+  <!-- Row 1: distrust -->
+  <text x="60" y="138" class="mis">&#8220;Gates exist because</text>
+  <text x="60" y="154" class="mis">we distrust AI.&#8221;</text>
+  <text x="60" y="174" class="sm">If AI gets better,</text>
+  <text x="60" y="188" class="sm">the gate goes away.</text>
+
+  <text x="270" y="138" class="lb">Distrust would scale</text>
+  <text x="270" y="152" class="lb">with capability.</text>
+  <text x="270" y="172" class="sm">More capable model,</text>
+  <text x="270" y="186" class="sm">less suspicion required.</text>
+
+  <text x="480" y="138" class="mech">Locks which operation</text>
+  <text x="480" y="152" class="mech">stays human.</text>
+  <text x="480" y="172" class="sm">A more capable AI still</text>
+  <text x="480" y="186" class="sm">has no access to this class.</text>
+
+  <line x1="40" y1="208" x2="660" y2="208" stroke="#c8c4c0" stroke-width="0.5"/>
+
+  <!-- Row 2: if AI is right -->
+  <text x="60" y="234" class="mis">&#8220;If the AI is right,</text>
+  <text x="60" y="250" class="mis">no gate is needed.&#8221;</text>
+  <text x="60" y="270" class="sm">Rubric accuracy is</text>
+  <text x="60" y="284" class="sm">treated as correctness.</text>
+
+  <text x="270" y="234" class="lb">99.4% approved looked</text>
+  <text x="270" y="248" class="lb">like 99.4% right.</text>
+  <text x="270" y="268" class="sm">No signal flagged</text>
+  <text x="270" y="282" class="sm">the missing operation.</text>
+
+  <text x="480" y="234" class="mech">Converts rubric accuracy</text>
+  <text x="480" y="248" class="mech">into pedagogical fit.</text>
+  <text x="480" y="268" class="sm">Two different properties.</text>
+  <text x="480" y="282" class="sm">The teacher&#8217;s reading is the converter.</text>
+
+  <line x1="40" y1="304" x2="660" y2="304" stroke="#c8c4c0" stroke-width="0.5"/>
+
+  <!-- Row 3: slow you down -->
+  <text x="60" y="330" class="mis">&#8220;Gates slow you down.&#8221;</text>
+  <text x="60" y="350" class="sm">They take some time</text>
+  <text x="60" y="364" class="sm">up front.</text>
+
+  <text x="270" y="330" class="lb">Calibration is 25 minutes</text>
+  <text x="270" y="344" class="lb">you did not have to spend.</text>
+  <text x="270" y="364" class="sm">Workflow reports completion</text>
+  <text x="270" y="378" class="sm">faster without it.</text>
+
+  <text x="480" y="330" class="mech">Moves the work to where</text>
+  <text x="480" y="344" class="mech">it is most efficient.</text>
+  <text x="480" y="364" class="sm">25 minutes concentrated</text>
+  <text x="480" y="378" class="sm">vs. 3&#8211;5 hours of re-checking.</text>
+
+  <line x1="40" y1="400" x2="660" y2="400" stroke="#2a1a0e" stroke-width="1"/>
+
+  <text x="350" y="436" text-anchor="middle" class="cap">Trade the misconception for the mechanism. The gate is doing work the misconception cannot.</text>
+</svg>

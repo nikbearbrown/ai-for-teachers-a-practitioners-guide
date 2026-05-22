@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" role="img" aria-labelledby="f4-title f4-desc" font-family="'EB Garamond', Garamond, Georgia, serif">
+  <title id="f4-title">The five-question audit, plus the AI-only sixth</title>
+  <desc id="f4-desc">A printable checklist card listing five core audit questions for every chart before it leaves the building: what question does this chart answer; compared with what; does the y-axis start at zero; is the title a finding or a topic; did you check for hidden variance. A sixth question applies when AI is in the loop: does the chart match the data you gave it.</desc>
+  <defs>
+    <marker id="f4-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a4540"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="700" height="540" fill="#fdfcfb"/>
+
+  <text x="350" y="36" text-anchor="middle" font-size="22" fill="#2a1a0e">The five-question audit</text>
+  <text x="350" y="56" text-anchor="middle" font-size="13" fill="#4a4540" font-style="italic">Run on every chart before it leaves the building. Five minutes.</text>
+
+  <!-- card -->
+  <rect x="60" y="80" width="580" height="380" fill="#f5f2ee" stroke="#4a4540" stroke-width="1.2"/>
+
+  <!-- row 1 -->
+  <g transform="translate(80,110)">
+    <text x="0"  y="0"  font-size="22" fill="#2a1a0e">1</text>
+    <text x="36" y="-2" font-size="14" fill="#2a1a0e" font-weight="bold">What question does this chart answer?</text>
+    <text x="36" y="16" font-size="12" fill="#4a4540">State it in one sentence. If you can&apos;t, the chart isn&apos;t ready.</text>
+  </g>
+  <line x1="80" y1="138" x2="620" y2="138" stroke="#c8c4c0" stroke-width="0.8"/>
+
+  <!-- row 2 -->
+  <g transform="translate(80,170)">
+    <text x="0"  y="0"  font-size="22" fill="#2a1a0e">2</text>
+    <text x="36" y="-2" font-size="14" fill="#2a1a0e" font-weight="bold">Compared with what?</text>
+    <text x="36" y="16" font-size="12" fill="#4a4540">Every claim needs an explicit reference: baseline, benchmark, prior period, peer group.</text>
+  </g>
+  <line x1="80" y1="198" x2="620" y2="198" stroke="#c8c4c0" stroke-width="0.8"/>
+
+  <!-- row 3 -->
+  <g transform="translate(80,230)">
+    <text x="0"  y="0"  font-size="22" fill="#2a1a0e">3</text>
+    <text x="36" y="-2" font-size="14" fill="#2a1a0e" font-weight="bold">Does the y-axis start at zero?</text>
+    <text x="36" y="16" font-size="12" fill="#4a4540">For a bar chart, always. For a line chart, when magnitude is the message.</text>
+  </g>
+  <line x1="80" y1="258" x2="620" y2="258" stroke="#c8c4c0" stroke-width="0.8"/>
+
+  <!-- row 4 -->
+  <g transform="translate(80,290)">
+    <text x="0"  y="0"  font-size="22" fill="#2a1a0e">4</text>
+    <text x="36" y="-2" font-size="14" fill="#2a1a0e" font-weight="bold">Is the title a finding or a topic?</text>
+    <text x="36" y="16" font-size="12" fill="#4a4540">A topic names the subject. A finding states what the chart shows. Write the verb.</text>
+  </g>
+  <line x1="80" y1="318" x2="620" y2="318" stroke="#c8c4c0" stroke-width="0.8"/>
+
+  <!-- row 5 -->
+  <g transform="translate(80,350)">
+    <text x="0"  y="0"  font-size="22" fill="#2a1a0e">5</text>
+    <text x="36" y="-2" font-size="14" fill="#2a1a0e" font-weight="bold">Did you check for hidden variance?</text>
+    <text x="36" y="16" font-size="12" fill="#4a4540">If the chart shows means, ask whether distribution matters. If it does, add a box or strip plot.</text>
+  </g>
+  <line x1="80" y1="378" x2="620" y2="378" stroke="#c8c4c0" stroke-width="0.8"/>
+
+  <!-- AI sixth: emphasized -->
+  <g transform="translate(80,408)">
+    <rect x="-12" y="-22" width="556" height="44" fill="#fdfcfb" stroke="#4a4540" stroke-width="1"/>
+    <text x="0"  y="0"  font-size="22" fill="#2a1a0e">6</text>
+    <text x="36" y="-2" font-size="14" fill="#2a1a0e" font-weight="bold">When AI is in the loop: does the chart match the data?</text>
+    <text x="36" y="16" font-size="12" fill="#4a4540">Verify a sample of values against the source. Adds two minutes. Not optional.</text>
+  </g>
+
+  <!-- footer note -->
+  <text x="350" y="490" text-anchor="middle" font-size="12" fill="#4a4540" font-style="italic">A chart that cannot be described by a one-sentence question has not been designed; it has been generated.</text>
+  <line x1="350" y1="502" x2="350" y2="522" stroke="#4a4540" stroke-width="1.2" marker-end="url(#f4-arrow)"/>
+  <text x="350" y="534" text-anchor="middle" font-size="11" fill="#8a8480">Five minutes is the work.</text>
+</svg>

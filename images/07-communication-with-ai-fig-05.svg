@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="t07f5 d07f5">
+  <title id="t07f5">Two emails, two workflows, two timelines</title>
+  <desc id="d07f5">A split-panel illustration of two afternoon workflows. The left panel is the routine case with five bullet notes flowing into a clean draft, labeled four minutes. The right panel is the sensitive case in the wrong workflow, with a blank prompt and a model returning a fabricated incident narrative, labeled five minutes now and a documentation crisis later.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 18px; font-weight: 700; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: #4a4540; }
+      .panel { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 14px; font-weight: 700; fill: #fdfcfb; letter-spacing: 0.4px; }
+      .panelsub { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 11px; font-style: italic; fill: #c8c4c0; }
+      .step { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 11px; fill: #2a1a0e; }
+      .stepb { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 11px; font-weight: 700; fill: #2a1a0e; }
+      .bullet { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 10px; fill: #2a1a0e; }
+      .blank { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 11px; font-style: italic; fill: #8a8480; }
+      .time { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-weight: 700; fill: #2a1a0e; }
+      .timewarn { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 11px; fill: #fdfcfb; font-weight: 700; }
+      .overlay { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 10px; fill: #fdfcfb; font-weight: 700; letter-spacing: 0.4px; }
+      .cap { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: #4a4540; }
+    </style>
+    <marker id="arr07f5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a4540"/>
+    </marker>
+  </defs>
+  <rect width="700" height="480" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">Two emails, one afternoon</text>
+  <text x="32" y="54" class="sub">Same elapsed time. Different ending.</text>
+
+  <rect x="32" y="76" width="312" height="24" fill="#4a4540" stroke="none"/>
+  <text x="48" y="93" class="panel">ROUTINE CASE</text>
+  <text x="200" y="93" class="panelsub">bullets, AI, review</text>
+
+  <rect x="32" y="100" width="312" height="320" fill="#fdfcfb" stroke="#8a8480" stroke-width="1"/>
+
+  <text x="48" y="120" class="stepb">1. Teacher bullets</text>
+  <rect x="48" y="126" width="160" height="84" fill="#fdfcfb" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="56" y="142" class="bullet">— late report, third time</text>
+  <text x="56" y="156" class="bullet">— work quality strong</text>
+  <text x="56" y="170" class="bullet">— quieter in class lately</text>
+  <text x="56" y="184" class="bullet">— short call, not meeting</text>
+  <text x="56" y="198" class="bullet">— mom prefers Spanish</text>
+
+  <line x1="208" y1="170" x2="232" y2="170" stroke="#4a4540" stroke-width="1.5" marker-end="url(#arr07f5)"/>
+
+  <rect x="236" y="138" width="92" height="60" fill="#4a4540" stroke="none"/>
+  <text x="282" y="160" text-anchor="middle" class="overlay">PROMPT</text>
+  <text x="282" y="178" text-anchor="middle" class="overlay">TEMPLATE</text>
+
+  <line x1="188" y1="210" x2="188" y2="232" stroke="#4a4540" stroke-width="1.5" marker-end="url(#arr07f5)"/>
+
+  <text x="48" y="252" class="stepb">2. Model renders</text>
+  <rect x="48" y="258" width="280" height="58" fill="#fdfcfb" stroke="#8a8480" stroke-width="1"/>
+  <text x="56" y="276" class="step">Three-to-four sentences, warm but</text>
+  <text x="56" y="290" class="step">honest, no jargon. Spanish version</text>
+  <text x="56" y="304" class="step">with AI-translation footer.</text>
+
+  <line x1="188" y1="316" x2="188" y2="338" stroke="#4a4540" stroke-width="1.5" marker-end="url(#arr07f5)"/>
+
+  <text x="48" y="358" class="stepb">3. Teacher reviews, round-trips, sends</text>
+  <rect x="48" y="364" width="280" height="32" fill="#2a1a0e" stroke="none"/>
+  <text x="188" y="384" text-anchor="middle" class="timewarn">4 MINUTES — DONE</text>
+
+  <rect x="356" y="76" width="312" height="24" fill="#2a1a0e" stroke="none"/>
+  <text x="372" y="93" class="panel">SENSITIVE CASE — WRONG WORKFLOW</text>
+
+  <rect x="356" y="100" width="312" height="320" fill="#fdfcfb" stroke="#8a8480" stroke-width="1"/>
+
+  <text x="372" y="120" class="stepb">1. Blank prompt</text>
+  <rect x="372" y="126" width="160" height="84" fill="#fdfcfb" stroke="#c8c4c0" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="452" y="170" text-anchor="middle" class="blank">"write a behavioral</text>
+  <text x="452" y="186" text-anchor="middle" class="blank">incident report"</text>
+
+  <line x1="532" y1="170" x2="556" y2="170" stroke="#4a4540" stroke-width="1.5" marker-end="url(#arr07f5)"/>
+
+  <rect x="560" y="138" width="92" height="60" fill="#8a8480" stroke="none"/>
+  <text x="606" y="172" text-anchor="middle" class="overlay">MODEL</text>
+
+  <line x1="512" y1="210" x2="512" y2="232" stroke="#4a4540" stroke-width="1.5" marker-end="url(#arr07f5)"/>
+
+  <text x="372" y="252" class="stepb">2. Model returns confident narrative</text>
+  <rect x="372" y="258" width="280" height="58" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="380" y="276" class="step">Plausible-sounding incident details.</text>
+  <text x="380" y="290" class="step">Some happened. Some did not.</text>
+  <rect x="380" y="296" width="180" height="14" fill="#2a1a0e"/>
+  <text x="384" y="307" class="overlay">FABRICATED SPECIFICS</text>
+
+  <line x1="512" y1="316" x2="512" y2="338" stroke="#4a4540" stroke-width="1.5" marker-end="url(#arr07f5)"/>
+
+  <text x="372" y="358" class="stepb">3. Teacher skims and sends</text>
+  <rect x="372" y="364" width="280" height="32" fill="#2a1a0e" stroke="none"/>
+  <text x="512" y="384" text-anchor="middle" class="timewarn">5 MIN NOW · CRISIS LATER</text>
+
+  <text x="350" y="450" class="cap" text-anchor="middle">Figure 7.5 — The two workflows look equally fast in the moment.</text>
+  <text x="350" y="466" class="cap" text-anchor="middle">The difference is invisible until it isn't.</text>
+</svg>

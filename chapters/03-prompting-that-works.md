@@ -18,7 +18,20 @@ Same tool. Same minute. One teacher got trivia. The other got something she will
 
 The chatbot did not change. The prompt did.
 
-<!-- → [TABLE: side-by-side anatomy of Teacher A's prompt vs. Teacher B's prompt — rows: standard cited, grade level stated, reading level specified, misconception named, format specified, item count, distractor criteria — cells show what each teacher supplied or left blank — reader should see at a glance precisely where the specification gap opened] -->
+| Specification component | Teacher A | Teacher B |
+|---|---|---|
+| Standard cited | — | 8th-grade U.S. History standard, causes of the Revolution |
+| Grade level stated | — | 8th grade |
+| Reading level specified | — | 6th grade (three students read below grade level) |
+| Misconception named | — | "Americans paid higher taxes than Britons" |
+| Format specified | — | Multiple choice, four options per item |
+| Item count | — | Eight items, one per cause |
+| Distractor criteria | — | One distractor per item targets a documented misconception |
+| Banned item types | — | No date-recall items |
+| Prompt length | 1 sentence | 6 sentences |
+| Result | Five generic items at 11th-grade reading level | Eight usable items targeting the class's actual misconception |
+
+*Table 3.1 — The same chatbot. The same minute. The specification gap is the entire difference between trivia and a quiz Teacher B can reuse next quarter.*
 
 ---
 
@@ -32,7 +45,8 @@ A generative language model does something entirely different. When you type int
 
 This means the prompt is carrying a weight that a search query never does. A search query is a pointer. A prompt is the entire specification of what gets built.
 
-<!-- → [INFOGRAPHIC: two-panel diagram — left panel: search engine (user keywords → index lookup → ranked list of pre-existing documents, arrow labeled "retrieval"); right panel: generative model (prompt tokens → probability distribution → token-by-token construction, arrow labeled "conditioning") — caption: the left panel points at something already in the world; the right panel builds something that did not exist until you asked] -->
+![Two-panel diagram comparing a search engine pipeline (user keywords feeding an index lookup, returning a ranked list of pre-existing documents, with an arrow labeled retrieval) and a generative model pipeline (prompt tokens feeding a probability distribution, generating token-by-token output, with an arrow labeled conditioning).](../images/03-prompting-that-works-fig-01.png)
+*Figure 3.1 — Pointer versus specification. A search query selects from what already exists; a prompt builds something that did not exist until you asked.*
 
 And here is the consequence that matters for teachers: the model has no context the prompt does not supply.
 
@@ -51,7 +65,8 @@ There is a structure that forces you to supply what an ad-hoc prompt forgets. Di
     TASK:        [Specific deliverable with format, length, and quality criteria].
     CONSTRAINTS: [What to avoid, what format to use, what the output will be used for.]
 
-<!-- → [INFOGRAPHIC: the four-component template as a labeled reference card — each line of the template has a callout annotation: ROLE → "pulls the corpus region: vocabulary, register, pacing"; CONTEXT → "replaces the model's average guess with your classroom facts"; TASK → "names a deliverable you can verify, not a feeling you can only sense"; CONSTRAINTS → "closes the gap between what you typed and what you meant" — designed to print as a half-page laminated card] -->
+![A laminated-card-style reference of the four-component prompt template. ROLE, CONTEXT, TASK, and CONSTRAINTS appear on the left as a stacked card with example slots; ochre callouts on the right name the structural work each line performs.](../images/03-prompting-that-works-fig-02.png)
+*Figure 3.2 — The four-component card. Each line does distinct structural work; after thirty prompts the moves become reflex.*
 
 Each line does distinct work, and it is worth understanding what that work is — because once you do, the structure becomes reflex rather than a checklist.
 
@@ -83,7 +98,16 @@ The feeling-prompt trap is that it feels natural. It is how humans talk to human
 
 Cut these from your prompts on sight: *make it engaging*, *make it pop*, *make it rigorous*, *tighten it up*, *make it better*. Each is a feeling masquerading as an instruction. Replace each with the operation underneath. *Engaging* might mean: open each section with a one-sentence concrete scene. *Rigorous* might mean: every claim links to a primary source. *Tighten* might mean: cut any sentence over 25 words into two. Those are instructions. The model can execute them. You can verify the result.
 
-<!-- → [TABLE: feeling-prompt conversion table — two columns, six rows — left: the feeling phrase ("make it warmer," "make it more engaging," "make it rigorous," "tighten it up," "make it pop," "make it better") — right: the specification operation that produces the intended effect — a quick-reference card for rewriting vague follow-up prompts into executable instructions] -->
+| Feeling phrase (do not use) | Specification operation (use this instead) |
+|---|---|
+| "Make it warmer" | Reference one specific strength the person showed; replace "is struggling" with "is finding [specific skill] challenging"; end with one concrete invitation with a day and time. |
+| "Make it more engaging" | Open each section with a one-sentence concrete scene; replace abstract nouns with named examples; cut every sentence over 25 words. |
+| "Make it rigorous" | Every claim links to a primary source; every quantitative term cites the study or dataset; flag any statement the source does not directly support. |
+| "Tighten it up" | Cut any sentence over 25 words into two. Remove every adverb that modifies "very." Delete openers like "I just wanted to" and "It is important to note that." |
+| "Make it pop" | Lead with the strongest fact in the first sentence. Replace passive verbs with active ones. Add one specific number per paragraph. |
+| "Make it better" | Name the specific failure: which paragraph drags, which claim is weak, which transition is missing — and the move that fixes each one. |
+
+*Table 3.2 — Cut the left column from your prompts on sight. Feelings are not instructions. The right column lists the operations that produce the experience you wanted.*
 
 ---
 
@@ -123,7 +147,8 @@ What comes back: a revised lab where students observe condensation forming insid
 
 Three prompts. Seven minutes of typing. A lesson plan reusable next year by changing one line.
 
-<!-- → [INFOGRAPHIC: iterative loop as a three-node flowchart — node 1: vague prompt → generic output (annotated: "the model fills in the average"); node 2: four-component prompt → usable draft (annotated: "specification narrows the probability space"); node 3: gap-closing follow-up → final draft (annotated: "name what to change, name what to keep") — arrows between nodes labeled with the diagnostic observation that triggered the next round: "objective is a topic, not a capability" and "lab requires a week, class has 25 minutes"] -->
+![A three-node horizontal flowchart of the prompting loop. Round 1: a one-line vague prompt produces a generic lesson-plan output, annotated the model fills in the average. Round 2: a four-component prompt produces a usable draft, annotated specification narrows the probability space. Round 3: a gap-closing follow-up produces the final draft, annotated name what to change, name what to keep. Arrows between nodes are labeled with the diagnostic observation that triggered the next round.](../images/03-prompting-that-works-fig-03.png)
+*Figure 3.3 — The prompting loop. Three rounds, seven minutes, one reusable lesson plan. Each round narrows the probability space; the first output's job is to reveal what you forgot to specify.*
 
 Notice what made round two so much better than round one. The teacher knew that "plants get food from soil" is the misconception to address. She knew that "produce" is ambiguous for 5th-graders. A teacher without that domain knowledge cannot write those constraints. The four-component structure is a tool for getting the model to deploy *your* knowledge of your classroom. It is not a substitute for having the knowledge. AI extends teacher judgment. The prompt is where that extension happens.
 
@@ -145,7 +170,14 @@ The more durable frame is task fit. For long-document synthesis — uploading cu
 
 The point is not to rank. The four-component structure works on all of them. Vendor differences are real and secondary. Switching to a different AI rarely fixes bad output. Rewriting the prompt does.
 
-<!-- → [TABLE: platform-by-task-fit matrix — rows: NotebookLM, Claude, ChatGPT, Gemini — columns: long-document synthesis, long-form drafting, conversational ideation, Google Workspace integration — each strong-fit cell has a one-phrase label ("built for this," "reliable first drafts," "fluid turn-by-turn," "native") plus the key trade-off — reader picks a platform by task, not by brand preference] -->
+| Platform   | Long-document synthesis     | Long-form drafting          | Conversational ideation     | Google Workspace integration |
+|------------|-----------------------------|-----------------------------|-----------------------------|------------------------------|
+| NotebookLM | **Built for this.** Cites every claim back to the source. Limited generation. | Limited. Built for synthesis, not drafting. | Limited. Synthesis Q&A, not free-form. | Indirect — pulls from Drive. |
+| Claude     | Strong. Holds 100K+ tokens; reasons across them. | **Reliable first drafts.** Steady voice, follows instructions. | Strong. Good at structured back-and-forth. | None native. |
+| ChatGPT    | Good with context-window plus uploads. | Strong, but voice drifts; needs more editing. | **Fluid turn-by-turn.** Most conversational. | Indirect. |
+| Gemini     | Good with Drive-mounted documents. | Capable; less consistent voice than Claude. | Capable; less distinctive than ChatGPT. | **Native.** Lives inside Workspace. |
+
+*Table 3.4 — Pick by task, not brand. Switching platforms rarely fixes a bad prompt. Rewriting the prompt does.*
 
 ---
 
@@ -179,3 +211,63 @@ Chapter 12 builds this systematically. The rule for now is simple: if a prompt w
 - Qian, Y. (2025). Prompt Engineering in Education: A Systematic Review. *Journal of Educational Computing Research, 63*(7-8), 1782–1818.
 - Wei, J. et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.* arXiv:2201.11903.
 - Zheng, M. et al. (2023/2024). *When "A Helpful Assistant" Is Not Really Helpful.* Findings of EMNLP 2024. arXiv:2311.10054.
+
+---
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 3.1 — Pointer versus specification
+
+Build a single self-contained HTML file rendering a two-row pipeline diagram comparing search retrieval and generative conditioning. Upper row labelled "Search engine" — three left-to-right nodes: User keywords, Index lookup, Ranked list — joined by ink-colored arrows; a red "retrieval" badge sits beneath, with a caption "already existed before you typed." Lower row labelled "Generative language model" — three nodes: Prompt tokens, Probability distribution, Token-by-token output — same arrows. From the final node, draw a small red dashed self-loop back to itself, with a red "conditioning" badge and caption "prompt is the entire specification." Footer line: "A search query is a pointer. A prompt is the specification of what gets built." Use only `var(--color-*)` tokens, EB Garamond throughout, dark-mode `@media` block, no animation under `prefers-reduced-motion`. D3 7.9.0 from cdnjs, ResizeObserver redraw, `role="img"` plus `<title>` and `<desc>`.
+
+> Reference implementation: `d3/03-prompting-that-works-fig-01.html`
+
+---
+
+### Figure 3.2 — The four-component prompt card
+
+Build a single self-contained HTML file rendering a laminated-card-style reference for the four-component prompt template. Single bordered card on the left, divided by hairline rules into four rows: ROLE, CONTEXT, TASK, CONSTRAINTS. Each row shows the component key in bold serif (`letter-spacing: 0.5px`) and italic slot text with a concrete teacher example beneath. To the right of each row, an ochre arrow leads to a callout headline in `var(--color-ochre)` describing the structural work that line performs, with two dim sub-lines below in `var(--color-secondary)`. On hover or keyboard focus the row's border turns red and a tooltip names the work. Footer line: "Role · Context · Task · Constraints — invisible after thirty prompts, durable across model generations." EB Garamond throughout, dark-mode `@media`, `(event, d)` handlers, accessibility tags, `prefers-reduced-motion` suppression. D3 7.9.0 from cdnjs.
+
+> Reference implementation: `d3/03-prompting-that-works-fig-02.html`
+
+---
+
+### Figure 3.3 — The prompting loop
+
+Build a single self-contained HTML file rendering the prompt-iteration loop as a three-node horizontal flow with diagnostic edges. Three nodes labelled ROUND 1 (Vague prompt), ROUND 2 (Four-component), ROUND 3 (Gap-closing follow-up); each round label sits above its node in red bold serif. Each node is a bordered rectangle with a bold serif headline, the actual prompt text in the upper half, a hairline separator, and three short observation lines in `var(--color-secondary)` describing the output. Below each node, an ochre italic annotation names the diagnostic move ("the model fills in the average" / "specification narrows the probability space" / "name what to change, name what to keep"). Between consecutive nodes draw a curved Bézier arrow with a three-line italic diagnostic label describing the gap that triggered the next round. Hover or keyboard focus turns the active node's border red and opens a tooltip naming the round. Footer: "Three prompts. Seven minutes. A lesson plan reusable next year by changing one line." EB Garamond throughout, `var(--color-*)` tokens, dark-mode `@media`, `prefers-reduced-motion` suppression, `(event, d)` handlers, accessibility tags. D3 7.9.0 from cdnjs.
+
+> Reference implementation: `d3/03-prompting-that-works-fig-03.html`
+
+---
+
+## AI Wayback Machine
+
+The discipline behind the four-component prompt — make the student do the work; never give them the answer — is older than computing. **Charlotte Mason** (1842–1923) built a whole pedagogy on it. Her method, developed in the British Parents' National Educational Union from the 1880s onward, asked the child to *narrate* — to retell, in their own words, what they had just read. Mason believed children should encounter primary sources directly, then produce the synthesis themselves. The teacher's job was to set the conditions, ask the precise question, and refuse to summarize on the student's behalf. The same move, exactly, sits inside every prompt that produces real teacher-grade output: name the role, name the task, name the constraints, name the format — then let the model do the synthesis without leaking the answer.
+
+![Charlotte Mason, circa 1890. AI-generated portrait based on a public domain photograph.](../images/charlotte-mason.jpg)
+*Charlotte Mason, circa 1890. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Charlotte Mason, and how does her "narration" method connect to the four-component prompt anatomy in this chapter? Keep it to three paragraphs. End with the single most surprising thing about her pedagogy or career.
+```
+
+→ Search **"Charlotte Mason"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to rewrite a standard middle-school comprehension question as a Mason-style narration prompt — what changes?
+- Ask it about Mason's six-volume *Home Education* series and which volume contains her sharpest pedagogical claim.
+
+What changes? What gets better? What gets worse?

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 5.5 — When the calibration workflow earns its time savings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 14px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 480px; }
+  .ti  { font-family: 'EB Garamond', Georgia, serif; font-size: 16px; font-weight: 700; fill: var(--color-ink); }
+  .sub { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .col-h { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; font-weight: 700; fill: var(--color-white); }
+  .row { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: 700; fill: var(--color-ink); }
+  .row-dim { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; fill: var(--color-secondary); font-style: italic; }
+  .out { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: 700; fill: var(--color-ink); }
+  .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .cell { transition: opacity 200ms cubic-bezier(0.2,0.8,0.2,1); cursor: pointer; }
+  .cell:hover { opacity: 0.92; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-family: 'EB Garamond', Georgia, serif; font-size: 13px; max-width: 300px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 5.5 — When the calibration workflow earns its time savings</h1>
+<p class="subtitle">The dividend scales with the clarity of the teacher's prior judgment.</p>
+<div id="chart" role="img" aria-labelledby="t-cd d-cd"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const FALLBACK_DATA = {
+  rows: [
+    { good: { title: 'Tight rubric',                       dim: 'levels are clearly differentiated',           tip: 'Each rubric level has language that maps to observable features. Disagreement converges fast.' },
+      bad:  { title: 'Overlapping rubric levels',          dim: 'six categories that bleed into each other',   tip: 'When levels blur, calibration takes many rounds and may never close. The instrument needs work first.' } },
+    { good: { title: 'Short responses',                    dim: 'a paragraph at most',                         tip: 'Short responses contain few independent signals. Models read them well.' },
+      bad:  { title: 'Three-page essays',                  dim: 'long arguments with structural drift',         tip: 'Long arguments require holistic judgment the model approximates but does not own.' } },
+    { good: { title: 'Teacher knows the misconceptions',   dim: 'has named the failure modes already',          tip: 'When the teacher already knows what to look for, the prompt can encode it as anchors.' },
+      bad:  { title: 'First time teaching the unit',       dim: 'still discovering what to look for',           tip: 'You cannot calibrate against a target you have not yet identified. Review takes the time savings.' } },
+    { good: { title: 'Recurring assignment',               dim: 'prompt reused across sections',                tip: 'Calibration amortizes across cohorts. A 15-minute drill protects many later passes.' },
+      bad:  { title: 'Novel prompt',                       dim: 'built from scratch this term',                 tip: 'Novel prompts have no calibration baseline yet. The first cohort is itself a calibration pass.' } }
+  ],
+  outcomes: { good: '~80% time savings plausible', bad: 'closer to 50% (or less)' }
+};
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(event, html) {
+  tooltip.html(html).style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px')
+    .transition().duration(150).style('opacity', 1);
+}
+function moveTip(event) { tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+async function loadData() {
+  try { return await d3.json('./05-assessment-grading-and-feedback-with-ai-fig-05.json'); }
+  catch { return FALLBACK_DATA; }
+}
+
+function draw(data) {
+  d3.select('#chart').selectAll('*').remove();
+  const container = document.getElementById('chart');
+  const W = container.clientWidth || 760;
+  const H = container.clientHeight || 480;
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`).attr('width', W).attr('height', H)
+    .attr('role', 'img').attr('aria-labelledby', 't-cd d-cd');
+  svg.append('title').attr('id', 't-cd').text('Conditions that grow or shrink the calibration dividend');
+  svg.append('desc').attr('id', 'd-cd').text('Two-column comparison: left lists favorable conditions, right lists unfavorable ones. The 50 to 80 percent savings band assumes the left column.');
+
+  // Title
+  svg.append('text').attr('x', 32).attr('y', 30).attr('class', 'ti').text('When the calibration workflow earns its time savings');
+  svg.append('text').attr('x', 32).attr('y', 48).attr('class', 'sub').text('The dividend scales with the clarity of the teacher\'s prior judgment.');
+
+  const padX = 32, gap = 24;
+  const colW = (W - 2 * padX - gap) / 2;
+  const colLX = padX, colRX = padX + colW + gap;
+
+  // Column headers
+  svg.append('rect').attr('x', colLX).attr('y', 68).attr('width', colW).attr('height', 36).attr('fill', 'var(--color-secondary)');
+  svg.append('text').attr('x', colLX + colW / 2).attr('y', 91).attr('text-anchor', 'middle').attr('class', 'col-h').text('Conditions that grow the dividend');
+
+  svg.append('rect').attr('x', colRX).attr('y', 68).attr('width', colW).attr('height', 36).attr('fill', 'var(--color-ink)');
+  svg.append('text').attr('x', colRX + colW / 2).attr('y', 91).attr('text-anchor', 'middle').attr('class', 'col-h').text('Conditions that shrink it');
+
+  // Rows
+  const rowH = 54, rowY0 = 116, rowGap = 6;
+
+  data.rows.forEach((d, i) => {
+    const y = rowY0 + i * (rowH + rowGap);
+    // good cell
+    const g1 = svg.append('g').attr('class', 'cell').attr('opacity', 0)
+      .attr('tabindex', 0).attr('aria-label', `Favorable: ${d.good.title}`)
+      .on('mouseover', (e) => showTip(e, `<strong>${d.good.title}</strong><br>${d.good.tip}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip)
+      .on('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') showTip(e, `<strong>${d.good.title}</strong><br>${d.good.tip}`); });
+    g1.transition().duration(320).delay(i * 60).attr('opacity', 1);
+    g1.append('rect').attr('x', colLX).attr('y', y).attr('width', colW).attr('height', rowH).attr('fill', 'var(--color-border)').attr('fill-opacity', 0.4);
+    g1.append('text').attr('x', colLX + 16).attr('y', y + 22).attr('class', 'row').text(d.good.title);
+    g1.append('text').attr('x', colLX + 16).attr('y', y + 40).attr('class', 'row-dim').text(d.good.dim);
+
+    // bad cell
+    const g2 = svg.append('g').attr('class', 'cell').attr('opacity', 0)
+      .attr('tabindex', 0).attr('aria-label', `Unfavorable: ${d.bad.title}`)
+      .on('mouseover', (e) => showTip(e, `<strong>${d.bad.title}</strong><br>${d.bad.tip}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip)
+      .on('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') showTip(e, `<strong>${d.bad.title}</strong><br>${d.bad.tip}`); });
+    g2.transition().duration(320).delay(i * 60 + 30).attr('opacity', 1);
+    g2.append('rect').attr('x', colRX).attr('y', y).attr('width', colW).attr('height', rowH).attr('fill', 'var(--color-white)').attr('stroke', 'var(--color-border)');
+    g2.append('text').attr('x', colRX + 16).attr('y', y + 22).attr('class', 'row').text(d.bad.title);
+    g2.append('text').attr('x', colRX + 16).attr('y', y + 40).attr('class', 'row-dim').text(d.bad.dim);
+  });
+
+  const outY = rowY0 + data.rows.length * (rowH + rowGap) + 6;
+  svg.append('rect').attr('x', colLX).attr('y', outY).attr('width', colW).attr('height', 38).attr('fill', 'var(--color-border)');
+  svg.append('text').attr('x', colLX + colW / 2).attr('y', outY + 24).attr('text-anchor', 'middle').attr('class', 'out').text(data.outcomes.good);
+
+  svg.append('rect').attr('x', colRX).attr('y', outY).attr('width', colW).attr('height', 38).attr('fill', 'var(--color-border)');
+  svg.append('text').attr('x', colRX + colW / 2).attr('y', outY + 24).attr('text-anchor', 'middle').attr('class', 'out').text(data.outcomes.bad);
+
+  // Caption
+  svg.append('text').attr('x', 32).attr('y', outY + 70).attr('class', 'cap')
+    .text('The 50–80% band assumes the left column. The right column moves the workflow toward review-heavy.');
+}
+
+loadData().then(data => {
+  draw(data);
+  const ro = new ResizeObserver(() => draw(data));
+  ro.observe(document.getElementById('chart'));
+});
+</script>
+</body>
+</html>

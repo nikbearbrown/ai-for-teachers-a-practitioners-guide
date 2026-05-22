@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t-fig02 d-fig02" font-family="'EB Garamond', Georgia, 'Times New Roman', serif">
+  <title id="t-fig02">Three-zone task taxonomy</title>
+  <desc id="d-fig02">A left-to-right diagram sorting teacher tasks into three zones — AI-appropriate, hybrid, and human-required — with concrete examples in each zone and two decision tests at the zone boundaries.</desc>
+
+  <defs>
+    <marker id="arrow02" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a4540"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="700" height="420" fill="#fdfcfb"/>
+
+  <!-- Eyebrow / title -->
+  <text x="350" y="32" text-anchor="middle" font-size="13" letter-spacing="2.5" fill="#8a8480">SORTING YOUR WEEK</text>
+  <text x="350" y="58" text-anchor="middle" font-size="20" fill="#2a1a0e">Three zones, two tests</text>
+
+  <!-- Zone 1: AI-Appropriate -->
+  <rect x="30" y="90" width="200" height="230" fill="#f5f2ee" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="130" y="118" text-anchor="middle" font-size="11" letter-spacing="1.5" fill="#8a8480">ZONE 1</text>
+  <text x="130" y="142" text-anchor="middle" font-size="18" font-weight="700" fill="#2a1a0e">AI-Appropriate</text>
+  <text x="130" y="166" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">Production work.</text>
+  <text x="130" y="182" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">Human selects &amp; edits.</text>
+
+  <line x1="50" y1="200" x2="210" y2="200" stroke="#c8c4c0" stroke-width="1"/>
+
+  <text x="48" y="226" font-size="13" fill="#2a1a0e">— Worksheet first draft</text>
+  <text x="48" y="252" font-size="13" fill="#2a1a0e">— Six problem variants</text>
+  <text x="48" y="278" font-size="13" fill="#2a1a0e">— Article summary</text>
+  <text x="48" y="304" font-size="13" fill="#2a1a0e">— Bullets to newsletter</text>
+
+  <!-- Zone 2: Hybrid -->
+  <rect x="250" y="90" width="200" height="230" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+  <text x="350" y="118" text-anchor="middle" font-size="11" letter-spacing="1.5" fill="#8a8480">ZONE 2</text>
+  <text x="350" y="142" text-anchor="middle" font-size="18" font-weight="700" fill="#2a1a0e">Hybrid</text>
+  <text x="350" y="166" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">AI drafts. Teacher</text>
+  <text x="350" y="182" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">reviews at a phase gate.</text>
+
+  <line x1="270" y1="200" x2="430" y2="200" stroke="#c8c4c0" stroke-width="1"/>
+
+  <text x="268" y="226" font-size="13" fill="#2a1a0e">— Feedback on essays</text>
+  <text x="268" y="252" font-size="13" fill="#2a1a0e">— IEP language draft</text>
+  <text x="268" y="278" font-size="13" fill="#2a1a0e">— Lesson sequencing</text>
+  <text x="268" y="304" font-size="13" fill="#2a1a0e">— Parent email draft</text>
+
+  <!-- Zone 3: Human-Required (red border via ink-ish strong stroke) -->
+  <rect x="470" y="90" width="200" height="230" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="2"/>
+  <text x="570" y="118" text-anchor="middle" font-size="11" letter-spacing="1.5" fill="#8a8480">ZONE 3</text>
+  <text x="570" y="142" text-anchor="middle" font-size="18" font-weight="700" fill="#2a1a0e">Human-Required</text>
+  <text x="570" y="166" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">Non-delegable. The</text>
+  <text x="570" y="182" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">teacher's cognition is the work.</text>
+
+  <line x1="490" y1="200" x2="650" y2="200" stroke="#c8c4c0" stroke-width="1"/>
+
+  <text x="488" y="226" font-size="13" fill="#2a1a0e">— Live response in class</text>
+  <text x="488" y="252" font-size="13" fill="#2a1a0e">— Misconception spotting</text>
+  <text x="488" y="278" font-size="13" fill="#2a1a0e">— Relationship repair</text>
+  <text x="488" y="304" font-size="13" fill="#2a1a0e">— Modelling not-knowing</text>
+
+  <!-- Test 1: between Zone 1 and Zone 2 -->
+  <line x1="232" y1="205" x2="248" y2="205" stroke="#4a4540" stroke-width="1" marker-end="url(#arrow02)"/>
+  <text x="240" y="350" text-anchor="middle" font-size="11" letter-spacing="1" fill="#8a8480">TEST 1</text>
+  <text x="240" y="370" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">Will the output reach</text>
+  <text x="240" y="386" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">a student or parent</text>
+  <text x="240" y="402" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">without review?</text>
+
+  <!-- Test 2: between Zone 2 and Zone 3 -->
+  <line x1="452" y1="205" x2="468" y2="205" stroke="#4a4540" stroke-width="1" marker-end="url(#arrow02)"/>
+  <text x="460" y="350" text-anchor="middle" font-size="11" letter-spacing="1" fill="#8a8480">TEST 2</text>
+  <text x="460" y="370" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">Would removing my</text>
+  <text x="460" y="386" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">cognition remove what</text>
+  <text x="460" y="402" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">the student needed?</text>
+</svg>

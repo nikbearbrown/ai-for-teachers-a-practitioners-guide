@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" role="img" aria-labelledby="fig05-title fig05-desc" font-family="'EB Garamond', Garamond, Georgia, serif">
+  <title id="fig05-title">Three shifts in AI-survivable writing assessment</title>
+  <desc id="fig05-desc">Three horizontal arrows stacked vertically, each shifting the cognitive center of gravity: from product to process, from first draft to revision, from submission to conversation.</desc>
+
+  <defs>
+    <marker id="arrow05" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="760" height="480" fill="#fdfcfb"/>
+
+  <text x="380" y="36" text-anchor="middle" font-size="20" fill="#2a1a0e">Three shifts in writing assessment</text>
+  <text x="380" y="58" text-anchor="middle" font-size="13" font-style="italic" fill="#4a4540">Move the cognitive center of gravity. Make outsourcing visibly worse on the deliverable.</text>
+
+  <!-- Shift 1 -->
+  <text x="40" y="124" font-size="13" font-style="italic" fill="#8a8480">Shift 1</text>
+  <rect x="100" y="100" width="200" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.2"/>
+  <text x="200" y="128" text-anchor="middle" font-size="16" fill="#2a1a0e">Product</text>
+  <text x="200" y="148" text-anchor="middle" font-size="11" font-style="italic" fill="#4a4540">polished essay alone</text>
+
+  <line x1="312" y1="130" x2="450" y2="130" stroke="#2a1a0e" stroke-width="2" marker-end="url(#arrow05)"/>
+
+  <rect x="462" y="100" width="246" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.2"/>
+  <text x="585" y="128" text-anchor="middle" font-size="16" fill="#2a1a0e">Process trail</text>
+  <text x="585" y="148" text-anchor="middle" font-size="11" font-style="italic" fill="#4a4540">abandoned theses, annotations, prompt logs</text>
+
+  <text x="380" y="186" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">Outsourcing the artifact now requires forging a plausible process history.</text>
+
+  <!-- Shift 2 -->
+  <text x="40" y="246" font-size="13" font-style="italic" fill="#8a8480">Shift 2</text>
+  <rect x="100" y="222" width="200" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.2"/>
+  <text x="200" y="250" text-anchor="middle" font-size="16" fill="#2a1a0e">First draft</text>
+  <text x="200" y="270" text-anchor="middle" font-size="11" font-style="italic" fill="#4a4540">grade the polish</text>
+
+  <line x1="312" y1="252" x2="450" y2="252" stroke="#2a1a0e" stroke-width="2" marker-end="url(#arrow05)"/>
+
+  <rect x="462" y="222" width="246" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.2"/>
+  <text x="585" y="250" text-anchor="middle" font-size="16" fill="#2a1a0e">Revision trajectory</text>
+  <text x="585" y="270" text-anchor="middle" font-size="11" font-style="italic" fill="#4a4540">grade the developmental movement</text>
+
+  <text x="380" y="308" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">Polish is cheap now. Sommers (1980): revision was always the distinguishing move.</text>
+
+  <!-- Shift 3 -->
+  <text x="40" y="368" font-size="13" font-style="italic" fill="#8a8480">Shift 3</text>
+  <rect x="100" y="344" width="200" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.2"/>
+  <text x="200" y="372" text-anchor="middle" font-size="16" fill="#2a1a0e">Submission</text>
+  <text x="200" y="392" text-anchor="middle" font-size="11" font-style="italic" fill="#4a4540">the submit click is the moment</text>
+
+  <line x1="312" y1="374" x2="450" y2="374" stroke="#2a1a0e" stroke-width="2" marker-end="url(#arrow05)"/>
+
+  <rect x="462" y="344" width="246" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.2"/>
+  <text x="585" y="372" text-anchor="middle" font-size="16" fill="#2a1a0e">Conversation</text>
+  <text x="585" y="392" text-anchor="middle" font-size="11" font-style="italic" fill="#4a4540">six minutes: state, justify, take objection</text>
+
+  <text x="380" y="430" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540">The defense is the detection. The defense is also a learning event.</text>
+
+  <text x="380" y="464" text-anchor="middle" font-size="14" font-style="italic" fill="#2a1a0e">Together: the artifact is no longer the only thing graded.</text>
+</svg>

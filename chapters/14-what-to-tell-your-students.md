@@ -28,7 +28,8 @@ It is not the same as the calculator analogy, and I want to spend a paragraph he
 
 Same tool. Different operation. Different brain state at the end.
 
-<!-- → [INFOGRAPHIC: two-column diagram — left: "Capability-Borrowing" (student prompt → AI produces artifact → student submits → no cognitive operation occurred in student's brain); right: "Capability-Building" (student prompt → AI generates friction → student does cognitive work → capability builds in student's brain) — bottom row: "same tool, same session, different arrow" — the calculator analogy failure annotated as a sidebar: calculator offloads execution, borrowing AI offloads the thinking] -->
+![two-column diagram](../images/14-what-to-tell-your-students-fig-01.png)
+*Figure 14.1 — two-column diagram.*
 
 ---
 
@@ -46,7 +47,8 @@ I want to flag the numbers carefully. The published figures show a roughly 17% *
 
 The takeaway for your students is one sentence: **the prompt determines the outcome.** Asking the AI to think for you and asking the AI to make you think harder are different cognitive operations with different effects on what ends up in your head, and the difference is large enough to flip you from passing to failing.
 
-<!-- → [CHART: bar chart showing the Bastani three-group results — x-axis: three conditions (No AI, Unconstrained GPT-4, Tutor-Prompted GPT-4); two bar clusters per condition: practice score (left bar, dark) and unassisted exam score (right bar, light) — the unconstrained group shows large dark bar / small light bar (the gap); the no-AI and tutor groups show similar heights for both bars — caption: "same model, different prompt, completely different learning outcome — the gap is the fluency trap made visible" — note: use relative not absolute values; verify magnitudes against Bastani et al. 2025 before publication] -->
+![bar chart showing the Bastani three-group results](../images/14-what-to-tell-your-students-fig-02.png)
+*Figure 14.2 — bar chart showing the Bastani three-group results.*
 
 ---
 
@@ -66,7 +68,8 @@ This is what the Bastani study measured. The unconstrained-AI group raised their
 
 Call this the **fluency trap**: smooth output produces a feeling of understanding the brain has not earned. It is what makes the Bastani gap inevitable. It is also what makes the gap invisible to the student until exam day, by which point they cannot fix it.
 
-<!-- → [INFOGRAPHIC: storage strength vs. retrieval strength over time — two-panel diagram — left panel: "After re-reading / AI explains" — retrieval strength rises sharply, storage strength flat — label: "feels like learning; isn't" — right panel: "After retrieval practice / AI quizzes you" — storage strength rises gradually, retrieval strength dips then rises — label: "feels harder; builds the thing" — caption: the introspective system cannot tell the panels apart in the moment; the exam can] -->
+![storage strength vs](../images/14-what-to-tell-your-students-fig-03.png)
+*Figure 14.3 — storage strength vs.*
 
 ---
 
@@ -94,7 +97,8 @@ Here is the exact prompt to give students for the Feynman direction:
 
 That prompt turns Claude or ChatGPT or Gemini from an answer machine into a Socratic interlocutor. One sentence. No special tool required.
 
-<!-- → [IMAGE: annotated screenshot mockup of a Feynman test conversation — student opening line sets the rules ("Your job: ask me to define words, ask me to justify claims, don't fill gaps"); AI response asking the first definitional question; student answer with a visible gap; AI marking it as stuck — each exchange annotated with its cognitive function: "student does the retrieval," "AI generates the friction," "gap identified = place to go study" — caption: the AI was deeply involved; the cognitive work was entirely the student's] -->
+![annotated screenshot mockup of a Feynman test conversation](../images/14-what-to-tell-your-students-fig-04.png)
+*Figure 14.4 — annotated screenshot mockup of a Feynman test conversation.*
 
 ---
 
@@ -119,7 +123,8 @@ The same six uses scale from middle school to graduate school:
 
 The vocabulary, examples, and degree of student autonomy do not stay constant across grade levels. The mechanism — the brain only learns from the work it does itself — does not change.
 
-<!-- → [IMAGE: the capability table formatted as a classroom poster — two visual zones separated by a bold horizontal rule: top half labeled "Builds Capability" (green or dark tone) with the three building rows; bottom half labeled "Borrows Capability" (amber or neutral tone) with the three borrowing rows — each row has the use, the type label, and the one-sentence mechanism — footer: "same tool; different operation; different brain state at the end" — designed to print at A3 or letter size and post near student workstations] -->
+![the capability table formatted as a classroom poster](../images/14-what-to-tell-your-students-fig-05.png)
+*Figure 14.5 — the capability table formatted as a classroom poster.*
 
 ---
 
@@ -139,7 +144,8 @@ The numbers do the teaching. You facilitate. The students who got a near-zero ga
 
 One limit worth naming explicitly: this is a single class period on a single concept under controlled conditions. It does not prove anything about AI in general. It produces a felt example of the gap the Bastani study measured at population scale. The student now has a personal data point. The Bastani study is the published version of the same phenomenon with a randomized design and a thousand students. Both are useful. Neither alone is decisive. Together they teach the principle.
 
-<!-- → [INFOGRAPHIC: performance-paradox demonstration flow — four phases as horizontal timeline: (1) "Problem Set A — 30 min, full AI access" → confidence rating 1–10; (2) "Problem Set B — 15 min, no AI" → scores only; (3) "Each student receives: Set A score / Set B score / confidence rating"; (4) "Reflection: what do these three numbers tell you?" — annotate phase 2 with "this is where the fluency trap becomes visible in the room" — caption: the numbers do the teaching; the teacher facilitates] -->
+![performance-paradox demonstration flow](../images/14-what-to-tell-your-students-fig-06.png)
+*Figure 14.6 — performance-paradox demonstration flow.*
 
 ---
 
@@ -190,3 +196,151 @@ Then the student decides — based on their own honest accounting, not on a teac
 - Roediger, H. L., & Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. *Psychological Science*, 17(3), 249–255.
 - Roediger, H. L., & Karpicke, J. D. (2006). The power of testing memory: Basic research and implications for educational practice. *Perspectives on Psychological Science*, 1(3), 181–210.
 - UNESCO. (2024). *AI competency framework for students*. https://www.unesco.org/en/articles/ai-competency-framework-students
+
+
+---
+
+## Prompts
+
+These prompts hand Claude (or any current frontier model that writes D3) the
+brief for an interactive, web-native version of each figure in this chapter.
+Each one is structural — what to draw, what to encode, which interactions to
+wire — not stylistic. Style is delegated to the brutalist constitution.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into the
+project context before running these prompts. Pin D3 v7.9.0 from the cdnjs URL
+in `CLAUDE.md`. No substitutions.
+
+---
+
+### Figure 14.1 — Capability-borrowing vs capability-building
+
+Build a two-column comparison diagram in D3 v7 inside a single self-contained
+HTML file. Left column: four sequential nodes for capability-borrowing
+(student prompts AI, AI produces artifact, student submits or reads it,
+artifact exists / capability does not). Right column: four nodes for
+capability-building (student states reasoning, AI probes and points to gaps,
+student retrieves and revises, artifact sometimes nothing / capability is
+real). Connect each column with vertical arrows; emphasize the right column
+with heavier stroke. Add a brain-state-at-the-end caption under each column.
+Render `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)`
+hover tooltip on each node, dark-mode `@media` block, and `prefers-reduced-motion`
+suppression. Use `var(--color-*)` tokens and the EB Garamond serif chain.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-01.html`
+
+---
+
+### Figure 14.2 — Practice gain vs exam outcome (Bastani 2025)
+
+Build a paired bar chart in D3 v7 in a single HTML file. Three condition
+groups along x: no-AI control, unconstrained AI, tutor-prompted AI. Two bars
+per group: practice score (with AI) and exam score (no AI), scored relative
+to the control = 100. y-domain `[70, 145]`; horizontal reference line at 100
+labelled "control baseline". Value labels above or inside each bar showing
+the signed delta from baseline. Tooltips on hover report condition, measure,
+and value. Add a two-swatch legend at the bottom and a footer caption noting
+the magnitudes are illustrative and must be verified against the paper.
+Include `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)`
+handlers, dark-mode `@media` block, and `prefers-reduced-motion` suppression.
+Use `var(--color-*)` tokens and the EB Garamond serif chain.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-02.html`
+
+---
+
+### Figure 14.3 — Storage strength vs retrieval strength
+
+Build a two-panel line chart in D3 v7. Panel A (top): re-read or
+ask-AI-to-explain condition; panel B (bottom): retrieve or ask-AI-to-quiz
+condition. Both panels share an x-axis from "study session" through "2 days"
+to "exam (2 weeks)" and a y-axis from low to high. Two curves per panel:
+retrieval strength (solid, ink) and storage strength (dashed, muted). In A
+the retrieval curve spikes early and decays; storage stays flat near the
+floor. In B retrieval rises modestly and decays gently; storage climbs across
+the panel and ends above retrieval. Add a vertical dashed marker at the exam
+point in each panel. Hover dots on the retrieval curve report current value.
+Use `var(--color-*)` tokens, EB Garamond serif chain, ResizeObserver,
+`(event, d)` handlers, `role="img"`, `<title>`, `<desc>`, dark-mode `@media`,
+and `prefers-reduced-motion` suppression.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-03.html`
+
+---
+
+### Figure 14.4 — Annotated Feynman test conversation
+
+Build a mocked chat-thread layout in D3 v7 in a single HTML file. Render four
+sequential turn bubbles inside a framed chat panel on the left: student turn,
+AI probing turn, student retrieving turn, AI gap-pointing turn. Indent AI
+turns to the right; tag each bubble with a small role label. On the right
+side, render a column of cognitive-role annotations linked to each bubble by
+a short tick line: load-bearing work, adjacent work, retrieval attempt, gap
+surfaced. Wire each bubble as a hoverable group with a tooltip that names the
+cognitive operation. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver
+redraw, `(event, d)` handlers, dark-mode `@media` block, and
+`prefers-reduced-motion` suppression. Use `var(--color-*)` tokens and the
+EB Garamond serif chain throughout.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-04.html`
+
+---
+
+### Figure 14.5 — Capability poster: six AI uses
+
+Build a two-zone classroom poster in D3 v7. Upper zone: capability-building,
+heavier border, three rows. Lower zone: capability-borrowing, lighter border,
+three rows. Each zone has a header rule, an italic "use / why it works" or
+"use / why it fails" column header, three rows split into a left column (the
+use, in EB Garamond at body size) and a right column (the mechanism, smaller,
+muted ink), and an italic summary line at the bottom of each zone. Separate
+the two zones with a dashed horizontal rule. Wire each row as a hoverable
+group whose tooltip reports the zone classification and the why. Use
+`var(--color-*)` tokens, EB Garamond serif chain, ResizeObserver redraw,
+`(event, d)` handlers, `role="img"`, `<title>`, `<desc>`, dark-mode `@media`
+block, and `prefers-reduced-motion` suppression.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-05.html`
+
+---
+
+### Figure 14.6 — Performance-paradox demonstration flow
+
+Build a four-phase horizontal timeline in D3 v7 in a single HTML file. Phases:
+1. Frame honestly (5 min), 2. Set A — AI on (30 min), 3. Set B — AI off
+(15 min), 4. Reflect (10 min). Each phase is a circular dot on a horizontal
+rule, with a time-label above and a titled rectangular card below containing
+two body lines and two italic note lines. Highlight phase 3 with a heavier
+stroke. Connect adjacent cards with a short arrowed line. Below the timeline,
+render a diagnostic panel: three rows mapping observed score-and-confidence
+patterns to interpretations (large gap, small gap, low-on-both). Each phase
+card is a hoverable group whose tooltip restates its purpose. Include
+`role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)`
+handlers, dark-mode `@media` block, and `prefers-reduced-motion` suppression.
+Use `var(--color-*)` tokens and the EB Garamond serif chain.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-06.html`
+
+---
+
+## AI Wayback Machine
+
+Freire's *Pedagogy of the Oppressed* (1968) draws the line between banking-model education (depositing facts into students) and dialogic education (problem-posing, mutual inquiry). What teachers should tell students about AI is the banking-versus-dialogic distinction transposed onto a new tool — and Freire is the precedent for taking the question seriously rather than treating it as classroom management. The chapter's stance — that the conversation with students about AI is itself the teaching — is Freire's central move applied to the present.
+
+![Paulo Freire, 1921-1997. AI-generated portrait based on a public domain photograph.](../images/paulo-freire.jpg)
+*Paulo Freire, 1921-1997. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Paulo Freire, and how does their work connect to the ideas in this chapter? Keep it to three paragraphs. End with the single most surprising thing about their career or thinking.
+```
+
+→ Search **"Paulo Freire"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to apply Freire's framework to a specific scenario in this chapter — what gets surfaced that the chapter's prose left implicit?
+- Ask about the critics of Freire's work and which criticisms still bite today.
+
+What changes? What gets better? What gets worse?

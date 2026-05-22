@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t05-5 d05-5">
+  <title id="t05-5">When the calibration workflow earns its time savings</title>
+  <desc id="d05-5">Two-column comparison contrasting conditions that increase the calibration dividend with conditions that reduce it. The left column lists favorable conditions; the right column lists unfavorable ones. The footer notes that the 50 to 80 percent savings band assumes the favorable side.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .col-h { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: bold; fill: #fdfcfb; }
+      .row { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; fill: #2a1a0e; font-weight: bold; }
+      .row-dim { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; font-style: italic; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .out { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #2a1a0e; }
+    </style>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="28" class="ti">When the calibration workflow earns its time savings</text>
+  <text x="32" y="46" class="sub">The dividend scales with the clarity of the teacher's prior judgment.</text>
+
+  <!-- Column header bars -->
+  <rect x="32" y="68" width="306" height="32" fill="#4a4540"/>
+  <text x="185" y="89" text-anchor="middle" class="col-h">Conditions that grow the dividend</text>
+
+  <rect x="362" y="68" width="306" height="32" fill="#2a1a0e"/>
+  <text x="515" y="89" text-anchor="middle" class="col-h">Conditions that shrink it</text>
+
+  <!-- Row 1 -->
+  <rect x="32" y="110" width="306" height="50" fill="#f5f2ee"/>
+  <text x="48" y="130" class="row">Tight rubric</text>
+  <text x="48" y="148" class="row-dim">Levels are clearly differentiated</text>
+  <rect x="362" y="110" width="306" height="50" fill="#fdfcfb" stroke="#c8c4c0"/>
+  <text x="378" y="130" class="row">Overlapping rubric levels</text>
+  <text x="378" y="148" class="row-dim">Six categories that bleed into each other</text>
+
+  <!-- Row 2 -->
+  <rect x="32" y="166" width="306" height="50" fill="#f5f2ee"/>
+  <text x="48" y="186" class="row">Short responses</text>
+  <text x="48" y="204" class="row-dim">A paragraph at most</text>
+  <rect x="362" y="166" width="306" height="50" fill="#fdfcfb" stroke="#c8c4c0"/>
+  <text x="378" y="186" class="row">Three-page essays</text>
+  <text x="378" y="204" class="row-dim">Long arguments with structural drift</text>
+
+  <!-- Row 3 -->
+  <rect x="32" y="222" width="306" height="50" fill="#f5f2ee"/>
+  <text x="48" y="242" class="row">Teacher knows the misconceptions</text>
+  <text x="48" y="260" class="row-dim">Has named the failure modes already</text>
+  <rect x="362" y="222" width="306" height="50" fill="#fdfcfb" stroke="#c8c4c0"/>
+  <text x="378" y="242" class="row">First time teaching the unit</text>
+  <text x="378" y="260" class="row-dim">Still discovering what to look for</text>
+
+  <!-- Row 4 -->
+  <rect x="32" y="278" width="306" height="50" fill="#f5f2ee"/>
+  <text x="48" y="298" class="row">Recurring assignment</text>
+  <text x="48" y="316" class="row-dim">Prompt reused across sections</text>
+  <rect x="362" y="278" width="306" height="50" fill="#fdfcfb" stroke="#c8c4c0"/>
+  <text x="378" y="298" class="row">Novel prompt</text>
+  <text x="378" y="316" class="row-dim">Built from scratch this term</text>
+
+  <!-- Outcome chips -->
+  <rect x="32" y="346" width="306" height="34" fill="#c8c4c0"/>
+  <text x="185" y="368" text-anchor="middle" class="out">~80% time savings plausible</text>
+
+  <rect x="362" y="346" width="306" height="34" fill="#c8c4c0"/>
+  <text x="515" y="368" text-anchor="middle" class="out">closer to 50% (or less)</text>
+
+  <text x="32" y="402" class="cap">The 50–80% band assumes the left column. The right column moves the workflow toward review-heavy.</text>
+</svg>

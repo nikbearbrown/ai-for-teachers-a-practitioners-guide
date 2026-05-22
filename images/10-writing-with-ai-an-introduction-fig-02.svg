@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" role="img" aria-labelledby="fig02-title fig02-desc" font-family="'EB Garamond', Garamond, Georgia, serif">
+  <title id="fig02-title">Bastani 2025: practice gains, exam losses</title>
+  <desc id="fig02-desc">Three grouped bar pairs comparing Control, GPT Base, and GPT Tutor conditions. Light bars show practice performance, dark bars show unaided exam scores. GPT Base shows the largest practice-exam gap.</desc>
+
+  <defs>
+    <marker id="arrow02" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="760" height="460" fill="#fdfcfb"/>
+
+  <text x="380" y="34" text-anchor="middle" font-size="20" fill="#2a1a0e">Practice score vs. unaided exam score</text>
+  <text x="380" y="56" text-anchor="middle" font-size="13" font-style="italic" fill="#4a4540">Bastani et al., 2025 (PNAS), ~1,000 Turkish high-school students</text>
+
+  <line x1="100" y1="372" x2="700" y2="372" stroke="#2a1a0e" stroke-width="1.2"/>
+  <line x1="100" y1="100" x2="100" y2="372" stroke="#2a1a0e" stroke-width="1.2"/>
+
+  <g font-size="11" fill="#4a4540">
+    <line x1="96" y1="372" x2="100" y2="372" stroke="#4a4540"/>
+    <text x="90" y="376" text-anchor="end">0</text>
+    <line x1="96" y1="304" x2="100" y2="304" stroke="#4a4540"/>
+    <text x="90" y="308" text-anchor="end">25</text>
+    <line x1="96" y1="236" x2="100" y2="236" stroke="#4a4540"/>
+    <text x="90" y="240" text-anchor="end">50</text>
+    <line x1="96" y1="168" x2="100" y2="168" stroke="#4a4540"/>
+    <text x="90" y="172" text-anchor="end">75</text>
+    <line x1="96" y1="100" x2="100" y2="100" stroke="#4a4540"/>
+    <text x="90" y="104" text-anchor="end">100</text>
+  </g>
+  <text x="50" y="240" text-anchor="middle" font-size="12" font-style="italic" fill="#4a4540" transform="rotate(-90 50 240)">Score (relative units)</text>
+
+  <g stroke="#c8c4c0" stroke-width="0.8" stroke-dasharray="2 3">
+    <line x1="100" y1="304" x2="700" y2="304"/>
+    <line x1="100" y1="236" x2="700" y2="236"/>
+    <line x1="100" y1="168" x2="700" y2="168"/>
+  </g>
+
+  <g>
+    <rect x="160" y="236" width="48" height="136" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+    <rect x="212" y="236" width="48" height="136" fill="#4a4540" stroke="#2a1a0e" stroke-width="1"/>
+    <text x="210" y="392" text-anchor="middle" font-size="14" fill="#2a1a0e">Control</text>
+    <text x="184" y="228" text-anchor="middle" font-size="11" fill="#2a1a0e">50</text>
+    <text x="236" y="228" text-anchor="middle" font-size="11" fill="#2a1a0e">50</text>
+  </g>
+
+  <g>
+    <rect x="360" y="168" width="48" height="204" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+    <rect x="412" y="277" width="48" height="95" fill="#4a4540" stroke="#2a1a0e" stroke-width="1"/>
+    <text x="410" y="392" text-anchor="middle" font-size="14" fill="#2a1a0e">GPT Base</text>
+    <text x="384" y="160" text-anchor="middle" font-size="11" fill="#2a1a0e">75</text>
+    <text x="436" y="269" text-anchor="middle" font-size="11" fill="#2a1a0e">35</text>
+    <line x1="384" y1="222" x2="488" y2="222" stroke="#2a1a0e" stroke-width="1" marker-end="url(#arrow02)"/>
+    <text x="552" y="220" font-size="12" font-style="italic" fill="#2a1a0e">practice-exam gap</text>
+    <text x="552" y="236" font-size="11" font-style="italic" fill="#4a4540">cognitive work outsourced</text>
+  </g>
+
+  <g>
+    <rect x="560" y="176" width="48" height="196" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+    <rect x="612" y="208" width="48" height="164" fill="#4a4540" stroke="#2a1a0e" stroke-width="1"/>
+    <text x="610" y="392" text-anchor="middle" font-size="14" fill="#2a1a0e">GPT Tutor</text>
+    <text x="584" y="168" text-anchor="middle" font-size="11" fill="#2a1a0e">72</text>
+    <text x="636" y="200" text-anchor="middle" font-size="11" fill="#2a1a0e">60</text>
+  </g>
+
+  <g transform="translate(140, 420)">
+    <rect x="0" y="0" width="16" height="14" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+    <text x="22" y="12" font-size="12" fill="#2a1a0e">Practice (assisted)</text>
+    <rect x="200" y="0" width="16" height="14" fill="#4a4540" stroke="#2a1a0e" stroke-width="1"/>
+    <text x="222" y="12" font-size="12" fill="#2a1a0e">Unaided exam</text>
+  </g>
+</svg>

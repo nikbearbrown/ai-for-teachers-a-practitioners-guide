@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t05-6 d05-6">
+  <title id="t05-6">The phase gate slides as the stakes rise</title>
+  <desc id="d05-6">A horizontal scale runs from formative on the left to summative on the right. Six assessment types are placed along the scale: check-for-understanding, practice problem set, draft essay, graded essay, final exam, and transcript-bearing grade. A vertical phase-gate marker shifts rightward toward more human involvement as stakes rise. The bar's tonal value runs from light on the AI-forward left to dark on the teacher-only right.</desc>
+  <defs>
+    <marker id="arr-6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a4540"/>
+    </marker>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .axend { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #2a1a0e; letter-spacing: 0.4px; }
+      .axsub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; font-style: italic; }
+      .lbl { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: bold; fill: #2a1a0e; }
+      .lbl-dim { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .gate { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: bold; fill: #fdfcfb; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .axis { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+    </style>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="28" class="ti">The phase gate slides as the stakes rise</text>
+  <text x="32" y="46" class="sub">The principle: higher stakes, more human involvement. The operational form is unsettled.</text>
+
+  <!-- End labels -->
+  <text x="80" y="84" class="axend">FORMATIVE</text>
+  <text x="80" y="98" class="axsub">for learning — low cost of error</text>
+  <text x="620" y="84" text-anchor="end" class="axend">SUMMATIVE</text>
+  <text x="620" y="98" text-anchor="end" class="axsub">of learning — record-bearing</text>
+
+  <!-- Banded scale (six stepped bands instead of a gradient) -->
+  <!-- 6 bands from x=80..620, width 90 each -->
+  <rect x="80"  y="160" width="90" height="40" fill="#f5f2ee" stroke="#4a4540" stroke-width="0.6"/>
+  <rect x="170" y="160" width="90" height="40" fill="#e0dcd6" stroke="#4a4540" stroke-width="0.6"/>
+  <rect x="260" y="160" width="90" height="40" fill="#c8c4c0" stroke="#4a4540" stroke-width="0.6"/>
+  <rect x="350" y="160" width="90" height="40" fill="#8a8480" stroke="#4a4540" stroke-width="0.6"/>
+  <rect x="440" y="160" width="90" height="40" fill="#4a4540" stroke="#2a1a0e" stroke-width="0.6"/>
+  <rect x="530" y="160" width="90" height="40" fill="#2a1a0e" stroke="#2a1a0e" stroke-width="0.6"/>
+
+  <!-- Scale axis label -->
+  <text x="350" y="148" text-anchor="middle" class="axis">AI involvement decreases →  teacher involvement increases</text>
+
+  <!-- Six assessment types as tick marks beneath -->
+  <line x1="125" y1="200" x2="125" y2="214" stroke="#4a4540" stroke-width="1"/>
+  <text x="125" y="232" text-anchor="middle" class="lbl">Check for</text>
+  <text x="125" y="246" text-anchor="middle" class="lbl">understanding</text>
+  <text x="125" y="262" text-anchor="middle" class="lbl-dim">low-stakes</text>
+
+  <line x1="215" y1="200" x2="215" y2="214" stroke="#4a4540" stroke-width="1"/>
+  <text x="215" y="232" text-anchor="middle" class="lbl">Practice</text>
+  <text x="215" y="246" text-anchor="middle" class="lbl">problem set</text>
+  <text x="215" y="262" text-anchor="middle" class="lbl-dim">no record</text>
+
+  <line x1="305" y1="200" x2="305" y2="214" stroke="#4a4540" stroke-width="1"/>
+  <text x="305" y="232" text-anchor="middle" class="lbl">Draft essay</text>
+  <text x="305" y="246" text-anchor="middle" class="lbl-dim">formative feedback</text>
+
+  <line x1="395" y1="200" x2="395" y2="214" stroke="#4a4540" stroke-width="1"/>
+  <text x="395" y="232" text-anchor="middle" class="lbl">Graded essay</text>
+  <text x="395" y="246" text-anchor="middle" class="lbl-dim">goes in gradebook</text>
+
+  <line x1="485" y1="200" x2="485" y2="214" stroke="#4a4540" stroke-width="1"/>
+  <text x="485" y="232" text-anchor="middle" class="lbl">Final exam</text>
+  <text x="485" y="246" text-anchor="middle" class="lbl-dim">summative</text>
+
+  <line x1="575" y1="200" x2="575" y2="214" stroke="#4a4540" stroke-width="1"/>
+  <text x="575" y="232" text-anchor="middle" class="lbl">Transcript</text>
+  <text x="575" y="246" text-anchor="middle" class="lbl">grade</text>
+  <text x="575" y="262" text-anchor="middle" class="lbl-dim">high-stakes</text>
+
+  <!-- Phase gate marker, shown at right of mid -->
+  <rect x="380" y="118" width="30" height="42" fill="#2a1a0e"/>
+  <text x="395" y="144" text-anchor="middle" class="gate">GATE</text>
+  <path d="M395,118 L395,108" stroke="#4a4540" stroke-width="1"/>
+  <path d="M348,108 L442,108" stroke="#4a4540" stroke-width="1" marker-end="url(#arr-6)" marker-start="url(#arr-6)"/>
+  <text x="395" y="102" text-anchor="middle" class="cap">gate slides with stakes</text>
+
+  <!-- Footer -->
+  <line x1="32" y1="296" x2="668" y2="296" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="32" y="320" class="cap">AI is more defensibly used on the formative side; the cost of an error is lower.</text>
+  <text x="32" y="338" class="cap">The teacher of record is the assessor of record on summative work — by statute in most US contexts,</text>
+  <text x="32" y="354" class="cap">and as a high-risk system under the EU AI Act (2024) when AI evaluates students.</text>
+  <text x="32" y="382" class="cap">The principle is firm. The exact gate placement for each assessment type is still unsettled.</text>
+</svg>

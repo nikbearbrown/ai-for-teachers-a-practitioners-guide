@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" role="img" aria-labelledby="fig04-title fig04-desc" font-family="'EB Garamond', Garamond, Georgia, serif">
+  <title id="fig04-title">Bad specification vs good specification</title>
+  <desc id="fig04-desc">Two columns side by side. Left: a one-sentence bad spec annotated with six silent guesses the model would make. Right: the full five-clause good spec, with each clause showing what it decides.</desc>
+  <rect x="0" y="0" width="760" height="480" fill="#fdfcfb"/>
+
+  <text x="380" y="34" text-anchor="middle" font-size="22" fill="#2a1a0e">Bad spec vs good spec</text>
+  <text x="380" y="56" text-anchor="middle" font-size="13" font-style="italic" fill="#4a4540">The same task. The difference is what gets left to the model to guess.</text>
+
+  <!-- LEFT panel -->
+  <text x="50" y="92" font-size="15" fill="#4a4540">Bad specification</text>
+  <line x1="50" y1="100" x2="200" y2="100" stroke="#c8c4c0" stroke-width="1"/>
+
+  <rect x="50" y="118" width="320" height="56" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+  <text x="210" y="142" text-anchor="middle" font-size="13" font-style="italic" fill="#2a1a0e">&quot;Make me a script that emails</text>
+  <text x="210" y="160" text-anchor="middle" font-size="13" font-style="italic" fill="#2a1a0e">parents about missing assignments.&quot;</text>
+
+  <text x="50" y="200" font-size="12" fill="#4a4540">Silent guesses the model now makes:</text>
+
+  <g font-size="12" fill="#2a1a0e">
+    <text x="62" y="224">— which columns the CSV has</text>
+    <text x="62" y="244">— what counts as &quot;missing&quot;</text>
+    <text x="62" y="264">— tone of the email body</text>
+    <text x="62" y="284">— who sends it, from what address</text>
+    <text x="62" y="304">— what to do with blank contacts</text>
+    <text x="62" y="324">— how to handle names with apostrophes</text>
+  </g>
+
+  <rect x="50" y="346" width="320" height="40" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="210" y="370" text-anchor="middle" font-size="12" font-style="italic" fill="#2a1a0e">Compiles. Runs. Wrong in ways you won't see.</text>
+
+  <!-- Divider -->
+  <line x1="395" y1="80" x2="395" y2="420" stroke="#c8c4c0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- RIGHT panel -->
+  <text x="420" y="92" font-size="15" fill="#4a4540">Good specification</text>
+  <line x1="420" y1="100" x2="570" y2="100" stroke="#c8c4c0" stroke-width="1"/>
+
+  <g>
+    <rect x="420" y="118" width="290" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="432" y="138" font-size="13" fill="#2a1a0e">INTENT</text>
+    <text x="432" y="155" font-size="11" fill="#4a4540">per-student draft email, not sent</text>
+
+    <rect x="420" y="170" width="290" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="432" y="190" font-size="13" fill="#2a1a0e">CONSTRAINTS</text>
+    <text x="432" y="207" font-size="11" fill="#4a4540">no network, std lib only, skip &lt;3 days</text>
+
+    <rect x="420" y="222" width="290" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="432" y="242" font-size="13" fill="#2a1a0e">SUCCESS CRITERIA</text>
+    <text x="432" y="259" font-size="11" fill="#4a4540">5-row test file, 3 blocks, 1 logged</text>
+
+    <rect x="420" y="274" width="290" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="432" y="294" font-size="13" fill="#2a1a0e">EXCLUSIONS</text>
+    <text x="432" y="311" font-size="11" fill="#4a4540">no real names, no grades, no API calls</text>
+
+    <rect x="420" y="326" width="290" height="44" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="2"/>
+    <text x="432" y="346" font-size="13" fill="#2a1a0e">OUTPUT FORMAT</text>
+    <text x="432" y="363" font-size="11" fill="#4a4540">drafts.txt, one block per student</text>
+  </g>
+
+  <rect x="420" y="380" width="290" height="40" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="565" y="404" text-anchor="middle" font-size="12" font-style="italic" fill="#2a1a0e">All five components. Nothing left to guess.</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="fig04-title fig04-desc" font-family="'EB Garamond', Georgia, serif">
+  <title id="fig04-title">Teen ChatGPT-for-schoolwork use by group (Pew January 2025)</title>
+  <desc id="fig04-desc">Horizontal bar chart of share of U.S. teens 13 to 17 who have used ChatGPT for schoolwork: all teens 26 percent, Black teens 31 percent, Hispanic teens 31 percent, White teens 22 percent, higher-income families 31 percent, lower-income families 18 percent. Two subsections, by race and ethnicity and by household income.</desc>
+
+  <defs>
+    <marker id="arrow04" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="700" height="480" fill="#fdfcfb"/>
+
+  <!-- Title -->
+  <text x="40" y="40" font-size="22" fill="#2a1a0e">Teen ChatGPT-for-schoolwork use</text>
+  <text x="40" y="62" font-size="13" font-style="italic" fill="#4a4540">Pew Research, January 2025 &#8212; U.S. teens age 13&#8211;17</text>
+
+  <!-- x axis 0..40% mapped to x 220..640; 1% = 10.5 px -->
+  <g font-size="11" fill="#8a8480">
+    <line x1="220" y1="80" x2="220" y2="380" stroke="#4a4540"/>
+    <line x1="220" y1="380" x2="640" y2="380" stroke="#4a4540"/>
+    <text x="220" y="398" text-anchor="middle">0%</text>
+    <line x1="325" y1="80" x2="325" y2="380" stroke="#c8c4c0" stroke-dasharray="2 3"/>
+    <text x="325" y="398" text-anchor="middle">10%</text>
+    <line x1="430" y1="80" x2="430" y2="380" stroke="#c8c4c0" stroke-dasharray="2 3"/>
+    <text x="430" y="398" text-anchor="middle">20%</text>
+    <line x1="535" y1="80" x2="535" y2="380" stroke="#c8c4c0" stroke-dasharray="2 3"/>
+    <text x="535" y="398" text-anchor="middle">30%</text>
+    <line x1="640" y1="80" x2="640" y2="380" stroke="#c8c4c0" stroke-dasharray="2 3"/>
+    <text x="640" y="398" text-anchor="middle">40%</text>
+  </g>
+
+  <!-- All teens reference bar (uses darkest warm grey for the accent role) -->
+  <g>
+    <text x="210" y="106" text-anchor="end" font-size="12" fill="#2a1a0e">All teens</text>
+    <rect x="220" y="88" width="273" height="22" fill="#2a1a0e"/>
+    <text x="500" y="106" font-size="12" fill="#2a1a0e">26%</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="40" y1="124" x2="660" y2="124" stroke="#c8c4c0"/>
+  <text x="40" y="144" font-size="12" font-style="italic" fill="#4a4540">By race / ethnicity</text>
+
+  <!-- Black teens 31% -->
+  <g>
+    <text x="210" y="170" text-anchor="end" font-size="12" fill="#2a1a0e">Black teens</text>
+    <rect x="220" y="152" width="325.5" height="22" fill="#4a4540"/>
+    <text x="552" y="170" font-size="12" fill="#2a1a0e">31%</text>
+  </g>
+
+  <!-- Hispanic teens 31% -->
+  <g>
+    <text x="210" y="202" text-anchor="end" font-size="12" fill="#2a1a0e">Hispanic teens</text>
+    <rect x="220" y="184" width="325.5" height="22" fill="#4a4540"/>
+    <text x="552" y="202" font-size="12" fill="#2a1a0e">31%</text>
+  </g>
+
+  <!-- White teens 22% -->
+  <g>
+    <text x="210" y="234" text-anchor="end" font-size="12" fill="#2a1a0e">White teens</text>
+    <rect x="220" y="216" width="231" height="22" fill="#8a8480"/>
+    <text x="458" y="234" font-size="12" fill="#2a1a0e">22%</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="40" y1="256" x2="660" y2="256" stroke="#c8c4c0"/>
+  <text x="40" y="276" font-size="12" font-style="italic" fill="#4a4540">By household income</text>
+
+  <!-- Higher-income 31% -->
+  <g>
+    <text x="210" y="302" text-anchor="end" font-size="12" fill="#2a1a0e">Higher-income families</text>
+    <rect x="220" y="284" width="325.5" height="22" fill="#4a4540"/>
+    <text x="552" y="302" font-size="12" fill="#2a1a0e">31%</text>
+  </g>
+
+  <!-- Lower-income 18% -->
+  <g>
+    <text x="210" y="334" text-anchor="end" font-size="12" fill="#2a1a0e">Lower-income families</text>
+    <rect x="220" y="316" width="189" height="22" fill="#8a8480"/>
+    <text x="416" y="334" font-size="12" fill="#2a1a0e">18%</text>
+  </g>
+
+  <!-- Reference line at 26% all-teen average -->
+  <line x1="493" y1="80" x2="493" y2="350" stroke="#2a1a0e" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="497" y="78" font-size="10" font-style="italic" fill="#4a4540">all-teen average</text>
+
+  <!-- Caption -->
+  <text x="40" y="436" font-size="12" font-style="italic" fill="#4a4540">A blanket ban punishes the compliant.</text>
+  <text x="40" y="454" font-size="12" font-style="italic" fill="#4a4540">A blanket requirement widens differential home access.</text>
+</svg>

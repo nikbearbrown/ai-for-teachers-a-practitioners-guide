@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure 4.1 — Two layers of a lesson plan</title>
+  <style>
+    :root {
+      --color-white:     #FFFFFF;
+      --color-ink:       #121212;
+      --color-red:       #C8102E;
+      --color-secondary: #545454;
+      --color-border:    #D4D4D4;
+      --color-ochre:     #C8860E;
+      --color-tile-l:    #F5F2EE;
+      --color-tile-r:    #E8E2DA;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-white:     #111111;
+        --color-ink:       #F0EBE3;
+        --color-red:       #E8243A;
+        --color-secondary: #A0978C;
+        --color-border:    #2E2E2E;
+        --color-ochre:     #D49A30;
+        --color-tile-l:    #1A1A1A;
+        --color-tile-r:    #242020;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-white);
+      color: var(--color-ink);
+      font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+      padding: 24px;
+    }
+    #chart { width: 100%; }
+    .title-text { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; font-weight: bold; fill: var(--color-ink); }
+    .subtitle-text { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+    .col-header { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; font-weight: bold; fill: var(--color-white); }
+    .tile-rect { stroke: var(--color-secondary); stroke-width: 1; cursor: pointer; transition: opacity 120ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .tile-rect:hover { opacity: 0.85; }
+    .tile-label { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; fill: var(--color-ink); pointer-events: none; }
+    .gap-label { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+    .caption-text { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-ink); }
+    .tooltip {
+      position: absolute; pointer-events: none; opacity: 0;
+      background: var(--color-white); color: var(--color-ink);
+      border: 1px solid var(--color-border); padding: 8px 10px;
+      font-family: 'EB Garamond', Georgia, serif; font-size: 13px;
+      max-width: 260px; line-height: 1.4;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const structuralItems = [
+      { label: 'Objectives in verb-list form', why: 'A model can reliably produce Bloom-style verb lists keyed to a target.' },
+      { label: 'Timed activity sequence', why: 'Pacing across 50 minutes is a structural choice with template solutions.' },
+      { label: 'Differentiation templates', why: 'Templates for ELL, IEP, and reading-level scaffolds are scaffold-form work.' },
+      { label: 'Exit ticket prompts (first draft)', why: 'A first-pass exit ticket is structurally complete; surfacing the right misconception is not.' },
+      { label: 'Standards citations (verify)', why: 'AI can cite a standard; the teacher confirms the assessment produces matching evidence.' },
+      { label: 'Worksheet first drafts', why: 'Item-writing follows item-writing conventions and is delegable.' }
+    ];
+    const pckItems = [
+      { label: 'Which misconception this class will carry into Tuesday', why: 'Only the teacher has watched these students fail this concept before.' },
+      { label: 'Which analogy backfires for these students', why: 'Last year’s analogy that collapsed in week three is not in any model’s training data.' },
+      { label: 'Sub-topic order that does not collapse for this population', why: 'Sequencing failures last year are how the teacher knows what to swap.' },
+      { label: 'Exit-ticket question that surfaces the right confusion', why: 'The structural exit ticket may be correct; the diagnostic one is class-specific.' }
+    ];
+
+    const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+
+    function showTooltip(event, html) {
+      tooltip.html(html)
+        .style('left', (event.pageX + 12) + 'px')
+        .style('top',  (event.pageY - 12) + 'px')
+        .transition().duration(150).style('opacity', 1);
+    }
+    function moveTooltip(event) {
+      tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 12) + 'px');
+    }
+    function hideTooltip() {
+      tooltip.transition().duration(100).style('opacity', 0);
+    }
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+
+      const container = document.getElementById('chart');
+      const totalWidth  = container.clientWidth  || 800;
+      const totalHeight = 520;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth)
+        .attr('height', totalHeight)
+        .attr('role', 'img')
+        .attr('aria-labelledby', 'chart-title chart-desc');
+
+      svg.append('title').attr('id', 'chart-title').text('Two layers of a lesson plan');
+      svg.append('desc').attr('id', 'chart-desc')
+        .text('A lesson plan has two layers. AI handles the structural layer. The teacher supplies the PCK layer.');
+
+      svg.append('text').attr('class', 'title-text').attr('x', totalWidth / 2).attr('y', 28).attr('text-anchor', 'middle')
+        .text('A lesson plan has two layers. AI handles one. You handle the other.');
+      svg.append('text').attr('class', 'subtitle-text').attr('x', totalWidth / 2).attr('y', 50).attr('text-anchor', 'middle')
+        .text('Sort any element on sight: structural goes left, PCK goes right.');
+
+      const margin = { top: 80, right: 32, bottom: 80, left: 32 };
+      const colGap = 32;
+      const colW = (totalWidth - margin.left - margin.right - colGap) / 2;
+      const colTop = margin.top;
+
+      // Column headers
+      svg.append('rect').attr('x', margin.left).attr('y', colTop).attr('width', colW).attr('height', 26).attr('fill', 'var(--color-secondary)');
+      svg.append('text').attr('class', 'col-header').attr('x', margin.left + colW / 2).attr('y', colTop + 18).attr('text-anchor', 'middle')
+        .text('Structural layer — AI does well');
+
+      const rightX = margin.left + colW + colGap;
+      svg.append('rect').attr('x', rightX).attr('y', colTop).attr('width', colW).attr('height', 26).attr('fill', 'var(--color-ink)');
+      svg.append('text').attr('class', 'col-header').attr('x', rightX + colW / 2).attr('y', colTop + 18).attr('text-anchor', 'middle')
+        .text('PCK layer — teacher supplies');
+
+      // Left column tiles
+      const tileH = 38;
+      const tileGap = 6;
+      const tilesStartY = colTop + 36;
+
+      const gLeft = svg.append('g').attr('class', 'g-left');
+      gLeft.selectAll('.tile-left')
+        .data(structuralItems)
+        .join('rect')
+          .attr('class', 'tile-rect tile-left')
+          .attr('x', margin.left)
+          .attr('y', (d, i) => tilesStartY + i * (tileH + tileGap))
+          .attr('width', colW)
+          .attr('height', tileH)
+          .attr('fill', 'var(--color-tile-l)')
+          .attr('tabindex', 0)
+          .attr('aria-label', d => 'Structural: ' + d.label)
+          .on('mouseover', (event, d) => showTooltip(event, '<strong>Structural</strong><br>' + d.why))
+          .on('mousemove', moveTooltip)
+          .on('mouseout', hideTooltip)
+          .on('focus', (event, d) => showTooltip(event, '<strong>Structural</strong><br>' + d.why))
+          .on('blur', hideTooltip);
+
+      gLeft.selectAll('.tile-label-left')
+        .data(structuralItems)
+        .join('text')
+          .attr('class', 'tile-label tile-label-left')
+          .attr('x', margin.left + colW / 2)
+          .attr('y', (d, i) => tilesStartY + i * (tileH + tileGap) + tileH / 2 + 4)
+          .attr('text-anchor', 'middle')
+          .text(d => d.label);
+
+      // Right column tiles
+      const tileHRight = (structuralItems.length * (tileH + tileGap) - tileGap) / pckItems.length;
+      const gRight = svg.append('g').attr('class', 'g-right');
+      gRight.selectAll('.tile-right')
+        .data(pckItems)
+        .join('rect')
+          .attr('class', 'tile-rect tile-right')
+          .attr('x', rightX)
+          .attr('y', (d, i) => tilesStartY + i * (tileHRight + tileGap))
+          .attr('width', colW)
+          .attr('height', tileHRight)
+          .attr('fill', 'var(--color-tile-r)')
+          .attr('stroke', 'var(--color-ink)')
+          .attr('stroke-width', 1.2)
+          .attr('tabindex', 0)
+          .attr('aria-label', d => 'PCK: ' + d.label)
+          .on('mouseover', (event, d) => showTooltip(event, '<strong>PCK</strong><br>' + d.why))
+          .on('mousemove', moveTooltip)
+          .on('mouseout', hideTooltip)
+          .on('focus', (event, d) => showTooltip(event, '<strong>PCK</strong><br>' + d.why))
+          .on('blur', hideTooltip);
+
+      gRight.selectAll('.tile-label-right')
+        .data(pckItems)
+        .join('text')
+          .attr('class', 'tile-label tile-label-right')
+          .attr('x', rightX + colW / 2)
+          .attr('y', (d, i) => tilesStartY + i * (tileHRight + tileGap) + tileHRight / 2 + 4)
+          .attr('text-anchor', 'middle')
+          .text(d => d.label);
+
+      // Gap label between columns
+      const gapMidX = margin.left + colW + colGap / 2;
+      const gapY = tilesStartY + (structuralItems.length * (tileH + tileGap)) / 2;
+      svg.append('text').attr('class', 'gap-label')
+        .attr('x', gapMidX).attr('y', gapY).attr('text-anchor', 'middle')
+        .attr('transform', `rotate(-90 ${gapMidX} ${gapY})`)
+        .text('the gap where teaching lives');
+
+      // Caption
+      const captionY = tilesStartY + structuralItems.length * (tileH + tileGap) + 24;
+      svg.append('text').attr('class', 'caption-text')
+        .attr('x', totalWidth / 2).attr('y', captionY).attr('text-anchor', 'middle')
+        .text('The structural layer is delegable. The PCK layer is not.');
+      svg.append('text').attr('class', 'subtitle-text')
+        .attr('x', totalWidth / 2).attr('y', captionY + 18).attr('text-anchor', 'middle')
+        .text('Treating structural completeness as overall completeness is the trap.');
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

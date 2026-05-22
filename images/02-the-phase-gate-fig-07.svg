@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="t07 d07">
+  <title id="t07">Twelve-gate cluster map</title>
+  <desc id="d07">A topological cluster map. Twelve gates are arranged into four quadrants by domain: assessment and feedback, instruction and learning, student welfare and compliance, communication and data stewardship. Each gate is a small numbered node with a one-word label. Two arrows route gates 6 and 11 outward to licensed specialists and trained staff.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .quad { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: bold; fill: #2a1a0e; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #2a1a0e; }
+      .num { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: bold; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .route { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; font-style: italic; fill: #4a4540; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+    <marker id="ar7" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a4540"/>
+    </marker>
+  </defs>
+  <rect width="700" height="480" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">Twelve gates, four domains</text>
+  <text x="32" y="52" class="sub">A working map of the cognitive operations that must remain with humans. Adapt to your context.</text>
+
+  <!-- Quadrant background tiles -->
+  <rect x="40" y="80" width="300" height="180" fill="#f5f2ee" stroke="#c8c4c0" stroke-width="0.5"/>
+  <rect x="360" y="80" width="300" height="180" fill="#f5f2ee" stroke="#c8c4c0" stroke-width="0.5"/>
+  <rect x="40" y="280" width="300" height="180" fill="#f5f2ee" stroke="#c8c4c0" stroke-width="0.5"/>
+  <rect x="360" y="280" width="300" height="180" fill="#f5f2ee" stroke="#c8c4c0" stroke-width="0.5"/>
+
+  <!-- Quadrant labels -->
+  <text x="50" y="100" class="quad">Assessment and feedback</text>
+  <text x="370" y="100" class="quad">Instruction and learning</text>
+  <text x="50" y="300" class="quad">Student welfare and compliance</text>
+  <text x="370" y="300" class="quad">Communication and data stewardship</text>
+
+  <!-- Gates 1, 2, 5 in Assessment -->
+  <circle cx="90" cy="150" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="90" y="155" text-anchor="middle" class="num">1</text>
+  <text x="90" y="184" text-anchor="middle" class="lb">Rubric</text>
+  <text x="90" y="196" text-anchor="middle" class="lb">calibration</text>
+
+  <circle cx="190" cy="150" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="190" y="155" text-anchor="middle" class="num">2</text>
+  <text x="190" y="184" text-anchor="middle" class="lb">Dispute</text>
+  <text x="190" y="196" text-anchor="middle" class="lb">resolution</text>
+
+  <circle cx="290" cy="150" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="290" y="155" text-anchor="middle" class="num">5</text>
+  <text x="290" y="184" text-anchor="middle" class="lb">Content</text>
+  <text x="290" y="196" text-anchor="middle" class="lb">accuracy</text>
+
+  <!-- Gates 3, 4, 9 in Instruction -->
+  <circle cx="410" cy="150" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="410" y="155" text-anchor="middle" class="num">3</text>
+  <text x="410" y="184" text-anchor="middle" class="lb">Socratic</text>
+  <text x="410" y="196" text-anchor="middle" class="lb">scaffolding</text>
+
+  <circle cx="510" cy="150" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="510" y="155" text-anchor="middle" class="num">4</text>
+  <text x="510" y="184" text-anchor="middle" class="lb">Direct</text>
+  <text x="510" y="196" text-anchor="middle" class="lb">instruction</text>
+
+  <circle cx="610" cy="150" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="610" y="155" text-anchor="middle" class="num">9</text>
+  <text x="610" y="184" text-anchor="middle" class="lb">PCK</text>
+  <text x="610" y="196" text-anchor="middle" class="lb">misconception</text>
+
+  <!-- Gates 6, 8, 11 in Welfare -->
+  <circle cx="90" cy="350" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="90" y="355" text-anchor="middle" class="num">6</text>
+  <text x="90" y="384" text-anchor="middle" class="lb">IEP/504</text>
+  <text x="90" y="396" text-anchor="middle" class="lb">compliance</text>
+
+  <circle cx="190" cy="350" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="190" y="355" text-anchor="middle" class="num">8</text>
+  <text x="190" y="384" text-anchor="middle" class="lb">Student</text>
+  <text x="190" y="396" text-anchor="middle" class="lb">intervention</text>
+
+  <circle cx="290" cy="350" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="290" y="355" text-anchor="middle" class="num">11</text>
+  <text x="290" y="384" text-anchor="middle" class="lb">Behavioral</text>
+  <text x="290" y="396" text-anchor="middle" class="lb">crisis</text>
+
+  <!-- Gates 7, 10, 12 in Communication -->
+  <circle cx="410" cy="350" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="410" y="355" text-anchor="middle" class="num">7</text>
+  <text x="410" y="384" text-anchor="middle" class="lb">Parent</text>
+  <text x="410" y="396" text-anchor="middle" class="lb">communication</text>
+
+  <circle cx="510" cy="350" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="510" y="355" text-anchor="middle" class="num">10</text>
+  <text x="510" y="384" text-anchor="middle" class="lb">RAG walled</text>
+  <text x="510" y="396" text-anchor="middle" class="lb">garden</text>
+
+  <circle cx="610" cy="350" r="14" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="610" y="355" text-anchor="middle" class="num">12</text>
+  <text x="610" y="384" text-anchor="middle" class="lb">Student</text>
+  <text x="610" y="396" text-anchor="middle" class="lb">anonymization</text>
+
+  <!-- Routing arrows -->
+  <line x1="90" y1="335" x2="90" y2="280" stroke="#4a4540" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#ar7)"/>
+  <text x="100" y="276" class="route">routes to licensed specialist</text>
+
+  <line x1="290" y1="335" x2="290" y2="280" stroke="#4a4540" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#ar7)"/>
+  <text x="180" y="276" class="route">routes to trained staff</text>
+
+  <text x="350" y="448" text-anchor="middle" class="cap">Twelve gates, twelve operations the workflow has to insist on. The cluster is the map; the operation is the gate.</text>
+</svg>

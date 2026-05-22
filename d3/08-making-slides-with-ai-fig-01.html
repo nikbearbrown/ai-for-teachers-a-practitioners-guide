@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 8.1 — Two-artifact model</title>
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--color-white);
+    color: var(--color-ink);
+    font-family: 'EB Garamond', Garamond, Georgia, serif;
+    padding: 24px;
+  }
+  #chart { width: 100%; height: 460px; }
+  .node-label { font-family: 'EB Garamond', Georgia, serif; font-size: 17px; fill: var(--color-ink); }
+  .node-sub   { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .caption    { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; fill: var(--color-secondary); }
+  .title      { font-family: 'EB Garamond', Georgia, serif; font-size: 22px; font-style: italic; fill: var(--color-ink); }
+  .tooltip {
+    position: absolute; pointer-events: none; opacity: 0;
+    background: var(--color-white); color: var(--color-ink);
+    border: 1px solid var(--color-border); padding: 6px 10px;
+    font-family: 'EB Garamond', Georgia, serif; font-size: 13px;
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+  const FALLBACK_DATA = {
+    title: 'One source. Two artifacts.',
+    source: { id: 'source', label: 'deck file', sub: 'slides + notes' },
+    branches: [
+      { id: 'live',  label: 'Live deck',    sub: 'for the room',           caption: 'sparse — narration carries the explanation' },
+      { id: 'notes', label: 'Notes export', sub: 'for the student alone',  caption: 'dense — prose survives without a speaker' }
+    ]
+  };
+
+  function draw() {
+    d3.select('#chart').selectAll('*').remove();
+    const container = document.getElementById('chart');
+    const totalWidth  = container.clientWidth  || 700;
+    const totalHeight = 460;
+
+    const svg = d3.select('#chart').append('svg')
+      .attr('width', totalWidth).attr('height', totalHeight)
+      .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
+      .attr('role', 'img')
+      .attr('aria-labelledby', 'f1-t f1-d');
+    svg.append('title').attr('id', 'f1-t').text('Two-artifact model');
+    svg.append('desc').attr('id', 'f1-d').text('One source file becomes a sparse live deck for the room and a dense notes export for the absent student.');
+
+    svg.append('defs').append('marker')
+      .attr('id', 'f1arrow').attr('viewBox', '0 0 10 10')
+      .attr('refX', 9).attr('refY', 5)
+      .attr('markerWidth', 8).attr('markerHeight', 8)
+      .attr('orient', 'auto-start-reverse')
+      .append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', 'var(--color-ink)');
+
+    svg.append('text')
+      .attr('class', 'title')
+      .attr('x', totalWidth / 2).attr('y', 36).attr('text-anchor', 'middle')
+      .text(FALLBACK_DATA.title);
+
+    const cx = totalWidth / 2;
+    // source node
+    const srcG = svg.append('g').attr('class', 'g-source');
+    srcG.append('rect')
+      .attr('x', cx - 60).attr('y', 64).attr('width', 120).attr('height', 74)
+      .attr('fill', 'var(--color-white)').attr('stroke', 'var(--color-ink)').attr('stroke-width', 1.5);
+    srcG.append('text').attr('class', 'node-sub').attr('x', cx).attr('y', 92).attr('text-anchor', 'middle').text('source');
+    srcG.append('text').attr('class', 'node-label').attr('x', cx).attr('y', 114).attr('text-anchor', 'middle').text(FALLBACK_DATA.source.label);
+    srcG.append('text').attr('class', 'node-sub').attr('x', cx).attr('y', 130).attr('text-anchor', 'middle').text(FALLBACK_DATA.source.sub);
+
+    // branch positions
+    const branchY = 220;
+    const positions = [
+      { x: totalWidth * 0.22 },
+      { x: totalWidth * 0.78 }
+    ];
+
+    const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+
+    svg.selectAll('.branch-line')
+      .data(FALLBACK_DATA.branches)
+      .join('path')
+        .attr('class', 'branch-line')
+        .attr('d', (d, i) => `M ${cx + (i === 0 ? -30 : 30)} 138 L ${positions[i].x} ${branchY - 10}`)
+        .attr('stroke', 'var(--color-ink)').attr('stroke-width', 1.5).attr('fill', 'none')
+        .attr('marker-end', 'url(#f1arrow)');
+
+    const gBranches = svg.selectAll('.branch')
+      .data(FALLBACK_DATA.branches)
+      .join('g')
+        .attr('class', 'branch')
+        .attr('transform', (d, i) => `translate(${positions[i].x - 115},${branchY})`)
+        .attr('tabindex', 0)
+        .attr('aria-label', d => `${d.label}: ${d.sub}`);
+
+    gBranches.append('rect')
+      .attr('width', 230).attr('height', 180)
+      .attr('fill', 'var(--color-white)').attr('stroke', 'var(--color-ink)').attr('stroke-width', 1.5);
+    gBranches.append('text').attr('class', 'node-label').attr('x', 115).attr('y', 28).attr('text-anchor', 'middle').text(d => d.label);
+    gBranches.append('text').attr('class', 'node-sub').attr('x', 115).attr('y', 48).attr('text-anchor', 'middle').text(d => d.sub);
+
+    // inner mock — sparse on left, dense on right
+    gBranches.each(function(d, i) {
+      const g = d3.select(this);
+      g.append('rect')
+        .attr('x', 30).attr('y', 64).attr('width', 170).attr('height', 100)
+        .attr('fill', 'var(--color-white)').attr('stroke', 'var(--color-border)').attr('stroke-width', 1);
+      if (i === 0) {
+        g.append('text').attr('class', 'node-label').attr('x', 115).attr('y', 92).attr('text-anchor', 'middle').text('The proton gradient');
+        g.append('text').attr('class', 'node-label').attr('x', 115).attr('y', 112).attr('text-anchor', 'middle').text('powers ATP synthase.');
+        g.append('circle').attr('cx', 115).attr('cy', 138).attr('r', 14).attr('fill', 'none').attr('stroke', 'var(--color-ink)');
+      } else {
+        const lines = [80, 92, 104, 116, 128, 140, 152];
+        lines.forEach((y, idx) => {
+          g.append('line')
+            .attr('x1', 40).attr('y1', y)
+            .attr('x2', idx % 3 === 2 ? 180 : 195).attr('y2', y)
+            .attr('stroke', 'var(--color-ink)').attr('stroke-width', 0.8);
+        });
+      }
+    });
+
+    gBranches.append('text').attr('class', 'caption').attr('x', 115).attr('y', 200).attr('text-anchor', 'middle').text(d => d.caption);
+
+    gBranches
+      .on('mouseover', function(event, d) {
+        d3.select(this).select('rect').transition().duration(120).attr('stroke-width', 2.5);
+        tooltip.html(`<strong>${d.label}</strong><br/>${d.caption}`)
+          .style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px')
+          .transition().duration(150).style('opacity', 1);
+      })
+      .on('mousemove', function(event) {
+        tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px');
+      })
+      .on('mouseout', function() {
+        d3.select(this).select('rect').transition().duration(120).attr('stroke-width', 1.5);
+        tooltip.transition().duration(100).style('opacity', 0);
+      });
+  }
+
+  draw();
+  const ro = new ResizeObserver(() => draw());
+  ro.observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

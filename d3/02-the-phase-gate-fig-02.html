@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 2.2 — A phrase versus a gate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white: #FFFFFF; --color-ink: #121212; --color-red: #C8102E;
+    --color-secondary: #545454; --color-border: #D4D4D4; --color-ochre: #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white: #111111; --color-ink: #F0EBE3; --color-red: #E8243A;
+      --color-secondary: #A0978C; --color-border: #2E2E2E; --color-ochre: #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'Inter', sans-serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-size: 13px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 460px; }
+  .panel-rect { fill: var(--color-white); stroke: var(--color-ink); stroke-width: 1; transition: stroke 200ms cubic-bezier(0.2,0.8,0.2,1); }
+  .panel-rect:hover { stroke: var(--color-red); cursor: pointer; }
+  .ti { font-family: 'EB Garamond', Georgia, serif; font-size: 16px; font-weight: 700; fill: var(--color-ink); }
+  .head { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; font-weight: 700; fill: var(--color-ink); }
+  .lb { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; fill: var(--color-ink); }
+  .sm { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; fill: var(--color-secondary); }
+  .vague { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-size: 12px; max-width: 260px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 2.2 — A phrase has one component. A gate has three.</h1>
+<p class="subtitle">Stripping any of the three collapses the gate back into a phrase.</p>
+<div id="chart" role="img" aria-labelledby="t-phrase d-phrase"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const components = [
+  { id: 'task', n: '1', title: 'Upstream task', body: 'AI scored 120 essays against the rubric.', sub: 'Specific, not vague.', tip: 'Name what AI did. Specific verb, specific object, specific count.' },
+  { id: 'op',   n: '2', title: 'Cognitive operation', body: 'Teacher hand-grades 5 essays, compares to AI, adjusts the rubric where they diverge.', sub: '', tip: 'Name what only a human can do here. The verb must be a cognitive verb, not "review".' },
+  { id: 'act',  n: '3', title: 'Downstream action', body: 'Bulk grading proceeds only with the recalibrated rubric.', sub: '', tip: 'Name what happens only after the operation occurs. The action depends on the operation.' }
+];
+const vague = ['"review"', '"check"', '"look over"', '"approve"'];
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(e, html) { tooltip.html(html).style('left', (e.pageX+12)+'px').style('top', (e.pageY-28)+'px').transition().duration(150).style('opacity', 1); }
+function moveTip(e) { tooltip.style('left', (e.pageX+12)+'px').style('top', (e.pageY-28)+'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+function draw() {
+  d3.select('#chart').selectAll('*').remove();
+  const container = document.getElementById('chart');
+  const W = container.clientWidth || 760, H = container.clientHeight || 460;
+  const svg = d3.select('#chart').append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', W).attr('height', H)
+    .attr('role', 'img').attr('aria-labelledby', 't-phrase d-phrase');
+  svg.append('title').attr('id', 't-phrase').text('A phrase versus a gate');
+  svg.append('desc').attr('id', 'd-phrase').text('Left panel shows a single click box surrounded by vague verbs. Right panel shows three explicit components stacked.');
+
+  const defs = svg.append('defs');
+  defs.append('marker').attr('id', 'arX').attr('markerWidth', 8).attr('markerHeight', 6).attr('refX', 7).attr('refY', 3).attr('orient', 'auto')
+    .append('polygon').attr('points', '0 0, 8 3, 0 6').attr('fill', 'var(--color-ink)');
+
+  svg.append('line').attr('x1', W/2).attr('y1', 40).attr('x2', W/2).attr('y2', H - 40).attr('stroke', 'var(--color-border)');
+
+  // Left: phrase
+  const leftCx = W * 0.25;
+  svg.append('text').attr('x', leftCx).attr('y', 60).attr('text-anchor', 'middle').attr('class', 'head').text('The phrase');
+  svg.append('text').attr('x', leftCx).attr('y', 80).attr('text-anchor', 'middle').attr('class', 'sm').text('"Human in the loop."');
+  svg.append('rect').attr('class', 'panel-rect').attr('x', leftCx - 70).attr('y', H/2 - 30).attr('width', 140).attr('height', 60);
+  svg.append('text').attr('x', leftCx).attr('y', H/2 - 6).attr('text-anchor', 'middle').attr('class', 'lb').text('Click approve');
+  svg.append('text').attr('x', leftCx).attr('y', H/2 + 14).attr('text-anchor', 'middle').attr('class', 'sm').text('3 seconds');
+  // vague verbs around it
+  vague.forEach((v, i) => {
+    const angle = (i/4) * Math.PI * 2;
+    const x = leftCx + Math.cos(angle) * 110;
+    const y = H/2 + Math.sin(angle) * 80;
+    svg.append('text').attr('x', x).attr('y', y).attr('text-anchor', 'middle').attr('class', 'vague').text(v);
+  });
+  svg.append('text').attr('x', leftCx).attr('y', H - 70).attr('text-anchor', 'middle').attr('class', 'cap').text('No upstream task named.');
+  svg.append('text').attr('x', leftCx).attr('y', H - 54).attr('text-anchor', 'middle').attr('class', 'cap').text('No operation named. No action named.');
+
+  // Right: gate
+  const rightCx = W * 0.75;
+  svg.append('text').attr('x', rightCx).attr('y', 60).attr('text-anchor', 'middle').attr('class', 'head').text('The gate');
+  svg.append('text').attr('x', rightCx).attr('y', 80).attr('text-anchor', 'middle').attr('class', 'sm').text('Three components, one sentence each.');
+
+  const boxW = Math.min(280, W*0.38), boxH = 64;
+  const startY = 110;
+  components.forEach((c, i) => {
+    const y = startY + i * (boxH + 24);
+    const g = svg.append('g').attr('tabindex', 0).attr('role', 'group').attr('aria-label', `${c.n}. ${c.title}: ${c.body}`)
+      .on('mouseover', (e) => showTip(e, `<strong>${c.title}</strong><br>${c.tip}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+    g.append('rect').attr('class', 'panel-rect').attr('x', rightCx - boxW/2).attr('y', y).attr('width', boxW).attr('height', boxH);
+    g.append('text').attr('x', rightCx - boxW/2 + 12).attr('y', y + 20).attr('class', 'lb').text(`${c.n}. ${c.title}`);
+    g.append('text').attr('x', rightCx - boxW/2 + 12).attr('y', y + 38).attr('class', 'sm').text(c.body);
+    if (c.sub) g.append('text').attr('x', rightCx - boxW/2 + 12).attr('y', y + 54).attr('class', 'sm').text(c.sub);
+    if (i < components.length - 1) {
+      svg.append('line').attr('x1', rightCx).attr('y1', y + boxH).attr('x2', rightCx).attr('y2', y + boxH + 18)
+        .attr('stroke', 'var(--color-ink)').attr('stroke-width', 1).attr('marker-end', 'url(#arX)');
+    }
+  });
+
+  svg.append('text').attr('x', rightCx).attr('y', H - 30).attr('text-anchor', 'middle').attr('class', 'cap')
+    .text('Name all three in one sentence each, or there is no gate.');
+}
+
+draw();
+const ro = new ResizeObserver(() => draw());
+ro.observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

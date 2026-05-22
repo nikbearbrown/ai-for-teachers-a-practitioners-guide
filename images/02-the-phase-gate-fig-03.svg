@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t03 d03">
+  <title id="t03">Three-component gate anatomy</title>
+  <desc id="d03">A horizontal sequence of three labeled blocks connected by arrows. Block 1 names the upstream AI task. Block 2 names the human cognitive operation. Block 3 names the downstream action. Below each block, a failure-mode caption shows the vague version that collapses the component.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .head { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: bold; fill: #2a1a0e; }
+      .num { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 26px; font-weight: bold; fill: #2a1a0e; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .fail { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #8a8480; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+    <marker id="ar3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">Three components, in sequence</text>
+  <text x="32" y="52" class="sub">Block 1 names what AI did. Block 2 names the human operation. Block 3 names what happens next.</text>
+
+  <rect x="40" y="120" width="180" height="120" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="56" y="148" class="num">1</text>
+  <text x="56" y="170" class="head">Upstream task</text>
+  <text x="56" y="190" class="lb">What AI did,</text>
+  <text x="56" y="206" class="lb">specifically.</text>
+  <text x="56" y="226" class="sm">e.g. &#8220;AI scored 120 essays</text>
+  <text x="56" y="240" class="sm">against the rubric.&#8221;</text>
+
+  <line x1="220" y1="180" x2="252" y2="180" stroke="#2a1a0e" stroke-width="1" marker-end="url(#ar3)"/>
+
+  <rect x="256" y="120" width="188" height="120" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.8"/>
+  <text x="272" y="148" class="num">2</text>
+  <text x="272" y="170" class="head">Cognitive operation</text>
+  <text x="272" y="190" class="lb">What only a human</text>
+  <text x="272" y="206" class="lb">can do here.</text>
+  <text x="272" y="226" class="sm">e.g. &#8220;Hand-grade 5, compare,</text>
+  <text x="272" y="240" class="sm">adjust rubric where they diverge.&#8221;</text>
+
+  <line x1="444" y1="180" x2="476" y2="180" stroke="#2a1a0e" stroke-width="1" marker-end="url(#ar3)"/>
+
+  <rect x="480" y="120" width="180" height="120" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="496" y="148" class="num">3</text>
+  <text x="496" y="170" class="head">Downstream action</text>
+  <text x="496" y="190" class="lb">What happens only</text>
+  <text x="496" y="206" class="lb">after the human acts.</text>
+  <text x="496" y="226" class="sm">e.g. &#8220;Bulk grading proceeds</text>
+  <text x="496" y="240" class="sm">with the recalibrated rubric.&#8221;</text>
+
+  <line x1="40" y1="270" x2="660" y2="270" stroke="#c8c4c0" stroke-width="0.5"/>
+  <text x="40" y="290" class="head">Vague version, collapses to a phrase:</text>
+
+  <text x="130" y="320" text-anchor="middle" class="fail">&#8220;AI did some grading.&#8221;</text>
+  <text x="350" y="320" text-anchor="middle" class="fail">&#8220;Teacher reviews the output.&#8221;</text>
+  <text x="570" y="320" text-anchor="middle" class="fail">&#8220;Scores are released.&#8221;</text>
+
+  <text x="130" y="338" text-anchor="middle" class="sm">Upstream task unspecified</text>
+  <text x="350" y="338" text-anchor="middle" class="sm">Operation unspecified</text>
+  <text x="570" y="338" text-anchor="middle" class="sm">Action unspecified</text>
+
+  <text x="350" y="386" text-anchor="middle" class="cap">Name all three in one sentence each. If you cannot, there is no gate.</text>
+</svg>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 11.5 — Computational thinking, mapped onto Ms. R's spec</title>
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink);
+         font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  #chart { width: 100%; min-height: 520px; }
+  .title-text   { font-family: 'EB Garamond', Georgia, serif; font-size: 22px; fill: var(--color-ink); }
+  .subtitle-text{ font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .head-rule    { stroke: var(--color-ink); stroke-width: 1.4; }
+  .row-rule     { stroke: var(--color-border); stroke-width: 1; stroke-dasharray: 3 3; }
+  .col-head     { font-family: 'Inter', sans-serif; font-size: 13px; fill: var(--color-secondary); }
+  .move-text    { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; fill: var(--color-ink); }
+  .clause-text  { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 13px; fill: var(--color-secondary); }
+  .closing      { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; fill: var(--color-secondary); }
+  .closing-em   { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 13px; fill: var(--color-ink); }
+  .row-hover:hover .move-text { fill: var(--color-red); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const MAPPING = [
+      { move: 'Identify inputs',       clause: '"four sliders for a, b, c, d, each −5 to 5"' },
+      { move: 'Identify outputs',      clause: '"curve, real roots, y-intercept, equation"' },
+      { move: 'Decompose',             clause: 'rendering / interaction / calculation' },
+      { move: 'Abstract',              clause: 'cubic generalized to y = ax³ + bx² + cx + d' },
+      { move: 'Anticipate failure',    clause: '"when a = 0 the cubic becomes a quadratic"' },
+      { move: 'Constrain environment', clause: '"self-contained — no internet at runtime"' }
+    ];
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+      const container = document.getElementById('chart');
+      const totalWidth  = container.clientWidth || 800;
+      const totalHeight = 520;
+      const margin = { top: 96, right: 32, bottom: 64, left: 48 };
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth).attr('height', totalHeight)
+        .attr('role', 'img').attr('aria-labelledby', 'chart-title chart-desc');
+      svg.append('title').attr('id', 'chart-title').text("Computational thinking, mapped onto Ms. R's polynomial spec");
+      svg.append('desc').attr('id', 'chart-desc').text("Two-column mapping: Wing's computational-thinking moves on the left, Ms. R's matching spec clauses on the right.");
+
+      svg.append('defs').append('marker')
+        .attr('id', 'arrow-d3-05').attr('viewBox', '0 0 10 10').attr('refX', 9).attr('refY', 5)
+        .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto-start-reverse')
+        .append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', 'var(--color-secondary)');
+
+      svg.append('text').attr('class', 'title-text').attr('x', totalWidth/2).attr('y', 36).attr('text-anchor', 'middle').text('Computational thinking on a Sunday afternoon');
+      svg.append('text').attr('class', 'subtitle-text').attr('x', totalWidth/2).attr('y', 58).attr('text-anchor', 'middle').text("Wing's 2006 moves, mapped onto Ms. R's spec");
+
+      const tableLeft = margin.left;
+      const tableRight = totalWidth - margin.right;
+      const midX = tableLeft + Math.min(280, (tableRight - tableLeft) * 0.42);
+      const arrowFromX = midX - 60, arrowToX = midX - 10;
+      const clauseX = midX + 10;
+      const rowH = 48;
+
+      svg.append('line').attr('class', 'head-rule')
+        .attr('x1', tableLeft).attr('y1', margin.top - 12).attr('x2', tableRight).attr('y2', margin.top - 12);
+      svg.append('text').attr('class', 'col-head').attr('x', tableLeft + 8).attr('y', margin.top + 6).text('Wing (2006) — the move');
+      svg.append('text').attr('class', 'col-head').attr('x', clauseX).attr('y', margin.top + 6).text("Ms. R's paragraph — the clause");
+      svg.append('line').attr('class', 'row-rule').attr('stroke-dasharray', null)
+        .attr('stroke', 'var(--color-border)')
+        .attr('x1', tableLeft).attr('y1', margin.top + 18).attr('x2', tableRight).attr('y2', margin.top + 18);
+
+      const rows = svg.selectAll('g.map-row').data(MAPPING).join('g')
+        .attr('class', 'map-row row-hover')
+        .attr('transform', (d,i) => `translate(0, ${margin.top + 36 + i * rowH})`)
+        .attr('tabindex', 0)
+        .attr('aria-label', d => `${d.move} → ${d.clause}`);
+
+      rows.append('text').attr('class', 'move-text').attr('x', tableLeft + 8).attr('y', 18).text(d => d.move);
+      rows.append('line').attr('class', 'row-rule')
+        .attr('x1', arrowFromX).attr('y1', 14).attr('x2', arrowToX).attr('y2', 14)
+        .attr('stroke-dasharray', null).attr('stroke', 'var(--color-secondary)')
+        .attr('marker-end', 'url(#arrow-d3-05)');
+      rows.append('text').attr('class', 'clause-text').attr('x', clauseX).attr('y', 18).text(d => d.clause);
+      rows.append('line').attr('class', 'row-rule')
+        .attr('x1', tableLeft).attr('y1', rowH - 8).attr('x2', tableRight).attr('y2', rowH - 8);
+
+      svg.append('line').attr('class', 'head-rule')
+        .attr('x1', tableLeft).attr('y1', margin.top + 36 + MAPPING.length * rowH - 8)
+        .attr('x2', tableRight).attr('y2', margin.top + 36 + MAPPING.length * rowH - 8);
+
+      const closeY = margin.top + 36 + MAPPING.length * rowH + 22;
+      svg.append('text').attr('class', 'closing').attr('x', totalWidth/2).attr('y', closeY).attr('text-anchor', 'middle').text('The model can supply the semicolons.');
+      svg.append('text').attr('class', 'closing-em').attr('x', totalWidth/2).attr('y', closeY + 22).attr('text-anchor', 'middle').text('It cannot supply the judgment about what the tool should do.');
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

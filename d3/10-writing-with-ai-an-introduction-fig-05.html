@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 10.5 — Three shifts in writing assessment</title>
+<style>
+  :root {
+    --color-canvas:    #fdfcfb;
+    --color-ink:       #2a1a0e;
+    --color-secondary: #4a4540;
+    --color-muted:     #8a8480;
+    --color-light:     #c8c4c0;
+    --color-panel:     #f5f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-canvas:    #1a120a;
+      --color-ink:       #f5f2ee;
+      --color-secondary: #c8c4c0;
+      --color-muted:     #8a8480;
+      --color-light:     #4a4540;
+      --color-panel:     #251a10;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-canvas); color: var(--color-ink); font-family: 'EB Garamond', Garamond, Georgia, serif; padding: 16px; }
+  #chart { width: 100%; }
+  .title    { font-size: 20px; fill: var(--color-ink); }
+  .subtitle { font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .shift-num{ font-size: 13px; font-style: italic; fill: var(--color-muted); }
+  .node-label{ font-size: 16px; fill: var(--color-ink); }
+  .node-sub  { font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+  .caption   { font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .closing   { font-size: 14px; font-style: italic; fill: var(--color-ink); }
+  rect.box   { fill: var(--color-panel); stroke: var(--color-ink); stroke-width: 1.2; cursor: pointer; }
+  .arrow     { stroke: var(--color-ink); stroke-width: 2; fill: none; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-panel); color: var(--color-ink); border: 1px solid var(--color-ink); padding: 6px 10px; font-size: 13px; font-family: 'EB Garamond', Garamond, Georgia, serif; max-width: 280px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const shifts = [
+  { num: 'Shift 1', from: { label:'Product', sub:'polished essay alone' },
+    to:   { label:'Process trail', sub:'abandoned theses, annotations, prompt logs' },
+    caption: 'Outsourcing the artifact now requires forging a plausible process history.',
+    tip: 'The student submits the trail, not just the final essay. Forging a credible trail is nearly the original work.' },
+  { num: 'Shift 2', from: { label:'First draft', sub:'grade the polish' },
+    to:   { label:'Revision trajectory', sub:'grade the developmental movement' },
+    caption: 'Polish is cheap now. Sommers (1980): revision was always the distinguishing move.',
+    tip: 'Grade the difference between draft one and draft three — the move that has always distinguished accomplished writing.' },
+  { num: 'Shift 3', from: { label:'Submission', sub:'the submit click is the moment' },
+    to:   { label:'Conversation', sub:'six minutes: state, justify, take objection' },
+    caption: 'The defense is the detection. The defense is also a learning event.',
+    tip: 'A short oral defense: claim, evidence, strongest objection, what you would do differently.' }
+];
+
+const tooltip = d3.select('body').append('div').attr('class','tooltip');
+
+function draw() {
+  d3.select('#chart').selectAll('svg').remove();
+  const W = document.getElementById('chart').clientWidth || 760;
+  const H = Math.max(480, W * 0.63);
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('role','img').attr('aria-labelledby','t-fig05 d-fig05');
+  svg.append('title').attr('id','t-fig05').text('Three shifts: product to process, draft to revision, submission to conversation');
+  svg.append('desc').attr('id','d-fig05').text('Three horizontal arrows show the cognitive center of gravity moving from artifact-only to process-anchored.');
+
+  svg.append('defs').append('marker').attr('id','arr05').attr('viewBox','0 0 10 10').attr('refX',9).attr('refY',5)
+    .attr('markerWidth',10).attr('markerHeight',10).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M0,0 L10,5 L0,10 z').attr('fill','var(--color-ink)');
+
+  svg.append('text').attr('class','title').attr('x', W/2).attr('y', 34).attr('text-anchor','middle').text('Three shifts in writing assessment');
+  svg.append('text').attr('class','subtitle').attr('x', W/2).attr('y', 56).attr('text-anchor','middle').text('Move the cognitive center of gravity. Make outsourcing visibly worse on the deliverable.');
+
+  const topY = 90;
+  const slotH = (H - topY - 60) / 3;
+  const boxH = 60;
+  const fromW = 200, toW = 246;
+  const margin = 100;
+  const fromX = margin;
+  const arrowX1 = fromX + fromW + 12;
+  const arrowX2 = W - margin - toW - 12;
+  const toX = W - margin - toW;
+
+  shifts.forEach((s,i) => {
+    const yBase = topY + i * slotH;
+    const yBox  = yBase + 20;
+    const yCenter = yBox + boxH/2;
+
+    svg.append('text').attr('class','shift-num').attr('x', 40).attr('y', yCenter + 4).text(s.num);
+
+    svg.append('rect').attr('class','box').attr('x', fromX).attr('y', yBox).attr('width', fromW).attr('height', boxH)
+      .attr('tabindex',0).attr('aria-label', `From: ${s.from.label}`)
+      .on('mouseover',(event)=>showTip(event,`<strong>From: ${s.from.label}</strong><br>${s.from.sub}`))
+      .on('mousemove',moveTip).on('mouseout',hideTip);
+    svg.append('text').attr('class','node-label').attr('x', fromX + fromW/2).attr('y', yBox + 28).attr('text-anchor','middle').text(s.from.label);
+    svg.append('text').attr('class','node-sub').attr('x', fromX + fromW/2).attr('y', yBox + 48).attr('text-anchor','middle').text(s.from.sub);
+
+    svg.append('line').attr('class','arrow').attr('x1', arrowX1).attr('y1', yCenter).attr('x2', arrowX2).attr('y2', yCenter).attr('marker-end','url(#arr05)');
+
+    svg.append('rect').attr('class','box').attr('x', toX).attr('y', yBox).attr('width', toW).attr('height', boxH)
+      .attr('tabindex',0).attr('aria-label', `To: ${s.to.label}`)
+      .on('mouseover',(event)=>showTip(event,`<strong>To: ${s.to.label}</strong><br>${s.to.sub}<br><em>${s.tip}</em>`))
+      .on('mousemove',moveTip).on('mouseout',hideTip);
+    svg.append('text').attr('class','node-label').attr('x', toX + toW/2).attr('y', yBox + 28).attr('text-anchor','middle').text(s.to.label);
+    svg.append('text').attr('class','node-sub').attr('x', toX + toW/2).attr('y', yBox + 48).attr('text-anchor','middle').text(s.to.sub);
+
+    svg.append('text').attr('class','caption').attr('x', W/2).attr('y', yBox + boxH + 22).attr('text-anchor','middle').text(s.caption);
+  });
+
+  svg.append('text').attr('class','closing').attr('x', W/2).attr('y', H - 18).attr('text-anchor','middle').text('Together: the artifact is no longer the only thing graded.');
+}
+
+function showTip(event, html) {
+  tooltip.html(html).style('left',(event.pageX+12)+'px').style('top',(event.pageY-28)+'px')
+    .transition().duration(150).style('opacity',1);
+}
+function moveTip(event) { tooltip.style('left',(event.pageX+12)+'px').style('top',(event.pageY-28)+'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity',0); }
+
+draw();
+new ResizeObserver(()=>draw()).observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

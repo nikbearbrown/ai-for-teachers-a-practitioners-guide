@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t04 d04">
+  <title id="t04">Bastani conditions &#8212; practice gain and exam loss</title>
+  <desc id="d04">A grouped bar chart of three conditions (Control, GPT Base, GPT Tutor) with paired bars for practice performance and unaided exam score. The inversion is visible: the unscaffolded condition&#8217;s practice bar is the tallest, while its exam bar drops below the no-AI control.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .val { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .callout { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #2a1a0e; }
+    </style>
+    <marker id="ar4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="32" class="ti">Same model. Different gate. Opposite outcomes.</text>
+  <text x="32" y="50" class="sub">Bastani et al. (2025): Turkish high-school math students across three conditions, n &#8776; 1,000.</text>
+
+  <!-- Plot area: x 110..660, y 84..320. y axis 0..230 (index, Control = 100) -->
+  <line x1="110" y1="84" x2="110" y2="320" stroke="#4a4540" stroke-width="1"/>
+  <line x1="110" y1="320" x2="660" y2="320" stroke="#4a4540" stroke-width="1"/>
+
+  <!-- y ticks: index 0..230, scale: y = 320 - (val * 236/230) -->
+  <text x="100" y="324" text-anchor="end" class="sm">0</text>
+  <text x="100" y="269" text-anchor="end" class="sm">50</text>
+  <text x="100" y="217" text-anchor="end" class="sm">100</text>
+  <text x="100" y="165" text-anchor="end" class="sm">150</text>
+  <text x="100" y="114" text-anchor="end" class="sm">200</text>
+
+  <g stroke="#c8c4c0" stroke-width="0.5" opacity="0.7">
+    <line x1="110" y1="269" x2="660" y2="269"/>
+    <line x1="110" y1="217" x2="660" y2="217"/>
+    <line x1="110" y1="165" x2="660" y2="165"/>
+    <line x1="110" y1="114" x2="660" y2="114"/>
+  </g>
+
+  <!-- Three groups, centers at 220, 385, 550, paired bars width 50 -->
+  <!-- Control: practice 100, exam 100 -->
+  <rect x="190" y="217" width="50" height="103" fill="#2a1a0e"/>
+  <rect x="240" y="217" width="50" height="103" fill="#8a8480"/>
+  <text x="215" y="208" text-anchor="middle" class="val">100</text>
+  <text x="265" y="208" text-anchor="middle" class="val">100</text>
+  <text x="240" y="342" text-anchor="middle" class="lb">Control (no AI)</text>
+
+  <!-- GPT Base: practice 148, exam 83 -->
+  <rect x="355" y="167" width="50" height="153" fill="#2a1a0e"/>
+  <rect x="405" y="234" width="50" height="86" fill="#8a8480"/>
+  <text x="380" y="158" text-anchor="middle" class="val">148</text>
+  <text x="430" y="225" text-anchor="middle" class="val">83</text>
+  <text x="405" y="342" text-anchor="middle" class="lb">GPT Base (unscaffolded)</text>
+
+  <!-- GPT Tutor: practice 227, exam 102 -->
+  <rect x="520" y="85" width="50" height="235" fill="#2a1a0e"/>
+  <rect x="570" y="214" width="50" height="106" fill="#8a8480"/>
+  <text x="545" y="78" text-anchor="middle" class="val">227</text>
+  <text x="595" y="205" text-anchor="middle" class="val">102</text>
+  <text x="570" y="342" text-anchor="middle" class="lb">GPT Tutor (scaffolded)</text>
+
+  <!-- Legend -->
+  <rect x="500" y="362" width="14" height="10" fill="#2a1a0e"/>
+  <text x="520" y="371" class="sm">Practice performance (index)</text>
+  <rect x="500" y="380" width="14" height="10" fill="#8a8480"/>
+  <text x="520" y="389" class="sm">Unaided exam score (index)</text>
+
+  <!-- Callout: inversion -->
+  <line x1="430" y1="320" x2="430" y2="305" stroke="#2a1a0e" stroke-width="1" marker-end="url(#ar4)"/>
+  <text x="338" y="382" class="callout">Exam below the no-AI control.</text>
+
+  <text x="350" y="406" text-anchor="middle" class="cap">Same students, same model. The gate location decides whether the cognitive operation occurred.</text>
+</svg>

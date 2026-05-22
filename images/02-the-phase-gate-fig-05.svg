@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="t05 d05">
+  <title id="t05">The jagged frontier</title>
+  <desc id="d05">A task-space grid with an irregular boundary line dividing AI helps from AI hurts. Eight teaching tasks are plotted as labeled dots, four clearly inside each zone, two ambiguous near the boundary. The y-axis shows AI capability; the x-axis shows task structure regularity.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .axis { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .zone { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-style: italic; fill: #4a4540; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+  </defs>
+  <rect width="700" height="480" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">The jagged technological frontier</text>
+  <text x="32" y="52" class="sub">Dell&#8217;Acqua, Mollick et al. (2023): on tasks inside it, AI helps; outside it, AI hurts. The line is irregular.</text>
+
+  <!-- Plot area: x 110..660, y 84..400 -->
+  <rect x="110" y="84" width="550" height="316" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+
+  <!-- Jagged boundary path: irregular split of the rectangle -->
+  <path d="M 110 200 L 160 230 L 200 180 L 240 240 L 280 200 L 320 260 L 360 220 L 400 280 L 440 200 L 480 260 L 520 220 L 560 280 L 600 240 L 660 290"
+        fill="none" stroke="#2a1a0e" stroke-width="1.6" stroke-dasharray="6 3"/>
+
+  <!-- Helps zone (upper region) shaded lighter -->
+  <text x="540" y="120" class="zone">AI helps</text>
+  <text x="540" y="138" class="sm">(inside the frontier)</text>
+
+  <!-- Hurts zone (lower region) -->
+  <text x="160" y="370" class="zone">AI hurts</text>
+  <text x="160" y="386" class="sm">(outside the frontier)</text>
+
+  <!-- Plotted tasks: dots with labels -->
+  <!-- Inside (above the jagged line): 4 helps -->
+  <circle cx="170" cy="130" r="5" fill="#2a1a0e"/>
+  <text x="180" y="134" class="lb">Reformat a worksheet</text>
+
+  <circle cx="320" cy="120" r="5" fill="#2a1a0e"/>
+  <text x="330" y="124" class="lb">Summarize a paper</text>
+
+  <circle cx="470" cy="140" r="5" fill="#2a1a0e"/>
+  <text x="480" y="144" class="lb">Generate practice items</text>
+
+  <circle cx="600" cy="170" r="5" fill="#2a1a0e"/>
+  <text x="500" y="180" class="lb">Translate parent letter (tone only)</text>
+
+  <!-- Outside (below): 4 hurts -->
+  <circle cx="200" cy="340" r="5" fill="#2a1a0e"/>
+  <text x="210" y="344" class="lb">Diagnose this student&#8217;s misreading</text>
+
+  <circle cx="380" cy="360" r="5" fill="#2a1a0e"/>
+  <text x="390" y="364" class="lb">Choose the analogy for this class</text>
+
+  <circle cx="560" cy="340" r="5" fill="#2a1a0e"/>
+  <text x="430" y="380" class="lb">Author an IEP accommodation</text>
+
+  <circle cx="280" cy="380" r="5" fill="#2a1a0e"/>
+  <text x="290" y="396" class="lb">Resolve a contested grade</text>
+
+  <!-- Ambiguous near boundary: 2 -->
+  <circle cx="250" cy="220" r="5" fill="#8a8480" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="260" y="218" class="lb">Draft a lab procedure</text>
+
+  <circle cx="500" cy="240" r="5" fill="#8a8480" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="510" y="238" class="lb">Grade a short-answer set</text>
+
+  <!-- Axes -->
+  <text x="385" y="430" text-anchor="middle" class="axis">Task structure &#8594; (regularity, public training data, well-specified output)</text>
+  <text x="20" y="240" class="axis" transform="rotate(-90 20 240)">AI capability on this task &#8594;</text>
+
+  <text x="350" y="468" text-anchor="middle" class="cap">The line is not predictable from the task description alone. Without a gate, you cannot tell which side you are on.</text>
+</svg>

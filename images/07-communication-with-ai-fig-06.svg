@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="t07f6 d07f6">
+  <title id="t07f6">Three myths and three realities about AI-assisted teacher communication</title>
+  <desc id="d07f6">A two-column comparison figure with three rows. Each row pairs a popular myth on the left against the corresponding reality on the right. Row one contrasts the claim that AI handles parent communication with the reality that AI handles only register conversion. Row two contrasts the claim that translation is solved with the reality that translation is partial and uneven. Row three contrasts the claim that AI is better for hard messages because it stays calm with the reality that the model is calm about details that did not happen.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 18px; font-weight: 700; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: #4a4540; }
+      .hdr { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-weight: 700; fill: #fdfcfb; letter-spacing: 0.6px; }
+      .row { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 13px; fill: #2a1a0e; }
+      .rowb { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 13px; font-weight: 700; fill: #2a1a0e; }
+      .rownum { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 10px; font-weight: 700; fill: #4a4540; letter-spacing: 0.6px; }
+      .cap { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: #4a4540; }
+    </style>
+  </defs>
+  <rect width="700" height="480" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">Three plausible-sounding shortcuts. Three predictable failures.</text>
+  <text x="32" y="54" class="sub">Each myth gets you to "send" faster. Each reality is the one you live with.</text>
+
+  <rect x="32" y="80" width="312" height="32" fill="#8a8480" stroke="none"/>
+  <text x="48" y="100" class="hdr">MYTH</text>
+  <rect x="356" y="80" width="312" height="32" fill="#2a1a0e" stroke="none"/>
+  <text x="372" y="100" class="hdr">REALITY</text>
+
+  <line x1="350" y1="116" x2="350" y2="416" stroke="#8a8480" stroke-width="1"/>
+
+  <rect x="32" y="120" width="636" height="96" fill="#fdfcfb" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="48" y="138" class="rownum">ROW 1 — PARENT COMMUNICATION</text>
+  <text x="48" y="162" class="row">"AI handles parent</text>
+  <text x="48" y="180" class="row">communication."</text>
+  <text x="48" y="204" class="row">It does the email.</text>
+
+  <text x="372" y="162" class="rowb">AI handles register conversion</text>
+  <text x="372" y="180" class="row">of communication the teacher</text>
+  <text x="372" y="198" class="row">already substantively composed.</text>
+
+  <rect x="32" y="220" width="636" height="96" fill="#fdfcfb" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="48" y="238" class="rownum">ROW 2 — TRANSLATION</text>
+  <text x="48" y="262" class="row">"Translation is solved."</text>
+  <text x="48" y="286" class="row">The output looks fluent,</text>
+  <text x="48" y="304" class="row">so it must be right.</text>
+
+  <text x="372" y="262" class="rowb">Usable for routine prose</text>
+  <text x="372" y="280" class="row">in high-resource pairs.</text>
+  <text x="372" y="298" class="row">Never for procedural rights,</text>
+  <text x="372" y="316" class="row">medical, custody, discipline.</text>
+
+  <rect x="32" y="320" width="636" height="96" fill="#fdfcfb" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="48" y="338" class="rownum">ROW 3 — HARD MESSAGES</text>
+  <text x="48" y="362" class="row">"Use AI for the hard ones —</text>
+  <text x="48" y="380" class="row">it stays calm."</text>
+  <text x="48" y="404" class="row">Calmer than a tired teacher.</text>
+
+  <text x="372" y="362" class="rowb">The model is calm</text>
+  <text x="372" y="380" class="row">about details that did not happen.</text>
+  <text x="372" y="398" class="row">Calm is the default. Right</text>
+  <text x="372" y="416" class="row">is your responsibility.</text>
+
+  <text x="350" y="450" class="cap" text-anchor="middle">Figure 7.6 — Three plausible-sounding shortcuts. Three predictable failure modes.</text>
+</svg>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 5.6 — The phase gate slides as the stakes rise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 14px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 480px; }
+  .ti  { font-family: 'EB Garamond', Georgia, serif; font-size: 16px; font-weight: 700; fill: var(--color-ink); }
+  .sub { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .axend { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: 700; fill: var(--color-ink); letter-spacing: 0.4px; }
+  .axsub { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; fill: var(--color-secondary); font-style: italic; }
+  .axis-mid { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; fill: var(--color-secondary); }
+  .lbl { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-weight: 700; fill: var(--color-ink); }
+  .lbl-dim { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; fill: var(--color-secondary); font-style: italic; }
+  .gate { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-weight: 700; fill: var(--color-white); }
+  .gate-cap { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+  .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .band { transition: opacity 200ms cubic-bezier(0.2,0.8,0.2,1); cursor: pointer; }
+  .band:hover { opacity: 0.9; }
+  .gate-rect { cursor: ew-resize; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-family: 'EB Garamond', Georgia, serif; font-size: 13px; max-width: 300px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 5.6 — The phase gate slides as the stakes rise</h1>
+<p class="subtitle">Higher stakes, more human involvement. Drag the gate to test placements.</p>
+<div id="chart" role="img" aria-labelledby="t-pg d-pg"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const FALLBACK_DATA = [
+  { idx: 0, title: 'Check for understanding', sub: 'low-stakes',          tip: 'No record. The cost of an AI miss is one re-attempt.' },
+  { idx: 1, title: 'Practice problem set',    sub: 'no record',           tip: 'Formative. AI hints (the Tutor pattern) belong here.' },
+  { idx: 2, title: 'Draft essay',             sub: 'formative feedback',  tip: 'AI-drafted comments + teacher review is the sweet spot.' },
+  { idx: 3, title: 'Graded essay',            sub: 'goes in gradebook',   tip: 'Record-bearing. Teacher signs every grade.' },
+  { idx: 4, title: 'Final exam',              sub: 'summative',           tip: 'EU AI Act high-risk territory. Documentation and oversight required.' },
+  { idx: 5, title: 'Transcript grade',        sub: 'high-stakes',         tip: 'Teacher of record. AI is consulted, never deciding.' }
+];
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(event, html) {
+  tooltip.html(html).style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px')
+    .transition().duration(150).style('opacity', 1);
+}
+function moveTip(event) { tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+async function loadData() {
+  try { return await d3.json('./05-assessment-grading-and-feedback-with-ai-fig-06.json'); }
+  catch { return FALLBACK_DATA; }
+}
+
+function draw(data) {
+  d3.select('#chart').selectAll('*').remove();
+  const container = document.getElementById('chart');
+  const W = container.clientWidth || 760;
+  const H = container.clientHeight || 480;
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`).attr('width', W).attr('height', H)
+    .attr('role', 'img').attr('aria-labelledby', 't-pg d-pg');
+  svg.append('title').attr('id', 't-pg').text('Phase gate sliding from formative to summative');
+  svg.append('desc').attr('id', 'd-pg').text('A horizontal scale running from formative on the left to summative on the right with six assessment types as tick marks. A draggable vertical gate marker indicates where teacher involvement begins to dominate.');
+
+  // Title
+  svg.append('text').attr('x', 32).attr('y', 30).attr('class', 'ti').text('The phase gate slides as the stakes rise');
+  svg.append('text').attr('x', 32).attr('y', 48).attr('class', 'sub').text('Higher stakes, more human involvement. Drag the gate to test placements.');
+
+  // End labels
+  const xLeft = 80, xRight = W - 80;
+  svg.append('text').attr('x', xLeft).attr('y', 90).attr('class', 'axend').text('FORMATIVE');
+  svg.append('text').attr('x', xLeft).attr('y', 106).attr('class', 'axsub').text('for learning — low cost of error');
+  svg.append('text').attr('x', xRight).attr('y', 90).attr('text-anchor', 'end').attr('class', 'axend').text('SUMMATIVE');
+  svg.append('text').attr('x', xRight).attr('y', 106).attr('text-anchor', 'end').attr('class', 'axsub').text('of learning — record-bearing');
+
+  // Scale bar — 6 bands
+  const scaleY = 180, scaleH = 44;
+  const bandW = (xRight - xLeft) / 6;
+  const shades = ['#F0EBE3', '#D4D4D4', '#A8A8A8', '#7A7A7A', '#3A3A3A', '#121212'];
+  const bands = svg.append('g').attr('class', 'g-bands');
+  data.forEach((d, i) => {
+    bands.append('rect').attr('class', 'band')
+      .attr('x', xLeft + i * bandW).attr('y', scaleY).attr('width', bandW).attr('height', scaleH)
+      .attr('fill', shades[i]).attr('stroke', 'var(--color-secondary)').attr('stroke-width', 0.6)
+      .attr('tabindex', 0).attr('aria-label', `${d.title} (${d.sub})`)
+      .on('mouseover', (e) => showTip(e, `<strong>${d.title}</strong><br>${d.tip}`))
+      .on('mousemove', moveTip).on('mouseout', hideTip)
+      .on('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') showTip(e, `<strong>${d.title}</strong><br>${d.tip}`); });
+  });
+
+  // Axis mid-label
+  svg.append('text').attr('x', (xLeft + xRight) / 2).attr('y', 160).attr('text-anchor', 'middle').attr('class', 'axis-mid')
+    .text('AI involvement decreases  →  teacher involvement increases');
+
+  // Tick labels under each band
+  data.forEach((d, i) => {
+    const cx = xLeft + i * bandW + bandW / 2;
+    svg.append('line').attr('x1', cx).attr('y1', scaleY + scaleH).attr('x2', cx).attr('y2', scaleY + scaleH + 10).attr('stroke', 'var(--color-secondary)');
+    const lines = d.title.split(' ');
+    if (lines.length >= 3) {
+      const half = Math.ceil(lines.length / 2);
+      svg.append('text').attr('x', cx).attr('y', scaleY + scaleH + 26).attr('text-anchor', 'middle').attr('class', 'lbl').text(lines.slice(0, half).join(' '));
+      svg.append('text').attr('x', cx).attr('y', scaleY + scaleH + 42).attr('text-anchor', 'middle').attr('class', 'lbl').text(lines.slice(half).join(' '));
+      svg.append('text').attr('x', cx).attr('y', scaleY + scaleH + 58).attr('text-anchor', 'middle').attr('class', 'lbl-dim').text(d.sub);
+    } else {
+      svg.append('text').attr('x', cx).attr('y', scaleY + scaleH + 26).attr('text-anchor', 'middle').attr('class', 'lbl').text(d.title);
+      svg.append('text').attr('x', cx).attr('y', scaleY + scaleH + 42).attr('text-anchor', 'middle').attr('class', 'lbl-dim').text(d.sub);
+    }
+  });
+
+  // Phase gate marker — draggable
+  const gateW = 34, gateH = 56;
+  // initial position between band 2 (draft essay) and band 3 (graded essay)
+  let gateX = xLeft + 3 * bandW - gateW / 2;
+  const gateY = scaleY - 70;
+
+  const gate = svg.append('g').attr('class', 'gate-group');
+  const gateRect = gate.append('rect').attr('class', 'gate-rect')
+    .attr('x', gateX).attr('y', gateY).attr('width', gateW).attr('height', gateH).attr('fill', 'var(--color-ink)')
+    .attr('tabindex', 0).attr('aria-label', 'Phase gate — drag to set teacher-involvement threshold');
+  const gateText = gate.append('text').attr('class', 'gate').attr('x', gateX + gateW / 2).attr('y', gateY + 32).attr('text-anchor', 'middle').text('GATE');
+  const gateCap  = gate.append('text').attr('class', 'gate-cap').attr('x', gateX + gateW / 2).attr('y', gateY - 6).attr('text-anchor', 'middle').text('gate slides with stakes');
+
+  function moveGate(newX) {
+    const clamped = Math.max(xLeft, Math.min(xRight - gateW, newX));
+    gateRect.attr('x', clamped);
+    gateText.attr('x', clamped + gateW / 2);
+    gateCap.attr('x', clamped + gateW / 2);
+  }
+  gate.call(d3.drag()
+    .on('drag', (event) => moveGate(event.x - gateW / 2)));
+  gateRect.on('keydown', (event) => {
+    const step = bandW / 2;
+    const cur = +gateRect.attr('x');
+    if (event.key === 'ArrowLeft')  moveGate(cur - step);
+    if (event.key === 'ArrowRight') moveGate(cur + step);
+  });
+
+  // Footer
+  const footerY = scaleY + scaleH + 96;
+  svg.append('line').attr('x1', 32).attr('y1', footerY).attr('x2', W - 32).attr('y2', footerY).attr('stroke', 'var(--color-border)');
+  svg.append('text').attr('x', 32).attr('y', footerY + 20).attr('class', 'cap').text('AI is more defensibly used on the formative side; the cost of an error is lower.');
+  svg.append('text').attr('x', 32).attr('y', footerY + 38).attr('class', 'cap').text('On summative work, the teacher of record is the assessor of record — by statute, and');
+  svg.append('text').attr('x', 32).attr('y', footerY + 54).attr('class', 'cap').text('as a high-risk system under the EU AI Act (2024) when AI evaluates students.');
+}
+
+loadData().then(data => {
+  draw(data);
+  const ro = new ResizeObserver(() => draw(data));
+  ro.observe(document.getElementById('chart'));
+});
+</script>
+</body>
+</html>

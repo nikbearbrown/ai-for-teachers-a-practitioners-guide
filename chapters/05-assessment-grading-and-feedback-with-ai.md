@@ -21,7 +21,8 @@ This is where the chapter begins. Not with the time savings — those are real a
 
 ## Four sub-tasks inside one verb
 
-<!-- → INFOGRAPHIC: Four horizontal rows, each labeled with one sub-task and a brief descriptor: (1) First-pass scoring — "measurement task"; (2) Feedback drafting — "prose generation against a structure"; (3) Response grouping — "clustering task"; (4) Final grade decision — "professional, legal, and relational weight." Left column: "AI role." Right column: color-coded — green for (1)–(3) "with calibration / with review / with confirmation"; red for (4) "teacher only." Caption: Grading is four tasks. AI is capable on three. The fourth is not a sub-task AI performs. -->
+![Four horizontal rows, each labeled with one sub-task and a brief descriptor: (1) First-pass scoring](../images/05-assessment-grading-and-feedback-with-ai-fig-01.png)
+*Figure 5.1 — Four horizontal rows, each labeled with one sub-task and a brief descriptor:.*
 
 When a teacher says "I have to grade this stack," she is naming four different things at once. Pulling them apart is the first move.
 
@@ -39,7 +40,8 @@ There is the taxonomy. Sub-tasks one through three are where AI helps. Sub-task 
 
 ## What the studies actually show
 
-<!-- → TABLE: Three-column comparison — Study / Task type / Key finding. Rows: Steiss et al. 2024 (secondary essay feedback, 5 criteria — AI wins on rubric alignment, humans win on the other four); Henkel et al. 2024 (K-12 short answer, QWK ≈ 0.70 vs human 0.75 — AI in second-rater band); Hewlett ASAP-AES 2012 (long-form essay, same QWK band); ETS e-rater / TOEFL (approximates second-human agreement). Caption: The capability is established for well-scoped tasks. What none of these studies measures is whether students learn as well from AI feedback as from teacher feedback. That is the missing study. -->
+![Three-column comparison matrix](../images/05-assessment-grading-and-feedback-with-ai-fig-02.png)
+*Figure 5.2 — Three-column comparison matrix.*
 
 Two studies establish what AI can do on sub-tasks one and two. Both are recent. Both are worth being precise about.
 
@@ -79,7 +81,8 @@ Pick five student samples you have already graded — not the easiest five, but 
 
 The step people skip is that last re-run. They see the offset, trust themselves to correct for it mentally as they review later, and scale immediately. The mental adjustment does not survive thirty essays. By essay forty the systematic upward drift has propagated into the real grade distribution. Calibration that is not closed in the prompt is calibration that is not happening.
 
-<!-- → INFOGRAPHIC: A two-column timeline showing "Without the re-run" vs. "With the re-run." Left column: offset noticed → mental note → scale → essays 1–30 (fine) → essays 31–80 (drift begins) → grade distribution off by half a level across the class. Right column: offset noticed → prompt revised → re-run confirms ±0.5 → scale → grade distribution accurate. Caption: The re-run is 15 minutes. The drift is a semester. -->
+![A two-column timeline showing "Without the re-run" vs](../images/05-assessment-grading-and-feedback-with-ai-fig-03.png)
+*Figure 5.3 — A two-column timeline showing "Without the re-run" vs.*
 
 ---
 
@@ -97,7 +100,8 @@ High inter-rater reliability between an AI and a teacher who share a bias is not
 
 ## The Bastani parallel at the feedback level
 
-<!-- → CHART: Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing practice performance (light bar) and unaided exam score (dark bar). The GPT Base exam bar drops below Control — that inversion is the visual argument. A callout arrow at the GPT Base exam bar: "17% relative reduction vs. control." Caption: Same model. Different gate location. The practice artifact improved. The learning did not. -->
+![Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing practice performance (light bar) and unaided exam score (dark bar)](../images/05-assessment-grading-and-feedback-with-ai-fig-04.png)
+*Figure 5.4 — Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing.*
 
 This is the chapter's central move, and I want to label it carefully: what follows is a *prediction*, not a measured effect. It is well-motivated by two findings — Bastani et al. (2025) at the practice level, Steiss et al. (2024) on feedback quality — but the direct feedback-level analog has not been run as a trial.
 
@@ -141,7 +145,8 @@ The lesson restated: the work is not delegated. The drafting is. The judgment st
 
 The limit: this worked because the rubric was tight, the responses were short, and the misconceptions she was looking for were ones she had already named for herself. If the rubric had been six overlapping levels, or the responses had been three-page essays, or she was teaching this unit for the first time and did not yet know what to look for, the workflow would have produced less savings and required more review. The dividend scales with the clarity of the teacher's prior judgment.
 
-<!-- → TABLE: "When the calibration workflow earns its time savings" — two columns: Conditions that increase the dividend (tight rubric, short responses, teacher knows the misconceptions, recurring assignment) vs. Conditions that reduce it (overlapping rubric levels, long essays, first time teaching the unit, novel prompt). Caption: The 50–80% savings estimate assumes the favorable conditions. Know which column you're in before you scale. -->
+!["When the calibration workflow earns its time savings"](../images/05-assessment-grading-and-feedback-with-ai-fig-05.png)
+*Figure 5.5 — "When the calibration workflow earns its time savings".*
 
 ---
 
@@ -163,7 +168,8 @@ If any of the four conditions is missing, the workflow has stopped helping. It m
 
 ## Formative versus summative — where the gate slides
 
-<!-- → IMAGE: A sliding scale from "formative" (left) to "summative" (right), with the phase gate represented as a vertical marker that shifts rightward (toward more human involvement) as stakes increase. Below the scale: example assessment types placed along it — check-for-understanding, practice problem set, draft essay, graded essay, final exam, transcript-bearing grade. Caption: The gate is not fixed. It slides with the stakes. The principle is right; the exact placement on your scale depends on the specific assessment. -->
+![A horizontal sliding scale from "formative" (left) to "summative" (right), with the phase gate represented as a vertical marker that shifts rightward (toward more human involvement) as stakes increase](../images/05-assessment-grading-and-feedback-with-ai-fig-06.png)
+*Figure 5.6 — A horizontal sliding scale from "formative" (left) to "summative" (right), with.*
 
 A formative assessment is for learning: a draft, a check-for-understanding, a low-stakes problem set the student uses to figure out what she does not yet know. A summative assessment is of learning: a final exam, a graded essay, a record that goes on the transcript. The legal, ethical, and pedagogical demands on the two are different, and the phase gate sits in different places along the workflow.
 
@@ -225,3 +231,84 @@ The last is the formative-summative gate placement question. The principle — t
 - Landis & Koch. The measurement of observer agreement for categorical data. *Biometrics* 33(1): 159–174, 1977. https://www.jstor.org/stable/2529310
 - Hewlett Foundation ASAP-AES. Kaggle competition, 2012. https://www.kaggle.com/competitions/asap-aes
 - EU AI Act, Annex III, point 3 (high-risk AI in education). 2024. https://artificialintelligenceact.eu/the-act/
+
+
+---
+
+## Prompts
+
+These prompts ask Claude to rebuild each chapter figure as a self-contained D3 v7 HTML file you can open in a browser and tinker with. Each is structural — it names the data shape and the channel choices, then hands Claude the brutalist style system to do the rest. Keep the SVG nearby; it is the anchor.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context before running these prompts. They carry the color tokens, font stack, accessibility tags, and the pinned D3 7.9.0 cdnjs URL.
+
+---
+
+### Figure 5.1 — Four sub-tasks inside one verb
+
+Build a standalone HTML file rendering Figure 5.1 as a four-row taxonomy table. Each row is one grading sub-task: first-pass scoring, feedback drafting, response grouping, and final grade decision. Columns: sub-task number, what it is (one short body line), AI role chip. The first three rows share a neutral tone; row four uses `--color-red` on the chip to mark "Teacher-only." Anchor the layout to the SVG in `images/05-assessment-grading-and-feedback-with-ai-fig-01.svg`. Render with `--color-*` tokens from `brutalist/DESIGN.md`, EB Garamond throughout, Inter only where DESIGN.md calls for it. Add `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)` hover handlers that explain each sub-task on hover, dark-mode `@media` block, and `prefers-reduced-motion` suppression. Pin D3 7.9.0 from cdnjs — no substitutions.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-01.html`
+
+---
+
+### Figure 5.2 — What AI matched, and where humans still won
+
+Build a standalone HTML file rendering Figure 5.2 as a five-row comparison matrix from Steiss et al. (2024). Each row is one feedback criterion (criteria-based alignment, accuracy, prioritization, clarity of directions, supportive tone) with two outcome cells — one for AI, one for Human. Mark the winner with a filled chip; the loser is an em-dash. AI wins exactly one row (alignment); humans win the other four. Anchor to `images/05-assessment-grading-and-feedback-with-ai-fig-02.svg`. Use `--color-*` tokens, EB Garamond throughout. Hover on any row shows a short explanation of what that criterion measured. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)` handlers, dark-mode and reduced-motion blocks. Pin D3 7.9.0 from cdnjs.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-02.html`
+
+---
+
+### Figure 5.3 — The re-run is fifteen minutes; the drift is a semester
+
+Build a standalone HTML file rendering Figure 5.3 as two side-by-side five-step timelines. Left column: "Without the re-run" — offset noticed, mental note, scale, drift propagates, distribution off. Right column: "With the re-run" — offset noticed, prompt revised, re-run on the same five, within ±0.5 scale, distribution true. Each step is a numbered node with a short body line. Outcome chips at the bottom of each column: left red ("systematic upward drift"), right ink ("calibrated and stable"). Anchor to `images/05-assessment-grading-and-feedback-with-ai-fig-03.svg`. Use `--color-*` tokens, EB Garamond throughout. Hover on any node tells the reader what happens at that step. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver, `(event, d)` signatures, dark-mode and reduced-motion. Pin D3 7.9.0 from cdnjs.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-03.html`
+
+---
+
+### Figure 5.4 — Bastani: practice gains, exam losses
+
+Build a standalone HTML file rendering Figure 5.4 as a three-group, two-series bar chart. Conditions on the x-axis: Control, GPT Base, GPT Tutor. Two bars per group: practice (with AI) and unaided exam. Index so control practice equals 100; values are 100/100, 148/83, 227/96. Zero baseline on the y-axis. Add a 100-reference line and a callout that names the –17% drop on the GPT Base unaided exam relative to control. Anchor to `images/05-assessment-grading-and-feedback-with-ai-fig-04.svg`. Use `--color-*` tokens, EB Garamond for labels, JetBrains Mono for axis ticks. Hover tooltips name the value and the gate condition. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver, `(event, d)` handlers, dark-mode and reduced-motion. Pin D3 7.9.0 from cdnjs.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-04.html`
+
+---
+
+### Figure 5.5 — When the calibration workflow earns its time savings
+
+Build a standalone HTML file rendering Figure 5.5 as a two-column conditions table. Left column header "Conditions that grow the dividend"; right column header "Conditions that shrink it." Four paired rows: tight rubric / overlapping levels, short responses / three-page essays, teacher knows the misconceptions / first time teaching the unit, recurring assignment / novel prompt. Each cell has a bold row title and a small italic body line. Outcome chips at the bottom: left "~80% time savings plausible," right "closer to 50% (or less)." Anchor to `images/05-assessment-grading-and-feedback-with-ai-fig-05.svg`. Use `--color-*` tokens, EB Garamond throughout. Hover on any cell expands the reasoning for why that condition shifts the dividend. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver, `(event, d)` handlers, dark-mode and reduced-motion. Pin D3 7.9.0 from cdnjs.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-05.html`
+
+---
+
+### Figure 5.6 — The phase gate slides as the stakes rise
+
+Build a standalone HTML file rendering Figure 5.6 as a horizontal six-band scale from formative (left) to summative (right). Six bands left-to-right: check for understanding, practice problem set, draft essay, graded essay, final exam, transcript grade. Tone runs light on the left to ink on the right (AI-forward → teacher-only). Add a draggable vertical gate marker above the scale that the reader can move left or right; default position falls between draft essay and graded essay. Hover any band to see what AI's role looks like at that stake level. Anchor to `images/05-assessment-grading-and-feedback-with-ai-fig-06.svg`. Use `--color-*` tokens, EB Garamond throughout. Support keyboard arrow-key dragging on the gate for accessibility. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver, `(event, d)` handlers, dark-mode and reduced-motion. Pin D3 7.9.0 from cdnjs.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-06.html`
+
+---
+
+## AI Wayback Machine
+
+Thorndike founded American educational measurement. His law of effect, connectionist theory of learning, and the maxim *anything that exists, exists in some quantity, and so can be measured* are the chapter's framework for AI-assisted assessment in one line. The discipline he insisted on — that an assessment instrument is a tool that can be sharpened, audited, and replaced — is exactly what this chapter asks teachers to bring to AI-generated rubrics, drafts, and feedback.
+
+![Edward Thorndike, 1874-1949. AI-generated portrait based on a public domain photograph.](../images/edward-thorndike.jpg)
+*Edward Thorndike, 1874-1949. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Edward Thorndike, and how does their work connect to the ideas in this chapter? Keep it to three paragraphs. End with the single most surprising thing about their career or thinking.
+```
+
+→ Search **"Edward Thorndike"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to apply Thorndike's framework to a specific scenario in this chapter — what gets surfaced that the chapter's prose left implicit?
+- Ask about the critics of Thorndike's work and which criticisms still bite today.
+
+What changes? What gets better? What gets worse?

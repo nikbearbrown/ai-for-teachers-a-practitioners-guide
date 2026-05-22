@@ -15,6 +15,9 @@ Then three parents called in the same week. Not about the scores. About the feed
 
 Each comment was rubric-accurate. Each one was wrong. Each one had been approved. The approval took about three seconds per essay.
 
+![failed-workflow flowchart of the opening case](../images/02-the-phase-gate-fig-01.png)
+*Figure 2.1 — failed-workflow flowchart of the opening case.*
+
 The district shut the tool down. The vendor was not at fault. The rubric was not at fault. What failed was simpler and harder to see: the workflow had been designed so that a specific operation — *did the teacher who knows this student actually read this comment and ask whether it fits?* — did not have to occur. The click happened. The operation did not. The phrase "human in the loop" was accurate on the dashboard. It was not accurate as a description of what was happening in the room.
 
 Cory Doctorow put it bluntly: "A neck in a noose is also a human in the loop." Madeleine Clare Elish named the structure it creates: a *moral crumple zone*. When an automated system fails in a way that harms someone, responsibility flows not toward the system's designers but toward whichever human was nominally "in control" at the moment. The workflow gave teachers the responsibility and three seconds. It did not give them the time, the information, or the structural insistence to perform the operation that makes the responsibility real.
@@ -25,7 +28,8 @@ This chapter is about what makes a phase gate an actual gate — not a phrase, n
 
 ## What a gate actually is
 
-<!-- → IMAGE: A split diagram — left side shows a dashboard "Approved ✓" click with an arrow going straight to "Output delivered to student"; right side shows the same workflow interrupted by a labeled box ("Cognitive operation: Does this fit this student?") between AI output and delivery. Caption: The gate is the box in the right panel. The click in the left panel is not a gate. -->
+![A split diagram](../images/02-the-phase-gate-fig-02.png)
+*Figure 2.2 — A split diagram.*
 
 A phase gate is not a checkbox. It is not a policy that says "teachers must review all AI output." Those things may exist around a gate. Neither is a gate.
 
@@ -39,6 +43,9 @@ A defined downstream action that occurs only after the human acts — specific, 
 
 Here is the test, stated plainly: name the upstream task, the cognitive operation, and the downstream action in one sentence each. If you cannot, there is no gate. There is only a phrase.
 
+![three-component gate anatomy](../images/02-the-phase-gate-fig-03.png)
+*Figure 2.3 — three-component gate anatomy.*
+
 The opening case fails the test immediately. The cognitive operation — *does this fit this student?* — is not named. It is implied, the way "you should probably think about it" is implied, which is to say it is not structurally present at all. The dashboard records the click. Nobody can tell, from the dashboard, whether the operation happened. That is not a minor design flaw. That is the design. The click is easy to require. The operation is harder to require. Workflows under time pressure produce the click and skip the operation, predictably, every time.
 
 ---
@@ -51,7 +58,8 @@ Learning — actual learning, the kind that persists — is a biological event. 
 
 This is not a metaphor or an encouraging slogan. It is the mechanism. And it has a direct consequence for what AI does to learning when the gate is in the wrong place.
 
-<!-- → CHART: Bar chart showing the three Bastani conditions — Control, GPT Base, GPT Tutor — with two bars per condition: practice performance (light) and unaided exam score (dark). The visual point is the inversion: GPT Base's practice bar is tall, its exam bar drops below Control. Caption: Same model, different gate location. The practice gain and the exam loss are both real. -->
+![Bar chart showing the three Bastani conditions](../images/02-the-phase-gate-fig-04.png)
+*Figure 2.4 — Bar chart showing the three Bastani conditions.*
 
 Bastani and colleagues (2025) ran roughly a thousand Turkish high school students through three conditions in mathematics: no AI, an unscaffolded GPT-4 chatbot, and a version of the same model wrapped in teacher-designed prompts that gave hints calibrated to the curriculum rather than direct answers. During practice, students with the unscaffolded chatbot outperformed the no-AI group by roughly 48%. Students with the scaffolded version outperformed them by 127%. So far: AI helps, more carefully designed AI helps more. The press reported this part.
 
@@ -71,7 +79,8 @@ This is the Bastani finding, scaled to the professional. The fluency trap is not
 
 ## The jagged frontier
 
-<!-- → INFOGRAPHIC: A rough, irregular boundary line dividing a task-space grid into "AI helps" and "AI hurts" zones, with several example teaching tasks plotted as labeled dots — some clearly inside each zone, two or three ambiguously near the boundary. Caption: The frontier is jagged, not a clean line. Two tasks that look similar can sit on opposite sides. The gate is how you tell which side you're on before the consequences arrive. -->
+![A rough, irregular boundary line dividing a task-space grid into "AI helps" and "AI hurts" zones, with several example teaching tasks plotted as labeled dots](../images/02-the-phase-gate-fig-05.png)
+*Figure 2.5 — A rough, irregular boundary line dividing a task-space grid into "AI helps" and.*
 
 One tempting response to all of this is a uniform policy: all AI output gets human review, or no AI output gets deployed. The problem is that AI capability is not uniform.
 
@@ -89,6 +98,9 @@ There is a specific kind of knowledge that AI cannot have access to, regardless 
 
 Lee Shulman named it in his 1985 AERA presidential address: *pedagogical content knowledge*. PCK is the fusion of subject-matter knowledge and pedagogical knowledge that lets a teacher answer questions like: which mistakes do students predictably make when they first encounter related rates? Which analogies clarify the binomial distribution, and which quietly mislead? When the standard explanation fails, what do I reach for next? These are not subject-matter questions and they are not generic-pedagogy questions. They are questions about this topic with this kind of learner, built from repeated direct contact with learners struggling with exactly this material.
 
+![PCK Venn diagram showing two overlapping circles](../images/02-the-phase-gate-fig-06.png)
+*Figure 2.6 — PCK Venn diagram showing two overlapping circles.*
+
 A large language model can have encyclopedic subject-matter knowledge. It has zero PCK for the class sitting in front of you. It does not know which misconception load this group carried in from the prior unit. It does not know that two students are still off-balance from something that happened last week. It does not know that the analogy it just produced — clear, concise, plausible — is precisely the analogy that, in your experience with this age group, locks in the wrong intuition and takes three weeks to undo. The gate is where your PCK enters the workflow. Until it does, the workflow is producing rubric-accurate artifacts that are pedagogically disconnected from your students.
 
 This is also what makes the 99.4% approval rate in the opening case a signal rather than a success metric. The AI's rubric application was, in fact, largely accurate. The feedback was largely competent. Three comments out of 120 were wrong in ways that mattered. The question is not whether those three comments were worth catching. They obviously were. The question is whether a three-second approval process catches them. It does not, because catching them requires the operation — *does this fit this student?* — and that operation requires the teacher to actually hold the student's trajectory in mind while reading the comment. That cannot happen in three seconds. The gate has to be designed so the operation can happen. If the workflow does not give the teacher the time, the information, and the structural insistence to perform it, the gate is not present. A click without an operation is the noose.
@@ -99,7 +111,25 @@ This is also what makes the 99.4% approval rate in the opening case a signal rat
 
 The table below is a working map of the cognitive operations that have to remain with humans in AI-assisted instructional workflows. It is grounded in Bastani, Dell'Acqua, Shulman, Hattie, Elish, and FERPA — synthesized here as a practitioner framework, not presented as a settled list from prior literature. Adapt it to your context.
 
-<!-- → TABLE: Reproduce the twelve-gate table here with a color-coded "risk tier" column added — green (recoverable error), yellow (difficult to reverse), red (permanent or legal consequence). Readers need to see at a glance which gates carry asymmetric downside. Gates 6, 11, 12 are red; Gates 1, 3, 5, 9 are yellow; Gates 2, 4, 7, 8, 10 are green. Caption: Risk is not evenly distributed across the twelve gates. Design your structural enforcement in proportion to the color, not the number. -->
+![twelve-gate cluster map](../images/02-the-phase-gate-fig-07.png)
+*Figure 2.7 — twelve-gate cluster map.*
+
+| # | Gate | Description | Risk tier |
+|---|------|-------------|-----------|
+| 1 | Rubric calibration | Before bulk grading, AI scores five samples; teacher hand-grades the same five, compares criterion by criterion, and adjusts the rubric or the prompt where they diverge. | yellow |
+| 2 | Discrepancy resolution | When a student contests a score, the AI is barred from the resolution; the teacher reviews and decides. | green |
+| 3 | Socratic scaffolding | During student practice, the AI gives hints calibrated to the curriculum rather than direct answers; the student performs the cognitive work that produces learning. | yellow |
+| 4 | Direct instruction | The AI does not deliver live instruction; the teacher teaches, and the AI may analyze the lesson afterward. | green |
+| 5 | Content accuracy | Before distributing AI-generated materials, the teacher verifies them for errors, hallucinations, and grade-level fit. | yellow |
+| 6 | IEP / 504 compliance | The AI may suggest accommodations based on an anonymized profile, but a licensed specialist authorizes anything that enters the plan. | red |
+| 7 | Parent communication | On sensitive messages, the teacher drafts the core; the AI is limited to tone adjustment on already-drafted text. | green |
+| 8 | Student intervention | The AI flags patterns; the teacher designs and executes the intervention based on judgment about cause. | green |
+| 9 | PCK misconception | For complex concepts, the AI may suggest analogies; the teacher selects based on this class's actual misconception load. | yellow |
+| 10 | RAG walled garden | When planning with AI on curriculum materials, only verified curriculum sits in the corpus; the teacher verifies the source grounding of any output. | green |
+| 11 | Behavioral crisis | The AI is excluded from live disruption response; the teacher and trained staff handle the moment directly. | red |
+| 12 | Student anonymization | All PII is removed before any AI interaction; the teacher anonymizes inputs and re-personalizes outputs locally, protecting FERPA and COPPA obligations. | red |
+
+*Table 2.1 — The twelve gates, with risk tier. Green is recoverable; yellow is difficult to reverse; red is permanent or carries legal consequence.*
 
 | # | Gate | Trigger | AI boundary | Human operation | Cost of skipping |
 |---|------|---------|-------------|-----------------|-----------------|
@@ -122,7 +152,8 @@ Two notes. Gates 6 and 11 route work away from the classroom teacher to a licens
 
 ## The surgical timeout
 
-<!-- → IMAGE: Two-panel illustration. Left: a surgical team mid-timeout — surgeon, scrub nurse, anesthesiologist, all paused, checklist visible. Right: a teacher alone at a laptop, dashboard showing "99.4% approved," coffee cup, Sunday evening light. Caption: The timeout works because it is structural and witnessed. The gate fails when it is solitary and optional. Same principle, different enforcement context. -->
+![Two-panel illustration](../images/02-the-phase-gate-fig-08.png)
+*Figure 2.8 — Two-panel illustration.*
 
 Before any surgical incision in a modern operating room, the team pauses. The surgeon names the patient, names the procedure, names the side, confirms allergies and antibiotic timing. Every member of the team listens. Only after the timeout does the incision occur.
 
@@ -136,13 +167,17 @@ Where the analogy breaks: a surgical timeout is performed in front of witnesses,
 
 ## Three things people get wrong
 
+![three-column misconception-vs-mechanism comparison card](../images/02-the-phase-gate-fig-09.png)
+*Figure 2.9 — three-column misconception-vs-mechanism comparison card.*
+
 The first is that the gate is about distrust of AI. It is not. The gate is calibrated to which cognitive operation must remain with a human — and that does not change based on how capable the AI gets. Gate 9 (PCK misconception) requires the teacher's judgment about this class. A more capable AI does not have access to this class. The gate stays.
 
 The second is that if the AI is right, no gate is needed. This was the structural fact of the opening case. The scores were rubric-accurate. The feedback was rubric-aligned. The students still received feedback that was wrong for them, because rubric accuracy and pedagogical fit are different properties. The gate is what converts the first property into the second. Without the gate, "the AI is right" means "the AI's output matched a textual rubric," which is not the same as "this output is right for this student." The teacher's reading is the operation that makes that conversion. No reading, no conversion.
 
 The third is that gates slow you down. They take some time. They save more. Gate 1 — rubric calibration on five essays before bulk grading — costs roughly 25 minutes. It recovers the three to five hours that the bulk pass would otherwise need to be re-checked essay by essay, plus the time-cost-with-interest of unwinding a systematically biased grade distribution discovered four weeks later. The deeper version of the misconception treats all time costs as equivalent. The 25 minutes of rubric calibration is cognitively dense time — it is what the teacher's expertise is for. The three to five hours of essay-by-essay second-guessing is cognitively wasteful time — it is the teacher performing the calibration anyway, spread thinly across 120 instances instead of concentrated in five. The gate moves the work to where it is most efficient.
 
-<!-- → INFOGRAPHIC: A time-cost comparison for Gate 1 — two horizontal bars. Top bar: "No calibration gate" — 25 min saved upfront, then 3–5 hrs of per-essay second-guessing + a "late-stage bias discovery" block in red. Bottom bar: "With calibration gate" — 25 min invested upfront, then bulk pass runs cleanly. The visual argument: the gate does not add time; it relocates it to where it is worth more. -->
+![A time-cost comparison for Gate 1](../images/02-the-phase-gate-fig-10.png)
+*Figure 2.10 — A time-cost comparison for Gate 1.*
 
 ---
 
@@ -179,3 +214,120 @@ I don't have a good answer to this. Chapter 9 takes up the professional developm
 - C. Doctorow. AI's "human in the loop" isn't. *Pluralistic*, 30 Oct 2024. https://pluralistic.net/2024/10/30/a-neck-in-a-noose/
 - E. L. Bjork, R. A. Bjork. Making things hard on yourself, but in a good way. In *Psychology and the Real World*, 2011. https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf
 - U.S. Department of Education. FERPA overview. https://studentprivacy.ed.gov; 20 U.S.C. § 1232g.
+
+
+---
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 2.1 — Failed workflow of the opening case
+
+Build a five-step horizontal pipeline: essay uploaded → AI scores → dashboard (pending approval) → teacher clicks approve → feedback to student. Place a `99.4% approved · 3 seconds per essay` badge above the click box. Below the dashboard-to-click arrow, draw a dashed red overlay box labeled `missing operation` with the question `"Does this comment fit what I know about this student?"`. From the delivery step, draw a red callout `3 parent calls / same week`. Use rectangles with 1px ink strokes, hover state turning the stroke red. Include tooltips on each step explaining what happens there and what does not. Caption: `The dashboard records the click. Nobody can tell, from the dashboard, whether the operation happened.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-01.html`
+
+---
+
+### Figure 2.2 — A phrase versus a gate
+
+Split the canvas vertically. Left panel labeled `The phrase` shows a single `Click approve / 3 seconds` box surrounded by italic vague verbs (`"review"`, `"check"`, `"look over"`, `"approve"`) arranged in a loose halo. Right panel labeled `The gate` shows three stacked components connected by arrows: `1. Upstream task` (`AI scored 120 essays against the rubric.`), `2. Cognitive operation` (`Teacher hand-grades 5 essays, compares to AI, adjusts the rubric where they diverge.`), `3. Downstream action` (`Bulk grading proceeds only with the recalibrated rubric.`). Each component is a hoverable group with a tooltip naming what makes the component specific. Caption: `Name all three in one sentence each, or there is no gate.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-02.html`
+
+---
+
+### Figure 2.3 — Three-component gate anatomy
+
+Draw three labeled blocks in horizontal sequence connected by arrows. Block 1: `Upstream task` — what AI did, specifically (`"AI scored 120 essays against the rubric."`). Block 2: `Cognitive operation` — what only a human can do here (`"Hand-grade 5; compare; adjust rubric."`). Render block 2 with a heavier stroke to mark it as the load-bearing component. Block 3: `Downstream action` — what happens only after the human acts (`"Bulk grading proceeds with recalibration."`). Below each block, an italic vague-version caption shows the failure mode: `"AI did some grading."`, `"Teacher reviews the output."`, `"Scores are released."`. Caption: `Name all three in one sentence each. If you cannot, there is no gate.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-03.html`
+
+---
+
+### Figure 2.4 — Bastani conditions: practice gain and exam loss
+
+Render a grouped bar chart with three condition groups (`Control (no AI)`, `GPT Base (unscaffolded)`, `GPT Tutor (scaffolded)`) and two bars each: practice performance (red, brand) and unaided exam score (ink). Y-axis is a performance index where Control practice = 100, range 0–240, zero baseline required. Data: Control 100/100, GPT Base 148/83, GPT Tutor 227/102. Place a callout near the GPT Base exam bar: `17 pts below control`. Include a small legend at top-right. Tooltip on each bar names condition, value, and one-sentence interpretation. Caption: `Same students, same model. The gate location decides whether the cognitive operation occurred.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-04.html`
+
+---
+
+### Figure 2.5 — The jagged technological frontier
+
+Plot a task-space rectangle with an irregular dashed boundary curve cutting roughly horizontally across the middle, varying with sine-like jagged segments. Shade below the curve lightly to indicate the `AI hurts` zone; the unshaded region is `AI helps`. Plot ten teaching tasks as dots with adjacent labels: four solidly inside the helps zone (`Reformat a worksheet`, `Summarize a paper`, `Generate practice items`, `Translate parent letter (tone)`), four inside the hurts zone (`Diagnose this student's misreading`, `Choose analogy for this class`, `Author IEP accommodation`, `Resolve contested grade`), and two ambiguous on the boundary (`Draft a lab procedure`, `Grade a short-answer set`), rendered in gray with an ink outline. Axes: x = task structure regularity; y = AI capability on this task. Tooltips explain why each task sits where it does. Caption: `The line is not predictable from the task description alone. Without a gate, you cannot tell which side you are on.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-05.html`
+
+---
+
+### Figure 2.6 — Pedagogical content knowledge
+
+Draw two overlapping circles. Left circle: `Subject matter` (content, facts, procedures, encyclopedias, worked solutions). Right circle: `Pedagogy` (generic teaching moves, assessment design, classroom management). Label the overlap `PCK` in larger red italic, with items inside: `Which mistakes this class makes first`, `Which analogy lands here`, `What to reach for when standard explanation fails`. Overlay a dashed `AI reach` boundary that envelops the left circle and just a sliver of the overlap edge but stops well before the PCK center. Add a dashed pointer line with the label `AI ends here` near the overlap boundary. Each region is hoverable with a tooltip explaining what AI can and cannot access there. Caption: `PCK is built by repeated direct contact with learners struggling with exactly this material.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-06.html`
+
+---
+
+### Figure 2.7 — Twelve-gate cluster map
+
+Arrange a 2×2 quadrant grid labeled `Assessment and feedback`, `Instruction and learning`, `Student welfare and compliance`, `Communication and data stewardship`. Within each quadrant, place three numbered circle nodes with short one- or two-word labels: Q1: 1 Rubric calibration, 2 Dispute resolution, 5 Content accuracy. Q2: 3 Socratic scaffolding, 4 Direct instruction, 9 PCK misconception. Q3: 6 IEP/504 compliance, 8 Student intervention, 11 Behavioral crisis. Q4: 7 Parent communication, 10 RAG walled garden, 12 Student anonymization. Encode risk tier as border weight and color: green = default ink hairline, yellow = ochre 2px, red = brand red 2px. Gates 6, 11, 12 are red; 1, 3, 5, 9 are yellow; the rest green. Include a legend row at the bottom and a tooltip per gate naming the trigger and the operation. Caption: `Twelve gates, twelve operations. Adapt to your context.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-07.html`
+
+---
+
+### Figure 2.8 — Surgical timeout vs. teacher at a laptop
+
+Two side-by-side panels separated by a hairline. Left panel `Surgical timeout`: a stylized operating table (rectangle) with four simple head-and-shoulders figures around it labeled `surgeon`, `scrub`, `anesthesiologist`, `nurse`, plus a small checklist card listing `Patient. Procedure. Side.`, `Allergies. Antibiotic timing.`, and the italic line `Every member listens.`. Right panel `Teacher at a laptop, Sunday`: one head-and-shoulders figure labeled `teacher (alone)`, a small window with a cross suggesting evening light, and a stylized laptop showing `Dashboard / 99.4% approved / 120 of 121 essays`. Italic note below the laptop: `No witnesses. Workflow reports completion.`. Each panel is hoverable with a tooltip naming what the structure does or fails to do. Caption: `The gate has to be structural. Willpower is not a reliable structural element.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-08.html`
+
+---
+
+### Figure 2.9 — Three misconceptions, three mechanisms
+
+Render a three-column comparison card with column headers `Misconception`, `Why it feels true`, `What the gate actually does`. Three rows: (1) `"Gates exist because we distrust AI."` → `Distrust would scale with capability.` → red mechanism `Locks which operation stays human.`. (2) `"If the AI is right, no gate is needed."` → `99.4% approved looked like 99.4% right.` → `Converts rubric accuracy into pedagogical fit.`. (3) `"Gates slow you down."` → `Calibration is 25 minutes you did not have to spend.` → `Moves the work to where it is most efficient.`. Each row has a faint hover background and a tooltip elaborating the mechanism. Caption: `Trade the misconception for the mechanism. The gate is doing work the misconception cannot.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-09.html`
+
+---
+
+### Figure 2.10 — Gate 1 time-cost comparison
+
+Draw two stacked horizontal bars on a 0–5 hour axis. Top bar `Without the gate`: a small `bulk` segment (0.5 hr), then a long `3–5 hr essay-by-essay second-guessing` segment (4 hr), then a hatched `bias discovery, 4 weeks later` block (~0.6 hr) marking open-ended late cost. Bottom bar `With the gate`: a `25 min calibration` segment (~0.4 hr) in brand red, then a small `bulk` segment, then a dashed open band labeled `time recovered — bulk pass does not need re-checking` extending to the end of the axis. Tooltips on each segment name what is happening and the cognitive density of the time. Caption: `Cognitively dense time on five essays beats cognitively wasteful time across 120.`
+
+> Reference implementation: `d3/02-the-phase-gate-fig-10.html`
+
+---
+
+## AI Wayback Machine
+
+Skinner's programmed instruction and teaching machines (1954-58) are the chapter's intellectual ancestor: design the contingency, set the schedule, decide what counts as a successful response, and let the learner work through the gate one frame at a time. The phase-gate framework this chapter develops for AI use is Skinner's instinct re-applied to a teacher's day rather than a single student's worksheet.
+
+![B.F. Skinner, 1904-1990. AI-generated portrait based on a public domain photograph.](../images/bf-skinner.jpg)
+*B.F. Skinner, 1904-1990. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was B.F. Skinner, and how does their work connect to the ideas in this chapter? Keep it to three paragraphs. End with the single most surprising thing about their career or thinking.
+```
+
+→ Search **"B.F. Skinner"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to apply Skinner's framework to a specific scenario in this chapter — what gets surfaced that the chapter's prose left implicit?
+- Ask about the critics of Skinner's work and which criticisms still bite today.
+
+What changes? What gets better? What gets worse?

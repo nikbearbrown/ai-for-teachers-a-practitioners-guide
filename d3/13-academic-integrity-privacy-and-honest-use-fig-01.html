@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure 13.1 — Three independent failure modes of AI-text detection</title>
+  <style>
+    :root {
+      --color-white:     #FFFFFF;
+      --color-ink:       #121212;
+      --color-red:       #C8102E;
+      --color-secondary: #545454;
+      --color-border:    #D4D4D4;
+      --color-ochre:     #C8860E;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-white:     #111111;
+        --color-ink:       #F0EBE3;
+        --color-red:       #E8243A;
+        --color-secondary: #A0978C;
+        --color-border:    #2E2E2E;
+        --color-ochre:     #D49A30;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-white);
+      color: var(--color-ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      padding: 32px;
+    }
+    h1 { font-size: 22px; font-weight: 400; margin-bottom: 4px; }
+    .subtitle { font-size: 13px; color: var(--color-secondary); font-style: italic; margin-bottom: 24px; }
+    #chart { width: 100%; }
+    .row-bg { fill: var(--color-white); stroke: var(--color-border); stroke-width: 1; }
+    .badge { fill: var(--color-red); }
+    .badge-text { fill: var(--color-white); font-size: 28px; text-anchor: middle; }
+    .row-title { fill: var(--color-ink); font-size: 17px; }
+    .row-detail { fill: var(--color-secondary); font-size: 13px; font-family: 'Inter', -apple-system, sans-serif; }
+    .row-anchor { fill: var(--color-secondary); font-size: 12px; font-style: italic; font-family: 'Inter', sans-serif; }
+    .row-stat { fill: var(--color-ink); font-size: 30px; text-anchor: end; }
+    .row-stat-label { fill: var(--color-secondary); font-size: 11px; text-anchor: end; font-family: 'Inter', sans-serif; }
+    .footer-text { fill: var(--color-secondary); font-size: 12px; font-style: italic; }
+    .tooltip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      background: var(--color-ink);
+      color: var(--color-white);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      max-width: 320px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <h1>Three independent failure modes</h1>
+  <div class="subtitle">Any one disqualifies detection as a primary tool. Together: a settled case.</div>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const rowData = [
+      {
+        n: 1,
+        title: 'Tools are unreliable on their own terms',
+        detail: 'Weber-Wulff et al. (2023): 12 tools across 756 cases — "neither accurate nor reliable."',
+        anchor: 'OpenAI withdraws its own classifier, July 20, 2023 — 26% true-positive accuracy.',
+        stat: '26%',
+        statLabel: 'true-positive at withdrawal',
+        tooltip: 'Weber-Wulff et al. tested 12 tools across 756 cases. OpenAI withdrew its AI Text Classifier after 26% true-positive accuracy.'
+      },
+      {
+        n: 2,
+        title: 'Errors are systematically biased',
+        detail: 'Liang et al. (2023), Patterns: seven detectors on TOEFL essays by non-native writers.',
+        anchor: 'Near-perfect on eighth-grade essays. Wrong on the protected class.',
+        stat: '>50%',
+        statLabel: 'TOEFL essays misclassified',
+        tooltip: 'Detectors achieved near-perfect accuracy on U.S. eighth-grade essays but misclassified more than half of TOEFL essays as AI-generated.'
+      },
+      {
+        n: 3,
+        title: 'Institutions are walking back',
+        detail: 'Vanderbilt (Aug 2023): 1% × 75,000 papers = 750 wrongly flagged students per year.',
+        anchor: 'Yale, Johns Hopkins, Northwestern follow. Stated alternative: pedagogy and assignment design.',
+        stat: '750',
+        statLabel: 'wrongly flagged at 1% FP rate',
+        tooltip: 'Vanderbilt processed ~75,000 papers through Turnitin in 2022. A 1% false-positive rate would produce 750 wrongly flagged students per year.'
+      }
+    ];
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+
+      const totalWidth = document.getElementById('chart').clientWidth || 800;
+      const rowHeight = 110;
+      const totalHeight = 60 + rowData.length * rowHeight + 60;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth)
+        .attr('height', totalHeight)
+        .attr('role', 'img')
+        .attr('aria-labelledby', 'chart-title chart-desc');
+
+      svg.append('title').attr('id', 'chart-title').text('Three independent failure modes of AI-text detection');
+      svg.append('desc').attr('id', 'chart-desc').text('Three stacked rows — unreliable tools, biased errors, institutions retreating — each enough to disqualify detection.');
+
+      const rowG = svg.selectAll('.row')
+        .data(rowData)
+        .join('g')
+          .attr('class', 'row')
+          .attr('transform', (d, i) => `translate(0, ${40 + i * rowHeight})`)
+          .attr('tabindex', 0)
+          .attr('aria-label', d => `Failure ${d.n}: ${d.title}. ${d.detail}`);
+
+      rowG.append('rect')
+        .attr('class', 'row-bg')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', totalWidth).attr('height', rowHeight - 14);
+
+      rowG.append('rect')
+        .attr('class', 'badge')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', 50).attr('height', rowHeight - 14);
+
+      rowG.append('text')
+        .attr('class', 'badge-text')
+        .attr('x', 25).attr('y', (rowHeight - 14) / 2 + 10)
+        .text(d => d.n);
+
+      rowG.append('text').attr('class', 'row-title')
+        .attr('x', 70).attr('y', 28).text(d => d.title);
+      rowG.append('text').attr('class', 'row-detail')
+        .attr('x', 70).attr('y', 52).text(d => d.detail);
+      rowG.append('text').attr('class', 'row-anchor')
+        .attr('x', 70).attr('y', 78).text(d => d.anchor);
+
+      rowG.append('text').attr('class', 'row-stat')
+        .attr('x', totalWidth - 24).attr('y', 42).text(d => d.stat);
+      rowG.append('text').attr('class', 'row-stat-label')
+        .attr('x', totalWidth - 24).attr('y', 62).text(d => d.statLabel);
+
+      svg.append('text').attr('class', 'footer-text')
+        .attr('x', 0).attr('y', totalHeight - 16)
+        .text('Each row is independent. Any one is enough. Together they constitute a settled case.');
+
+      const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+
+      rowG
+        .on('mouseover', function (event, d) {
+          tooltip.html(`<strong>${d.title}</strong><br>${d.tooltip}`)
+            .style('left', (event.pageX + 12) + 'px')
+            .style('top', (event.pageY - 28) + 'px')
+            .transition().duration(150).style('opacity', 1);
+        })
+        .on('mousemove', function (event) {
+          tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px');
+        })
+        .on('mouseout', function () {
+          tooltip.transition().duration(100).style('opacity', 0);
+        })
+        .on('keydown', function (event, d) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            const r = this.getBoundingClientRect();
+            const fakeEvent = { pageX: window.scrollX + r.left + 200, pageY: window.scrollY + r.top + 40 };
+            tooltip.html(`<strong>${d.title}</strong><br>${d.tooltip}`)
+              .style('left', fakeEvent.pageX + 'px').style('top', fakeEvent.pageY + 'px')
+              .transition().duration(150).style('opacity', 1);
+          }
+        });
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

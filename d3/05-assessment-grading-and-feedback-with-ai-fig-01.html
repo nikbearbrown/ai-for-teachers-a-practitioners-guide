@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 5.1 — Four sub-tasks inside one verb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 14px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 460px; }
+  .ti  { font-family: 'EB Garamond', Georgia, serif; font-size: 16px; font-weight: 700; fill: var(--color-ink); }
+  .sub { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .hdr { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; font-weight: 700; fill: var(--color-secondary); letter-spacing: 0.5px; }
+  .task { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: 700; fill: var(--color-ink); }
+  .body { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; fill: var(--color-ink); }
+  .num { font-family: 'EB Garamond', Georgia, serif; font-size: 16px; font-weight: 700; fill: var(--color-white); }
+  .chip-light { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; font-weight: 700; fill: var(--color-white); }
+  .cap { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .row-rect { fill: var(--color-white); stroke: var(--color-border); stroke-width: 1; transition: stroke 200ms cubic-bezier(0.2,0.8,0.2,1); cursor: pointer; }
+  .row-rect:hover { stroke: var(--color-red); }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-family: 'EB Garamond', Georgia, serif; font-size: 13px; max-width: 280px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 5.1 — Four sub-tasks inside one verb</h1>
+<p class="subtitle">"To grade" is shorthand for four operations. Three can be assisted. One cannot.</p>
+<div id="chart" role="img" aria-labelledby="t-grade d-grade"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const FALLBACK_DATA = [
+  { n: 1, task: 'First-pass scoring',  body: 'Locate the work on the rubric. A measurement task with a long history.', role: 'AI-capable + calibration', tip: 'Trained raters do this. So does ETS e-rater. So can LLMs with a calibrated prompt.', isTeacher: false },
+  { n: 2, task: 'Feedback drafting',   body: 'Convert "this is a 3" into prose. Prose generation against a structure.', role: 'AI-capable + review',      tip: 'AI is good at prose against a rubric. Steiss et al. 2024: AI matched humans on rubric alignment.', isTeacher: false },
+  { n: 3, task: 'Response grouping',   body: 'Cluster 28 student answers into 4 families. A clustering task.',           role: 'AI-capable + confirm',     tip: 'Large language models cluster well. The teacher confirms the families before they drive feedback.', isTeacher: false },
+  { n: 4, task: 'Final grade & communication', body: 'Sign the rubric. Talk to the student. Carries the professional weight.', role: 'Teacher-only',         tip: 'Professional, legal, and relational weight cannot be delegated to a system with no license.', isTeacher: true }
+];
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(event, content) {
+  tooltip.html(content)
+    .style('left', (event.pageX + 12) + 'px')
+    .style('top',  (event.pageY - 28) + 'px')
+    .transition().duration(150).style('opacity', 1);
+}
+function moveTip(event) {
+  tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px');
+}
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+async function loadData() {
+  try { return await d3.json('./05-assessment-grading-and-feedback-with-ai-fig-01.json'); }
+  catch { return FALLBACK_DATA; }
+}
+
+function draw(data) {
+  d3.select('#chart').selectAll('*').remove();
+  const container = document.getElementById('chart');
+  const totalWidth  = container.clientWidth  || 760;
+  const totalHeight = container.clientHeight || 460;
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
+    .attr('width', totalWidth).attr('height', totalHeight)
+    .attr('role', 'img').attr('aria-labelledby', 't-grade d-grade');
+  svg.append('title').attr('id', 't-grade').text('Four sub-tasks inside one verb');
+  svg.append('desc').attr('id', 'd-grade').text('Four horizontal rows decomposing the verb to grade into sub-tasks. Sub-tasks one through three are AI-capable. Sub-task four is teacher-only.');
+
+  // Title
+  svg.append('text').attr('x', 32).attr('y', 30).attr('class', 'ti').text('Four sub-tasks inside one verb');
+  svg.append('text').attr('x', 32).attr('y', 48).attr('class', 'sub').text('"To grade" is shorthand for four different operations. Three can be assisted. One cannot.');
+
+  // Column headers
+  svg.append('text').attr('x', 32).attr('y', 84).attr('class', 'hdr').text('SUB-TASK');
+  svg.append('text').attr('x', 280).attr('y', 84).attr('class', 'hdr').text('WHAT IT IS');
+  svg.append('text').attr('x', totalWidth - 172).attr('y', 84).attr('class', 'hdr').text('AI ROLE');
+  svg.append('line').attr('x1', 32).attr('y1', 90).attr('x2', totalWidth - 32).attr('y2', 90).attr('stroke', 'var(--color-border)').attr('stroke-width', 1);
+
+  // Rows
+  const rowH = 64, rowY0 = 102, gap = 8;
+  const gRows = svg.append('g').attr('class', 'g-rows');
+
+  gRows.selectAll('g.row')
+    .data(data, d => d.n)
+    .join(enter => {
+      const g = enter.append('g').attr('class', 'row').attr('opacity', 0)
+        .attr('transform', (d, i) => `translate(0, ${rowY0 + i * (rowH + gap)})`);
+      g.call(sel => sel.transition().duration(320).attr('opacity', 1));
+      return g;
+    })
+    .each(function(d) {
+      const g = d3.select(this);
+      // background row
+      g.append('rect').attr('class', 'row-rect').attr('x', 32).attr('y', 0).attr('width', totalWidth - 64).attr('height', rowH)
+        .attr('tabindex', 0).attr('aria-label', `${d.task}: ${d.role}`)
+        .on('mouseover', (e) => showTip(e, `<strong>${d.task}</strong><br>${d.tip}`))
+        .on('mousemove', moveTip)
+        .on('mouseout', hideTip)
+        .on('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') showTip(e, `<strong>${d.task}</strong><br>${d.tip}`); });
+      // number swatch
+      g.append('rect').attr('x', 32).attr('y', 0).attr('width', 32).attr('height', rowH).attr('fill', d.isTeacher ? 'var(--color-ink)' : 'var(--color-secondary)');
+      g.append('text').attr('x', 48).attr('y', 38).attr('text-anchor', 'middle').attr('class', 'num').text(d.n);
+      // task name
+      g.append('text').attr('x', 80).attr('y', 26).attr('class', 'task').text(d.task);
+      // body
+      g.append('text').attr('x', 80).attr('y', 44).attr('class', 'body').text(d.body);
+      // role chip
+      const chipW = 156, chipX = totalWidth - 32 - chipW - 8, chipY = (rowH - 30) / 2;
+      g.append('rect').attr('x', chipX).attr('y', chipY).attr('width', chipW).attr('height', 30)
+        .attr('fill', d.isTeacher ? 'var(--color-red)' : 'var(--color-secondary)');
+      g.append('text').attr('x', chipX + chipW / 2).attr('y', chipY + 19).attr('text-anchor', 'middle')
+        .attr('class', 'chip-light').text(d.role);
+    });
+
+  // Caption
+  svg.append('text').attr('x', 32).attr('y', rowY0 + 4 * (rowH + gap) + 18).attr('class', 'cap')
+    .text('Sub-tasks 1–3 are where AI helps. Sub-task 4 is where the teacher is irreducible.');
+}
+
+loadData().then(data => {
+  draw(data);
+  const ro = new ResizeObserver(() => draw(data));
+  ro.observe(document.getElementById('chart'));
+});
+</script>
+</body>
+</html>

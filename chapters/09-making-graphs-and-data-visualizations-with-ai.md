@@ -12,7 +12,8 @@ AI makes this problem faster. A teacher with a spreadsheet of student scores can
 
 This chapter is about the five-question audit that catches what AI gets wrong, and about one equity move that changes what education charts reveal. You will need neither statistics training nor programming experience. You will need to run five questions on every chart before it leaves the building.
 
-<!-- → [IMAGE: Side-by-side comparison of the same six-teacher bar chart — left version: y-axis starting at 70, bars dramatically different heights, Sandoval's bar appears ~6x shorter than Adams's; right version: y-axis starting at 0, same bars now visually similar, clustered near the top — caption: "Same data. The left chart's lie factor is ~5.5. The right chart's is 1.0. Only one of these is the default."] -->
+![Side-by-side comparison of the same six-teacher bar chart](../images/09-making-graphs-and-data-visualizations-with-ai-fig-01.png)
+*Figure 9.1 — Side-by-side comparison of the same six-teacher bar chart.*
 
 ---
 
@@ -42,7 +43,15 @@ Vague request: *Make me a chart of these scores by teacher.* The AI produces a s
 
 Question-first request: *I want to compare mean scores across six teachers teaching the same course, sorted by mean, with the y-axis at zero, no decorative color, and a title that states the finding rather than the topic.* Same data. Different chart. Different story.
 
-<!-- → [TABLE: Five functional categories quick-reference — columns: Category, The question it answers, Default chart form, Common wrong choice — rows: Comparison (which is bigger? / sorted horizontal bar / alphabetical bar or pie), Change over time (which way is it moving? / line or bar by period / multi-series spaghetti chart), Distribution (what does the spread look like? / box plot, violin, strip plot / bar of means), Relationship (do these move together? / scatterplot / stacked bar), Part-to-whole (what fraction of the total? / stacked bar for 4+ parts; pie for 2–3 / pie with 7 wedges) — reader can use as a one-page decision guide before any AI prompt] -->
+| Category | The question it answers | Default chart form | Common wrong choice |
+|---|---|---|---|
+| Comparison | Which is bigger? | Sorted horizontal bar | Alphabetical bar or pie |
+| Change over time | Which way is it moving? | Line or bar by period | Multi-series spaghetti or stacked area |
+| Composition | What makes up the whole? | Single stacked bar or treemap (pie only for 2–3 parts) | 3D pie or exploded pie |
+| Distribution | How is it spread? | Histogram, density, or violin | Boxplot only, without raw points |
+| Relationship | Does one move with another? | Scatter or paired comparison | Disconnected stat tests |
+
+*Table 9.1 — Five functional chart categories*
 
 ---
 
@@ -62,7 +71,8 @@ There are four common ways this check exposes a lying chart.
 
 Cairo's framework treats chart choice not as an aesthetic decision but as an ethical one. A chart that misleads its reader is testimony, and the witness has a professional obligation to the accuracy of what the chart claims. This framing should not be softened. It permanently changes how you read charts, which is the point.
 
-<!-- → [INFOGRAPHIC: Cairo's "compared with what?" four failure modes — four boxes, each with a failing chart thumbnail and a one-sentence diagnosis: (1) raw counts without class sizes — "30 proficient" (misleading) vs "94% proficient" (honest); (2) time series without baseline — single year's rise without prior trajectory; (3) cross-sectional comparison without controls — AP vs non-AP on any outcome; (4) single-value with no anchor — "76% proficient" floating with no benchmark — each box shows the missing reference and what happens when you add it] -->
+![Cairo's "compared with what?" four failure modes](../images/09-making-graphs-and-data-visualizations-with-ai-fig-02.png)
+*Figure 9.2 — Cairo's "compared with what?" four failure modes.*
 
 The mechanical version of the same principle comes from Edward Tufte's *The Visual Display of Quantitative Information*.[^tufte] His **proportional ink** rule is simple: the visual magnitude of a mark should be proportional to the quantity it encodes. For a bar chart, this means the bar starts at zero. Its visible length encodes the magnitude of the value. A bar chart with a y-axis that starts at 60 encodes (value − 60), not value. The reader's eye does not correct for the truncation. The reader perceives the bar at face length and draws the wrong conclusion about the difference.
 
@@ -88,7 +98,8 @@ The sentence to carry out of this section: if your equity question is *who is be
 
 The prompting consequence is direct. When the question is about subgroup performance, the AI tool's default is wrong. The prompt must specify the chart type — a box plot faceted by demographic group, a strip plot with median overlaid — or the output will be a bar chart that hides the answer to your own question.
 
-<!-- → [IMAGE: Three charts of the same class with mean = 72 — left: bar chart showing a single bar at 72 (identical for all three scenarios); center row showing three different distributions that all produce mean 72: (a) tight cluster 70–74, (b) bimodal split ~60 and ~84, (c) long left tail with most scores 75–78 and 8 students at 45–55 — caption: "The bar chart on the left is identical in all three cases. The teaching response should be completely different. The bar chart cannot tell you which situation you are in."] -->
+![Three charts of the same class with mean = 72](../images/09-making-graphs-and-data-visualizations-with-ai-fig-03.png)
+*Figure 9.3 — Three charts of the same class with mean = 72.*
 
 ---
 
@@ -108,7 +119,8 @@ Five questions. Run them on every chart before it leaves the building. The full 
 
 A sixth question applies whenever AI is in the loop and it takes two additional minutes: **does the chart match the data you gave it?** AI tools hallucinate. They occasionally invent tick values, relabel axes, auto-round data, or group categories in ways the prompt did not request. Always verify chart values against the source spreadsheet for at least a sample of the values. Three percent of charts containing a fabricated value is enough to embarrass you at a board meeting. The verification is not optional.
 
-<!-- → [INFOGRAPHIC: Five-question audit as a checklist card — five numbered rows with a checkbox, question text, and one-line pass/fail test: (1) What question? — can you state it in one sentence? If no → not ready; (2) Compared with what? — is there an explicit reference on the chart? If no → add it; (3) Y-axis at zero? — for bar charts, always; for line charts, defend the choice; (4) Finding or topic? — does the title contain a verb? If no → rewrite; (5) Hidden variance? — if means shown and equity is the question → add distribution chart; plus a sixth row for AI: (6) Does chart match source data? — spot-check 3 values against spreadsheet — designed to be printable and taped near a monitor] -->
+![Five-question audit as a checklist card](../images/09-making-graphs-and-data-visualizations-with-ai-fig-04.png)
+*Figure 9.4 — Five-question audit as a checklist card.*
 
 ---
 
@@ -267,3 +279,68 @@ Chapter 10 turns toward writing — the writing you do as a teacher and the writ
 [^knaflic]: Knaflic, C. N. (2015). *Storytelling with Data: A Data Visualization Guide for Business Professionals.* Wiley. Chapter 2, "Choosing an Effective Visual."
 
 [^brewer]: Brewer, C. A. ColorBrewer: Color advice for maps and data. <https://colorbrewer2.org>. Harrower, M., & Brewer, C. A. (2003). ColorBrewer.org: An online tool for selecting colour schemes for maps. *The Cartographic Journal*, 40(1), 27–37.
+
+
+---
+
+## Prompts
+
+These prompts produce interactive D3 v7 reference implementations of each chapter figure. Each generates a standalone HTML file you can open in a browser and modify freely. Use them as paste-ready starting points when adapting the figure to your own data.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context before running any of these prompts. The constitution files pin D3 7.9.0 from cdnjs, the warm `var(--color-*)` palette, the EB Garamond / Inter / JetBrains Mono typography chain, and the accessibility requirements (`role="img"`, `<title>`, `<desc>`, `(event, d)` handlers, ResizeObserver redraw, dark-mode and `prefers-reduced-motion` variants).
+
+---
+
+### Figure 9.1 — Truncated axis vs zero baseline
+
+Build a side-by-side comparison of the same six teacher means (Adams 78.2, Brennan 76.8, Connor 75.3, Diaz 74.1, Edelstein 73.6, Sandoval 71.4) rendered twice: a left panel with the y-axis truncated at 70 and a right panel with a zero-baseline 0–100 y-axis and a dashed proficiency benchmark at 70. Both panels share a band scale of teacher names. Annotate the left panel with the visual ratio Adams to Sandoval (about 6 to 1) and the actual ratio (about 1.1 to 1); annotate the right panel with the seven-point cluster range. One series, one fill color (`var(--color-red)`). Title states the finding, not the topic. Include hover tooltips on every bar with teacher name and mean.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-01.html`
+
+---
+
+### Figure 9.2 — Cairo&apos;s four failure modes
+
+Build a 2×2 grid of cells naming Cairo&apos;s four failure modes of the *compared with what?* check: absolute counts where rates are needed, time series without baseline, cross-section without controls, and single-value claim. Each cell shows a fail-state mini-visual on the left, an arrow, and a fix-state mini-visual on the right. Cell 1 pairs raw counts (30 vs 22) with rates (94% vs 92%). Cell 2 pairs a two-point line with a five-year trajectory. Cell 3 pairs an uncontrolled AP-vs-general bar pair with a matched-controls list. Cell 4 pairs a giant 76% with the same value anchored to state, peer, and target. Hover any cell to surface a tooltip with the full failure description and the fix sentence. Use `var(--color-red)` only for the fix mini-visuals.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-02.html`
+
+---
+
+### Figure 9.3 — Same mean, three different classes
+
+Build a two-row layout. Top row: three identical zero-baseline bar charts, each showing one bar at value 72 with a panel title *Class A — mean = 72*, *Class B — mean = 72*, *Class C — mean = 72*. Bottom row: three jittered strip plots on the same 40–100 x-axis. Class A is a tight cluster of 14 dots between 70 and 74; class B is bimodal with eight dots near 60 and eight near 84; class C has a long lower tail of eight dots between 45 and 55 and a main cluster of twelve dots between 75 and 78. Each strip panel shows a dashed mean line at 72 with a JetBrains Mono label. Captions below the strip plots: *curriculum is working*, *two groups need different things*, *eight students need intervention*. Hover individual dots for the score value.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-03.html`
+
+---
+
+### Figure 9.4 — The five-question audit
+
+Build a single printable checklist card listing six rows. Five core rows: (1) What question does this chart answer? (2) Compared with what? (3) Does the y-axis start at zero? (4) Is the title a finding or a topic? (5) Did you check for hidden variance? Plus a sixth, visually emphasized with a red-outline rectangle: when AI is in the loop, does the chart match the data? Each row has an EB Garamond row number on the left, an Inter bold question in the middle, and an Inter regular one-sentence body underneath. Rows separated by 1px `--color-border` dividers. Card framed in a 1.2px `--color-ink` outline. Hover any row to surface a tooltip with the full question and body; row labels turn red on hover.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-04.html`
+
+---
+
+## AI Wayback Machine
+
+Bertin's *Sémiologie graphique* (1967) — the seven retinal variables, the systematic decomposition of any chart into mark, channel, and question — is the chart-selection vocabulary every teacher needs before they ask AI to make a graph. The chapter's framework is Bertin operationalized for the classroom-data use case: name the question first, choose the channel that answers it, accept that the chart's job is to make one comparison legible, not to make many comparisons available.
+
+![Jacques Bertin, 1918-2010. AI-generated portrait based on a public domain photograph.](../images/jacques-bertin.jpg)
+*Jacques Bertin, 1918-2010. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Jacques Bertin, and how does their work connect to the ideas in this chapter? Keep it to three paragraphs. End with the single most surprising thing about their career or thinking.
+```
+
+→ Search **"Jacques Bertin"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to apply Bertin's framework to a specific scenario in this chapter — what gets surfaced that the chapter's prose left implicit?
+- Ask about the critics of Bertin's work and which criticisms still bite today.
+
+What changes? What gets better? What gets worse?

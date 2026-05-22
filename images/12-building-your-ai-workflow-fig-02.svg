@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" role="img" aria-labelledby="t1202 d1202">
+  <title id="t1202">Goal system versus habit system for AI workflow installation</title>
+  <desc id="d1202">Two parallel horizontal tracks that converge at a single endpoint. Upper goal-system track runs through five stations and loops back on itself. Lower habit-system track runs through six stations and continues forward. Both reach the same endpoint, output reaches students, but the upper one is fragile to a hard Wednesday and the lower one is not.</desc>
+  <defs>
+    <style>
+      .ti  { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 14px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .hd  { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #2a1a0e; }
+      .hdG { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #4a4540; }
+      .lb  { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #2a1a0e; }
+      .sm  { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 9px; fill: #4a4540; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .badge { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; font-style: italic; fill: #4a4540; }
+    </style>
+    <marker id="arBlk12b" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2a1a0e"/>
+    </marker>
+    <marker id="arGry12b" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8a8480"/>
+    </marker>
+    <marker id="arMid12b" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a4540"/>
+    </marker>
+  </defs>
+  <rect width="700" height="440" fill="#fdfcfb"/>
+
+  <text x="32" y="28" class="ti">Two routes to the same output. Only one is robust to a hard Wednesday.</text>
+  <text x="32" y="44" class="sub">Goal system runs on willpower. Habit system runs on context. The merge point is identical.</text>
+
+  <!-- TRACK 1: Goal system -->
+  <text x="32" y="84" class="hdG">Goal system</text>
+  <text x="32" y="98" class="badge">effortful · depletable · willpower-based</text>
+
+  <g>
+    <rect x="32"  y="116" width="92" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="78"  y="134" text-anchor="middle" class="lb">Motivation</text>
+    <text x="78"  y="148" text-anchor="middle" class="lb">high</text>
+
+    <rect x="138" y="116" width="92" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="184" y="134" text-anchor="middle" class="lb">Open tool</text>
+    <text x="184" y="148" text-anchor="middle" class="sm">whichever one</text>
+
+    <rect x="244" y="116" width="92" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="290" y="134" text-anchor="middle" class="lb">Write prompt</text>
+    <text x="290" y="148" text-anchor="middle" class="sm">from scratch</text>
+
+    <rect x="350" y="116" width="92" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="396" y="134" text-anchor="middle" class="lb">Use output</text>
+    <text x="396" y="148" text-anchor="middle" class="sm">maybe revise</text>
+
+    <rect x="456" y="116" width="92" height="44" fill="#f5f2ee" stroke="#8a8480" stroke-width="1"/>
+    <text x="502" y="134" text-anchor="middle" class="lb">Close tab</text>
+    <text x="502" y="148" text-anchor="middle" class="sm">no save</text>
+  </g>
+  <line x1="124" y1="138" x2="136" y2="138" stroke="#4a4540" stroke-width="1.2" marker-end="url(#arMid12b)"/>
+  <line x1="230" y1="138" x2="242" y2="138" stroke="#4a4540" stroke-width="1.2" marker-end="url(#arMid12b)"/>
+  <line x1="336" y1="138" x2="348" y2="138" stroke="#4a4540" stroke-width="1.2" marker-end="url(#arMid12b)"/>
+  <line x1="442" y1="138" x2="454" y2="138" stroke="#4a4540" stroke-width="1.2" marker-end="url(#arMid12b)"/>
+
+  <!-- Loop back from Close tab to Motivation high -->
+  <path d="M 502 116 Q 502 88 290 88 Q 78 88 78 116" fill="none" stroke="#4a4540" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arMid12b)"/>
+  <text x="290" y="80" text-anchor="middle" class="badge">"next Tuesday — start from scratch"</text>
+
+  <!-- Fragile-to-Wednesday badge -->
+  <rect x="556" y="116" width="120" height="44" fill="#f5f2ee" stroke="#4a4540" stroke-width="1" stroke-dasharray="2 2"/>
+  <text x="616" y="134" text-anchor="middle" class="hdG">loses to a</text>
+  <text x="616" y="148" text-anchor="middle" class="hdG">hard Wednesday</text>
+
+  <!-- TRACK 2: Habit system -->
+  <text x="32" y="208" class="hd">Habit system</text>
+  <text x="32" y="222" class="badge">context-cued · lower activation cost · works whether motivation is high or low</text>
+
+  <g>
+    <rect x="32"  y="240" width="92" height="48" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.2"/>
+    <text x="78"  y="258" text-anchor="middle" class="lb">Sunday 4pm</text>
+    <text x="78"  y="272" text-anchor="middle" class="sm">kitchen table</text>
+    <text x="78"  y="284" text-anchor="middle" class="sm">laptop open</text>
+
+    <rect x="138" y="240" width="92" height="48" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.2"/>
+    <text x="184" y="258" text-anchor="middle" class="lb">Context cue</text>
+    <text x="184" y="272" text-anchor="middle" class="sm">triggers behavior</text>
+    <text x="184" y="284" text-anchor="middle" class="sm">automatically</text>
+
+    <rect x="244" y="240" width="92" height="48" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.2"/>
+    <text x="290" y="258" text-anchor="middle" class="lb">Open</text>
+    <text x="290" y="272" text-anchor="middle" class="lb">workflow.md</text>
+    <text x="290" y="284" text-anchor="middle" class="sm">library + schedule</text>
+
+    <rect x="350" y="240" width="92" height="48" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.2"/>
+    <text x="396" y="258" text-anchor="middle" class="lb">Run library</text>
+    <text x="396" y="272" text-anchor="middle" class="lb">entry #01</text>
+    <text x="396" y="284" text-anchor="middle" class="sm">copy and fill</text>
+
+    <rect x="456" y="240" width="92" height="48" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.2"/>
+    <text x="502" y="258" text-anchor="middle" class="lb">Phase gate</text>
+    <text x="502" y="272" text-anchor="middle" class="sm">verify before</text>
+    <text x="502" y="284" text-anchor="middle" class="sm">release</text>
+
+    <rect x="562" y="240" width="92" height="48" fill="#fdfcfb" stroke="#2a1a0e" stroke-width="1.2"/>
+    <text x="608" y="258" text-anchor="middle" class="lb">Done</text>
+    <text x="608" y="272" text-anchor="middle" class="sm">block closed</text>
+    <text x="608" y="284" text-anchor="middle" class="sm">on schedule</text>
+  </g>
+  <line x1="124" y1="264" x2="136" y2="264" stroke="#2a1a0e" stroke-width="1.2" marker-end="url(#arBlk12b)"/>
+  <line x1="230" y1="264" x2="242" y2="264" stroke="#2a1a0e" stroke-width="1.2" marker-end="url(#arBlk12b)"/>
+  <line x1="336" y1="264" x2="348" y2="264" stroke="#2a1a0e" stroke-width="1.2" marker-end="url(#arBlk12b)"/>
+  <line x1="442" y1="264" x2="454" y2="264" stroke="#2a1a0e" stroke-width="1.2" marker-end="url(#arBlk12b)"/>
+  <line x1="548" y1="264" x2="560" y2="264" stroke="#2a1a0e" stroke-width="1.2" marker-end="url(#arBlk12b)"/>
+
+  <!-- merge point -->
+  <line x1="608" y1="160" x2="608" y2="190" stroke="#8a8480" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arGry12b)"/>
+  <line x1="608" y1="288" x2="608" y2="328" stroke="#8a8480" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <rect x="490" y="332" width="240" height="44" fill="#2a1a0e" stroke="none"/>
+  <text x="610" y="350" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="12" font-weight="bold" fill="#fdfcfb">Output reaches students</text>
+  <text x="610" y="366" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="10" font-style="italic" fill="#fdfcfb">same endpoint either way</text>
+
+  <!-- Caption -->
+  <text x="32" y="412" class="cap">Wood and Neal: habits are not goal-driven; they are context-cued. Build the context and the behavior happens.</text>
+</svg>

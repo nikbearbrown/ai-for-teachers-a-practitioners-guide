@@ -25,7 +25,8 @@ This chapter is the redesign.
 
 ## Why detection cannot work
 
-<!-- → INFOGRAPHIC: Three horizontal rows, each a failure mode — "Tools are unreliable," "Errors are biased," "Institutions are walking back." For each row: a brief mechanism statement and the key evidence anchor (Weber-Wulff 2023 / Liang 2023 / Vanderbilt arithmetic). Caption: The three reasons are independent. Any one is enough. Together they constitute a settled case. -->
+![Three stacked horizontal rows, each a failure mode of AI-text detection: row one names tools as unreliable with the Weber-Wulff 2023 anchor and the OpenAI 26% withdrawal note; row two names errors as biased with the Liang 2023 anchor and the >50% TOEFL misclassification; row three names institutions walking back with the Vanderbilt arithmetic 1% × 75,000 = 750 wrongly flagged. A footer notes each row is independent.](../images/13-academic-integrity-privacy-and-honest-use-fig-01.png)
+*Figure 13.1 — Three independent failure modes. Any one is enough to disqualify detection as a primary tool; together they constitute a settled case.*
 
 There are three separate reasons, and they are independent — any one of them is enough.
 
@@ -47,7 +48,8 @@ Even if all three problems were solved tomorrow — the tools became reliable, t
 
 ## The Bastani result: what it actually says
 
-<!-- → CHART: Grouped bar chart — three conditions (Control, GPT Base, GPT Tutor) × two outcomes (practice performance, unaided exam score). GPT Base exam bar drops below Control; GPT Tutor exam bar stays at Control level. Callouts: "48% practice gain → 17-point exam loss" on GPT Base; "127% practice gain → no exam loss" on GPT Tutor. Caption: Same model. Same students. The only variable was the pedagogical wrapper. This is the load-bearing study. -->
+![Grouped bar chart comparing three conditions (Control, GPT Base, GPT Tutor) on two outcomes: practice performance and unaided exam score. The GPT Base practice bar rises 48% above control while its exam bar drops 17 points below; the GPT Tutor practice bar rises 127% above control while its exam bar stays at the control level. Callouts annotate each gap.](../images/13-academic-integrity-privacy-and-honest-use-fig-02.png)
+*Figure 13.2 — The Bastani result. Same model. Same students. The only variable was the pedagogical wrapper around the prompt.*
 
 Before arriving at the design, there is one study that has to be understood precisely, because popular summaries have garbled it in both directions.
 
@@ -79,6 +81,9 @@ If detection cannot work, what does? The answer is design: assignments built so 
 
 An assignment is AI-survivable if a student who outsources the entire artifact to AI is detectably worse off than a student who did the work — without requiring detection software.
 
+![A five-stage vertical decision tree of diagnostic questions, each as a yes/no branch — defense in conversation, novel application beyond training cutoff, process trail required, real-time unassisted performance, would a good artifact alone reveal learning. Five yes nodes converge on an AI-survivable terminal; any no branches to a redesign-target terminal with a smallest-move callout.](../images/13-academic-integrity-privacy-and-honest-use-fig-03.png)
+*Figure 13.3 — The five-question diagnostic. Run this on one assignment at a time. The goal is the smallest move that converts a "no" to a "yes."*
+
 Five questions do the diagnostic work:
 
 Does the assignment require the student to defend claims in conversation? Does it require applying concepts to a situation that did not exist when any model was trained? Does it require a process trail — drafts, annotations, decision records? Does it require real-time, unassisted performance? If a student used AI freely and produced a good artifact, would you know whether they learned anything?
@@ -101,7 +106,15 @@ The framework is not *make assignments AI-proof.* Nothing is AI-proof at the art
 
 ## A research paper, redesigned
 
-<!-- → TABLE: Five-question checklist applied to "Before" and "After" versions side by side. Column 1: checklist question. Column 2: Before — all five fail. Column 3: After — all five pass, each with a one-line explanation of what changed. Caption: The redesign does not ban AI. It changes what AI is useful for inside the assignment. The student who uses AI as a Socratic partner produces a stronger argument. The student who outsources is visibly worse off at the defense. -->
+| Checklist question | Before — 1865–1945 research paper | After — historical-current connection + portfolio |
+|---|---|---|
+| Defense in conversation? | No — submitted artifact only | Yes — 10-minute Week-4 defense conference |
+| Novel application beyond training cutoff? | No — 1865–1945 is deep in training | Yes — link to a current event from the last 12 months |
+| Process trail required? | No — final paper only | Yes — topic memo, annotated bib, draft + reflection, disclosure |
+| Real-time unassisted performance? | No — written outside class | Yes — in-class paper topic memo + live defense |
+| Would good artifact alone reveal learning? | No — passable AI paper indistinguishable | Yes — portfolio + defense provide independent observations |
+
+*Table 13.1 — The five-question checklist applied to the same assignment, before and after. The redesign does not ban AI; it changes what AI is useful for inside the assignment.*
 
 Take one assignment nearly every teacher reading this has given some version of. A research paper. Before, why it fails, what changes when the checklist is applied.
 
@@ -125,7 +138,15 @@ The limit is honest. This works for a seminar of twenty-five. It requires struct
 
 ## Privacy: the operating habits that keep your AI use legal
 
-<!-- → TABLE: Two-column reference — "Routine AI use" vs. "Stop and check." Rows: generating practice problems (routine / no student names needed), drafting feedback on anonymized work (routine / de-identified first), summarizing a specific student's progress (check — FERPA), pasting names and grades into free consumer LLM (check — FERPA violation), setting up shared logins for students under 13 (check — COPPA violation). Caption: The distinction is not which tool you use. It is whether identifiable student information leaves your control. -->
+| Routine AI use | Stop and check |
+|---|---|
+| Generating practice problems, no student names in prompt | Summarizing a specific student's progress report — FERPA disclosure |
+| Drafting feedback on de-identified work | Pasting names and grades into a free consumer LLM — FERPA violation |
+| Building a slide outline on a public topic | Sharing a roster, IEP, or 504 plan with an unvetted tool — FERPA / IDEA |
+| Translating an anonymized parent message into another language | Setting up shared consumer logins for students under 13 — COPPA violation |
+| Producing differentiated practice from a generic prompt | Using a tool with no Data Processing Agreement on identifiable records |
+
+*Table 13.2 — The distinction is not which tool you use. It is whether identifiable student information leaves your control.*
 
 The legal layer has to be present and principle-level. What follows is not legal advice. The specifics are state-variable, district-variable, contract-variable, and changing month by month. What the chapter can give you is the set of operating habits that keep most everyday teacher AI use defensible, and the moments to stop and call counsel.
 
@@ -169,7 +190,8 @@ The third is that more enforcement equals more integrity. The opening case is th
 
 ## The equity dimension
 
-<!-- → CHART: Horizontal bar chart showing ChatGPT-for-schoolwork usage rates by demographic group (Pew 2025): Black teens 31%, Hispanic teens 31%, White teens 22%; higher-income families vs. lower-income families. Caption: A blanket ban interacts asymmetrically with what students have at home. A blanket requirement interacts asymmetrically with differential access to devices, broadband, and paid-tier models. A defensible policy names both directions. -->
+![Horizontal bar chart of ChatGPT-for-schoolwork usage rates by demographic group from Pew January 2025: Black teens 31%, Hispanic teens 31%, White teens 22%, overall teens 26%, alongside higher-income vs lower-income family rates. Zero baseline; the all-teen average bar uses the red accent.](../images/13-academic-integrity-privacy-and-honest-use-fig-04.png)
+*Figure 13.4 — Teen ChatGPT-for-schoolwork use by group (Pew 2025). Bans and requirements both interact asymmetrically with what students have at home.*
 
 The chapter has to hold a difficult finding: AI use among teens is not uniformly distributed, and the patterns matter for policy.
 
@@ -218,3 +240,65 @@ Whether the framework holds as AI capability advances. The five-question checkli
 - U.S. Department of Education, Office of Educational Technology. (2023). Artificial intelligence and the future of teaching and learning. https://www.ed.gov/sites/ed/files/documents/ai-report/ai-report.pdf
 - FTC. (2025). COPPA final rule amendments. https://www.ftc.gov/system/files/ftc_gov/pdf/coppa_sbp_1.16_0.pdf
 - Student Privacy Compass. State guidance on generative AI in K-12. https://studentprivacycompass.org/state-guidance-on-the-use-of-generative-ai-in-k-12-education/
+
+---
+
+## Prompts
+
+Use these prompts with Claude to regenerate the figures in this chapter as interactive D3 v7 charts. Each prompt produces a standalone HTML file you can open in a browser and modify freely. The reference implementations exist in `d3/` for comparison.
+
+**Prerequisites:** Before running any of these prompts, load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context. They define the rendering stack (D3 v7, single-file HTML, the pinned CDN URL), the color tokens (six `var(--color-*)` variables, dark-mode-aware), the type stack (EB Garamond display, Inter body, JetBrains Mono for numerics), and the accessibility floor (`role="img"`, `<title>`, `<desc>`, keyboard reach, reduced-motion suppression). The figures below assume those conventions; the prompts do not restate them.
+
+---
+
+### Figure 13.1 — Three independent failure modes of AI-text detection
+
+Build a stacked infographic of three full-width horizontal rows, top-to-bottom. Each row has a numbered red badge at the left (1, 2, 3), then a row title, two lines of detail, and a single italic anchor line below; the right edge of each row carries one large numeric stat with a small caption beneath it. Row 1: tools unreliable — Weber-Wulff 2023, 12 tools across 756 cases, "neither accurate nor reliable"; stat `26%` true-positive at OpenAI's July 2023 withdrawal. Row 2: errors biased — Liang 2023, seven detectors on TOEFL essays; stat `>50%` misclassified, near-perfect on eighth-grade essays. Row 3: institutions walking back — Vanderbilt August 2023; stat `750` wrongly flagged from 1% × 75,000. Footer: "Each row is independent. Any one is enough. Together they constitute a settled case." Each row is keyboard-reachable; tooltips expand the mechanism on hover and on Enter.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-01.html`
+
+---
+
+### Figure 13.2 — The Bastani result
+
+Build a grouped vertical bar chart of three conditions (Control, GPT Base, GPT Tutor) on two outcomes (practice with AI, exam without). Use `d3.scaleBand` for outer groups, an inner `scaleBand` for the two outcomes, and `d3.scaleLinear` from 0 to 250 for the y-axis with a zero baseline. Values normalized to Control = 100: practice 100 / 148 / 227, exam 100 / 83 / 100. Practice bars in `var(--color-secondary)`; exam bars in `var(--color-red)`. Draw a thin reference line at y = 100 labeled "Control = 100." Annotate GPT Base with "48% practice gain → 17-point exam loss" and GPT Tutor with "127% practice gain — no exam loss." Legend top-right. Bar values above each bar in JetBrains Mono. Caption beneath the chart: "Performance paradox: in-session gain ≠ durable learning." Bars are tab-reachable with `aria-label`; tooltips on hover.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-02.html`
+
+---
+
+### Figure 13.3 — Five-question diagnostic decision tree
+
+Build a top-down decision tree of five yes/no diagnostic questions arranged in a single vertical column. Each node is a bordered rectangle with the question on the first line and a small italic "smallest move" note on the second. The yes path drops to the next node (solid arrow in `var(--color-ink)`); the no path peels off to the right (dashed arrow in `var(--color-secondary)`) to a single shared "Redesign target — find the smallest move that turns this no into a yes" terminal with a 3px `var(--color-ochre)` left border. Five consecutive yes answers converge at the bottom into an "AI-survivable" terminal filled in `var(--color-red)`. Question text: defense in conversation, novel application beyond training cutoff, process trail, real-time unassisted performance, would artifact alone reveal learning. Each node is keyboard-reachable; tooltip on hover and Enter expands the rationale for that diagnostic.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-03.html`
+
+---
+
+### Figure 13.4 — Teen ChatGPT-for-schoolwork use by group
+
+Build a horizontal bar chart of U.S. teen ChatGPT-for-schoolwork use, Pew January 2025, with three layers stacked vertically. Top: a single reference bar "All teens" at 26% in `var(--color-red)`. Middle, under an italic eyebrow "By race / ethnicity": Black 31%, Hispanic 31%, White 22%, sorted descending within the subsection. Bottom, under "By household income": higher-income 31%, lower-income 18%, sorted descending. Bars below the reference use `var(--color-secondary)` with a lighter `#787878` for the lowest-value bar in each subsection. Zero baseline; x-axis labeled in percent with five gridlines. Value labels in JetBrains Mono at the end of each bar. A dashed vertical reference line at the 26% all-teen average crosses both subsections, labeled "all-teen average." Caption below the chart explains the equity-asymmetry argument. Each bar is keyboard-reachable; tooltips on hover.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-04.html`
+
+---
+
+## AI Wayback Machine
+
+The ideas in this chapter didn't appear from nowhere. **Plato** (~428–348 BCE) recorded the first sustained argument that a new communication technology might *appear* to produce knowledge while corroding it. In the *Phaedrus*, Socrates tells the myth of the god Theuth presenting writing to King Thamus as a remedy for memory. Thamus refuses: writing, he says, produces "forgetfulness in the souls of those who learn it," because they will trust the external marks rather than do the internal work — they will "have the appearance of wisdom, not the reality." That argument is the load-bearing structure under the Bastani result. Detection looks for the external marks. Design asks whether the internal work happened.
+
+![Plato, Athenian philosopher (~428–348 BCE). AI-generated portrait based on a public domain engraving of the classical bust.](../images/plato.jpg)
+*Plato, ~428–348 BCE. AI-generated portrait based on a public domain engraving of the classical bust (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Plato, and how does the Phaedrus dialogue's critique of writing — that it produces "forgetfulness of memory" and "the appearance of knowledge, not the reality" — map onto this chapter's framework for academic integrity with AI? Keep it to three paragraphs. End with the single most surprising thing about how Plato's own use of the written dialogue contradicts the argument he puts in Socrates's mouth.
+```
+
+→ Search **"Plato"** and **"Phaedrus (dialogue)"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to rewrite the Theuth and Thamus myth with AI as Theuth and a 2026 teacher as Thamus — what does the king refuse, and on what grounds?
+- Ask it about the difference between *anamnesis* (recollection as recovering knowledge the soul already has) and the externalized "knowledge" the dialogue criticizes — which of this chapter's five diagnostic questions tests for the difference?

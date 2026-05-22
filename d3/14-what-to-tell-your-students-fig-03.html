@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 14.3 &mdash; Storage strength vs retrieval strength</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white: #fdfcfb;
+    --color-ink: #2a1a0e;
+    --color-secondary: #4a4540;
+    --color-muted: #8a8480;
+    --color-border: #c8c4c0;
+    --color-surface: #f5f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white: #1a1410;
+      --color-ink: #f5f2ee;
+      --color-secondary: #c8c4c0;
+      --color-muted: #8a8480;
+      --color-border: #4a4540;
+      --color-surface: #2a1a0e;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Garamond, Georgia, serif; padding: 24px; }
+  h1 { font-weight: 400; font-size: 26px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-style: italic; font-size: 15px; margin-bottom: 20px; }
+  #chart { width: 100%; min-height: 520px; }
+  .axis path, .axis line { stroke: var(--color-secondary); }
+  .axis text { font-family: 'EB Garamond', Garamond, Georgia, serif; fill: var(--color-secondary); font-size: 11px; }
+  .line-retrieval { fill: none; stroke: var(--color-ink); stroke-width: 2; }
+  .line-storage { fill: none; stroke: var(--color-muted); stroke-width: 2; stroke-dasharray: 5 4; }
+  .label-ink { font-style: italic; fill: var(--color-ink); font-size: 13px; }
+  .label-mute { font-style: italic; fill: var(--color-secondary); font-size: 13px; }
+  .caption { font-style: italic; fill: var(--color-muted); font-size: 12px; }
+  .panel-title { font-style: italic; fill: var(--color-ink); font-size: 15px; }
+  .exam-line { stroke: var(--color-muted); stroke-dasharray: 2 3; }
+  .dot { cursor: pointer; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-size: 13px; font-family: 'EB Garamond', Garamond, Georgia, serif; transition: opacity 150ms; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 14.3 &mdash; Two parameters the introspective system cannot tell apart.</h1>
+<p class="subtitle">Bjork &amp; Bjork: fluency now is not durability later.</p>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+  const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+
+  // synthetic curves t in [0,1]
+  function reread() {
+    const r = [], s = [];
+    for (let i = 0; i <= 40; i++) {
+      const t = i / 40;
+      r.push({ t, v: 0.15 + 0.85 * Math.exp(-2.4 * Math.pow(t - 0.18, 2) * 6) - 0.2 * t });
+      s.push({ t, v: 0.10 + 0.005 * t });
+    }
+    return { r, s };
+  }
+  function retrieve() {
+    const r = [], s = [];
+    for (let i = 0; i <= 40; i++) {
+      const t = i / 40;
+      r.push({ t, v: 0.20 + 0.40 * Math.exp(-3 * Math.pow(t - 0.25, 2) * 4) - 0.05 * t });
+      s.push({ t, v: 0.12 + 0.50 * t });
+    }
+    return { r, s };
+  }
+
+  function draw() {
+    d3.select('#chart').selectAll('*').remove();
+    const W = document.getElementById('chart').clientWidth || 700;
+    const H = 520;
+    const panelH = (H - 100) / 2;
+    const margin = { top: 60, right: 80, bottom: 30, left: 70 };
+    const cw = W - margin.left - margin.right;
+
+    const svg = d3.select('#chart').append('svg')
+      .attr('viewBox', `0 0 ${W} ${H}`)
+      .attr('role', 'img')
+      .attr('aria-labelledby', 'ct cd');
+    svg.append('title').attr('id', 'ct').text('Storage strength versus retrieval strength');
+    svg.append('desc').attr('id', 'cd').text('Two panels. Re-reading or asking AI to explain spikes retrieval strength but storage stays flat. Retrieval practice or AI quizzing dips retrieval briefly but grows storage strength.');
+
+    const x = d3.scaleLinear().domain([0, 1]).range([0, cw]);
+    const y = d3.scaleLinear().domain([0, 1]).range([panelH, 0]);
+
+    const line = d3.line().x(d => x(d.t)).y(d => y(d.v));
+
+    function panel(yOff, title, data, caption) {
+      const g = svg.append('g').attr('transform', `translate(${margin.left},${yOff})`);
+      g.append('text').attr('y', -22).attr('class', 'panel-title').text(title);
+
+      // axes
+      g.append('line').attr('x1', 0).attr('x2', cw).attr('y1', panelH).attr('y2', panelH).attr('stroke', 'var(--color-secondary)');
+      g.append('line').attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', panelH).attr('stroke', 'var(--color-secondary)');
+      g.append('text').attr('x', -8).attr('y', 8).attr('text-anchor', 'end').style('font-size', '10px').attr('fill', 'var(--color-secondary)').text('high');
+      g.append('text').attr('x', -8).attr('y', panelH).attr('text-anchor', 'end').style('font-size', '10px').attr('fill', 'var(--color-secondary)').text('low');
+      g.append('text').attr('x', 0).attr('y', panelH + 16).style('font-size', '11px').style('font-style', 'italic').attr('fill', 'var(--color-secondary)').text('study session');
+      g.append('text').attr('x', cw / 2).attr('y', panelH + 16).attr('text-anchor', 'middle').style('font-size', '11px').style('font-style', 'italic').attr('fill', 'var(--color-secondary)').text('2 days');
+      g.append('text').attr('x', cw).attr('y', panelH + 16).attr('text-anchor', 'end').style('font-size', '11px').style('font-style', 'italic').attr('fill', 'var(--color-secondary)').text('exam (2 weeks)');
+
+      // exam vertical
+      g.append('line').attr('class', 'exam-line').attr('x1', x(0.92)).attr('x2', x(0.92)).attr('y1', 0).attr('y2', panelH);
+
+      g.append('path').attr('class', 'line-retrieval').attr('d', line(data.r));
+      g.append('path').attr('class', 'line-storage').attr('d', line(data.s));
+
+      // labels
+      g.append('text').attr('x', x(0.25)).attr('y', y(data.r[10].v) - 8).attr('class', 'label-ink').text('retrieval strength');
+      g.append('text').attr('x', x(0.55)).attr('y', y(data.s[22].v) - 8).attr('class', 'label-mute').text('storage strength');
+
+      // hover dots
+      g.selectAll('.dot').data(data.r.filter((_, i) => i % 8 === 0)).join('circle')
+        .attr('class', 'dot').attr('r', 3).attr('cx', d => x(d.t)).attr('cy', d => y(d.v))
+        .attr('fill', 'var(--color-ink)').attr('tabindex', 0)
+        .attr('aria-label', d => `retrieval strength at t=${d.t.toFixed(2)}: ${d.v.toFixed(2)}`)
+        .on('mouseover', (event, d) => {
+          tooltip.html(`retrieval: ${d.v.toFixed(2)}`)
+            .style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px')
+            .transition().duration(150).style('opacity', 1);
+        })
+        .on('mousemove', (event) => tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px'))
+        .on('mouseout', () => tooltip.transition().duration(100).style('opacity', 0));
+
+      g.append('text').attr('x', 0).attr('y', panelH + 34).attr('class', 'caption').text(caption);
+    }
+
+    panel(40, 'A. Re-read — or ask the AI to explain', reread(),
+      'feels like learning; brain stays empty.');
+    panel(40 + panelH + 60, 'B. Retrieve — or ask the AI to quiz you', retrieve(),
+      'feels harder; brain is being built. desirable difficulty.');
+
+    svg.append('text').attr('x', W / 2).attr('y', H - 2).attr('text-anchor', 'middle').attr('class', 'caption')
+      .text('Figure 14.3 — schematic curves; the mechanism, not measured numbers.');
+  }
+
+  draw();
+  const ro = new ResizeObserver(() => draw());
+  ro.observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

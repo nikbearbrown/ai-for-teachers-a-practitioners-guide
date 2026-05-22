@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The IEP and 504 phase gate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-white:     #FFFFFF;
+      --color-ink:       #121212;
+      --color-red:       #C8102E;
+      --color-secondary: #545454;
+      --color-border:    #D4D4D4;
+      --color-ochre:     #C8860E;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-white:     #111111;
+        --color-ink:       #F0EBE3;
+        --color-red:       #E8243A;
+        --color-secondary: #A0978C;
+        --color-border:    #2E2E2E;
+        --color-ochre:     #D49A30;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-white);
+      color: var(--color-ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      padding: 24px;
+    }
+    h1 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 14px;
+      color: var(--color-secondary);
+      margin-bottom: 20px;
+      max-width: 80ch;
+    }
+    #chart { width: 100%; max-width: 980px; }
+    .step-num {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      fill: var(--color-secondary);
+    }
+    .node-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      fill: var(--color-ink);
+      pointer-events: none;
+    }
+    .node-sub {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 12px;
+      fill: var(--color-secondary);
+      pointer-events: none;
+    }
+    .node-cap {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 11px;
+      font-style: italic;
+      fill: var(--color-secondary);
+    }
+    .shortcut-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 13px;
+      font-weight: 700;
+      fill: var(--color-red);
+    }
+    .footer-line {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 12px;
+      fill: var(--color-secondary);
+    }
+    .arrow-path { stroke: var(--color-ink); stroke-width: 1.4; fill: none; }
+    .tooltip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      background: var(--color-ink);
+      color: var(--color-white);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-family: 'EB Garamond', Georgia, serif;
+      max-width: 320px;
+      line-height: 1.4;
+      transition: opacity 150ms;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <h1>The IEP and 504 phase gate</h1>
+  <p class="subtitle">AI proposes. The team authorizes. The teacher implements what the team authorized. The middle box is the legal act.</p>
+  <div id="chart" role="img" aria-label="A three-node flow diagram for IEP and 504 accommodations: AI proposes, team authorizes, teacher implements, with a dashed shortcut arrow underneath that is crossed out."></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const nodes = [
+      {
+        id: 'propose',
+        step: 'STEP 1',
+        title: 'AI proposes',
+        subs: [
+          'from anonymized profile,',
+          'suggests accommodations',
+          'from a standard library'
+        ],
+        cap: 'a starting point, not a plan',
+        tip: 'The model can generate plausible accommodation language from an anonymized profile. Useful as a draft. It does not have the student’s history, evaluation results, or response-to-intervention data.'
+      },
+      {
+        id: 'gate',
+        step: 'STEP 2 — THE GATE',
+        title: 'Licensed specialist and team authorize',
+        subs: [
+          'review against student history,',
+          'evaluation results, and response',
+          'to prior intervention'
+        ],
+        cap: 'the legal act under IDEA',
+        tip: 'The IEP team — parent, general-ed teacher if applicable, special-ed teacher, LEA representative, and someone who can interpret evaluations — authorizes the accommodation. 504 plans use a similar team process.',
+        isGate: true
+      },
+      {
+        id: 'implement',
+        step: 'STEP 3',
+        title: 'Teacher implements',
+        subs: [
+          'what the team',
+          'has authorized —',
+          'no more, no less'
+        ],
+        cap: 'execution, not authorization',
+        tip: 'The teacher delivers exactly what the team authorized. Adding or modifying accommodations outside team review reopens the legal and clinical questions the gate exists to settle.'
+      }
+    ];
+
+    const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+    function showTip(event, html) {
+      tooltip.html(html)
+        .style('left', (event.pageX + 14) + 'px')
+        .style('top',  (event.pageY - 24) + 'px')
+        .transition().duration(150).style('opacity', 1);
+    }
+    function moveTip(event) {
+      tooltip.style('left', (event.pageX + 14) + 'px')
+             .style('top',  (event.pageY - 24) + 'px');
+    }
+    function hideTip() {
+      tooltip.transition().duration(100).style('opacity', 0);
+    }
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+      const container = document.getElementById('chart');
+      const totalWidth  = Math.max(680, container.clientWidth || 900);
+      const totalHeight = 500;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth).attr('height', totalHeight)
+        .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
+        .attr('role', 'img')
+        .attr('aria-labelledby', 'fig-title fig-desc');
+
+      svg.append('title').attr('id', 'fig-title').text('The IEP and 504 phase gate');
+      svg.append('desc').attr('id', 'fig-desc').text('Three nodes left to right: AI proposes, team authorizes, teacher implements, with a crossed-out shortcut between the first and third.');
+
+      const defs = svg.append('defs');
+      defs.append('marker')
+        .attr('id', 'arrow-ink')
+        .attr('markerWidth', 9).attr('markerHeight', 7)
+        .attr('refX', 8).attr('refY', 3.5).attr('orient', 'auto')
+        .append('polygon').attr('points', '0 0, 9 3.5, 0 7')
+        .attr('fill', 'var(--color-ink)');
+      defs.append('marker')
+        .attr('id', 'arrow-red')
+        .attr('markerWidth', 9).attr('markerHeight', 7)
+        .attr('refX', 8).attr('refY', 3.5).attr('orient', 'auto')
+        .append('polygon').attr('points', '0 0, 9 3.5, 0 7')
+        .attr('fill', 'var(--color-red)');
+
+      // Layout
+      const nodeW = Math.min(220, (totalWidth - 80) / 3 - 30);
+      const nodeH = 140;
+      const totalNodesW = nodeW * 3 + 60 * 2;
+      const startX = (totalWidth - totalNodesW) / 2;
+      const rowY = 90;
+
+      const xs = [startX, startX + nodeW + 60, startX + 2 * (nodeW + 60)];
+
+      // Step labels above
+      nodes.forEach((d, i) => {
+        svg.append('text').attr('class', 'step-num')
+          .attr('x', xs[i] + nodeW / 2).attr('y', rowY - 10)
+          .attr('text-anchor', 'middle')
+          .text(d.step);
+      });
+
+      // Arrows between nodes
+      [0, 1].forEach(i => {
+        svg.append('path').attr('class', 'arrow-path')
+          .attr('d', `M ${xs[i] + nodeW + 4} ${rowY + nodeH/2} L ${xs[i+1] - 6} ${rowY + nodeH/2}`)
+          .attr('marker-end', 'url(#arrow-ink)')
+          .attr('aria-hidden', 'true');
+      });
+
+      // Nodes
+      nodes.forEach((d, i) => {
+        const g = svg.append('g').attr('tabindex', 0)
+          .attr('aria-label', `${d.step}: ${d.title}. ${d.subs.join(' ')}`)
+          .style('cursor', 'pointer');
+
+        g.append('rect')
+          .attr('x', xs[i]).attr('y', rowY)
+          .attr('width', nodeW).attr('height', nodeH)
+          .attr('fill', 'var(--color-white)')
+          .attr('stroke', d.isGate ? 'var(--color-ink)' : 'var(--color-secondary)')
+          .attr('stroke-width', d.isGate ? 1.6 : 1);
+
+        if (d.isGate) {
+          g.append('rect')
+            .attr('x', xs[i]).attr('y', rowY)
+            .attr('width', 4).attr('height', nodeH)
+            .attr('fill', 'var(--color-ochre)');
+        }
+
+        g.append('text').attr('class', 'node-title')
+          .attr('x', xs[i] + nodeW/2).attr('y', rowY + 28)
+          .attr('text-anchor', 'middle')
+          .text(d.title.length > 26 ? d.title.split(' and ')[0] : d.title);
+
+        if (d.title.length > 26) {
+          g.append('text').attr('class', 'node-title')
+            .attr('x', xs[i] + nodeW/2).attr('y', rowY + 46)
+            .attr('text-anchor', 'middle')
+            .text('and ' + d.title.split(' and ')[1]);
+        }
+
+        const subsStartY = d.title.length > 26 ? rowY + 72 : rowY + 56;
+        d.subs.forEach((s, j) => {
+          g.append('text').attr('class', 'node-sub')
+            .attr('x', xs[i] + nodeW/2).attr('y', subsStartY + j * 16)
+            .attr('text-anchor', 'middle')
+            .text(s);
+        });
+
+        g.append('text').attr('class', 'node-cap')
+          .attr('x', xs[i] + nodeW/2).attr('y', rowY + nodeH - 10)
+          .attr('text-anchor', 'middle')
+          .text(d.cap);
+
+        g.on('mouseover', (event) => showTip(event, `<strong>${d.title}</strong><br/>${d.tip}`))
+         .on('mousemove', moveTip).on('mouseout', hideTip);
+      });
+
+      // shortcut arrow (dashed) from node 1 to node 3
+      const arc = d3.path();
+      const startSX = xs[0] + nodeW/2;
+      const endSX   = xs[2] + nodeW/2;
+      const arcY    = rowY + nodeH + 50;
+      const midX    = (startSX + endSX) / 2;
+      arc.moveTo(startSX, rowY + nodeH + 10);
+      arc.bezierCurveTo(startSX, arcY + 40, endSX, arcY + 40, endSX, rowY + nodeH + 10);
+
+      svg.append('path')
+        .attr('d', arc.toString())
+        .attr('fill', 'none')
+        .attr('stroke', 'var(--color-red)')
+        .attr('stroke-width', 1.4)
+        .attr('stroke-dasharray', '6 4')
+        .attr('marker-end', 'url(#arrow-red)')
+        .attr('aria-hidden', 'true');
+
+      // X across the shortcut
+      const xCx = midX;
+      const xCy = arcY + 30;
+      const xR  = 14;
+      svg.append('rect')
+        .attr('x', xCx - xR).attr('y', xCy - xR)
+        .attr('width', xR * 2).attr('height', xR * 2)
+        .attr('fill', 'var(--color-white)')
+        .attr('stroke', 'var(--color-red)').attr('stroke-width', 1.4);
+      svg.append('line')
+        .attr('x1', xCx - 8).attr('y1', xCy - 8)
+        .attr('x2', xCx + 8).attr('y2', xCy + 8)
+        .attr('stroke', 'var(--color-red)').attr('stroke-width', 2.2);
+      svg.append('line')
+        .attr('x1', xCx - 8).attr('y1', xCy + 8)
+        .attr('x2', xCx + 8).attr('y2', xCy - 8)
+        .attr('stroke', 'var(--color-red)').attr('stroke-width', 2.2);
+
+      // shortcut label
+      const labelY = arcY + 70;
+      const shortcutG = svg.append('g').attr('tabindex', 0)
+        .attr('aria-label', 'Shortcut from AI proposes directly to teacher implements skips legal authorization and clinical judgment.')
+        .style('cursor', 'pointer');
+      shortcutG.append('text').attr('class', 'shortcut-text')
+        .attr('x', totalWidth/2).attr('y', labelY).attr('text-anchor', 'middle')
+        .text('skips legal authorization & clinical judgment');
+      shortcutG.append('text').attr('class', 'footer-line')
+        .attr('x', totalWidth/2).attr('y', labelY + 18).attr('text-anchor', 'middle')
+        .text('looks like efficiency. Reads, in court and in practice, as the skipped step.');
+      shortcutG.on('mouseover', (event) => showTip(event, '<strong>The shortcut</strong><br/>AI proposes → teacher implements, with the legal authorization removed. Under IDEA, the team’s judgment is not a delay to route around. It is the substance the gate protects.'))
+               .on('mousemove', moveTip).on('mouseout', hideTip);
+
+      // footer line
+      svg.append('line')
+        .attr('x1', 30).attr('x2', totalWidth - 30)
+        .attr('y1', totalHeight - 30).attr('y2', totalHeight - 30)
+        .attr('stroke', 'var(--color-border)').attr('stroke-width', 0.8)
+        .attr('aria-hidden', 'true');
+      svg.append('text').attr('class', 'footer-line')
+        .attr('x', totalWidth/2).attr('y', totalHeight - 12).attr('text-anchor', 'middle')
+        .text('IDEA §1414 requires the team. The model does not satisfy it.');
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

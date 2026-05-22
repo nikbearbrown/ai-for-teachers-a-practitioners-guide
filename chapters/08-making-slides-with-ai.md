@@ -38,7 +38,8 @@ The practical translation is hard to argue with once you see it: **if you are ab
 
 The misconception worth naming: *putting talking points on the slide helps students who struggle to follow audio.* This conflates two different students. The one sitting in the room with the speaker is harmed by redundant text — the verbal-channel collision degrades the explanation she is trying to follow in real time. The one studying alone later is helped by a separate document — which is exactly what the populated notes field, exported, becomes. One slide cannot serve both students simultaneously. The fix is not to choose one student over the other. The fix is to produce both artifacts.
 
-<!-- → [INFOGRAPHIC: two-artifact model — a single source file forks into two outputs: left branch labeled "Live deck" (sparse, headline + single visual, notes empty) and right branch labeled "Study export" (notes field populated with full prose, background references, speaker explanation) — caption: one source file, two artifacts, two audiences — the slide is not the document] -->
+![two-artifact model](../images/08-making-slides-with-ai-fig-01.png)
+*Figure 8.1 — two-artifact model.*
 
 ---
 
@@ -65,7 +66,15 @@ Here is what the distinction looks like in practice:
 
 A claim is testable against the slide's evidence. The audience can, at the end of the slide, agree or disagree with it. A label is not testable against anything. The discipline is to ask, for every headline you write or accept: *what does this slide want the audience to believe?* If you cannot answer that question, neither can they.
 
-<!-- → [TABLE: topic label vs. claim headline conversion — two columns, five rows — left: "Oxidative Phosphorylation," "Three Causes," "Introduction," "Methods," "Results" — right: the assertion-evidence rewrites shown in the chapter — caption: a label files content; a claim makes an argument — reader should be able to use this as a rewrite reference for any deck] -->
+| Topic Label | Claim Headline |
+|---|---|
+| Oxidative Phosphorylation | The proton gradient powers ATP synthase. |
+| Three Causes | MBS leverage was the load-bearing cause. |
+| Introduction | Most teacher AI rollouts fail at the training step, not the tool. |
+| Methods | Random assignment isolates the treatment from selection bias. |
+| Results | Treatment students outperformed controls on transfer, not retention. |
+
+*Table 8.1 — Topic labels vs. claim headlines. A label files content; a claim makes an argument.*
 
 ---
 
@@ -75,7 +84,8 @@ The first is **seductive detail**. Harp and Mayer (1998), in the *Journal of Edu
 
 The second is **wrong visual form**. A bulleted list is the slide editor's default for almost everything. It is the right form for exactly one kind of content: lists, where the items have no temporal, causal, or comparative relationship to each other beyond co-membership. It is the wrong form for comparisons (use a 2×2 or table), for processes (use a directed diagram), for distributions (use a chart), for single large quantities (use a number set at large size and get out of the way). Cleveland and McGill (1984), in the *Journal of the American Statistical Association*, ranked visual encodings by how accurately the eye perceives them: position along a common scale beats length beats angle beats area beats color. When a slide uses bullets to show a comparison, the audience must translate the bullets into a mental table before they can compare anything. That translation is cognitive work the slide should have done already. The author's job is to match visual form to content structure, not to accept the editor's default.
 
-<!-- → [INFOGRAPHIC: content-type to visual-form matching guide — four rows, each pairing a content structure (list / comparison / process / quantity) with its correct visual form (bulleted list / 2×2 or table / directed diagram / large isolated number or bar chart) — each row also shows the wrong default (bullets for all four) — reader should scan this before accepting any AI-generated slide body] -->
+![content-type to visual-form matching guide](../images/08-making-slides-with-ai-fig-02.png)
+*Figure 8.2 — content-type to visual-form matching guide.*
 
 The third is **decorative color**. Slide nineteen in the 11:42 p.m. deck has a five-color bar chart of three categorical variables. There are more colors than categories. The eye sees variation that does not encode meaning, hunts for the pattern, finds none, and disengages. Color on a teaching slide should answer one of two questions: *what category is this?* or *how much of this?* If it answers neither — if it is decoration — it is spending visual bandwidth on nothing. The discipline is to count the categories the chart needs to distinguish and use exactly that many colors, chosen from a palette designed for distinguishability. Cynthia Brewer's ColorBrewer 2.0 is the canonical reference. Two accessibility constraints that should not be negotiable: roughly 8% of men and 0.5% of women have red-green color blindness. Any distinction that matters should be encoded on a second channel — shape, label, position — in addition to color.
 
@@ -108,7 +118,8 @@ So here is the diagnostic. Five questions. Thirty seconds per slide. Five minute
 
 Run it on every AI-generated deck before it ships. The misuse to flag is applying the diagnostic to one slide and stopping. The deck-level pass is what catches structural failures — repeated topic labels, repeated redundancy — that slide-by-slide review misses.
 
-<!-- → [IMAGE: the five-question diagnostic formatted as a printable half-page card — clean typographic layout, each question numbered, each "if yes" action indented beneath its question — designed to be taped above a monitor or included in a course packet — no decorative elements, no color beyond a single rule separating the card from the page margin] -->
+![the five-question diagnostic formatted as a printable half-page card](../images/08-making-slides-with-ai-fig-03.png)
+*Figure 8.3 — the five-question diagnostic formatted as a printable half-page card.*
 
 ---
 
@@ -174,7 +185,8 @@ The result:
 
 The rewrite required no new content. It required deciding what each region of the slide was *for* — headline carries the claim, body carries the visual, notes field carries the explanation — and prompting the tool to honor that division.
 
-<!-- → [INFOGRAPHIC: before/after slide anatomy — left panel: the original AI slide (topic label at top, three prose bullets, stock photo, empty notes field, three decorative colors) with each failure annotated by name — right panel: the rewritten slide (assertion headline, membrane diagram, two encoding colors, notes field populated) with each region labeled by function — reader should see not just the cosmetic difference but the structural one] -->
+![before/after slide anatomy](../images/08-making-slides-with-ai-fig-04.png)
+*Figure 8.4 — before/after slide anatomy.*
 
 One honest note: I cannot promise the AI rebuilds the diagram correctly on the first try. AI image generation for technical diagrams is uneven. The practical workflow is to prompt for the diagram in words, build it in your slide editor, and verify every label by hand. The teacher remains responsible for content accuracy. The phase gate from Chapter 2 — *content accuracy gate* — still applies. Every AI-generated material is reviewed for errors before it reaches students.
 
@@ -188,7 +200,8 @@ The teacher who pastes a textbook figure unchanged into a slide is producing a f
 
 A practical rule from Robert Bringhurst's *The Elements of Typographic Style* (Hartley & Marks, 4th ed. 2013): for display typography — and projection is display typography — size ratios between hierarchical elements should approach 2:1. A title at 44 pt over body at 22 pt is 2:1 and visible at the back of the room. A title at 32 pt over body at 28 pt is a 1.14× ratio — functionally invisible at projection distance. I should be honest: Bringhurst derived this from the modular scales of book typography, not from a controlled study of instructional slides. The rule works in practice; the empirical case for the exact ratio is missing from the literature I can name.
 
-<!-- → [INFOGRAPHIC: textbook figure vs. slide figure — two panels showing the same mitochondrion diagram at print scale (14-inch reading distance, five-panel figure, 8pt labels, caption below) and at projection scale (rebuilt as single panel, 24pt labels, caption migrated to notes field, viewing distance labeled as 15–50 ft) — caption: rebuilding for reading condition is not a citation choice; it is a legibility choice] -->
+![textbook figure vs](../images/08-making-slides-with-ai-fig-05.png)
+*Figure 8.5 — textbook figure vs.*
 
 ---
 
@@ -224,3 +237,76 @@ The second is what I called "AI makes good slides." What AI makes is *plausible*
 - Reynolds, G. (2011). *Presentation Zen* (2nd ed.). New Riders.
 - Tufte, E. R. (2006). *The Cognitive Style of PowerPoint* (2nd ed.). Graphics Press.
 - Yue, C. L., Bjork, E. L., & Bjork, R. A. (2013). Reducing verbal redundancy in multimedia learning: An undesired desirable difficulty? *Journal of Educational Psychology, 105*(2), 266–277.
+
+
+---
+
+## Prompts
+
+The five figures in this chapter are the deck-diagnostic vocabulary set to type. Use these prompts to regenerate the D3 v7 reference implementations under `d3/` — single-file HTML, no build step. Each prompt names what the figure must say, not how to draw it; the renderer decides geometry.
+
+**Prerequisites.** Load `brutalist/CLAUDE.md` (D3 conventions) and `brutalist/DESIGN.md` (palette, type, accessibility) into your Claude project before running any of these. Pin D3 7.9.0 from the cdnjs URL — no substitutions. EB Garamond throughout; warm grayscale only. Every SVG ships `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)` handlers, a dark-mode `@media` block, and `prefers-reduced-motion` suppression.
+
+---
+
+### Figure 8.1 — Two-artifact model
+
+Render a single source node at the top forking into two artifact panels at the bottom: a sparse live deck on the left ("for the room") and a dense notes export on the right ("for the student alone"). Show the divergence with two arrows. Inside each panel embed a miniature slide mock — the left one carries a one-sentence headline and a diagram glyph; the right one carries seven horizontal lines of dense prose. Caption each panel by what it does. Tooltip on hover names the panel's role.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-01.html`
+
+---
+
+### Figure 8.2 — Content-type to visual-form matching guide
+
+Render five rows. Left column: a content structure (list, comparison, process, distribution, single quantity) with a one-line italic gloss. Right column: a small diagram of the visual form that fits — bulleted list, 2×2 matrix, three-node directed graph with an arrowhead marker, four-bar column chart, oversized number. Hairline between rows. Hover any row to highlight it and reveal a tooltip that pairs structure with form. The point is the bullet list earning its place in exactly one row.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-02.html`
+
+---
+
+### Figure 8.3 — The five-question diagnostic card
+
+Render a printable card. Eyebrow label "SLIDE DECK PASS" in tracked uppercase, large EB Garamond title beneath, ochre-mark underline. Five numbered rows: each row is a question (one line) and the corrective action beneath in italic secondary type. Hairline footer carrying "Thirty seconds per slide. Five minutes for a ten-slide deck." On hover, the question shifts color and a tooltip echoes the fix. Built so a teacher can print it and tape it above the monitor.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-03.html`
+
+---
+
+### Figure 8.4 — Before and after slide anatomy
+
+Render two slide mockups side by side under eyebrow labels BEFORE and AFTER, joined by a small arrow marker that says "rewrite." Left slide: topic-label headline, three prose bullets, a stock-photo rectangle, an empty notes block. Right slide: a two-line assertion headline, a labeled mechanism diagram (H+ ions, ATP synthase rotor, output arrow), a populated notes block as horizontal rules. Beneath each slide, list its failures or its functions in italic. Footer line: "No new content — only a decision about where each thing belongs."
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-04.html`
+
+---
+
+### Figure 8.5 — Textbook figure versus projection figure
+
+Render two panels under eyebrow labels naming the reading condition: "PRINT — 14 inches" left, "PROJECTION — 15 to 50 feet" right. Left panel: a five-cell composite of small panels labeled (a)–(e) at print scale, with a three-line caption beneath at nine-point type. Right panel: one large diagram of the inner mitochondrial membrane with cristae, a single label "inner membrane (cristae)" at fourteen-point type, the caption migrated to a hairline-bounded notes block. Footer line: "Different reading distance, different figure."
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-05.html`
+
+---
+
+## AI Wayback Machine
+
+Vignelli's New York City subway signage and his Knoll identity standards manuals are the load-bearing precedents for what this chapter argues a teacher's slide system should be — a typographic constitution that holds across every use, that does not need to be redesigned each time it ships, that earns its consistency from constraint. His insistence that *the life of a designer is a life of fight against the ugliness* maps directly onto the chapter's argument for owning your DESIGN.md before you let any AI build a slide for you.
+
+![Massimo Vignelli, 1931-2014. AI-generated portrait based on a public domain photograph.](../images/massimo-vignelli.jpg)
+*Massimo Vignelli, 1931-2014. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Massimo Vignelli, and how does their work connect to the ideas in this chapter? Keep it to three paragraphs. End with the single most surprising thing about their career or thinking.
+```
+
+→ Search **"Massimo Vignelli"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to apply Vignelli's framework to a specific scenario in this chapter — what gets surfaced that the chapter's prose left implicit?
+- Ask about the critics of Vignelli's work and which criticisms still bite today.
+
+What changes? What gets better? What gets worse?

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t31 d31">
+  <title id="t31">Pointer versus specification — search query versus generative prompt</title>
+  <desc id="d31">A two-panel diagram. The upper panel shows a search engine pipeline: user keywords feed an index lookup that returns a ranked list of pre-existing documents, labeled retrieval. The lower panel shows a generative model pipeline: prompt tokens feed a probability distribution that produces token-by-token output, labeled conditioning.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 14px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .badge { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: bold; fill: #C8102E; }
+      .panel { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #2a1a0e; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; font-style: italic; fill: #4a4540; }
+    </style>
+    <marker id="ar1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2a1a0e"/>
+    </marker>
+    <marker id="arRed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#C8102E"/>
+    </marker>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="28" class="ti">Pointer versus specification</text>
+  <text x="32" y="44" class="sub">Search returns what already exists. A prompt builds what did not exist until you asked.</text>
+
+  <!-- Upper panel — Search engine pipeline -->
+  <text x="32" y="76" class="panel">Search engine</text>
+  <line x1="32" y1="82" x2="668" y2="82" stroke="#c8c4c0" stroke-width="1"/>
+
+  <rect x="32" y="100" width="120" height="56" fill="#ffffff" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="92" y="124" text-anchor="middle" class="lb">User keywords</text>
+  <text x="92" y="140" text-anchor="middle" class="sm">"revolution causes quiz"</text>
+
+  <line x1="152" y1="128" x2="196" y2="128" stroke="#2a1a0e" stroke-width="1" marker-end="url(#ar1)"/>
+
+  <rect x="200" y="100" width="140" height="56" fill="#ffffff" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="270" y="124" text-anchor="middle" class="lb">Index lookup</text>
+  <text x="270" y="140" text-anchor="middle" class="sm">match against stored docs</text>
+
+  <line x1="340" y1="128" x2="384" y2="128" stroke="#2a1a0e" stroke-width="1" marker-end="url(#ar1)"/>
+
+  <rect x="388" y="100" width="160" height="56" fill="#ffffff" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="468" y="124" text-anchor="middle" class="lb">Ranked list</text>
+  <text x="468" y="140" text-anchor="middle" class="sm">existing documents returned</text>
+
+  <text x="270" y="174" text-anchor="middle" class="badge">retrieval</text>
+  <text x="468" y="174" text-anchor="middle" class="cap">already existed before you typed</text>
+
+  <!-- Lower panel — Generative model pipeline -->
+  <text x="32" y="226" class="panel">Generative language model</text>
+  <line x1="32" y1="232" x2="668" y2="232" stroke="#c8c4c0" stroke-width="1"/>
+
+  <rect x="32" y="252" width="120" height="56" fill="#ffffff" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="92" y="276" text-anchor="middle" class="lb">Prompt tokens</text>
+  <text x="92" y="292" text-anchor="middle" class="sm">role + context + task</text>
+
+  <line x1="152" y1="280" x2="196" y2="280" stroke="#2a1a0e" stroke-width="1" marker-end="url(#ar1)"/>
+
+  <rect x="200" y="252" width="140" height="56" fill="#ffffff" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="270" y="276" text-anchor="middle" class="lb">Probability distribution</text>
+  <text x="270" y="292" text-anchor="middle" class="sm">over the next token</text>
+
+  <line x1="340" y1="280" x2="384" y2="280" stroke="#2a1a0e" stroke-width="1" marker-end="url(#ar1)"/>
+
+  <rect x="388" y="252" width="160" height="56" fill="#ffffff" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="468" y="276" text-anchor="middle" class="lb">Token-by-token output</text>
+  <text x="468" y="292" text-anchor="middle" class="sm">built from scratch each time</text>
+
+  <!-- self-loop showing token-by-token sampling -->
+  <path d="M468 308 C 520 332, 416 332, 468 308" fill="none" stroke="#C8102E" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arRed)"/>
+  <text x="468" y="350" text-anchor="middle" class="badge">conditioning</text>
+  <text x="468" y="364" text-anchor="middle" class="cap">prompt is the entire specification</text>
+
+  <text x="270" y="350" text-anchor="middle" class="cap">no retrieval step — every token sampled fresh</text>
+
+  <!-- Footer reading -->
+  <text x="32" y="400" class="cap">A search query is a pointer. A prompt is the specification of what gets built.</text>
+</svg>

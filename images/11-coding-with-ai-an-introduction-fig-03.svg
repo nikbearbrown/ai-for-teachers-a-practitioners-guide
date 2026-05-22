@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" role="img" aria-labelledby="fig03-title fig03-desc" font-family="'EB Garamond', Garamond, Georgia, serif">
+  <title id="fig03-title">Five-pass verification protocol</title>
+  <desc id="fig03-desc">A numbered vertical checklist with five rows: Spec pass, Edge pass, Wrong-input pass, Privacy pass, Sentinel pass. Each row carries a one-line method and a what-it-catches column.</desc>
+  <rect x="0" y="0" width="700" height="480" fill="#fdfcfb"/>
+
+  <text x="350" y="34" text-anchor="middle" font-size="22" fill="#2a1a0e">Five-pass verification protocol</text>
+  <text x="350" y="56" text-anchor="middle" font-size="13" font-style="italic" fill="#4a4540">You verify behavior, not code</text>
+
+  <!-- Header row -->
+  <line x1="40" y1="86" x2="660" y2="86" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="60" y="106" font-size="12" fill="#4a4540">#</text>
+  <text x="110" y="106" font-size="12" fill="#4a4540">Pass</text>
+  <text x="260" y="106" font-size="12" fill="#4a4540">Method</text>
+  <text x="500" y="106" font-size="12" fill="#4a4540">What it catches</text>
+  <line x1="40" y1="116" x2="660" y2="116" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <rect x="48" y="128" width="28" height="28" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="62" y="148" text-anchor="middle" font-size="14" fill="#2a1a0e">1</text>
+  <text x="110" y="148" font-size="14" fill="#2a1a0e">Spec</text>
+  <text x="260" y="148" font-size="12" fill="#4a4540">Three hand-computed inputs, compare to output.</text>
+  <text x="500" y="148" font-size="12" font-style="italic" fill="#4a4540">obvious miscalculation</text>
+  <line x1="40" y1="172" x2="660" y2="172" stroke="#c8c4c0" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- Row 2 -->
+  <rect x="48" y="184" width="28" height="28" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="62" y="204" text-anchor="middle" font-size="14" fill="#2a1a0e">2</text>
+  <text x="110" y="204" font-size="14" fill="#2a1a0e">Edge</text>
+  <text x="260" y="204" font-size="12" fill="#4a4540">Blank cells, O&apos;Brien, accents, &quot;95%&quot; vs 95.</text>
+  <text x="500" y="204" font-size="12" font-style="italic" fill="#4a4540">cases the spec missed</text>
+  <line x1="40" y1="228" x2="660" y2="228" stroke="#c8c4c0" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- Row 3 -->
+  <rect x="48" y="240" width="28" height="28" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="62" y="260" text-anchor="middle" font-size="14" fill="#2a1a0e">3</text>
+  <text x="110" y="260" font-size="14" fill="#2a1a0e">Wrong-input</text>
+  <text x="260" y="260" font-size="12" fill="#4a4540">Feed an empty, corrupted, or wrong file.</text>
+  <text x="500" y="260" font-size="12" font-style="italic" fill="#4a4540">silent nonsense</text>
+  <line x1="40" y1="284" x2="660" y2="284" stroke="#c8c4c0" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- Row 4 -->
+  <rect x="48" y="296" width="28" height="28" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="62" y="316" text-anchor="middle" font-size="14" fill="#2a1a0e">4</text>
+  <text x="110" y="316" font-size="14" fill="#2a1a0e">Privacy</text>
+  <text x="260" y="316" font-size="12" fill="#4a4540">Ask what it reads / writes; run with Wi-Fi off.</text>
+  <text x="500" y="316" font-size="12" font-style="italic" fill="#4a4540">data leaving the laptop</text>
+  <line x1="40" y1="340" x2="660" y2="340" stroke="#c8c4c0" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- Row 5 -->
+  <rect x="48" y="352" width="28" height="28" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="62" y="372" text-anchor="middle" font-size="14" fill="#2a1a0e">5</text>
+  <text x="110" y="372" font-size="14" fill="#2a1a0e">Sentinel</text>
+  <text x="260" y="372" font-size="12" fill="#4a4540">Insert one row with pre-written expected output.</text>
+  <text x="500" y="372" font-size="12" font-style="italic" fill="#4a4540">canary for the rest</text>
+  <line x1="40" y1="396" x2="660" y2="396" stroke="#2a1a0e" stroke-width="1.4"/>
+
+  <text x="350" y="438" text-anchor="middle" font-size="13" font-style="italic" fill="#4a4540">Slow the first time. Fast by the fifth.</text>
+</svg>

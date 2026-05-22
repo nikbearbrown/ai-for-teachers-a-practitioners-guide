@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="f1-title f1-desc" font-family="'EB Garamond', Garamond, Georgia, serif">
+  <title id="f1-title">Two-artifact model</title>
+  <desc id="f1-desc">A single source file fans out into two distinct artifacts: a sparse live deck for the audience in the room, and a dense notes-field export for the student who missed class.</desc>
+  <defs>
+    <marker id="f1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="350" y="34" text-anchor="middle" font-size="20" font-style="italic" fill="#2a1a0e">One source. Two artifacts.</text>
+
+  <!-- Source file (center top) -->
+  <rect x="295" y="64" width="110" height="74" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="350" y="90" text-anchor="middle" font-size="14" fill="#4a4540">source</text>
+  <text x="350" y="110" text-anchor="middle" font-size="17" fill="#2a1a0e">deck file</text>
+  <text x="350" y="128" text-anchor="middle" font-size="12" fill="#8a8480">slides + notes</text>
+
+  <!-- Branch lines -->
+  <path d="M 330 138 L 175 196" stroke="#4a4540" stroke-width="1.5" fill="none" marker-end="url(#f1-arrow)"/>
+  <path d="M 370 138 L 525 196" stroke="#4a4540" stroke-width="1.5" fill="none" marker-end="url(#f1-arrow)"/>
+
+  <!-- Left artifact: Live deck (sparse) -->
+  <rect x="60" y="200" width="230" height="180" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="175" y="226" text-anchor="middle" font-size="18" fill="#2a1a0e">Live deck</text>
+  <text x="175" y="246" text-anchor="middle" font-size="12" font-style="italic" fill="#8a8480">for the room</text>
+
+  <!-- Sparse slide mock -->
+  <rect x="90" y="262" width="170" height="100" fill="#fdfcfb" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="175" y="288" text-anchor="middle" font-size="13" fill="#2a1a0e">The proton gradient</text>
+  <text x="175" y="306" text-anchor="middle" font-size="13" fill="#2a1a0e">powers ATP synthase.</text>
+  <circle cx="175" cy="332" r="14" fill="none" stroke="#4a4540" stroke-width="1.2"/>
+  <path d="M 161 332 L 189 332 M 175 318 L 175 346" stroke="#4a4540" stroke-width="1.2"/>
+
+  <!-- Right artifact: Notes export (dense) -->
+  <rect x="410" y="200" width="230" height="180" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1.5"/>
+  <text x="525" y="226" text-anchor="middle" font-size="18" fill="#2a1a0e">Notes export</text>
+  <text x="525" y="246" text-anchor="middle" font-size="12" font-style="italic" fill="#8a8480">for the student alone</text>
+
+  <!-- Dense page mock -->
+  <rect x="440" y="262" width="170" height="100" fill="#fdfcfb" stroke="#c8c4c0" stroke-width="1"/>
+  <line x1="450" y1="276" x2="600" y2="276" stroke="#4a4540" stroke-width="0.8"/>
+  <line x1="450" y1="288" x2="600" y2="288" stroke="#4a4540" stroke-width="0.8"/>
+  <line x1="450" y1="300" x2="600" y2="300" stroke="#4a4540" stroke-width="0.8"/>
+  <line x1="450" y1="312" x2="595" y2="312" stroke="#4a4540" stroke-width="0.8"/>
+  <line x1="450" y1="324" x2="600" y2="324" stroke="#4a4540" stroke-width="0.8"/>
+  <line x1="450" y1="336" x2="580" y2="336" stroke="#4a4540" stroke-width="0.8"/>
+  <line x1="450" y1="348" x2="600" y2="348" stroke="#4a4540" stroke-width="0.8"/>
+
+  <text x="175" y="400" text-anchor="middle" font-size="12" fill="#4a4540">sparse — narration carries the explanation</text>
+  <text x="525" y="400" text-anchor="middle" font-size="12" fill="#4a4540">dense — prose survives without a speaker</text>
+</svg>

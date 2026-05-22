@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 5.2 — What AI matched, and where humans still won</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  h1 { font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 28px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 14px; margin-bottom: 24px; }
+  #chart { width: 100%; height: 480px; }
+  .ti  { font-family: 'EB Garamond', Georgia, serif; font-size: 16px; font-weight: 700; fill: var(--color-ink); }
+  .sub { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .hdr { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; font-weight: 700; fill: var(--color-secondary); letter-spacing: 0.5px; }
+  .crit { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: 700; fill: var(--color-ink); }
+  .body { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; fill: var(--color-secondary); font-style: italic; }
+  .win  { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-weight: 700; fill: var(--color-white); }
+  .dash { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; fill: var(--color-border); }
+  .cap  { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .source { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: var(--color-secondary); letter-spacing: 0.3px; }
+  .row { transition: opacity 200ms cubic-bezier(0.2,0.8,0.2,1); cursor: pointer; }
+  .row:hover { opacity: 0.85; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-family: 'EB Garamond', Georgia, serif; font-size: 13px; max-width: 300px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 5.2 — What AI matched, and where humans still won</h1>
+<p class="subtitle">Steiss et al. (2024). Five feedback criteria. AI matched on one; humans won the other four.</p>
+<div id="chart" role="img" aria-labelledby="t-st d-st"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const FALLBACK_DATA = [
+  { crit: 'Criteria-based alignment', body: 'Did the comment hit each rubric criterion?',       winner: 'ai',    label: 'match', tip: 'AI matched or exceeded humans on rubric alignment. The model can find the rubric criteria and address them.' },
+  { crit: 'Accuracy',                 body: 'Did it correctly diagnose what is on the page?',   winner: 'human', label: 'win',   tip: 'Humans diagnosed the actual writing more accurately than the model did.' },
+  { crit: 'Prioritization',           body: 'Did it name what matters most for this writer?',   winner: 'human', label: 'win',   tip: 'The model could not reliably tell which problem was the most important for this specific student.' },
+  { crit: 'Clarity of directions',    body: 'Could the student act on it without re-reading?',  winner: 'human', label: 'win',   tip: 'Human comments gave directions the student could execute. Model directions sometimes required re-interpretation.' },
+  { crit: 'Supportive tone',          body: 'Encouraging without sliding into flattery?',       winner: 'human', label: 'win',   tip: 'The model sometimes overshot into flattery or under-shot into condescension. Humans hit the register better.' }
+];
+
+const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+function showTip(event, html) {
+  tooltip.html(html).style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px')
+    .transition().duration(150).style('opacity', 1);
+}
+function moveTip(event) { tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px'); }
+function hideTip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+async function loadData() {
+  try { return await d3.json('./05-assessment-grading-and-feedback-with-ai-fig-02.json'); }
+  catch { return FALLBACK_DATA; }
+}
+
+function draw(data) {
+  d3.select('#chart').selectAll('*').remove();
+  const container = document.getElementById('chart');
+  const W = container.clientWidth || 760;
+  const H = container.clientHeight || 480;
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`).attr('width', W).attr('height', H)
+    .attr('role', 'img').attr('aria-labelledby', 't-st d-st');
+  svg.append('title').attr('id', 't-st').text('Steiss et al. 2024 — AI versus human teacher feedback on five criteria');
+  svg.append('desc').attr('id', 'd-st').text('A matrix listing five rubric criteria. AI matched humans on alignment; humans outperformed AI on accuracy, prioritization, clarity, and tone.');
+
+  // Title & subtitle
+  svg.append('text').attr('x', 32).attr('y', 30).attr('class', 'ti').text('What AI matched, and where humans still won');
+  svg.append('text').attr('x', 32).attr('y', 48).attr('class', 'sub').text('Steiss et al. (2024) — ChatGPT-3.5 vs teacher feedback on secondary essays.');
+
+  // Column headers
+  const colAI = W - 200, colH = W - 100;
+  svg.append('text').attr('x', 32).attr('y', 86).attr('class', 'hdr').text('CRITERION');
+  svg.append('text').attr('x', colAI).attr('y', 86).attr('text-anchor', 'middle').attr('class', 'hdr').text('AI');
+  svg.append('text').attr('x', colH).attr('y', 86).attr('text-anchor', 'middle').attr('class', 'hdr').text('HUMAN');
+  svg.append('line').attr('x1', 32).attr('y1', 94).attr('x2', W - 32).attr('y2', 94).attr('stroke', 'var(--color-border)');
+
+  // Rows
+  const rowH = 56, rowY0 = 104, gap = 4;
+  const g = svg.append('g').attr('class', 'g-rows');
+
+  g.selectAll('g.row')
+    .data(data, d => d.crit)
+    .join(enter => {
+      const r = enter.append('g').attr('class', 'row')
+        .attr('transform', (d, i) => `translate(0, ${rowY0 + i * (rowH + gap)})`)
+        .attr('opacity', 0);
+      r.call(sel => sel.transition().duration(320).delay((d, i) => i * 60).attr('opacity', 1));
+      return r;
+    })
+    .each(function(d, i) {
+      const row = d3.select(this);
+      row.append('rect').attr('x', 32).attr('y', 0).attr('width', W - 64).attr('height', rowH)
+        .attr('fill', i % 2 === 0 ? 'var(--color-white)' : 'var(--color-border)').attr('fill-opacity', i % 2 === 0 ? 1 : 0.25)
+        .attr('tabindex', 0).attr('aria-label', `${d.crit}: ${d.winner === 'ai' ? 'AI matches' : 'Human wins'}`)
+        .on('mouseover', (e) => showTip(e, `<strong>${d.crit}</strong><br>${d.tip}`))
+        .on('mousemove', moveTip).on('mouseout', hideTip)
+        .on('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') showTip(e, `<strong>${d.crit}</strong><br>${d.tip}`); });
+      row.append('text').attr('x', 48).attr('y', 22).attr('class', 'crit').text(d.crit);
+      row.append('text').attr('x', 48).attr('y', 40).attr('class', 'body').text(d.body);
+
+      // AI cell
+      if (d.winner === 'ai') {
+        row.append('rect').attr('x', colAI - 28).attr('y', 13).attr('width', 56).attr('height', 30).attr('fill', 'var(--color-red)');
+        row.append('text').attr('x', colAI).attr('y', 33).attr('text-anchor', 'middle').attr('class', 'win').text(d.label);
+      } else {
+        row.append('text').attr('x', colAI).attr('y', 33).attr('text-anchor', 'middle').attr('class', 'dash').text('—');
+      }
+      // Human cell
+      if (d.winner === 'human') {
+        row.append('rect').attr('x', colH - 28).attr('y', 13).attr('width', 56).attr('height', 30).attr('fill', 'var(--color-ink)');
+        row.append('text').attr('x', colH).attr('y', 33).attr('text-anchor', 'middle').attr('class', 'win').text(d.label);
+      } else {
+        row.append('text').attr('x', colH).attr('y', 33).attr('text-anchor', 'middle').attr('class', 'dash').text('—');
+      }
+    });
+
+  const footerY = rowY0 + data.length * (rowH + gap) + 4;
+  svg.append('line').attr('x1', 32).attr('y1', footerY).attr('x2', W - 32).attr('y2', footerY).attr('stroke', 'var(--color-border)');
+  svg.append('text').attr('x', 32).attr('y', footerY + 22).attr('class', 'cap')
+    .text('The model aligned to the rubric mechanically. It could not tell what mattered for this writer.');
+  svg.append('text').attr('x', 32).attr('y', footerY + 40).attr('class', 'cap')
+    .text('Rubric alignment and pedagogical effectiveness are not the same property.');
+  svg.append('text').attr('x', 32).attr('y', footerY + 60).attr('class', 'source').text('SOURCE — STEISS ET AL. 2024, LEARNING AND INSTRUCTION');
+}
+
+loadData().then(data => {
+  draw(data);
+  const ro = new ResizeObserver(() => draw(data));
+  ro.observe(document.getElementById('chart'));
+});
+</script>
+</body>
+</html>

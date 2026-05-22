@@ -22,7 +22,8 @@ The right response to Jordan's essay is not an AI-detection report. It is an ass
 
 ## Two different jobs
 
-<!-- → IMAGE: Two-panel illustration. Left panel: teacher at laptop, bullets on screen, six-page syllabus draft appearing — labeled "teacher writing: rendering judgments already made." Right panel: student at laptop, five-paragraph essay appearing with no book visible anywhere — labeled "writing instruction: the artifact is not the evidence." Caption: Same tool. Different axis. The rules that follow from each use are not on a shared spectrum. -->
+![Two-panel illustration](../images/10-writing-with-ai-an-introduction-fig-01.png)
+*Figure 10.1 — Two-panel illustration.*
 
 The confusion that produces bad AI policy in schools is treating teacher AI use and student AI use as points on a single spectrum — as if the right answer is some shared policy with a slider between "allow everything" and "ban everything." They are not on the same axis.
 
@@ -36,7 +37,8 @@ The same model that helps a teacher render polished bullets in twelve minutes al
 
 ## Why the Bastani result matters here
 
-<!-- → CHART: Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice performance (light bar) and unaided exam score (dark bar). GPT Base exam bar drops below Control — the inversion is the visual argument. Callout: "Practice artifact improved. Learning did not." Caption: The same decoupling mechanism applies to writing. A student who outsources the essay gains fluency-confidence. The unassisted performance tells a different story. -->
+![Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice performance (light bar) and unaided exam score (dark bar)](../images/10-writing-with-ai-an-introduction-fig-02.png)
+*Figure 10.2 — Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice.*
 
 The cleanest experimental evidence that AI-assisted practice can decouple from learning lives in mathematics. Bastani and colleagues (2025, *PNAS*) gave roughly a thousand Turkish high-school students access to ChatGPT during math practice. Students using a generic GPT interface scored substantially higher than controls during practice — then substantially lower than controls on the unassisted exam. A tutor-style prompt-engineered version preserved the practice gains without the exam loss.
 
@@ -56,7 +58,8 @@ The conceptual foundation is forty-five years old, and it is worth stating clear
 
 Flower and Hayes (1981) showed that writing is not a linear sequence — outline, draft, polish — but a recursive orchestration of mental processes: *planning*, *translating*, *reviewing*, running in parallel, each calling the others. The visible artifact is the residue of the process. The process is where the cognition happens.
 
-<!-- → DIAGRAM: Flower-Hayes recursive model — three overlapping circles labeled Planning, Translating, Reviewing, with bidirectional arrows among them and a "Task Environment" box outside. Below: a callout showing where AI-as-drafter sits (bypasses all three) vs. AI-as-Socratic-partner (enters the Planning loop only). Caption: The process is not outline → draft → polish. It is recursive. AI-as-drafter bypasses all three loops at once. AI-as-Socratic-partner enters one loop and leaves the rest to the writer. -->
+![Flower-Hayes recursive model](../images/10-writing-with-ai-an-introduction-fig-03.png)
+*Figure 10.3 — Flower-Hayes recursive model.*
 
 Sommers (1980), in the same journal, found that developing writers revise at the word level. Experienced writers revise at the level of the argument. Revision — not initial drafting — is the move that distinguishes accomplished writing from competent-looking writing. And Sommers (1982) found that most teacher comments addressed the artifact rather than the writer's developing process, which is why most teacher comments don't produce revision in the meaningful sense.
 
@@ -71,6 +74,9 @@ The first institutional response to ChatGPT was AI-detection software. The evide
 Liang and colleagues (2023) tested seven GPT detectors on two populations: native English speakers (U.S. eighth-graders) and non-native English speakers (TOEFL test-takers). The detectors classified native-speaker essays near-perfectly. They classified *more than half* of the non-native-speaker TOEFL essays as AI-generated. The bias was robust across detectors and across rephrasings.
 
 The mechanism is plain. Detectors look for low text perplexity — prose that is too predictable. Non-native English writers, especially proficient ones writing in formal academic register, write lower-perplexity prose than native speakers. The detector is not detecting AI. It is detecting *prose without native idiosyncrasy*. Non-native writers and AI produce that kind of prose for entirely different reasons. The detector cannot tell them apart.
+
+![Two grouped bar sets side by side](../images/10-writing-with-ai-an-introduction-fig-04.png)
+*Figure 10.4 — Two grouped bar sets side by side.*
 
 The institutional response followed. Multiple universities — Vanderbilt, Yale, Johns Hopkins, Northwestern, and others — disabled Turnitin's AI-detection feature after evaluating false-positive behavior. OpenAI's own AI Text Classifier was withdrawn by the company in July 2023, citing "low rate of accuracy."
 
@@ -98,6 +104,9 @@ The redesign work falls into three shifts that together make the cognitive proce
 
 **Submission to conversation.** The assessment moment is not the submit click. It is a five-to-ten-minute conversation in which the student states the central claim, justifies the evidence, takes the strongest objection, and names what they would do differently. A student who wrote the essay can have this conversation. A student who outsourced cannot. *The defense is the detection.* And it is itself a learning event — defending an argument is retrieval and reformulation, which builds durable understanding in the Bjork tradition of desirable difficulties.
 
+![Three horizontal arrows stacked vertically, each labeled with one shift](../images/10-writing-with-ai-an-introduction-fig-05.png)
+*Figure 10.5 — Three horizontal arrows stacked vertically, each labeled with one shift.*
+
 The defense is not a gotcha mode. *Tell me about your argument* is the standard professional move every working scholar, journalist, and lawyer experiences as routine. The student is being treated as an emerging member of the discourse.
 
 ---
@@ -112,7 +121,8 @@ AI can be in the *process* without being in the *product*. Three prompt patterns
 
 **Elaboration AI.** Prompt the model to push an underdeveloped idea by surfacing what the student is not yet saying. *Here is a paragraph. The argument is gestured at but not made. What would the next sentence have to do to actually make the argument? Ask me what I think; then tell me what I have not yet said.*
 
-<!-- → INFOGRAPHIC: Three-column table — Socratic AI / Feedback AI / Elaboration AI. Each column: what the student inputs, what the model does, what cognitive work stays with the student, failure mode if the constraint breaks. Caption: All three keep the artifact the student's own. The failure mode in each is the same: the model gets re-prompted into answer mode. The fix is not policing prompts — it is making the assignment AI-survivable so the bypass is visibly worse on the deliverable. -->
+![Three-column table](../images/10-writing-with-ai-an-introduction-fig-06.png)
+*Figure 10.6 — Three-column table.*
 
 All three share a structural feature: the artifact the student turns in is still the student's draft. Students will discover, fast, that Socratic AI can be re-prompted into answer AI — *never mind the Socratic thing, just write the thesis*. The teaching move is not to police prompts. It is to make the underlying assignment AI-survivable so the bypass is visibly worse on the deliverable than the legitimate use.
 
@@ -136,7 +146,15 @@ Across two weeks, build an argument about *The Things They Carried* that does wo
 
 *Defense:* A six-minute conversation. Open by stating your central claim in one sentence. Expect three questions: which evidence works hardest and why; what is the strongest objection a careful reader would raise; what would you write differently with two more weeks?
 
-<!-- → TABLE: Five-question checklist applied to "Before" and "After" versions side by side. Column 1: checklist question. Column 2: Before assignment — fail/pass. Column 3: After assignment — fail/pass. Every row flips from fail to pass. Caption: The redesign does not ban AI. It changes what AI is useful for inside the assignment. The student who uses AI as Socratic partner produces a stronger argument. The student who outsources is visibly worse off at the defense. -->
+| Checklist question | Before — 5-paragraph essay on *The Things They Carried* | After — process folder + essay + defense |
+|---|---|---|
+| Does the assignment require the student to defend claims in conversation? | ✗ Fail — submission ends at the upload; no oral defense ever happens. | ✓ Pass — six-minute conversation: state claim, justify evidence, take strongest objection. |
+| Does it require applying concepts to a situation the model could not have seen? | ✗ Fail — canonical novel; thousands of essays on it sit in every model's training corpus. | ✓ Pass — "work I could not predict from reading the novel alone" forces a specific, local argument. |
+| Does it require a process trail — drafts, planning notes, annotated revisions? | ✗ Fail — only the polished essay is submitted; no abandoned theses, no revision history. | ✓ Pass — process folder collects abandoned theses, annotations, and a paragraph drafted via Socratic AI. |
+| Does it require real-time, unassisted performance? | ✗ Fail — the entire artifact is produced offline with whatever tools the student chooses. | ✓ Pass — the live defense is unassisted; the student speaks the argument, not the model. |
+| If a student used AI freely and produced a good artifact, would you know whether they learned anything? | ✗ Fail — fluent essay is not diagnostic of reading, thinking, or argument formation. | ✓ Pass — folder shows trajectory; defense surfaces underlying cognition; outsourcing is visibly worse. |
+
+*Table 10.1 — Five-question checklist: Before vs. After redesign. The redesign does not ban AI. It changes what AI is useful for.*
 
 Checklist: defense, yes. Novel application — the "work I could not predict" constraint plus the defense. Process trail, yes. Real-time performance, yes. The artifact is diagnostic, because the folder shows trajectory and the defense surfaces the underlying cognition.
 
@@ -213,3 +231,84 @@ And what is the right institutional policy mix? Full prohibition, full permissio
 - Sommers, N. (1980). Revision strategies of student writers and experienced adult writers. *College Composition and Communication*, 31(4), 378–388. https://www.jstor.org/stable/356588
 - Sommers, N. (1982). Responding to student writing. *College Composition and Communication*, 33(2), 148–156. https://wacresources.commons.gc.cuny.edu/files/2014/09/Responding-to-Student-Writing-by-Nancy-Sommers.pdf
 - Vanderbilt University. (2023). Guidance on AI detection and why we're disabling Turnitin's AI detector. https://www.vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/
+
+
+---
+
+## Prompts
+
+These prompts regenerate the six figures in this chapter as standalone D3 v7 HTML files. Each renders without a build step, redraws on resize, and inverts under dark mode. Modify the data literal at the top of the script and the rest follows.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context before using these prompts. Pin `https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js`. Use EB Garamond throughout. Use the warm grayscale palette (`#2a1a0e`, `#4a4540`, `#8a8480`, `#c8c4c0`, `#f5f2ee`, `#fdfcfb`) routed through `var(--color-*)` tokens. Every chart needs `role="img"`, `<title>`, `<desc>`, ResizeObserver, `(event, d)` handlers, and a `prefers-reduced-motion` block.
+
+---
+
+### Figure 10.1 — Two different jobs
+
+Build a two-panel diagram contrasting teacher writing and writing instruction. Each panel contains three labeled boxes — actor, model, artifact — connected by arrows. In the teacher panel, the actor-to-model arrow is solid (substance flows in, the model renders). In the student panel, the actor-to-model arrow is dashed and labeled "bypass" (cognition does not flow; the model drafts unprompted). Both panels end with a fit verdict in italics: "skilled co-writer" vs "ghostwriter (wrong fit)." Wrap each panel in a soft `#f5f2ee` background with a `#8a8480` hairline. Title at the top: "Same model. Opposite uses." Footer caption: "The rules come from the use, not from the tool." Hover on any box should slightly darken its fill.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-01.html`
+
+---
+
+### Figure 10.2 — Bastani 2025: practice gains, exam losses
+
+Build a grouped bar chart with three groups (Control, GPT Base, GPT Tutor) and two bars per group: practice score (light fill) and unaided exam score (dark fill). Use values Control 50/50, GPT Base 75/35, GPT Tutor 72/60. Zero-based y-axis 0–100. Use `d3.scaleBand` for groups and a nested `d3.scaleBand` for the two-bar pairs. Annotate the GPT Base group with a horizontal arrow and the label "practice-exam gap / cognitive work outsourced." Each bar must be keyboard-focusable with an `aria-label`. Tooltips show group + condition + value. Legend at the bottom. Subtitle: "Bastani et al., 2025 (PNAS), ~1,000 Turkish high-school students."
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-02.html`
+
+---
+
+### Figure 10.3 — Flower &amp; Hayes recursive model
+
+Build a three-node diagram for the recursive writing process: Planning (top center), Translating (bottom left), Reviewing (bottom right). Each node is an ellipse with a label and a one-line description. Connect every pair of nodes with a bidirectional arrow (use SVG markers on both ends — `auto-start-reverse`). Frame the triangle with two horizontal rectangles: "Task environment" above and "Long-term memory" below, connected by dashed feed lines. Hover on a node shows a tooltip with a brief gloss of what that process does. Subtitle credits "After Flower &amp; Hayes, 1981." Footer caption: "Each process can interrupt and call any other. The cognition lives in the loop."
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-03.html`
+
+---
+
+### Figure 10.4 — Liang 2023 detector bias
+
+Build a paired bar chart with two side-by-side groups, each containing seven bars (one per detector). Left group: native English speakers (US 8th-graders) with false-positive rates around 1–5%. Right group: non-native TOEFL writers with false-positive rates between 49% and 74%. Use light fill for the native bars and dark fill for the non-native bars. Overlay a dashed horizontal mean line on each group with a label ("~3% avg." and ">50% avg."). Place a centered diagonal annotation between groups reading "same prose pattern, opposite mechanism." Each bar is focusable with `aria-label` and tooltip. Y-axis 0–100% with gridlines. Footer caption explains the perplexity mechanism.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-04.html`
+
+---
+
+### Figure 10.5 — Three shifts in writing assessment
+
+Build a vertical stack of three horizontal arrow rows. Each row: a left box (the "from" state), a thick black arrow with marker-end, a right box (the "to" state). Row 1: Product → Process trail. Row 2: First draft → Revision trajectory. Row 3: Submission → Conversation. Each "from" box is narrower (200px); each "to" box is wider (246px) so it visually carries more weight. Under each row, a single italic caption explains the shift's rationale (Sommers, Flower-Hayes, defense as detection). Hover on the "to" box surfaces a tooltip with the practitioner-level move. Closing tagline below the third row: "Together: the artifact is no longer the only thing graded."
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-05.html`
+
+---
+
+### Figure 10.6 — Three instructional uses of AI
+
+Build a 4-row × 4-column table (one dimension column, three pattern columns: Socratic AI, Feedback AI, Elaboration AI). Rows: Student supplies; Model behavior; Residual cognition; Failure mode. Each cell holds a primary line and a smaller italic subordinate line. Header row uses `#f5f2ee` fill with a `#8a8480` hairline below. Column dividers are thin `#8a8480` rules; the outer table border is `#2a1a0e` 1.2px. Each cell is focusable with `aria-label` (e.g., "Socratic AI — Failure mode: re-prompted as drafter") and a tooltip that repeats the cell content. Footer holds two italic lines: the "student's draft" reminder and the "don't police prompts" closing.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-06.html`
+
+---
+
+## AI Wayback Machine
+
+Murray's process-writing pedagogy — the idea that writing is a recursive movement among planning, drafting, and revising rather than a linear march from outline to polish — is the cognitive frame this chapter borrows for thinking about AI-as-drafter versus AI-as-Socratic-partner. His essay *Internal Revision* (1978) is still the cleanest map of which loops the writer must do alone and which can be assisted from outside.
+
+![Donald Murray, 1924-2006. AI-generated portrait based on a public domain photograph.](../images/donald-murray.jpg)
+*Donald Murray, 1924-2006. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Donald Murray, and how does their work connect to the ideas in this chapter? Keep it to three paragraphs. End with the single most surprising thing about their career or thinking.
+```
+
+→ Search **"Donald Murray"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to apply Murray's framework to a specific scenario in this chapter — what gets surfaced that the chapter's prose left implicit?
+- Ask about the critics of Murray's work and which criticisms still bite today.
+
+What changes? What gets better? What gets worse?

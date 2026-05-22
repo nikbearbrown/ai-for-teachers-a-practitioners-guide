@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 11.3 — Five-pass verification protocol</title>
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink);
+         font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  #chart { width: 100%; min-height: 520px; }
+  .title-text   { font-family: 'EB Garamond', Georgia, serif; font-size: 22px; fill: var(--color-ink); }
+  .subtitle-text{ font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .head-rule    { stroke: var(--color-ink); stroke-width: 1.4; }
+  .row-rule     { stroke: var(--color-border); stroke-width: 1; stroke-dasharray: 3 3; }
+  .col-head     { font-family: 'Inter', sans-serif; font-size: 12px; fill: var(--color-secondary); }
+  .num-box      { fill: var(--color-border); stroke: var(--color-ink); stroke-width: 1; }
+  .num-text     { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; fill: var(--color-ink); text-anchor: middle; }
+  .pass-text    { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; fill: var(--color-ink); }
+  .method-text  { font-family: 'Inter', sans-serif; font-size: 12px; fill: var(--color-secondary); }
+  .catch-text   { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 12px; fill: var(--color-secondary); }
+  .row-hover:hover .pass-text { fill: var(--color-red); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const PASSES = [
+      { n: 1, name: 'Spec',        method: 'Three hand-computed inputs, compare to output.',  catches: 'obvious miscalculation' },
+      { n: 2, name: 'Edge',        method: "Blank cells, O'Brien, accents, '95%' vs 95.",      catches: 'cases the spec missed' },
+      { n: 3, name: 'Wrong-input', method: 'Feed an empty, corrupted, or wrong file.',          catches: 'silent nonsense' },
+      { n: 4, name: 'Privacy',     method: 'Ask what it reads / writes; run with Wi-Fi off.',   catches: 'data leaving the laptop' },
+      { n: 5, name: 'Sentinel',    method: 'Insert one row with pre-written expected output.',  catches: 'canary for the rest' }
+    ];
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+      const container = document.getElementById('chart');
+      const totalWidth  = container.clientWidth || 800;
+      const totalHeight = 520;
+      const margin = { top: 96, right: 32, bottom: 32, left: 48 };
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth).attr('height', totalHeight)
+        .attr('role', 'img').attr('aria-labelledby', 'chart-title chart-desc');
+      svg.append('title').attr('id', 'chart-title').text('Five-pass verification protocol');
+      svg.append('desc').attr('id', 'chart-desc').text('Numbered checklist of five verification passes — spec, edge, wrong-input, privacy, sentinel.');
+
+      svg.append('text').attr('class', 'title-text').attr('x', totalWidth/2).attr('y', 36).attr('text-anchor', 'middle').text('Five-pass verification protocol');
+      svg.append('text').attr('class', 'subtitle-text').attr('x', totalWidth/2).attr('y', 58).attr('text-anchor', 'middle').text("You verify behavior, not code");
+
+      const tableLeft = margin.left;
+      const tableRight = totalWidth - margin.right;
+      const rowHeight = 56;
+      const cols = {
+        num: tableLeft + 28,
+        pass: tableLeft + 88,
+        method: tableLeft + 240,
+        catches: tableLeft + Math.min(560, (tableRight - tableLeft) * 0.72)
+      };
+
+      // header
+      svg.append('line').attr('class', 'head-rule')
+        .attr('x1', tableLeft).attr('y1', margin.top - 8).attr('x2', tableRight).attr('y2', margin.top - 8);
+      svg.append('text').attr('class', 'col-head').attr('x', cols.num - 14).attr('y', margin.top + 10).text('#');
+      svg.append('text').attr('class', 'col-head').attr('x', cols.pass).attr('y', margin.top + 10).text('Pass');
+      svg.append('text').attr('class', 'col-head').attr('x', cols.method).attr('y', margin.top + 10).text('Method');
+      svg.append('text').attr('class', 'col-head').attr('x', cols.catches).attr('y', margin.top + 10).text('What it catches');
+      svg.append('line').attr('class', 'row-rule')
+        .attr('x1', tableLeft).attr('y1', margin.top + 22).attr('x2', tableRight).attr('y2', margin.top + 22)
+        .attr('stroke-dasharray', null).attr('stroke', 'var(--color-border)');
+
+      const rows = svg.selectAll('g.pass-row').data(PASSES).join('g')
+        .attr('class', 'pass-row row-hover')
+        .attr('transform', (d, i) => `translate(0, ${margin.top + 40 + i * rowHeight})`)
+        .attr('tabindex', 0)
+        .attr('aria-label', d => `Pass ${d.n}: ${d.name}. ${d.method} Catches ${d.catches}.`);
+
+      rows.append('rect').attr('class', 'num-box')
+        .attr('x', cols.num - 14).attr('y', -2)
+        .attr('width', 28).attr('height', 28);
+      rows.append('text').attr('class', 'num-text')
+        .attr('x', cols.num).attr('y', 17).text(d => d.n);
+      rows.append('text').attr('class', 'pass-text')
+        .attr('x', cols.pass).attr('y', 18).text(d => d.name);
+      rows.append('text').attr('class', 'method-text')
+        .attr('x', cols.method).attr('y', 18).text(d => d.method);
+      rows.append('text').attr('class', 'catch-text')
+        .attr('x', cols.catches).attr('y', 18).text(d => d.catches);
+      rows.append('line').attr('class', 'row-rule')
+        .attr('x1', tableLeft - margin.left + tableLeft).attr('y1', 38)
+        .attr('x2', tableRight).attr('y2', 38);
+
+      svg.append('line').attr('class', 'head-rule')
+        .attr('x1', tableLeft).attr('y1', margin.top + 40 + PASSES.length * rowHeight - 18)
+        .attr('x2', tableRight).attr('y2', margin.top + 40 + PASSES.length * rowHeight - 18);
+
+      svg.append('text').attr('class', 'subtitle-text')
+        .attr('x', totalWidth/2).attr('y', margin.top + 40 + PASSES.length * rowHeight + 14)
+        .attr('text-anchor', 'middle').text('Slow the first time. Fast by the fifth.');
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+
+    const tooltip = d3.select('body').append('div').attr('class','tooltip')
+      .style('position','absolute').style('pointer-events','none').style('opacity',0);
+  </script>
+</body>
+</html>

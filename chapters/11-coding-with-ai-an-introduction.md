@@ -32,7 +32,8 @@ What changed in 2022–2024 is that the answer became *describe it in English*. 
 
 The teacher's job in this new arrangement is specification, and specification is not typing. It is thinking. Look at Ms. R's paragraph again. She identified the inputs — four sliders, with ranges and step sizes. She identified the outputs — curve, roots, intercept, equation display. She decomposed the problem into rendering, interaction, and calculation. She anticipated an edge case — what if *a* = 0? She constrained the runtime environment — no internet. Every one of those moves is what Jeannette Wing, in her 2006 *Communications of the ACM* essay "Computational Thinking," called the intellectual work that should survive the syntactic layer: abstraction, decomposition, anticipating failure modes, naming boundaries. The bottleneck for a non-coding teacher building tools with AI is not syntax fluency. It is this thinking. The model can supply the semicolons. It cannot supply the judgment about what the tool should do.
 
-<!-- → [INFOGRAPHIC: the bottleneck shift — a horizontal timeline from 1980 to 2026 showing where the bottleneck lived at each era: "write the syntax" (1980–2022, the long plateau) → "write the specification" (2022–present, the shift) — below the timeline, two columns: what the model now handles (syntax, library calls, boilerplate) vs. what the teacher must still supply (intent, constraints, edge cases, success criteria, professional judgment) — caption: the bottleneck moved; it did not disappear] -->
+![the bottleneck shift](../images/11-coding-with-ai-an-introduction-fig-01.png)
+*Figure 11.1 — the bottleneck shift.*
 
 ---
 
@@ -44,7 +45,8 @@ A teacher who writes a paragraph containing all five of those things, in any ord
 
 That gap is the entire chapter.
 
-<!-- → [INFOGRAPHIC: five-component specification diagram — five labeled boxes arranged in a ring or stack: INTENT (goal the task serves), CONSTRAINTS (format, privacy, environment, library limits), SUCCESS CRITERIA (hand-computed test cases), EXCLUSIONS (what the tool must not do or touch), OUTPUT FORMAT (what the deliverable looks like structurally) — center label: "working specification" — each box has a one-line example drawn from the missing-assignments task — caption: all five present = working software; two present = plausible but wrong] -->
+![five-component specification diagram](../images/11-coding-with-ai-an-introduction-fig-02.png)
+*Figure 11.2 — five-component specification diagram.*
 
 ---
 
@@ -58,7 +60,13 @@ The highest-stakes bucket is communication tools — per-student mail-merge emai
 
 All three share a shape — structured input, transformation, structured output — that current coding assistants handle most reliably, because there are thousands of examples of each shape in the training data. A common instinct is to automate the most painful task first. The better move is to automate the highest-volume task with the lowest per-instance risk first. That is almost always spreadsheet processing, not grade computation. Build the verification habit on a low-stakes script before the script touches anyone's grade.
 
-<!-- → [TABLE: three-bucket risk classification — rows: Spreadsheet Processing, Grade Management, Communication Tools — columns: typical task, who sees the output, failure mode, verification load, recommended entry order — cells show escalating stakes and the rationale for starting low — caption: automate the highest-volume task with the lowest per-instance risk first] -->
+| Bucket | Typical task | Who sees the output | Failure mode | Verification load | Recommended entry order |
+|---|---|---|---|---|---|
+| Spreadsheet processing | Reformat a roster; pivot attendance; flag drops in score | You, on your laptop | Wrong rows in a CSV you review before use | Light — diff against hand-computed test rows | 1 — start here |
+| Grade management | Compute weighted grades; generate rubric summaries | You, then students and families downstream | Silent — a systematic miscalculation invisible until grades go out | Heavy — sentinel rows, edge cases, audit every category | 2 — only after the habit is built |
+| Communication tools | Per-family mail-merge drafts; templated progress messages | Parents and guardians outside the school | Visible externally — a misnamed student or misstated grade in a sent message | Heaviest — every artifact reviewed individually before send | 3 — last, with a human-in-the-loop draft step |
+
+*Table 11.1 — Risk classification of teacher coding tasks*
 
 ---
 
@@ -72,7 +80,8 @@ Concretely, this is five passes. First, the spec pass: construct three inputs yo
 
 That is the protocol. Slow the first time. Fast by the fifth.
 
-<!-- → [INFOGRAPHIC: five-pass verification protocol as a numbered checklist — each pass on its own row: (1) Spec pass — run against 3 hand-computed inputs; (2) Edge pass — blanks, apostrophes, wrong data types, delimiter variants; (3) Wrong-input pass — empty file, corrupted file, wrong file — does it fail clearly or silently?; (4) Privacy pass — ask what the script reads, writes, and calls; run with Wi-Fi off; (5) Sentinel pass — insert one hand-written expected row, verify match — each row has a "pass / investigate" indicator column — caption: you do not verify the code; you verify the behavior] -->
+![five-pass verification protocol as a numbered checklist](../images/11-coding-with-ai-an-introduction-fig-03.png)
+*Figure 11.3 — five-pass verification protocol as a numbered checklist.*
 
 The single most-cited study on AI coding assistants is Peng, Kalliamvakou, Cihon, and Demirer's 2023 study of GitHub Copilot. Professional developers using Copilot completed a clearly specified task 55.8% faster than controls. The number is real. It measures *time-to-complete on a clearly specified task*. It does not measure whether the code is secure, maintainable, or correct on inputs not in the test set.
 
@@ -146,7 +155,8 @@ The assistant produces about thirty lines of Python. You do not read them. You r
 
 What made the script safe was not reading the code. It was writing the specification before the code existed, and testing the behavior after.
 
-<!-- → [INFOGRAPHIC: before/after specification comparison — left panel: the one-line bad spec ("Make me a script that emails parents about missing assignments") with annotated gaps pointing outward — "which CSV columns?", "what counts as missing?", "who sends it?", "FERPA?", "O'Brien?" — right panel: the good spec's five sections (INTENT, INPUT, OUTPUT, CONSTRAINTS, EXCLUSIONS) each with a one-phrase annotation of what decision it encodes — caption: the gaps in the bad spec are guesses the model will make silently] -->
+![before/after specification comparison](../images/11-coding-with-ai-an-introduction-fig-04.png)
+*Figure 11.4 — before/after specification comparison.*
 
 ---
 
@@ -164,7 +174,8 @@ Wing's 2006 answer pre-dates the question and survives it. Computational thinkin
 
 Look at Ms. R's polynomial specification again. She identified the inputs and their ranges. She identified the outputs and their labels. She decomposed rendering, interaction, and calculation. She abstracted from the specific cubic to a parameterized polynomial form. She anticipated the edge case where the leading coefficient vanishes. She constrained the runtime environment. A teacher who can do this for a polynomial demo can do it for a missing-assignments script. A teacher who cannot do it cannot. The bottleneck for non-coding teachers building tools with AI is not syntax. It is the thinking Wing named in 2006, which is the same thinking this chapter has been calling specification all along.
 
-<!-- → [INFOGRAPHIC: Wing's computational thinking moves mapped onto Ms. R's specification — two-column layout: left column lists Wing's six practices (decomposition, abstraction, algorithm design, pattern recognition, anticipating failure, generalization); right column shows the corresponding line or decision from Ms. R's polynomial spec — caption: specification is computational thinking made visible; the syntax is the part that became delegable] -->
+![Wing's computational thinking moves mapped onto Ms](../images/11-coding-with-ai-an-introduction-fig-05.png)
+*Figure 11.5 — Wing's computational thinking moves mapped onto Ms.*
 
 ---
 
@@ -208,3 +219,76 @@ The second is maintenance. This chapter says nothing useful about what happens t
 - Veracode. (2025). *2025 GenAI Code Security Report*. veracode.com/resources/analyst-reports/2025-genai-code-security-report/
 - Wing, J. M. (2006). "Computational Thinking." *Communications of the ACM*, 49(3), 33–35. DOI 10.1145/1118178.1118215
 - "Security Vulnerabilities in AI-Generated Code: A Large-Scale Analysis." (2025). arXiv:2510.26103
+
+
+---
+
+## Prompts
+
+These five prompts regenerate the chapter's figures as standalone, interactive D3 v7 HTML pages. Each prompt is structural — it tells the model *what to build*, not how to type it. Treat the rendered SVG in `images/` as the anchor for layout and channel choices, and treat the reference implementation in `d3/` as a working answer you can diff against.
+
+**Prerequisites.** Load `brutalist/CLAUDE.md` (D3 v7 coding constitution) and `brutalist/DESIGN.md` (visual constitution) into the model's context before issuing any of the prompts below. Confirm `var(--color-*)` tokens, the pinned cdnjs URL for D3 7.9.0, and the EB Garamond / Inter / JetBrains Mono stack are in scope.
+
+---
+
+### Figure 11.1 — The bottleneck shift
+
+Build a standalone HTML page that renders two stacked horizontal pipelines comparing where the bottleneck sits before and after AI coding assistants. Top row labeled *Before 2022*: three stages — Thinking, Typing syntax, Working tool — with Typing syntax visually heaviest and labeled "the bottleneck." Bottom row labeled *After 2024*: same three stages, but Thinking is now heaviest and labeled "the bottleneck," and Typing syntax renders as a thin dashed tile labeled "delegated to the model." Arrows connect adjacent stages within each row. Title at top, italic subtitle beneath. Use `var(--color-*)` tokens only; lead with EB Garamond for stage labels, Inter for sub-captions. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)` handlers, dark-mode `@media` block, and `prefers-reduced-motion` suppression. Pin D3 7.9.0 from the cdnjs URL in `brutalist/CLAUDE.md`.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-01.html`
+
+---
+
+### Figure 11.2 — The five-component specification
+
+Build a standalone HTML page that renders a central node labeled *Working specification* with five spokes radiating out to labeled tiles in clockwise order: Intent (top-left), Constraints (top-right), Exclusions (bottom-right), Output format (bottom-center), Success criteria (bottom-left). Each tile carries: a numbered title, a one-line description, and a single italic example drawn from the missing-assignments task in the chapter. Center node uses the heavier fill; spokes are thin lines with arrowheads pointing outward. EB Garamond for titles and examples, Inter for descriptions. Use `var(--color-*)` tokens. Make each tile keyboard-focusable with `tabindex="0"` and an `aria-label` summarizing its content. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, dark-mode `@media` block, and `prefers-reduced-motion` suppression. Pin D3 7.9.0 from the cdnjs URL.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-02.html`
+
+---
+
+### Figure 11.3 — Five-pass verification protocol
+
+Build a standalone HTML page that renders a numbered checklist of the five verification passes from the chapter: Spec, Edge, Wrong-input, Privacy, Sentinel. Lay it out as a table with four columns — a numbered square in the leftmost column, then the pass name (EB Garamond), then the one-line method (Inter, secondary color), then the failure mode each pass catches (EB Garamond italic, secondary color). Top and bottom rules in `--color-ink`; inter-row rules dashed in `--color-border`. Italic closing line beneath the table: "Slow the first time. Fast by the fifth." Each row keyboard-focusable; on hover, the pass name tints to `--color-red`. Use `var(--color-*)` tokens. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)` handlers, dark-mode `@media` block, and `prefers-reduced-motion` suppression. Pin D3 7.9.0 from the cdnjs URL.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-03.html`
+
+---
+
+### Figure 11.4 — Bad spec vs good spec
+
+Build a standalone HTML page that renders a two-column comparison separated by a dashed vertical divider. Left column titled *Bad specification*: a centered italic block quoting "Make me a script that emails parents about missing assignments," followed by a list of six bullet items beginning with em-dashes naming the silent guesses the model makes (columns, missing-threshold, tone, sender, blank contacts, apostrophes). Bottom of the left column: a hairline-bordered verdict box reading "Compiles. Runs. Wrong in ways you won't see." in red italic. Right column titled *Good specification*: five stacked clause cards — INTENT, CONSTRAINTS, SUCCESS CRITERIA, EXCLUSIONS, OUTPUT FORMAT — each with a one-line summary in Inter beneath the heading in EB Garamond. Make OUTPUT FORMAT visually heaviest as the deliverable. Bottom verdict in italic ink: "All five components. Nothing left to guess." Use `var(--color-*)` tokens. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)` handlers, dark-mode `@media` block, and `prefers-reduced-motion` suppression. Pin D3 7.9.0 from the cdnjs URL.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-04.html`
+
+---
+
+### Figure 11.5 — Computational thinking, mapped onto Ms. R's spec
+
+Build a standalone HTML page that renders a two-column mapping table. Left column header: "Wing (2006) — the move." Right column header: "Ms. R's paragraph — the clause." Six rows mapping each computational-thinking move to the exact line in Ms. R's polynomial-grapher paragraph: Identify inputs → "four sliders for a, b, c, d, each −5 to 5"; Identify outputs → "curve, real roots, y-intercept, equation"; Decompose → "rendering / interaction / calculation"; Abstract → "cubic generalized to y = ax³ + bx² + cx + d"; Anticipate failure → "when a = 0 the cubic becomes a quadratic"; Constrain environment → "self-contained — no internet at runtime." Arrowed connector between the two columns on each row. Closing two lines centered below: "The model can supply the semicolons." / italic "It cannot supply the judgment about what the tool should do." EB Garamond for moves and closing lines, italic for clauses. Use `var(--color-*)` tokens. Each row keyboard-focusable; hover tints the move name to `--color-red`. Include `role="img"`, `<title>`, `<desc>`, ResizeObserver redraw, `(event, d)` handlers, dark-mode `@media` block, and `prefers-reduced-motion` suppression. Pin D3 7.9.0 from the cdnjs URL.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-05.html`
+
+---
+
+## AI Wayback Machine
+
+Hopper invented the first compiler (A-0, 1952) and wrote much of what became COBOL. Her teaching ethos — *the most dangerous phrase in the language is we have always done it that way* — and her habit of explaining computing to non-programmers in their own vocabulary is the disposition this chapter asks teachers to bring to coding with AI. A teacher learning to code is doing what Hopper spent her career doing: insisting that the machine be made legible to the person who needs it, not the other way around.
+
+![Grace Hopper, 1906-1992. AI-generated portrait based on a public domain photograph.](../images/grace-hopper.jpg)
+*Grace Hopper, 1906-1992. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Grace Hopper, and how does their work connect to the ideas in this chapter? Keep it to three paragraphs. End with the single most surprising thing about their career or thinking.
+```
+
+→ Search **"Grace Hopper"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to apply Hopper's framework to a specific scenario in this chapter — what gets surfaced that the chapter's prose left implicit?
+- Ask about the critics of Hopper's work and which criticisms still bite today.
+
+What changes? What gets better? What gets worse?

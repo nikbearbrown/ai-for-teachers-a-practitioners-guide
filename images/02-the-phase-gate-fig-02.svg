@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t02 d02">
+  <title id="t02">A phrase versus a gate</title>
+  <desc id="d02">Two side-by-side panels. The left panel labeled &#8220;phrase&#8221; shows a single click box with vague verbs around it. The right panel labeled &#8220;gate&#8221; shows the same workflow with three explicit components stacked: upstream task, cognitive operation, downstream action.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .head { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 14px; font-weight: bold; fill: #2a1a0e; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .vague { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #8a8480; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+    <marker id="arX" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2a1a0e"/>
+    </marker>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">A phrase has one component. A gate has three.</text>
+  <text x="32" y="52" class="sub">Stripping any of the three collapses the gate back into a phrase.</text>
+
+  <line x1="350" y1="80" x2="350" y2="384" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- LEFT: phrase -->
+  <text x="170" y="98" text-anchor="middle" class="head">The phrase</text>
+  <text x="170" y="116" text-anchor="middle" class="sm">&#8220;Human in the loop.&#8221;</text>
+
+  <rect x="100" y="190" width="140" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="170" y="216" text-anchor="middle" class="lb">Click approve</text>
+  <text x="170" y="234" text-anchor="middle" class="sm">3 seconds</text>
+
+  <text x="170" y="160" text-anchor="middle" class="vague">&#8220;review&#8221;</text>
+  <text x="74" y="218" text-anchor="middle" class="vague">&#8220;check&#8221;</text>
+  <text x="268" y="218" text-anchor="middle" class="vague">&#8220;look over&#8221;</text>
+  <text x="170" y="282" text-anchor="middle" class="vague">&#8220;approve&#8221;</text>
+
+  <text x="170" y="354" text-anchor="middle" class="cap">No upstream task named.</text>
+  <text x="170" y="370" text-anchor="middle" class="cap">No operation named. No action named.</text>
+
+  <!-- RIGHT: gate -->
+  <text x="530" y="98" text-anchor="middle" class="head">The gate</text>
+  <text x="530" y="116" text-anchor="middle" class="sm">Three components in one sentence each.</text>
+
+  <rect x="400" y="140" width="260" height="56" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="412" y="158" class="lb">1. Upstream task</text>
+  <text x="412" y="176" class="sm">AI scored 120 essays against the rubric.</text>
+  <text x="412" y="190" class="sm">Specific, not vague.</text>
+
+  <line x1="530" y1="196" x2="530" y2="212" stroke="#2a1a0e" stroke-width="1" marker-end="url(#arX)"/>
+
+  <rect x="400" y="216" width="260" height="56" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="412" y="234" class="lb">2. Cognitive operation</text>
+  <text x="412" y="252" class="sm">Teacher hand-grades 5 essays, compares</text>
+  <text x="412" y="266" class="sm">to AI, adjusts rubric where they diverge.</text>
+
+  <line x1="530" y1="272" x2="530" y2="288" stroke="#2a1a0e" stroke-width="1" marker-end="url(#arX)"/>
+
+  <rect x="400" y="292" width="260" height="48" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="412" y="310" class="lb">3. Downstream action</text>
+  <text x="412" y="328" class="sm">Bulk grading proceeds with recalibration.</text>
+
+  <text x="530" y="370" text-anchor="middle" class="cap">Name all three in one sentence each, or there is no gate.</text>
+</svg>

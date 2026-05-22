@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t06f2 d06f2">
+  <title id="t06f2">Leveling versus scaffolding</title>
+  <desc id="d06f2">Two parallel columns. Leveling on the left shows an original passage rewritten into a different document and ends with a warning chip "concept may be lost." Scaffolding on the right shows the original text untouched, surrounded by four supports (sentence frame, glossary, graphic organizer, partner read), and ends with a check chip "same concept as class."</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .hd { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: bold; fill: #2a1a0e; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .chip-text { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #fdfcfb; }
+      .tile-orig { fill: #f5f2ee; stroke: #4a4540; stroke-width: 1; }
+      .tile-rewritten { fill: #c8c4c0; stroke: #2a1a0e; stroke-width: 1; }
+      .tile-support { fill: #f5f2ee; stroke: #8a8480; stroke-width: 0.8; }
+      .chip-warn { fill: #4a4540; }
+      .chip-ok { fill: #2a1a0e; }
+    </style>
+    <marker id="arr6b" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#2a1a0e"/>
+    </marker>
+    <marker id="arr6bgray" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#8a8480"/>
+    </marker>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="350" y="28" text-anchor="middle" class="ti">Two moves that look like "differentiation." They are not the same thing.</text>
+  <text x="350" y="46" text-anchor="middle" class="sm">Leveling changes the text. Scaffolding changes what surrounds it.</text>
+
+  <!-- divider -->
+  <line x1="350" y1="64" x2="350" y2="400" stroke="#c8c4c0" stroke-width="0.8" stroke-dasharray="4 3"/>
+
+  <!-- LEFT COLUMN — LEVELING -->
+  <text x="175" y="80" text-anchor="middle" class="hd">Leveling — change the text</text>
+
+  <rect class="tile-orig" x="55" y="96" width="240" height="44"/>
+  <text x="175" y="115" text-anchor="middle" class="lb">Original passage (900L)</text>
+  <text x="175" y="131" text-anchor="middle" class="sm">the document the lesson was designed around</text>
+
+  <path d="M 175 144 L 175 168" fill="none" stroke="#2a1a0e" stroke-width="1.4" marker-end="url(#arr6b)"/>
+  <text x="200" y="158" class="sm" font-style="italic">rewrite</text>
+
+  <rect class="tile-rewritten" x="55" y="172" width="240" height="44"/>
+  <text x="175" y="191" text-anchor="middle" class="lb">Rewritten passage (600L)</text>
+  <text x="175" y="207" text-anchor="middle" class="sm">a different document — fewer terms, shorter clauses</text>
+
+  <!-- load notes -->
+  <text x="175" y="240" text-anchor="middle" class="sm">extraneous load: reduced</text>
+  <text x="175" y="258" text-anchor="middle" class="lb" font-weight="bold">germane load: at risk</text>
+
+  <!-- warning chip -->
+  <rect class="chip-warn" x="78" y="278" width="194" height="28"/>
+  <text x="175" y="297" text-anchor="middle" class="chip-text">concept may be lost</text>
+  <text x="175" y="328" text-anchor="middle" class="cap">the student is no longer in the same lesson</text>
+
+  <!-- RIGHT COLUMN — SCAFFOLDING -->
+  <text x="525" y="80" text-anchor="middle" class="hd">Scaffolding — change what surrounds the text</text>
+
+  <rect class="tile-orig" x="405" y="96" width="240" height="44"/>
+  <text x="525" y="115" text-anchor="middle" class="lb">Original passage (900L)</text>
+  <text x="525" y="131" text-anchor="middle" class="sm">same document the class is reading</text>
+
+  <!-- arrows from corners of original toward supports -->
+  <path d="M 432 144 L 462 154" fill="none" stroke="#8a8480" stroke-width="0.8" marker-end="url(#arr6bgray)"/>
+  <path d="M 618 144 L 588 154" fill="none" stroke="#8a8480" stroke-width="0.8" marker-end="url(#arr6bgray)"/>
+
+  <!-- four support tiles in a 2x2 grid -->
+  <rect class="tile-support" x="405" y="156" width="115" height="38"/>
+  <text x="462" y="180" text-anchor="middle" class="lb">Sentence frame</text>
+
+  <rect class="tile-support" x="530" y="156" width="115" height="38"/>
+  <text x="587" y="180" text-anchor="middle" class="lb">Glossary</text>
+
+  <rect class="tile-support" x="405" y="200" width="115" height="38"/>
+  <text x="462" y="224" text-anchor="middle" class="lb">Graphic organizer</text>
+
+  <rect class="tile-support" x="530" y="200" width="115" height="38"/>
+  <text x="587" y="224" text-anchor="middle" class="lb">Partner read</text>
+
+  <!-- load notes -->
+  <text x="525" y="258" text-anchor="middle" class="sm">extraneous load: reduced</text>
+  <text x="525" y="276" text-anchor="middle" class="lb" font-weight="bold">germane load: preserved</text>
+
+  <!-- check chip -->
+  <rect class="chip-ok" x="430" y="296" width="190" height="28"/>
+  <text x="525" y="315" text-anchor="middle" class="chip-text">same concept as class</text>
+  <text x="525" y="345" text-anchor="middle" class="cap">the student is in the same lesson, with help</text>
+
+  <!-- footer -->
+  <line x1="55" y1="375" x2="645" y2="375" stroke="#c8c4c0" stroke-width="0.6"/>
+  <text x="350" y="397" text-anchor="middle" class="cap">Both columns look easier from the outside. Only the right column preserves what the lesson was for.</text>
+</svg>

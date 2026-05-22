@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure 7.3 — Three-step phase gate</title>
+  <style>
+    :root {
+      --color-white:     #FFFFFF;
+      --color-ink:       #121212;
+      --color-red:       #C8102E;
+      --color-secondary: #545454;
+      --color-border:    #D4D4D4;
+      --color-ochre:     #C8860E;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-white:     #111111;
+        --color-ink:       #F0EBE3;
+        --color-red:       #E8243A;
+        --color-secondary: #A0978C;
+        --color-border:    #2E2E2E;
+        --color-ochre:     #D49A30;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Garamond, Georgia, serif; padding: 16px; }
+    #chart { width: 100%; min-height: 440px; }
+    .ti { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 18px; font-weight: 700; fill: var(--color-ink); }
+    .sub { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+    .stepnum { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 28px; font-weight: 700; fill: var(--color-white); }
+    .steptitle { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 14px; font-weight: 700; fill: var(--color-ink); }
+    .stepwhat { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 11px; font-style: italic; fill: var(--color-secondary); }
+    .actor { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; fill: var(--color-ink); }
+    .actorb { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-weight: 700; fill: var(--color-ink); }
+    .callout { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; fill: var(--color-white); }
+    .calloutb { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-weight: 700; fill: var(--color-white); }
+    .cap { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+    .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-size: 12px; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const STEPS = [
+      { n: 1, title: 'Teacher writes', sub: 'bullets', what: 'the what',  actor: 'You supply this',  shade: 'var(--color-red)',       textShade: 'var(--color-ink)' },
+      { n: 2, title: 'Model writes',   sub: 'prose',   what: 'the how',   actor: 'Model does this',  shade: 'var(--color-secondary)', textShade: 'var(--color-secondary)' },
+      { n: 3, title: 'Teacher reads',  sub: 'vs bullets', what: 'the check', actor: 'You supply this', shade: 'var(--color-red)',     textShade: 'var(--color-ink)' }
+    ];
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+      const container = document.getElementById('chart');
+      const W = container.clientWidth || 700;
+      const H = 440;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', W).attr('height', H)
+        .attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('role', 'img')
+        .attr('aria-labelledby', 'chart-title chart-desc');
+      svg.append('title').attr('id', 'chart-title').text('Three-step phase gate for AI-assisted teacher writing');
+      svg.append('desc').attr('id', 'chart-desc').text('Bullets, prose, check. The third step is the one most often skipped under time pressure and the one that catches the failures.');
+
+      svg.append('defs').append('marker')
+        .attr('id', 'arrow3').attr('viewBox', '0 0 10 10')
+        .attr('refX', 9).attr('refY', 5)
+        .attr('markerWidth', 8).attr('markerHeight', 8)
+        .attr('orient', 'auto-start-reverse')
+        .append('path').attr('d', 'M 0 0 L 10 5 L 0 10 z').attr('fill', 'var(--color-ink)');
+
+      svg.append('text').attr('class', 'ti').attr('x', 32).attr('y', 34).text('The phase gate is three steps. Two of them involve you.');
+      svg.append('text').attr('class', 'sub').attr('x', 32).attr('y', 54).text('Bullets, prose, check. Skip the check and the failures land.');
+
+      const cellW = (W - 96) / 3;
+      const startX = 32;
+      const y = 100;
+      const cellH = 120;
+
+      STEPS.forEach((s, i) => {
+        const x = startX + i * (cellW + 16);
+        svg.append('rect').attr('x', x).attr('y', y).attr('width', cellW).attr('height', cellH)
+          .attr('fill', 'var(--color-white)').attr('stroke', s.textShade).attr('stroke-width', 1.5);
+        svg.append('rect').attr('x', x).attr('y', y).attr('width', 50).attr('height', cellH).attr('fill', s.shade);
+        svg.append('text').attr('class', 'stepnum').attr('x', x + 25).attr('y', y + 70).attr('text-anchor', 'middle').text(s.n);
+        svg.append('text').attr('class', 'steptitle').attr('x', x + 66).attr('y', y + 28).text(s.title);
+        svg.append('text').attr('class', 'steptitle').attr('x', x + 66).attr('y', y + 46).text(s.sub);
+        svg.append('text').attr('class', 'stepwhat').attr('x', x + 66).attr('y', y + 70).text(s.what);
+        svg.append('text').attr('class', s.n === 2 ? 'actor' : 'actorb').attr('x', x + 66).attr('y', y + 98).text(s.actor);
+
+        if (i < 2) {
+          svg.append('line')
+            .attr('x1', x + cellW).attr('y1', y + 60)
+            .attr('x2', x + cellW + 12).attr('y2', y + 60)
+            .attr('stroke', 'var(--color-ink)').attr('stroke-width', 1.5)
+            .attr('marker-end', 'url(#arrow3)').attr('aria-hidden', 'true');
+        }
+      });
+
+      const lastX = startX + 2 * (cellW + 16);
+      svg.append('line').attr('x1', lastX + cellW / 2).attr('y1', y + cellH)
+        .attr('x2', lastX + cellW / 2).attr('y2', y + cellH + 24)
+        .attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5).attr('marker-end', 'url(#arrow3)');
+
+      const calloutY = y + cellH + 32;
+      svg.append('rect').attr('x', W / 2 - 180).attr('y', calloutY).attr('width', 360).attr('height', 84)
+        .attr('fill', 'var(--color-red)');
+      svg.append('text').attr('class', 'calloutb').attr('x', W / 2 - 170).attr('y', calloutY + 24).text('The step skipped under time pressure');
+      svg.append('text').attr('class', 'callout').attr('x', W / 2 - 170).attr('y', calloutY + 44).text('is the step that catches the failures.');
+      svg.append('text').attr('class', 'callout').attr('x', W / 2 - 170).attr('y', calloutY + 64).text('Read every claim against your bullets.');
+
+      svg.append('text').attr('class', 'cap').attr('x', W / 2).attr('y', H - 18)
+        .attr('text-anchor', 'middle')
+        .text('Figure 7.3 — The phase gate is three steps. Two of them involve you.');
+    }
+    draw();
+    new ResizeObserver(() => draw()).observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

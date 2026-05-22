@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 11.1 — The bottleneck shift</title>
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink);
+         font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  #chart { width: 100%; min-height: 460px; }
+  .title-text { font-family: 'EB Garamond', Georgia, serif; font-size: 22px; fill: var(--color-ink); }
+  .subtitle-text { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .row-label { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; fill: var(--color-secondary); }
+  .stage-rect { fill: var(--color-white); stroke: var(--color-secondary); stroke-width: 1; }
+  .stage-rect.bottleneck { fill: var(--color-border); stroke: var(--color-ink); stroke-width: 2; }
+  .stage-rect.delegated { stroke-dasharray: 3 3; }
+  .stage-title { font-family: 'EB Garamond', Georgia, serif; font-size: 15px; fill: var(--color-ink); text-anchor: middle; }
+  .stage-note { font-family: 'Inter', sans-serif; font-size: 11px; fill: var(--color-secondary); text-anchor: middle; }
+  .bottleneck-label { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; font-style: italic; fill: var(--color-red); text-anchor: middle; }
+  .divider { stroke: var(--color-border); stroke-dasharray: 4 4; }
+  .arrow path { fill: var(--color-ink); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const FALLBACK = {
+      before: [
+        { id: 'b1', label: 'Thinking',      sub: 'specification',                       width: 120, kind: 'normal' },
+        { id: 'b2', label: 'Typing syntax', sub: 'brackets, semicolons, library names', width: 240, kind: 'bottleneck', note: 'the bottleneck' },
+        { id: 'b3', label: 'Working tool',  sub: 'shipped',                             width: 160, kind: 'normal' }
+      ],
+      after: [
+        { id: 'a1', label: 'Thinking',      sub: 'intent, constraints, edge cases',     width: 240, kind: 'bottleneck', note: 'the bottleneck' },
+        { id: 'a2', label: 'Typing syntax', sub: 'delegated to the model',              width: 160, kind: 'delegated' },
+        { id: 'a3', label: 'Working tool',  sub: 'shipped',                             width: 120, kind: 'normal' }
+      ]
+    };
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+      const container = document.getElementById('chart');
+      const totalWidth  = container.clientWidth || 800;
+      const totalHeight = 460;
+      const margin = { top: 84, right: 32, bottom: 32, left: 120 };
+      const innerWidth = totalWidth - margin.left - margin.right;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth).attr('height', totalHeight)
+        .attr('role', 'img').attr('aria-labelledby', 'chart-title chart-desc');
+
+      svg.append('title').attr('id', 'chart-title').text('The bottleneck shift');
+      svg.append('desc').attr('id', 'chart-desc').text('Before AI: typing-syntax was the bottleneck. After AI: thinking is the bottleneck.');
+
+      svg.append('defs').append('marker')
+        .attr('id', 'arrow-d3-01').attr('viewBox', '0 0 10 10')
+        .attr('refX', 9).attr('refY', 5).attr('markerWidth', 7).attr('markerHeight', 7)
+        .attr('orient', 'auto-start-reverse')
+        .append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', 'currentColor');
+
+      svg.append('text').attr('class', 'title-text').attr('x', totalWidth/2).attr('y', 36).attr('text-anchor', 'middle').text('The bottleneck shift');
+      svg.append('text').attr('class', 'subtitle-text').attr('x', totalWidth/2).attr('y', 58).attr('text-anchor', 'middle').text('Where the slow step lived before, and where it lives now');
+
+      function layoutRow(stages, gap) {
+        const totalStageWidth = d3.sum(stages, s => s.width);
+        const totalGap = gap * (stages.length - 1);
+        const startX = margin.left + (innerWidth - totalStageWidth - totalGap) / 2;
+        let x = startX;
+        return stages.map(s => { const out = { ...s, x }; x += s.width + gap; return out; });
+      }
+
+      function drawRow(yTop, stages, rowLabel) {
+        svg.append('text').attr('class', 'row-label').attr('x', 32).attr('y', yTop + 28).text(rowLabel);
+        const laidOut = layoutRow(stages, 36);
+        const rowHeight = 84;
+        svg.selectAll(null).data(laidOut).join('rect')
+          .attr('class', d => 'stage-rect ' + (d.kind === 'bottleneck' ? 'bottleneck' : d.kind === 'delegated' ? 'delegated' : ''))
+          .attr('x', d => d.x).attr('y', yTop)
+          .attr('width', d => d.width).attr('height', rowHeight)
+          .attr('tabindex', 0)
+          .attr('aria-label', d => `${d.label}: ${d.sub}`);
+        svg.selectAll(null).data(laidOut).join('text')
+          .attr('class', 'stage-title').attr('x', d => d.x + d.width/2).attr('y', yTop + 30).text(d => d.label);
+        svg.selectAll(null).data(laidOut).join('text')
+          .attr('class', 'stage-note').attr('x', d => d.x + d.width/2).attr('y', yTop + 50).text(d => d.sub);
+        laidOut.filter(d => d.kind === 'bottleneck').forEach(d => {
+          svg.append('text').attr('class', 'bottleneck-label')
+            .attr('x', d.x + d.width/2).attr('y', yTop + 70).text('— the bottleneck —');
+        });
+        for (let i = 0; i < laidOut.length - 1; i++) {
+          const a = laidOut[i], b = laidOut[i+1];
+          svg.append('g').attr('class', 'arrow').attr('color', 'var(--color-ink)')
+            .append('line')
+              .attr('x1', a.x + a.width).attr('y1', yTop + rowHeight/2)
+              .attr('x2', b.x).attr('y2', yTop + rowHeight/2)
+              .attr('stroke', 'currentColor').attr('stroke-width', 1.2)
+              .attr('marker-end', 'url(#arrow-d3-01)');
+        }
+      }
+
+      drawRow(110, FALLBACK.before, 'Before 2022');
+      svg.append('line').attr('class', 'divider')
+        .attr('x1', 32).attr('y1', 244).attr('x2', totalWidth - 32).attr('y2', 244);
+      drawRow(284, FALLBACK.after,  'After 2024');
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+
+    const tooltip = d3.select('body').append('div').attr('class','tooltip')
+      .style('position','absolute').style('pointer-events','none').style('opacity',0);
+    d3.select('#chart').on('mouseover', (event, d) => {}).on('mouseout', (event, d) => {});
+  </script>
+</body>
+</html>

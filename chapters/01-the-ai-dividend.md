@@ -10,7 +10,8 @@ You may have heard a different number. Twenty hours a week. A full day. Half the
 
 The chapter's job is to show you what 5.9 hours actually means: where it comes from, what it does not include, and how to figure out which six hours belong to your week specifically.
 
-<!-- → [INFOGRAPHIC: Single large number "5.9 hrs/week" as visual anchor, with three callout labels: "Weekly AI users only (not all teachers)", "Ad hoc use — no systematic workflow design", "After the learning curve, not week one" — reader should immediately grasp that the number is specific and bounded, not a universal promise] -->
+![A display-size 5.9 hrs/week as the visual anchor, with three callout labels naming the boundaries of the claim — weekly AI users only, ad-hoc use without systematic workflow design, and "after the learning curve, not week one."](../images/01-the-ai-dividend-fig-01.png)
+*Figure 1.1 — The 5.9-hour number is specific and bounded, not a universal promise.*
 
 ---
 
@@ -30,7 +31,14 @@ The second number is built on top of the first. The lesson-preparation row in th
 
 I am telling you this because the hostile-reader test matters. A number you cannot defend under questioning is not a number you should plan around. Plan around 5.9. Treat 16 as a ceiling you might approach over years of deliberate practice. Treat 20 as what some teachers have achieved and you might someday reach, but not a baseline expectation.
 
-<!-- → [TABLE: Two-column comparison — "Ad hoc savings (5.9 hrs/week)" vs "Systematic deployment ceiling (~16–17 hrs/week)" — rows: Evidence basis, Population, When it applies, Planning use — student should see at a glance why these are different claims requiring different epistemic treatment] -->
+| Dimension       | Ad-hoc savings (5.9 hrs/week)                                | Systematic deployment ceiling (~16–17 hrs/week)              |
+|-----------------|--------------------------------------------------------------|--------------------------------------------------------------|
+| Evidence basis  | Self-reported, observed                                       | Modeled upper bound from time-and-motion studies              |
+| Population      | Teachers already using AI weekly                              | Hypothetical teacher with fully designed workflows            |
+| When it applies | After the learning curve, in ordinary practice                | Only with sustained workflow redesign and admin support       |
+| Planning use    | Personal target for the second semester                       | District-level planning ceiling, not an individual promise    |
+
+*Table 1.1 — Two claims, different epistemic weight. Use the left column for personal planning; treat the right column as the policy ceiling, not the personal floor.*
 
 ---
 
@@ -66,7 +74,8 @@ The test I use for human-required is: *would delegating this task remove somethi
 
 This taxonomy is a sorting question, not a verdict. Two teachers doing the same nominal activity may sort it differently, and both may be right. For one teacher, essay grading is mostly structural first-pass work — hybrid. For another, essay grading is how she catches the misconception that determines tomorrow's lesson — human-required, even though the margin comments could be delegated without harm. The taxonomy is useful because it forces the question, not because it returns a universal answer.
 
-<!-- → [INFOGRAPHIC: Three-zone diagram — "AI-Appropriate / Hybrid / Human-Required" arranged left to right, with 2–3 concrete task examples in each zone and the decision test labeled in the middle zone: "Does output reach a student or parent without review?" and in the right zone: "Does removing my cognition remove something the student needed?" — reader should be able to sort their own tasks on first read] -->
+![Three zones arranged left-to-right — AI-Appropriate, Hybrid, Human-Required — with two-to-three concrete task examples in each zone, and the two decision tests labeled at the boundaries between zones.](../images/01-the-ai-dividend-fig-02.png)
+*Figure 1.2 — The three-zone task taxonomy. Sort your own tasks on the first read; you will revisit the boundaries every month.*
 
 ---
 
@@ -106,7 +115,17 @@ Here is the sentence that matters: **the dividend you actually get is the sum of
 
 And the limit: the table assumes the phase gates are in place. A teacher who delegates grading without rubric calibration, or differentiation without anonymizing student data appropriately, will save time and produce problems. The hours come home with consequences attached.
 
-<!-- → [TABLE: Social studies teacher's week — columns: Task, Hours/week, Category (color-coded), Projected recovery — rows match the seven categories described in prose, with "Live instruction and supervision" grayed out as non-delegable — reader should be able to reproduce this audit for their own week] -->
+| Task                                  | Hours/week | Category        | Projected recovery |
+|---------------------------------------|------------|-----------------|--------------------|
+| Live instruction and supervision      | 25         | Human-Required  | —                  |
+| Lesson planning and material design   | 8          | Hybrid          | 2–3 hrs            |
+| Grading and written feedback          | 7          | Hybrid          | 2–3 hrs            |
+| Parent and student email              | 4          | AI-Appropriate  | 2 hrs              |
+| Quiz and rubric drafting              | 3          | AI-Appropriate  | 1.5 hrs            |
+| Slide assembly for upcoming units     | 3          | AI-Appropriate  | 1.5 hrs            |
+| Administrative paperwork and reports  | 2          | AI-Appropriate  | 1 hr               |
+
+*Table 1.2 — A social studies teacher's week. "Live instruction and supervision" is non-delegable. The other six categories show where the 5.9 hours can plausibly come from. Reproduce this audit for your own week before committing to a workflow.*
 
 ---
 
@@ -151,3 +170,55 @@ The dividend is real. The ceiling is a hypothesis. The reinvestment is a decisio
 [^aila]: Education Endowment Foundation (2025). *Lesson planning using AI lesson assistant, Aila — Teacher Choices Trial.* ~450 Key Stage 2 teachers across 86 English primary schools; results expected 2026; evaluator NFER. [https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/aila-teacher-choices-trial](https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/aila-teacher-choices-trial).
 
 [^bastani]: Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., & Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *PNAS*, 122. [https://www.pnas.org/doi/10.1073/pnas.2422633122](https://www.pnas.org/doi/10.1073/pnas.2422633122). Correction: [https://www.pnas.org/doi/10.1073/pnas.2518204122](https://www.pnas.org/doi/10.1073/pnas.2518204122).
+
+---
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 1.1 — The 5.9-hour anchor
+
+Build a single-file HTML "hero number" figure. Center one display-size value, the string `5.9`, in EB Garamond at roughly 150px in `var(--color-red)`; immediately beneath it set the italic unit `hours per week` in EB Garamond at ~20px in `var(--color-ink)`. Above the number, render a short eyebrow label `THE MEASURED DIVIDEND` in 11px Inter letter-spaced, with a 160px hairline rule in `var(--color-border)` below it. Arrange three callouts around the anchor at 11, 1, and 5 o'clock with one anchor point on each leader pointing to the number. Each callout is a bold 13px Inter title plus 2–3 lines of 13px EB Garamond secondary text. The three titles and bodies: "Weekly users only" (~30% of U.S. public K-12 teachers, not all teachers); "Ad hoc use" (reaching for a tool when a task feels heavy, no systematic workflow); "After the learning curve" (not week one — the return after the investment clears). Leaders are 1px dashed `var(--color-secondary)` terminating in a 2.5px filled dot. Add an italic source caption at the bottom-left. Each callout must be a tab-focusable hit zone with an aria-label and a tooltip that expands the boundary into one sentence. Accessibility: `role="img"`, `<title>` and `<desc>`, prefers-reduced-motion suppression, prefers-color-scheme dark variant.
+
+> Reference implementation: `d3/01-the-ai-dividend-fig-01.html`
+
+---
+
+### Figure 1.2 — Three-zone task taxonomy
+
+Build a single-file HTML diagram with three equal-width card rectangles arranged left to right with consistent gaps between them. Card 1 is AI-Appropriate, card 2 is Hybrid, card 3 is Human-Required. Card 3 takes a 2px `var(--color-red)` border to mark non-delegable territory; the other two take a 1px `var(--color-border)` border. Inside each card, top to bottom: an 11px Inter zone tag in `var(--color-secondary)` ("ZONE 1/2/3"), a 22px EB Garamond bold zone title, a 13px italic EB Garamond definition line, a hairline divider, then a vertical list of 4 task examples in 13px EB Garamond, each prefixed by an em dash. Use the example sets in the chapter: production drafts (worksheets, problem variants, summaries, newsletter bullets) for AI-Appropriate; feedback, IEP language, lesson sequencing, parent email drafts for Hybrid; live response, misconception spotting, relationship repair, modelling not-knowing for Human-Required. Between adjacent cards render a horizontal arrow at mid-height with an arrowhead defined once in `<defs>`, then a TEST 1 / TEST 2 label beneath in ochre and an italic two- or three-line question in `var(--color-secondary)`. Test 1 asks whether output will reach a student or parent without review; Test 2 asks whether removing the teacher's cognition would remove what the student needed. Each card is keyboard-focusable with a tooltip elaborating the zone. Accessibility: `role="img"`, `<title>` and `<desc>`, prefers-reduced-motion suppression, prefers-color-scheme dark variant.
+
+> Reference implementation: `d3/01-the-ai-dividend-fig-02.html`
+
+---
+
+## AI Wayback Machine
+
+The instinct to study where a teacher's hours actually go — and to redesign the workflow around what matters — was operationalized in American teacher training in the 1960s and 70s by **Madeline Hunter** (1916–1994). Hunter's ITIP framework (Instructional Theory Into Practice) broke teaching into observable elements: anticipatory set, objective and purpose, input, modelling, checking for understanding, guided practice, closure, independent practice. The point was not to mechanize teaching but to surface the structure underneath good lessons so that the structure could be taught — and so that a teacher overwhelmed by a hundred small decisions could compare their day against a checklist and recover the parts that had drifted. The audit move in this chapter — the social studies teacher writing down where the week's forty-two hours actually go — is Hunter's instinct applied to time instead of to a single lesson.
+
+![Madeline Hunter, circa 1980. AI-generated portrait based on a public domain photograph.](../images/madeline-hunter.jpg)
+*Madeline Hunter, circa 1980. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+**Run this:**
+
+```
+Who was Madeline Hunter, and how does her ITIP framework connect to the time-audit move in this chapter? Keep it to three paragraphs. End with the single most surprising thing about her career or impact.
+```
+
+→ Search **"Madeline Hunter"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it to map the seven ITIP elements onto the AI-Appropriate / Hybrid / Human-Required zones in this chapter.
+- Ask about the criticism Hunter's framework received from researchers in the 1990s — what survives and what doesn't?
+
+What changes? What gets better? What gets worse?

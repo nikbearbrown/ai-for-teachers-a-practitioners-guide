@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 14.5 &mdash; Capability poster: six AI uses</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-white: #fdfcfb;
+    --color-ink: #2a1a0e;
+    --color-secondary: #4a4540;
+    --color-muted: #8a8480;
+    --color-border: #c8c4c0;
+    --color-surface: #f5f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white: #1a1410;
+      --color-ink: #f5f2ee;
+      --color-secondary: #c8c4c0;
+      --color-muted: #8a8480;
+      --color-border: #4a4540;
+      --color-surface: #2a1a0e;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Garamond, Georgia, serif; padding: 24px; }
+  h1 { font-weight: 400; font-size: 26px; margin-bottom: 4px; }
+  p.subtitle { color: var(--color-secondary); font-style: italic; font-size: 15px; margin-bottom: 20px; }
+  #chart { width: 100%; min-height: 560px; }
+  .zone-build { fill: var(--color-surface); stroke: var(--color-ink); stroke-width: 1.5; }
+  .zone-borrow { fill: var(--color-white); stroke: var(--color-muted); stroke-width: 1; }
+  .zone-title { font-style: italic; fill: var(--color-ink); font-size: 16px; }
+  .col-head { font-style: italic; fill: var(--color-muted); font-size: 11px; }
+  .row-use { fill: var(--color-ink); font-size: 14px; }
+  .row-why { fill: var(--color-secondary); font-size: 13px; }
+  .row-use.borrow { fill: var(--color-secondary); }
+  .row-why.borrow { fill: var(--color-muted); }
+  .summary { font-style: italic; fill: var(--color-ink); font-size: 12px; }
+  .row-rule { stroke: var(--color-border); stroke-dasharray: 2 3; }
+  .caption { font-style: italic; fill: var(--color-muted); font-size: 12px; }
+  .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-size: 13px; font-family: 'EB Garamond', Garamond, Georgia, serif; transition: opacity 150ms; }
+  .row-hit { fill: transparent; cursor: pointer; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>Figure 14.5 &mdash; Six ways students use AI.</h1>
+<p class="subtitle">Three build capability. Three borrow it. Same tool. Different cognitive operation.</p>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+  const building = [
+    { use: 'Ask the AI to challenge your reasoning.', why: 'Triggers prediction error; builds the model.' },
+    { use: 'Ask the AI to generate edge-of-competence problems.', why: 'Creates productive struggle; drives consolidation.' },
+    { use: 'Run the Feynman test conversation.', why: 'Forces retrieval; reveals what is missing.' }
+  ];
+  const borrowing = [
+    { use: 'Ask the AI to write the first draft.', why: 'Bypasses generative struggle that builds schema.' },
+    { use: 'Ask the AI to summarize the reading.', why: 'Bypasses deep processing that builds comprehension.' },
+    { use: 'Ask the AI to solve the problem.', why: 'Eliminates the productive difficulty that is learning.' }
+  ];
+
+  const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+
+  function draw() {
+    d3.select('#chart').selectAll('*').remove();
+    const W = document.getElementById('chart').clientWidth || 700;
+    const H = 560;
+
+    const svg = d3.select('#chart').append('svg')
+      .attr('viewBox', `0 0 ${W} ${H}`)
+      .attr('role', 'img')
+      .attr('aria-labelledby', 'ct cd');
+    svg.append('title').attr('id', 'ct').text('Capability poster: six AI uses sorted into building and borrowing');
+    svg.append('desc').attr('id', 'cd').text('Two zones: three building uses up top with mechanisms; three borrowing uses below with failure modes.');
+
+    const pad = 40;
+    const colSplit = Math.min(380, W * 0.55);
+
+    function renderZone(yOff, height, klass, title, rows, summary) {
+      svg.append('rect').attr('class', `zone-${klass}`)
+        .attr('x', pad).attr('y', yOff).attr('width', W - pad * 2).attr('height', height);
+      svg.append('text').attr('class', 'zone-title').attr('x', pad + 16).attr('y', yOff + 26).text(title);
+      svg.append('line').attr('x1', pad).attr('x2', W - pad).attr('y1', yOff + 36).attr('y2', yOff + 36)
+        .attr('stroke', klass === 'build' ? 'var(--color-ink)' : 'var(--color-muted)');
+
+      svg.append('text').attr('class', 'col-head').attr('x', pad + 16).attr('y', yOff + 56).text('use');
+      svg.append('text').attr('class', 'col-head').attr('x', pad + colSplit).attr('y', yOff + 56).text(klass === 'build' ? 'why it works' : 'why it fails');
+      svg.append('line').attr('x1', pad).attr('x2', W - pad).attr('y1', yOff + 62).attr('y2', yOff + 62)
+        .attr('stroke', 'var(--color-border)');
+
+      rows.forEach((r, i) => {
+        const ry = yOff + 82 + i * 32;
+        const grp = svg.append('g').attr('tabindex', 0)
+          .attr('aria-label', `${r.use} — ${r.why}`)
+          .on('mouseover', (event) => {
+            tooltip.html(`<strong>${klass === 'build' ? 'Building' : 'Borrowing'}</strong><br>${r.why}`)
+              .style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px')
+              .transition().duration(150).style('opacity', 1);
+          })
+          .on('mousemove', (event) => tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 28) + 'px'))
+          .on('mouseout', () => tooltip.transition().duration(100).style('opacity', 0));
+
+        grp.append('rect').attr('class', 'row-hit')
+          .attr('x', pad).attr('y', ry - 16).attr('width', W - pad * 2).attr('height', 28);
+        grp.append('text').attr('class', `row-use ${klass === 'borrow' ? 'borrow' : ''}`)
+          .attr('x', pad + 16).attr('y', ry).text(r.use);
+        grp.append('text').attr('class', `row-why ${klass === 'borrow' ? 'borrow' : ''}`)
+          .attr('x', pad + colSplit).attr('y', ry).text(r.why);
+        if (i < rows.length - 1) {
+          svg.append('line').attr('class', 'row-rule')
+            .attr('x1', pad).attr('x2', W - pad)
+            .attr('y1', ry + 12).attr('y2', ry + 12);
+        }
+      });
+
+      svg.append('text').attr('class', 'summary').attr('x', pad + 16).attr('y', yOff + height - 14).text(summary);
+    }
+
+    renderZone(80, 220, 'build', 'Building — the cognitive work stays with you', building,
+      'AI does adjacent work. You do load-bearing work. Storage strength builds.');
+
+    svg.append('line').attr('x1', pad).attr('x2', W - pad).attr('y1', 316).attr('y2', 316)
+      .attr('stroke', 'var(--color-muted)').attr('stroke-dasharray', '6 6');
+
+    renderZone(330, 200, 'borrow', 'Borrowing — the AI does the work that was supposed to build you', borrowing,
+      'AI does the load-bearing work. You receive fluency. Storage strength stays flat.');
+
+    svg.append('text').attr('class', 'caption').attr('x', W / 2).attr('y', H - 2).attr('text-anchor', 'middle')
+      .text("Figure 14.5 — the test isn't what you ask; it's where the thinking happens.");
+  }
+
+  draw();
+  const ro = new ResizeObserver(() => draw());
+  ro.observe(document.getElementById('chart'));
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 3.2 — The four-component prompt card</title>
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--color-white);
+    color: var(--color-ink);
+    font-family: 'EB Garamond', 'Garamond', Georgia, serif;
+    padding: 24px;
+  }
+  #chart { width: 100%; max-width: 1000px; }
+  .chart-title { font-size: 18px; font-weight: 700; fill: var(--color-ink); }
+  .chart-subtitle { font-size: 13px; fill: var(--color-secondary); }
+  .card-rect { fill: var(--color-white); stroke: var(--color-ink); stroke-width: 1; }
+  .row-rule { stroke: var(--color-border); stroke-width: 1; }
+  .key { font-size: 13px; font-weight: 700; fill: var(--color-ink); letter-spacing: 0.5px; }
+  .slot { font-size: 13px; fill: var(--color-secondary); font-style: italic; }
+  .work { font-size: 13px; font-weight: 700; fill: var(--color-ochre); }
+  .work-sub { font-size: 12px; fill: var(--color-secondary); }
+  .footer { font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+  .work-line { stroke: var(--color-ochre); stroke-width: 1; }
+  .row-hot rect.card-rect { stroke: var(--color-red); stroke-width: 2; }
+  .row-hot .key { fill: var(--color-red); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div id="chart" role="main"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function () {
+  const FALLBACK_DATA = [
+    {
+      key: 'ROLE',
+      slot: ['You are a veteran 8th-grade U.S. History teacher.'],
+      work: 'Selects a corpus region',
+      workSub: ['vocabulary, pacing, pedagogical instinct',
+                '— the part the model can lean on']
+    },
+    {
+      key: 'CONTEXT',
+      slot: ['8th grade, causes of the Revolution.',
+             'Class read three of five causes.'],
+      work: 'Lands the output in your room',
+      workSub: ['grade, standard, class profile',
+                '— most under-supplied by teachers']
+    },
+    {
+      key: 'TASK',
+      slot: ['Eight multiple-choice items, four',
+             'choices each. Numbered Markdown.'],
+      work: 'Specifies the deliverable',
+      workSub: ['format, length, quality criteria',
+                '— what the model can execute and verify']
+    },
+    {
+      key: 'CONSTRAINTS',
+      slot: ['6th-grade reading level. No date-recall.',
+             'One misconception distractor per item.'],
+      work: 'Names what to avoid',
+      workSub: ['few, sharp, paired with positive direction',
+                '— three well-chosen beat fifteen scattered']
+    }
+  ];
+
+  const tooltip = d3.select('body').append('div')
+    .attr('class', 'tooltip')
+    .style('position', 'absolute')
+    .style('pointer-events', 'none')
+    .style('opacity', 0)
+    .style('background', 'var(--color-white)')
+    .style('border', '1px solid var(--color-border)')
+    .style('padding', '8px 10px')
+    .style('font-family', 'EB Garamond, Garamond, Georgia, serif')
+    .style('font-size', '12px')
+    .style('color', 'var(--color-ink)');
+
+  let activeKey = null;
+
+  function showTooltip(event, d) {
+    tooltip.html(`<strong>${d.key}</strong><br><em>${d.work}</em>`)
+      .style('left', (event.pageX + 12) + 'px')
+      .style('top',  (event.pageY - 28) + 'px')
+      .transition().duration(150).style('opacity', 1);
+  }
+  function moveTooltip(event) {
+    tooltip.style('left', (event.pageX + 12) + 'px')
+      .style('top',  (event.pageY - 28) + 'px');
+  }
+  function hideTooltip() {
+    tooltip.transition().duration(100).style('opacity', 0);
+  }
+
+  function draw() {
+    d3.select('#chart').selectAll('svg').remove();
+    const container = document.getElementById('chart');
+    const totalWidth  = Math.max(720, container.clientWidth || 1000);
+    const totalHeight = 480;
+    const margin = { top: 64, right: 32, bottom: 48, left: 32 };
+
+    const svg = d3.select('#chart').append('svg')
+      .attr('width', totalWidth)
+      .attr('height', totalHeight)
+      .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
+      .attr('role', 'img')
+      .attr('aria-labelledby', 'chart-title chart-desc');
+    svg.append('title').attr('id', 'chart-title')
+      .text('The four-component prompt card');
+    svg.append('desc').attr('id', 'chart-desc')
+      .text('A reference card listing role, context, task, and constraints with the structural work each line performs.');
+
+    svg.append('text').attr('class', 'chart-title')
+      .attr('x', margin.left).attr('y', 28).text('The four-component prompt card');
+    svg.append('text').attr('class', 'chart-subtitle')
+      .attr('x', margin.left).attr('y', 48)
+      .text('After thirty prompts the moves become reflex. Each line does distinct structural work.');
+
+    const cardX = margin.left;
+    const cardW = Math.min(380, (totalWidth - margin.left - margin.right) * 0.42);
+    const cardTop = margin.top;
+    const innerHeight = totalHeight - margin.top - margin.bottom;
+    const rowH = innerHeight / FALLBACK_DATA.length;
+
+    // Card background
+    svg.append('rect').attr('class', 'card-rect')
+      .attr('x', cardX).attr('y', cardTop)
+      .attr('width', cardW).attr('height', innerHeight);
+
+    const calloutX = cardX + cardW + 48;
+
+    FALLBACK_DATA.forEach((d, i) => {
+      const yTop = cardTop + i * rowH;
+      const yMid = yTop + rowH / 2;
+      const g = svg.append('g')
+        .attr('class', 'row')
+        .attr('tabindex', 0)
+        .attr('aria-label', `${d.key}: ${d.work}`)
+        .style('cursor', 'pointer')
+        .datum(d);
+
+      // an invisible hit rect for hover
+      g.append('rect')
+        .attr('x', cardX).attr('y', yTop)
+        .attr('width', cardW).attr('height', rowH)
+        .attr('fill', 'transparent')
+        .attr('class', 'card-rect-hit');
+
+      g.append('text').attr('class', 'key')
+        .attr('x', cardX + 16).attr('y', yTop + 28).text(d.key);
+      d.slot.forEach((line, k) => {
+        g.append('text').attr('class', 'slot')
+          .attr('x', cardX + 16).attr('y', yTop + 50 + k * 18).text(line);
+      });
+
+      if (i < FALLBACK_DATA.length - 1) {
+        svg.append('line').attr('class', 'row-rule')
+          .attr('x1', cardX + 16).attr('y1', yTop + rowH)
+          .attr('x2', cardX + cardW - 16).attr('y2', yTop + rowH);
+      }
+
+      // Callout arrow + text
+      g.append('line').attr('class', 'work-line')
+        .attr('x1', cardX + cardW).attr('y1', yMid)
+        .attr('x2', calloutX - 8).attr('y2', yMid)
+        .attr('marker-end', 'url(#ochre-arrow)');
+
+      g.append('text').attr('class', 'work')
+        .attr('x', calloutX).attr('y', yMid - 12).text(d.work);
+      d.workSub.forEach((line, k) => {
+        g.append('text').attr('class', 'work-sub')
+          .attr('x', calloutX).attr('y', yMid + 8 + k * 16).text(line);
+      });
+
+      g.on('mouseover', (event, dd) => {
+        d3.selectAll('.row').classed('row-hot', false);
+        g.classed('row-hot', true);
+        showTooltip(event, dd);
+      });
+      g.on('mousemove', moveTooltip);
+      g.on('mouseout', () => { hideTooltip(); g.classed('row-hot', false); });
+      g.on('keydown', (event, dd) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          d3.selectAll('.row').classed('row-hot', false);
+          g.classed('row-hot', true);
+        }
+      });
+    });
+
+    // ochre arrow defs
+    const defs = svg.append('defs');
+    defs.append('marker')
+      .attr('id', 'ochre-arrow').attr('markerWidth', 8).attr('markerHeight', 6)
+      .attr('refX', 7).attr('refY', 3).attr('orient', 'auto')
+      .append('polygon').attr('points', '0 0, 8 3, 0 6')
+      .attr('fill', 'var(--color-ochre)');
+
+    svg.append('text').attr('class', 'footer')
+      .attr('x', margin.left).attr('y', totalHeight - 16)
+      .text('Role · Context · Task · Constraints — invisible after thirty prompts, durable across model generations.');
+  }
+
+  draw();
+  const ro = new ResizeObserver(() => draw());
+  ro.observe(document.getElementById('chart'));
+})();
+</script>
+</body>
+</html>

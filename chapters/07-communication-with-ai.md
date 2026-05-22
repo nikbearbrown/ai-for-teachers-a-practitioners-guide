@@ -21,7 +21,8 @@ AI is very good at register conversion. It is structurally incapable of knowing 
 
 ## What a teacher's communication week actually is
 
-<!-- → INFOGRAPHIC: Five horizontal rows, each a communication type with a short descriptor and an "AI role" label. Row 1: Routine informational — "parent reads for information" — AI drafts, teacher reviews. Row 2: Progress and pattern notes — "parent reads for information + evidence you know their kid" — teacher supplies bullets, AI drafts, teacher reviews. Row 3: Administrative documentation — "district reads this six months from now" — teacher supplies dated notes, AI renders, teacher reviews every fact. Row 4: Sensitive communications — "legal, disciplinary, family-conflict weight" — teacher drafts substance, AI adjusts register only. Row 5: Relational-evidence messages — "parent reads for proof you noticed their specific child" — teacher only. Caption: Same week, five different gate positions. The sort happens before the draft. -->
+![Five horizontal rows mapping a teacher's communication week to five categories, each with a reader's question and an AI role: routine informational, progress and pattern notes, administrative documentation, sensitive communications, and relational-evidence messages.](../images/07-communication-with-ai-fig-01.png)
+*Figure 7.1 — Same week, five different gate positions. The sort happens before the draft.*
 
 When teachers describe the communication burden, they usually describe a single category: messages to parents. But a teacher's communication week is four or five tasks wearing the same label.
 
@@ -51,6 +52,9 @@ Here is the sorting test, stated as three questions rather than a rule.
 
 Run every message through those three questions before you decide who drafts it. The category names — routine, sensitive — are shorthand for where it lands on the test. They are not determined by genre. Some IEP progress notes are routine. Some parent emails are sensitive. The test tells you which is which.
 
+![Three-question decision tree starting at the message to draft and branching through the school-board-readable test, the information versus relational-evidence test, and the factual-drift harm test, terminating in four outcomes: stop and rewrite, teacher-only, routine AI lane, or sensitive AI lane.](../images/07-communication-with-ai-fig-02.png)
+*Figure 7.2 — The sort happens before the draft. Same three questions, every message, every time.*
+
 ---
 
 ## The core move
@@ -61,7 +65,8 @@ The highest-leverage principle in this chapter can be stated in one sentence:
 
 That is not "AI writes teacher communication." It is AI doing the register conversion you would otherwise do by hand. You already had the observation. You already had the judgment about how the family will receive it. What you don't always have, at 6:47 on a Thursday evening, is the energy to render that judgment in sentences that land warmly without bureaucratic stiffness and without over-intimacy. The rendering is form-work. The model is excellent at form-work.
 
-<!-- → IMAGE: A three-step linear diagram: (1) Teacher writes bullets [labeled: "the what — you supply this"] → (2) Model writes prose [labeled: "the how — model does this"] → (3) Teacher reads prose against bullets [labeled: "the check — never skip this"]. Step 3 has a warning callout: "This is the step skipped under time pressure. This is the step that catches failures." Caption: The phase gate is three steps. Two of them involve you. -->
+![Three-step horizontal pipeline: teacher writes bullets (the what — you supply this), model writes prose (the how — model does this), teacher reads prose against bullets (the check — never skip this); a red callout on the third step names it as the step skipped under time pressure and the step that catches failures.](../images/07-communication-with-ai-fig-03.png)
+*Figure 7.3 — The phase gate is three steps. Two of them involve you.*
 
 The phase gate is three steps: teacher writes bullets; model writes prose; teacher reads prose against bullets. The third step is what gets skipped under time pressure. The third step is what catches the failures.
 
@@ -79,7 +84,13 @@ A peer-reviewed evaluation of Google Translate for English-to-Spanish parent com
 
 The picture changes substantially for low-resource languages — including languages widely spoken by U.S. immigrant families: Karen, Burmese, Somali, Haitian Creole, several indigenous languages. The model's fluency on a low-resource output is not evidence of its accuracy. The system can produce grammatically-shaped output that is semantically wrong. The mechanism: a translation system is as good at a language pair as the amount of parallel text in its training data, and Karen-English does not have what Spanish-English has.
 
-<!-- → TABLE: Three-column table — Language pair / Accuracy range / Appropriate use cases. Rows: High-resource pairs (Spanish, French, Mandarin) — 80–90% routine prose — routine messages with round-trip check + footer; Low-resource pairs (Karen, Burmese, Somali, Haitian Creole) — accuracy unknown, fluency unreliable — routine only with strong caveat, never high-stakes; Any language pair — N/A — never for IEP, disciplinary, custody, procedural-rights communications. Caption: Fluency is not accuracy. The teacher who cannot read the translation cannot tell when it has failed. -->
+| Language pair | Accuracy range | Appropriate use cases |
+|---|---|---|
+| High-resource pairs (Spanish, French, Mandarin) | 80–90% on routine prose | Routine messages with a round-trip check and an AI-translation footer |
+| Low-resource pairs (Karen, Burmese, Somali, Haitian Creole) | Accuracy unknown; fluency is unreliable | Routine only with a strong caveat; never high-stakes |
+| Any language pair | Not applicable | Never for IEP, disciplinary, custody, or procedural-rights communications |
+
+*Table 7.1 — Fluency is not accuracy. The teacher who cannot read the translation cannot tell when it has failed.*
 
 Three rules follow from this. Round-trip translate any non-routine message — English to the target language, then target back to English through a different model, and read the round-trip against the original. If it preserves meaning, the forward translation likely did too. If it distorts, do not send. Add a footer to every machine-translated message: *This message was translated with AI assistance. Please contact me if anything is unclear.* That converts residual error from hidden hazard to flagged uncertainty. And never use machine translation for high-stakes communications — IEP meetings, disciplinary communications, custody-sensitive scheduling, procedural-rights notices. Those require qualified human translators, for reasons grounded in both federal law and basic professional honesty about what the tool can do.
 
@@ -111,13 +122,17 @@ The second is smoothed-over substance. The model's default register is professio
 
 The third is legal drift. The model produces phrasings — *we will look into this matter*, *out of an abundance of caution* — that carry institutional implications the teacher did not intend and the district has not authorized. The teacher who signs the message is the one who published it. Publisher liability in defamation doctrine runs to the party who publishes, not the party who composed the underlying text — and that principle extends to AI-drafted content the user signs and sends. The case law applying this to school records specifically is still developing. The principle is not.
 
+![Three stacked panels naming each failure mode in sensitive AI-drafted communication. Panel one fabricated specificity, panel two smoothed-over substance, panel three legal drift. Each panel has three rows: cause, what the parent reads, and what the record shows.](../images/07-communication-with-ai-fig-04.png)
+*Figure 7.4 — Three different failures, one shared cause: the model was asked to invent substance.*
+
 This is why the gate for sensitive communication is sharper than for routine work: the teacher writes the substance in their own voice — dated, specific, observable, in the format they would want under cross-examination — and then, *and only then*, invites the model to render it in the required format.
 
 ---
 
 ## Two emails, one afternoon
 
-<!-- → IMAGE: Split-panel illustration. Left panel: teacher at desk, five bullet-point notes visible on screen, clock showing late afternoon — labeled "routine case: four minutes." Right panel: same teacher, blank prompt, model returning a confident incident narrative with a red "fabricated specifics" callout — labeled "sensitive case, wrong workflow: five minutes now, documentation crisis later." Caption: The two workflows look equally fast in the moment. The difference is invisible until it isn't. -->
+![Split-panel illustration of two afternoon workflows. Left panel: routine case with five bullet notes flowing into a clean draft, labeled four minutes. Right panel: sensitive case with a blank prompt and a model returning a fabricated incident narrative, labeled five minutes now and a documentation crisis later.](../images/07-communication-with-ai-fig-05.png)
+*Figure 7.5 — The two workflows look equally fast in the moment. The difference is invisible until it isn't.*
 
 The fastest way to see the gate in operation is to put two messages side by side.
 
@@ -156,6 +171,9 @@ The first is that AI handles parent communication. It handles the register conve
 The second is that translation is solved. It is usable for routine prose in high-resource language pairs, with a round-trip check and an honesty footer. It is not solved for low-resource languages, and it is not appropriate for communications involving procedural rights, medical content, custody scheduling, or formal disciplinary proceedings. The teacher who cannot evaluate the translation cannot tell when it has failed.
 
 The third is the most dangerous: *use AI for the hard messages, it's better at staying calm*. The model will produce calmer prose than a tired teacher at 9:47 on a Thursday. The problem is not the calm. The problem is that the model has no judgment about what should be said. It will be calm about details that did not happen. It will be calm about a softened version of a serious incident that needed to land seriously. Calm is the model's default register. *Right* is your responsibility.
+
+![Two-column Myth versus Reality layout with three rows. Row one: AI handles parent communication versus AI handles register conversion only. Row two: translation is solved versus translation is partial and uneven. Row three: use AI for the hard messages because it stays calm versus the model is calm about details that did not happen.](../images/07-communication-with-ai-fig-06.png)
+*Figure 7.6 — Three plausible-sounding shortcuts. Three predictable failure modes.*
 
 ---
 
@@ -199,3 +217,87 @@ And defamation in school records. The publisher-liability principle is settled. 
 - Future of Privacy Forum. Legal compliance guide for AI in K-12 education. October 2024. https://fpf.org/wp-content/uploads/2024/10/Ed_AI_legal_compliance.pdf_FInal_OCT24.pdf
 - Pianta et al. CLASS framework and teacher-student relationships. *Policy Insights from the Behavioral and Brain Sciences* 3(1): 11–19, 2016. https://journals.sagepub.com/doi/abs/10.1177/2372732215622457
 - U.S. Department of Education. FERPA overview. https://studentprivacy.ed.gov; 20 U.S.C. § 1232g.
+
+---
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open in
+a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+the naming conventions, the color system, and the typography the figures use.
+
+---
+
+### Figure 7.1 — A teacher's communication week, five categories
+
+Build a single-panel D3 v7 figure rendering a teacher's communication week as five stacked horizontal rows, ordered top to bottom by rising sensitivity. The categories, in order, are routine informational, progress and pattern, administrative, sensitive, and relational evidence. Each row has three regions: a category cell on the left with a one-line example beneath the label, a middle region naming what the parent reads for, and a right chip naming the AI role. Encode sensitivity with the right chip's fill: the routine row uses `var(--color-secondary)` at lower saturation, the two middle rows step darker, the sensitive row uses `var(--color-ink)`, and the relational-evidence row uses `var(--color-red)`. Add a thin left-margin axis labeled "routine" at the top and "sensitivity rises" at the bottom. Caption beneath: "Same week, five different gate positions. The sort happens before the draft." Standalone HTML, inline CSS/JS, accessible markup with `role="img"` and `aria-labelledby`, dark-mode aware, responsive via ResizeObserver. Under 200 words.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-01.html`
+
+---
+
+### Figure 7.2 — Three-question decision tree
+
+Build a vertical decision tree with one root rectangle, three sequential diamonds, and four leaf rectangles. Root: "Message to draft." Diamond 1: "School-board-readable in six months?" — NO routes left and up to leaf "Stop — rewrite substance first." YES continues down. Diamond 2: "Information or relational evidence?" — RELATIONAL routes right and up to leaf "Teacher-only lane — model does not draft." INFORMATION continues. Diamond 3: "Could small drift cause real harm?" — NO routes left to leaf "Routine AI lane — bullets, AI, review." YES routes right to leaf "Sensitive AI lane — teacher writes substance." Encode outcome severity by leaf fill: stop and teacher-only in `var(--color-red)`, routine in `var(--color-secondary)`, sensitive in `var(--color-ochre)`. Branch labels in monospaced small caps in `var(--color-secondary)`. Standalone HTML, accessible, responsive via ResizeObserver. Under 200 words.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-02.html`
+
+---
+
+### Figure 7.3 — The three-step phase gate
+
+Build a single-row horizontal pipeline with three equally sized rectangular steps connected by arrows. Step 1: "Teacher writes bullets — the what — you supply this." Step 2: "Model writes prose — the how — model does this." Step 3: "Teacher reads prose against bullets — the check — you supply this." Each step has a left number band; bands 1 and 3 use `var(--color-red)`, band 2 uses `var(--color-secondary)`. Below step 3, a downward arrow leads into a red callout box reading "The step skipped under time pressure is the step that catches the failures. Read every claim against your bullets." The callout uses `var(--color-red)` fill and white text. Caption: "The phase gate is three steps. Two of them involve you." Standalone HTML, accessible, responsive. Under 200 words.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-03.html`
+
+---
+
+### Figure 7.4 — Three failure modes of AI-drafted sensitive communication
+
+Build three stacked horizontal panels, one per failure mode. Each panel is split into a left header strip (160px wide) and a right content area. The header strips use `var(--color-red)` fill with two-line white panel titles. Panel 1 header reads "Fabricated specificity"; panel 2 "Smoothed-over substance"; panel 3 "Legal drift." Within each content area, render three labeled rows in sequence: CAUSE, PARENT READS, RECORD SHOWS. Row labels are 10px small caps in `var(--color-secondary)`; row content is 12px serif in `var(--color-ink)`. Beneath the three panels, render a single full-width footer chip in `var(--color-ink)` with the label "SHARED CAUSE" and the line "The model was asked to invent substance." Standalone HTML, accessible markup, dark-mode aware, responsive via ResizeObserver. Under 200 words.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-04.html`
+
+---
+
+### Figure 7.5 — Two emails, two workflows, two timelines
+
+Build a split-panel figure rendering the routine and sensitive workflows side by side, each panel framed by a hairline border with a colored header strip. Left panel header in `var(--color-secondary)`: "ROUTINE CASE." Beneath: a five-bullet input rectangle, an arrow to a prompt-template chip, an arrow down to a "Model renders" rectangle, an arrow down to a "Teacher reviews, round-trips, sends" rectangle, and a black footer band reading "4 MINUTES — DONE." Right panel header in `var(--color-red)`: "SENSITIVE CASE — WRONG WORKFLOW." Beneath: a dashed blank-prompt rectangle holding the literal string "write a behavioral incident report," an arrow to a model chip, a "Model returns confident narrative" rectangle with a red overlay band labeled "FABRICATED SPECIFICS," and a red footer band reading "5 MIN NOW · CRISIS LATER." Caption two lines: "The two workflows look equally fast in the moment. The difference is invisible until it isn't." Standalone HTML, accessible, responsive. Under 200 words.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-05.html`
+
+---
+
+### Figure 7.6 — Myth versus reality, three rows
+
+Build a two-column comparison with three stacked rows. Render a single header row spanning both columns: the left header cell fills with `var(--color-secondary)` and reads "MYTH"; the right cell fills with `var(--color-red)` and reads "REALITY." Render a single vertical hairline divider between columns in `var(--color-border)`, running the full height of the three rows. Row 1 (PARENT COMMUNICATION): left "AI handles parent communication. It does the email." vs. right "AI handles register conversion of communication the teacher already substantively composed." Row 2 (TRANSLATION): left "Translation is solved." vs. right "Usable for routine prose in high-resource pairs. Never for procedural rights, medical, custody, discipline." Row 3 (HARD MESSAGES): left "Use AI for the hard ones — it stays calm." vs. right "The model is calm about details that did not happen. Calm is the default. Right is your responsibility." Row labels above each row in small caps `var(--color-secondary)`. Caption: "Three plausible-sounding shortcuts. Three predictable failure modes." Standalone HTML, accessible, responsive. Under 200 words.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-06.html`
+
+---
+
+## AI Wayback Machine
+
+The ideas in this chapter didn't appear from nowhere. **Carl Rogers (1902–1987)** built a clinical psychology around an idea that sounds soft and is structurally precise — that human change happens through a specific relational stance, not through technique. *On Becoming a Person* (1961) named the three conditions: unconditional positive regard, congruence (the helper does not perform), and accurate empathy (the helper checks what they heard against what was said). Active listening, the move you may have learned as "reflect back what you heard," is his — and it works for exactly the reason this chapter's gate works. The listener supplies form; the speaker supplies content; the listener confirms by reading back. Rogers' clinical insight is the structural ancestor of the bullets-first discipline. The model converts your bullets into appropriately-toned prose the way a Rogerian counselor reflects content back to the speaker — only the original speaker can supply what is to be said. Apply Rogers to teacher-to-parent, teacher-to-student, and teacher-to-colleague communication and the entire chapter's framework drops out: the relational evidence has to come from the person who actually noticed; the model can polish the container but cannot supply the contents.
+
+![Carl Rogers, mid-twentieth century. AI-generated portrait based on public-domain photographs.](../images/carl-rogers.jpg)
+*Carl Rogers, mid-twentieth century. AI-generated portrait based on public-domain photographs.*
+
+**Run this:**
+
+```
+Who was Carl Rogers, and how does his person-centered approach connect to the framework for AI-assisted teacher communication with parents, students, and colleagues that this chapter develops? Map his three conditions — unconditional positive regard, congruence, and accurate empathy — onto the three communication categories the chapter distinguishes (routine, sensitive, relational-evidence). End with the single most surprising thing about his career.
+```
+
+→ Search **"Carl Rogers"** on Wikipedia.
+
+**Now make the prompt better.** Try one of these:
+
+- Ask it how Rogers' "encounter group" experiments might inform the way schools structure parent–teacher conferences when AI is in the loop.
+- Ask it whether Rogers' insistence on congruence — the helper does not perform — survives translation through an AI register-conversion step, and where the seam shows.
+
+What changes? What gets better? What gets worse?

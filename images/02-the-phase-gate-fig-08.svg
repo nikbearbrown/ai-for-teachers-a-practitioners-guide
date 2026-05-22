@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t08 d08">
+  <title id="t08">The surgical timeout and the teacher at a laptop</title>
+  <desc id="d08">A two-panel illustration. Left panel: a surgical team of four figures around an operating table, paused with a checklist visible. Right panel: a single teacher figure at a laptop, alone, with a dashboard showing 99.4% approved and a window indicating Sunday evening.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #4a4540; }
+      .head { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 13px; font-weight: bold; fill: #2a1a0e; }
+      .lb { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .sm { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #4a4540; }
+      .it { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="34" class="ti">A structural pause vs. the lone laptop</text>
+  <text x="32" y="52" class="sub">The timeout is a team-enforced cognitive operation. The dashboard is a click.</text>
+
+  <line x1="350" y1="80" x2="350" y2="384" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- LEFT PANEL: surgical timeout -->
+  <text x="170" y="98" text-anchor="middle" class="head">Surgical timeout</text>
+
+  <!-- Operating table -->
+  <rect x="80" y="220" width="180" height="20" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="1"/>
+  <line x1="100" y1="240" x2="100" y2="280" stroke="#2a1a0e" stroke-width="1"/>
+  <line x1="240" y1="240" x2="240" y2="280" stroke="#2a1a0e" stroke-width="1"/>
+
+  <!-- Patient outline -->
+  <rect x="100" y="222" width="160" height="14" fill="#f5f2ee" stroke="#8a8480" stroke-width="0.8"/>
+
+  <!-- Four figures around the table: head + shoulders -->
+  <!-- Surgeon at right -->
+  <circle cx="270" cy="200" r="10" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <path d="M 256 210 Q 270 218 284 210" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="270" y="252" text-anchor="middle" class="sm">surgeon</text>
+
+  <!-- Scrub at left -->
+  <circle cx="70" cy="200" r="10" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <path d="M 56 210 Q 70 218 84 210" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="70" y="252" text-anchor="middle" class="sm">scrub</text>
+
+  <!-- Anesthesiologist top-mid -->
+  <circle cx="140" cy="178" r="10" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <path d="M 126 188 Q 140 196 154 188" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="140" y="158" text-anchor="middle" class="sm">anesthesiologist</text>
+
+  <!-- Circulating nurse top-right -->
+  <circle cx="200" cy="178" r="10" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <path d="M 186 188 Q 200 196 214 188" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="200" y="158" text-anchor="middle" class="sm">nurse</text>
+
+  <!-- Checklist card -->
+  <rect x="80" y="300" width="180" height="50" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="90" y="316" class="lb">Patient. Procedure. Side.</text>
+  <text x="90" y="332" class="lb">Allergies. Antibiotic timing.</text>
+  <text x="90" y="346" class="it">Every member listens.</text>
+
+  <!-- RIGHT PANEL: teacher at laptop -->
+  <text x="530" y="98" text-anchor="middle" class="head">Teacher at a laptop, Sunday</text>
+
+  <!-- Window suggesting evening -->
+  <rect x="400" y="120" width="60" height="60" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <line x1="430" y1="120" x2="430" y2="180" stroke="#8a8480" stroke-width="0.6"/>
+  <line x1="400" y1="150" x2="460" y2="150" stroke="#8a8480" stroke-width="0.6"/>
+  <text x="400" y="194" class="sm">evening light</text>
+
+  <!-- Single figure -->
+  <circle cx="540" cy="180" r="12" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <path d="M 524 192 Q 540 202 556 192" fill="none" stroke="#2a1a0e" stroke-width="1.4"/>
+  <text x="540" y="158" text-anchor="middle" class="sm">teacher (alone)</text>
+
+  <!-- Laptop -->
+  <rect x="500" y="220" width="160" height="80" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="1"/>
+  <rect x="500" y="300" width="160" height="6" fill="#c8c4c0" stroke="#2a1a0e" stroke-width="0.6"/>
+  <text x="580" y="246" text-anchor="middle" class="lb">Dashboard</text>
+  <text x="580" y="266" text-anchor="middle" class="head">99.4% approved</text>
+  <text x="580" y="286" text-anchor="middle" class="sm">120 of 121 essays</text>
+
+  <!-- Coffee cup hint -->
+  <rect x="478" y="290" width="14" height="14" fill="#f5f2ee" stroke="#2a1a0e" stroke-width="0.8"/>
+  <text x="478" y="320" class="sm">coffee</text>
+
+  <text x="530" y="354" text-anchor="middle" class="it">No witnesses. Workflow reports completion.</text>
+
+  <text x="350" y="406" text-anchor="middle" class="cap">The gate has to be structural. Willpower is not a reliable structural element.</text>
+</svg>

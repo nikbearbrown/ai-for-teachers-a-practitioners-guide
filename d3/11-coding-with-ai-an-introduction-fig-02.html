@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 11.2 — The five-component specification</title>
+<style>
+  :root {
+    --color-white:     #FFFFFF;
+    --color-ink:       #121212;
+    --color-red:       #C8102E;
+    --color-secondary: #545454;
+    --color-border:    #D4D4D4;
+    --color-ochre:     #C8860E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-white:     #111111;
+      --color-ink:       #F0EBE3;
+      --color-red:       #E8243A;
+      --color-secondary: #A0978C;
+      --color-border:    #2E2E2E;
+      --color-ochre:     #D49A30;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-white); color: var(--color-ink);
+         font-family: 'EB Garamond', Georgia, serif; padding: 24px; }
+  #chart { width: 100%; min-height: 520px; }
+  .title-text { font-family: 'EB Garamond', Georgia, serif; font-size: 22px; fill: var(--color-ink); }
+  .subtitle-text { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+  .center-node { fill: var(--color-border); stroke: var(--color-ink); stroke-width: 2; }
+  .spoke-node  { fill: var(--color-white); stroke: var(--color-secondary); stroke-width: 1; transition: opacity 200ms; }
+  .spoke-node:hover { opacity: 1; }
+  .center-label { font-family: 'EB Garamond', Georgia, serif; font-size: 15px; fill: var(--color-ink); text-anchor: middle; }
+  .spoke-label  { font-family: 'EB Garamond', Georgia, serif; font-size: 15px; fill: var(--color-ink); text-anchor: middle; }
+  .spoke-desc   { font-family: 'Inter', sans-serif; font-size: 11px; fill: var(--color-secondary); text-anchor: middle; }
+  .spoke-example { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 11px; fill: var(--color-secondary); text-anchor: middle; }
+  .spoke-line { stroke: var(--color-secondary); stroke-width: 1; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const COMPONENTS = [
+      { id: 'intent',      n: 1, title: 'Intent',           desc: 'why the tool exists',     ex: '"flag drops of 3+ pts"',           pos: 'tl' },
+      { id: 'constraints', n: 2, title: 'Constraints',      desc: 'format, privacy, env.',   ex: '"no network, std lib only"',       pos: 'tr' },
+      { id: 'success',     n: 3, title: 'Success criteria', desc: 'hand-computed tests',     ex: '"3 of 5 rows pass"',                pos: 'bl' },
+      { id: 'exclusions',  n: 4, title: 'Exclusions',       desc: 'what it must not do',     ex: '"do NOT include grades"',          pos: 'br' },
+      { id: 'format',      n: 5, title: 'Output format',    desc: 'the deliverable’s structure', ex: '"drafts.txt"',          pos: 'b' }
+    ];
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+      const container = document.getElementById('chart');
+      const totalWidth  = container.clientWidth || 800;
+      const totalHeight = 520;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth).attr('height', totalHeight)
+        .attr('role', 'img').attr('aria-labelledby', 'chart-title chart-desc');
+      svg.append('title').attr('id', 'chart-title').text('The five-component specification');
+      svg.append('desc').attr('id', 'chart-desc').text('Five labeled spokes around a central node: Intent, Constraints, Success Criteria, Exclusions, Output Format.');
+
+      svg.append('defs').append('marker')
+        .attr('id', 'arrow-d3-02').attr('viewBox', '0 0 10 10').attr('refX', 9).attr('refY', 5)
+        .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto-start-reverse')
+        .append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', 'var(--color-secondary)');
+
+      svg.append('text').attr('class', 'title-text').attr('x', totalWidth/2).attr('y', 36).attr('text-anchor', 'middle').text('The five-component specification');
+      svg.append('text').attr('class', 'subtitle-text').attr('x', totalWidth/2).attr('y', 58).attr('text-anchor', 'middle').text('What the careful writer hands to the builder');
+
+      const cx = totalWidth/2, cy = 260;
+      const cw = 180, ch = 64;
+
+      const tile = { w: 230, h: 90 };
+      const offsetX = totalWidth/2 - 360;
+      const positions = {
+        tl: { x: offsetX,             y: 130 },
+        tr: { x: offsetX + 490,       y: 130 },
+        bl: { x: offsetX,             y: 350 },
+        br: { x: offsetX + 490,       y: 350 },
+        b:  { x: totalWidth/2 - tile.w/2, y: 440 }
+      };
+
+      // spokes (lines)
+      COMPONENTS.forEach(c => {
+        const p = positions[c.pos];
+        const tx = p.x + tile.w/2;
+        const ty = p.y + tile.h/2;
+        svg.append('line').attr('class', 'spoke-line')
+          .attr('x1', cx).attr('y1', cy)
+          .attr('x2', tx).attr('y2', ty)
+          .attr('marker-end', 'url(#arrow-d3-02)');
+      });
+
+      // center node
+      svg.append('rect').attr('class', 'center-node')
+        .attr('x', cx - cw/2).attr('y', cy - ch/2)
+        .attr('width', cw).attr('height', ch);
+      svg.append('text').attr('class', 'center-label')
+        .attr('x', cx).attr('y', cy - 4).text('Working');
+      svg.append('text').attr('class', 'center-label')
+        .attr('x', cx).attr('y', cy + 16).text('specification');
+
+      // spokes (tiles)
+      const g = svg.selectAll('g.spoke').data(COMPONENTS).join('g').attr('class', 'spoke');
+      g.append('rect').attr('class', 'spoke-node')
+        .attr('x', d => positions[d.pos].x).attr('y', d => positions[d.pos].y)
+        .attr('width', tile.w).attr('height', tile.h)
+        .attr('tabindex', 0)
+        .attr('aria-label', d => `${d.n}. ${d.title}: ${d.desc}`)
+        .on('mouseover', (event, d) => d3.select(event.currentTarget).transition().duration(120).style('opacity', 1))
+        .on('mouseout',  (event, d) => d3.select(event.currentTarget).transition().duration(120).style('opacity', 1));
+      g.append('text').attr('class', 'spoke-label')
+        .attr('x', d => positions[d.pos].x + tile.w/2)
+        .attr('y', d => positions[d.pos].y + 24)
+        .text(d => `${d.n}. ${d.title}`);
+      g.append('text').attr('class', 'spoke-desc')
+        .attr('x', d => positions[d.pos].x + tile.w/2)
+        .attr('y', d => positions[d.pos].y + 48)
+        .text(d => d.desc);
+      g.append('text').attr('class', 'spoke-example')
+        .attr('x', d => positions[d.pos].x + tile.w/2)
+        .attr('y', d => positions[d.pos].y + 72)
+        .text(d => d.ex);
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

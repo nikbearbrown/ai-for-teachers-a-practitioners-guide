@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure 7.2 — Three-question decision tree</title>
+  <style>
+    :root {
+      --color-white:     #FFFFFF;
+      --color-ink:       #121212;
+      --color-red:       #C8102E;
+      --color-secondary: #545454;
+      --color-border:    #D4D4D4;
+      --color-ochre:     #C8860E;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-white:     #111111;
+        --color-ink:       #F0EBE3;
+        --color-red:       #E8243A;
+        --color-secondary: #A0978C;
+        --color-border:    #2E2E2E;
+        --color-ochre:     #D49A30;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--color-white); color: var(--color-ink); font-family: 'EB Garamond', Garamond, Georgia, serif; padding: 16px; }
+    #chart { width: 100%; min-height: 520px; }
+    .ti { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 18px; font-weight: 700; fill: var(--color-ink); }
+    .sub { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+    .node { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; fill: var(--color-ink); }
+    .nodeb { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-weight: 700; fill: var(--color-ink); }
+    .leaf { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 11px; fill: var(--color-white); font-weight: 700; }
+    .branch { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 10px; font-weight: 700; fill: var(--color-secondary); letter-spacing: 0.4px; }
+    .cap { font-family: 'EB Garamond', Garamond, Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-secondary); }
+    .tooltip { position: absolute; pointer-events: none; opacity: 0; background: var(--color-ink); color: var(--color-white); padding: 6px 10px; font-size: 12px; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const LEAVES = [
+      { id: 'stop',      label: 'Stop',                  sub: 'Rewrite substance first', shade: 'var(--color-red)' },
+      { id: 'teacher',   label: 'Teacher-only lane',     sub: 'model does not draft',    shade: 'var(--color-red)' },
+      { id: 'routine',   label: 'Routine AI lane',       sub: 'bullets, AI, review',     shade: 'var(--color-secondary)' },
+      { id: 'sensitive', label: 'Sensitive AI lane',     sub: 'teacher writes substance', shade: 'var(--color-ochre)' }
+    ];
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+      const container = document.getElementById('chart');
+      const W = container.clientWidth || 700;
+      const H = 520;
+      const cx = W / 2;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', W).attr('height', H)
+        .attr('viewBox', `0 0 ${W} ${H}`)
+        .attr('role', 'img')
+        .attr('aria-labelledby', 'chart-title chart-desc');
+      svg.append('title').attr('id', 'chart-title').text('Three-question decision tree for AI-assisted teacher communication');
+      svg.append('desc').attr('id', 'chart-desc').text('Three sequential diamonds branching to four outcomes: stop, teacher-only, routine AI, sensitive AI.');
+
+      svg.append('defs').append('marker')
+        .attr('id', 'arrow').attr('viewBox', '0 0 10 10')
+        .attr('refX', 9).attr('refY', 5)
+        .attr('markerWidth', 7).attr('markerHeight', 7)
+        .attr('orient', 'auto-start-reverse')
+        .append('path').attr('d', 'M 0 0 L 10 5 L 0 10 z').attr('fill', 'var(--color-secondary)');
+
+      svg.append('text').attr('class', 'ti').attr('x', 32).attr('y', 34).text('The sort happens before the draft');
+      svg.append('text').attr('class', 'sub').attr('x', 32).attr('y', 54).text('Three questions, every message, every time.');
+
+      svg.append('rect').attr('x', cx - 70).attr('y', 80).attr('width', 140).attr('height', 40)
+        .attr('fill', 'var(--color-white)').attr('stroke', 'var(--color-ink)').attr('stroke-width', 1.5);
+      svg.append('text').attr('class', 'nodeb').attr('x', cx).attr('y', 105).attr('text-anchor', 'middle').text('Message to draft');
+
+      const diamonds = [
+        { y: 180, q1: 'School-board-readable', q2: 'in six months?', noLabel: 'NO', yesLabel: 'YES', noLeaf: 0, yesNext: true },
+        { y: 295, q1: 'Information or',         q2: 'relational evidence?', noLabel: 'RELATIONAL', yesLabel: 'INFORMATION', noLeaf: 1, yesNext: true },
+        { y: 400, q1: 'Could small drift',      q2: 'cause real harm?', noLabel: 'NO', yesLabel: 'YES', noLeaf: 2, yesLeaf: 3 }
+      ];
+
+      svg.append('line').attr('x1', cx).attr('y1', 120).attr('x2', cx).attr('y2', 138)
+        .attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5).attr('marker-end', 'url(#arrow)').attr('aria-hidden', 'true');
+
+      diamonds.forEach((d, i) => {
+        svg.append('path')
+          .attr('d', `M ${cx} ${d.y - 35} L ${cx + 110} ${d.y} L ${cx} ${d.y + 35} L ${cx - 110} ${d.y} z`)
+          .attr('fill', 'var(--color-white)').attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5);
+        svg.append('text').attr('class', 'node').attr('x', cx).attr('y', d.y - 4).attr('text-anchor', 'middle').text(d.q1);
+        svg.append('text').attr('class', 'node').attr('x', cx).attr('y', d.y + 12).attr('text-anchor', 'middle').text(d.q2);
+
+        const isLast = i === 2;
+        const leftLeaf = LEAVES[d.noLeaf];
+        const leftX = cx - 220;
+        svg.append('text').attr('class', 'branch').attr('x', cx - 150).attr('y', d.y - 2).text(d.noLabel);
+        svg.append('line').attr('x1', cx - 110).attr('y1', d.y).attr('x2', leftX + 80).attr('y2', d.y)
+          .attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5);
+        svg.append('line').attr('x1', leftX + 80).attr('y1', d.y).attr('x2', leftX + 80).attr('y2', d.y - 30)
+          .attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5).attr('marker-end', 'url(#arrow)');
+        svg.append('rect').attr('x', leftX).attr('y', d.y - 60).attr('width', 160).attr('height', 30).attr('fill', leftLeaf.shade);
+        svg.append('text').attr('class', 'leaf').attr('x', leftX + 80).attr('y', d.y - 44).attr('text-anchor', 'middle').text(leftLeaf.label);
+        svg.append('text').attr('class', 'leaf').attr('x', leftX + 80).attr('y', d.y - 32).attr('text-anchor', 'middle').text(leftLeaf.sub);
+
+        if (isLast) {
+          const rightLeaf = LEAVES[d.yesLeaf];
+          const rightX = cx + 60;
+          svg.append('text').attr('class', 'branch').attr('x', cx + 115).attr('y', d.y - 2).text(d.yesLabel);
+          svg.append('line').attr('x1', cx + 110).attr('y1', d.y).attr('x2', rightX + 80).attr('y2', d.y)
+            .attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5);
+          svg.append('line').attr('x1', rightX + 80).attr('y1', d.y).attr('x2', rightX + 80).attr('y2', d.y - 30)
+            .attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5).attr('marker-end', 'url(#arrow)');
+          svg.append('rect').attr('x', rightX).attr('y', d.y - 60).attr('width', 160).attr('height', 30).attr('fill', rightLeaf.shade);
+          svg.append('text').attr('class', 'leaf').attr('x', rightX + 80).attr('y', d.y - 44).attr('text-anchor', 'middle').text(rightLeaf.label);
+          svg.append('text').attr('class', 'leaf').attr('x', rightX + 80).attr('y', d.y - 32).attr('text-anchor', 'middle').text(rightLeaf.sub);
+        } else {
+          svg.append('text').attr('class', 'branch').attr('x', cx + 10).attr('y', d.y + 56).text(d.yesLabel);
+          const nextY = diamonds[i + 1].y - 35;
+          svg.append('line').attr('x1', cx).attr('y1', d.y + 35).attr('x2', cx).attr('y2', nextY)
+            .attr('stroke', 'var(--color-secondary)').attr('stroke-width', 1.5).attr('marker-end', 'url(#arrow)');
+        }
+      });
+
+      svg.append('text').attr('class', 'cap').attr('x', W / 2).attr('y', H - 14)
+        .attr('text-anchor', 'middle')
+        .text('Figure 7.2 — The sort happens before the draft.');
+    }
+    draw();
+    new ResizeObserver(() => draw()).observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

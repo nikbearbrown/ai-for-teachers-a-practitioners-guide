@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t05-1 d05-1">
+  <title id="t05-1">Four sub-tasks inside one verb</title>
+  <desc id="d05-1">Four horizontal rows decomposing the verb "to grade" into sub-tasks. Rows 1 through 3 are AI-capable with calibration, review, or confirmation. Row 4 is marked teacher-only and carries the professional, legal, and relational weight of the decision.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .num { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #fdfcfb; }
+      .task { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #2a1a0e; }
+      .body { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .role { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #2a1a0e; }
+      .hdr { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; font-weight: bold; fill: #4a4540; letter-spacing: 0.6px; }
+      .chip-dark { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; font-weight: bold; fill: #fdfcfb; }
+      .chip-light { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; font-weight: bold; fill: #2a1a0e; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+    </style>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="28" class="ti">Four sub-tasks inside one verb</text>
+  <text x="32" y="46" class="sub">"To grade" is shorthand for four different operations. Three can be assisted. One cannot.</text>
+
+  <!-- Column headers -->
+  <text x="32" y="78" class="hdr">SUB-TASK</text>
+  <text x="278" y="78" class="hdr">WHAT IT IS</text>
+  <text x="528" y="78" class="hdr">AI ROLE</text>
+  <line x1="32" y1="84" x2="668" y2="84" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <rect x="32" y="96" width="28" height="56" fill="#4a4540"/>
+  <text x="46" y="129" text-anchor="middle" class="num">1</text>
+  <text x="72" y="116" class="task">First-pass scoring</text>
+  <text x="72" y="132" class="body">Locate the work on the rubric.</text>
+  <text x="72" y="146" class="body">A measurement task with a long history.</text>
+  <rect x="528" y="106" width="140" height="36" fill="#8a8480" stroke="#4a4540" stroke-width="1"/>
+  <text x="598" y="129" text-anchor="middle" class="chip-dark">AI-capable + calibration</text>
+  <line x1="32" y1="162" x2="668" y2="162" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- Row 2 -->
+  <rect x="32" y="174" width="28" height="56" fill="#4a4540"/>
+  <text x="46" y="207" text-anchor="middle" class="num">2</text>
+  <text x="72" y="194" class="task">Feedback drafting</text>
+  <text x="72" y="210" class="body">Convert "this is a 3" into prose.</text>
+  <text x="72" y="224" class="body">Prose generation against a structure.</text>
+  <rect x="528" y="184" width="140" height="36" fill="#8a8480" stroke="#4a4540" stroke-width="1"/>
+  <text x="598" y="207" text-anchor="middle" class="chip-dark">AI-capable + review</text>
+  <line x1="32" y1="240" x2="668" y2="240" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- Row 3 -->
+  <rect x="32" y="252" width="28" height="56" fill="#4a4540"/>
+  <text x="46" y="285" text-anchor="middle" class="num">3</text>
+  <text x="72" y="272" class="task">Response grouping</text>
+  <text x="72" y="288" class="body">Cluster 28 student answers into 4 families.</text>
+  <text x="72" y="302" class="body">A clustering task. LLMs cluster well.</text>
+  <rect x="528" y="262" width="140" height="36" fill="#8a8480" stroke="#4a4540" stroke-width="1"/>
+  <text x="598" y="285" text-anchor="middle" class="chip-dark">AI-capable + confirm</text>
+  <line x1="32" y1="318" x2="668" y2="318" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- Row 4 -->
+  <rect x="32" y="330" width="28" height="56" fill="#2a1a0e"/>
+  <text x="46" y="363" text-anchor="middle" class="num">4</text>
+  <text x="72" y="350" class="task">Final grade &amp; communication</text>
+  <text x="72" y="366" class="body">Sign the rubric. Talk to the student.</text>
+  <text x="72" y="380" class="body">Carries the professional weight.</text>
+  <rect x="528" y="340" width="140" height="36" fill="#2a1a0e" stroke="#2a1a0e" stroke-width="1"/>
+  <text x="598" y="363" text-anchor="middle" class="chip-dark">Teacher-only</text>
+
+  <text x="32" y="408" class="cap">Sub-tasks 1–3 are where AI helps. Sub-task 4 is where the teacher is irreducible.</text>
+</svg>

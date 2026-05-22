@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure 4.3 — AI dividend by planning horizon</title>
+  <style>
+    :root {
+      --color-white:     #FFFFFF;
+      --color-ink:       #121212;
+      --color-red:       #C8102E;
+      --color-secondary: #545454;
+      --color-border:    #D4D4D4;
+      --color-ochre:     #C8860E;
+      --color-area-fill: #E8E2DA;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-white:     #111111;
+        --color-ink:       #F0EBE3;
+        --color-red:       #E8243A;
+        --color-secondary: #A0978C;
+        --color-border:    #2E2E2E;
+        --color-ochre:     #D49A30;
+        --color-area-fill: #2A2522;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-white);
+      color: var(--color-ink);
+      font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+      padding: 24px;
+    }
+    #chart { width: 100%; }
+    .title-text { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; font-weight: bold; fill: var(--color-ink); }
+    .subtitle-text { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; fill: var(--color-secondary); }
+    .axis-tick { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; fill: var(--color-secondary); }
+    .axis-title { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: bold; fill: var(--color-ink); }
+    .value-label { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; fill: var(--color-ink); }
+    .callout { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-style: italic; fill: var(--color-ink); }
+    .peak-label { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: bold; fill: var(--color-ink); }
+    .point { cursor: pointer; transition: opacity 120ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .point:hover { opacity: 0.7; }
+    .tooltip {
+      position: absolute; pointer-events: none; opacity: 0;
+      background: var(--color-white); color: var(--color-ink);
+      border: 1px solid var(--color-border); padding: 8px 10px;
+      font-family: 'EB Garamond', Georgia, serif; font-size: 13px;
+      max-width: 260px; line-height: 1.4;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="chart" role="main"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    const horizonData = [
+      { horizon: "tomorrow's lesson",   dividend: 18, failure: 'heavy PCK revision cost; AI knows nothing about today’s room' },
+      { horizon: "next week's lesson",  dividend: 52, failure: 'some PCK context accumulating; still light' },
+      { horizon: "unit (2–3 weeks)", dividend: 88, failure: 'sweet spot — structural work scales, context still fresh' },
+      { horizon: "semester",            dividend: 64, failure: 'structural value still real; loses class-specific signal' },
+      { horizon: "full year",           dividend: 32, failure: 'discards in-year PCK accumulation; locks in stale assumptions' }
+    ];
+
+    const tooltip = d3.select('body').append('div').attr('class', 'tooltip');
+    function showTooltip(event, html) {
+      tooltip.html(html)
+        .style('left', (event.pageX + 12) + 'px')
+        .style('top',  (event.pageY - 12) + 'px')
+        .transition().duration(150).style('opacity', 1);
+    }
+    function moveTooltip(event) {
+      tooltip.style('left', (event.pageX + 12) + 'px').style('top', (event.pageY - 12) + 'px');
+    }
+    function hideTooltip() { tooltip.transition().duration(100).style('opacity', 0); }
+
+    function draw() {
+      d3.select('#chart').selectAll('*').remove();
+
+      const container = document.getElementById('chart');
+      const totalWidth  = container.clientWidth  || 900;
+      const totalHeight = 520;
+      const margin = { top: 80, right: 80, bottom: 100, left: 80 };
+      const chartWidth  = totalWidth  - margin.left - margin.right;
+      const chartHeight = totalHeight - margin.top  - margin.bottom;
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', totalWidth).attr('height', totalHeight)
+        .attr('role', 'img')
+        .attr('aria-labelledby', 'chart-title chart-desc');
+
+      svg.append('title').attr('id', 'chart-title').text('AI dividend by planning horizon');
+      svg.append('desc').attr('id', 'chart-desc')
+        .text('A line chart showing AI dividend index across five planning horizons, peaking at the unit-level (88) and falling off toward tomorrow (18) and the full year (32).');
+
+      svg.append('text').attr('class', 'title-text').attr('x', totalWidth / 2).attr('y', 28).attr('text-anchor', 'middle')
+        .text('AI dividend rises and then falls with planning horizon.');
+      svg.append('text').attr('class', 'subtitle-text').attr('x', totalWidth / 2).attr('y', 52).attr('text-anchor', 'middle')
+        .text('Unit-scale planning is the sweet spot; Monday-night and August-year-ahead both leak the dividend.');
+
+      const gChart = svg.append('g')
+        .attr('class', 'g-chart')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+      const xScalePoint = d3.scalePoint()
+        .domain(horizonData.map(d => d.horizon))
+        .range([0, chartWidth])
+        .padding(0.5);
+
+      const yScaleLinear = d3.scaleLinear()
+        .domain([0, 100])
+        .range([chartHeight, 0])
+        .nice();
+
+      // Gridlines
+      gChart.selectAll('.gridline')
+        .data(yScaleLinear.ticks(4))
+        .join('line')
+          .attr('class', 'gridline')
+          .attr('x1', 0).attr('x2', chartWidth)
+          .attr('y1', d => yScaleLinear(d)).attr('y2', d => yScaleLinear(d))
+          .attr('stroke', 'var(--color-border)').attr('stroke-width', 0.8)
+          .attr('aria-hidden', 'true');
+
+      // Axes
+      const xAxis = d3.axisBottom(xScalePoint).tickSize(6);
+      const yAxis = d3.axisLeft(yScaleLinear).ticks(4).tickSize(6);
+
+      const gxAxis = gChart.append('g')
+        .attr('transform', `translate(0,${chartHeight})`)
+        .call(xAxis);
+
+      gxAxis.selectAll('text').attr('class', 'axis-tick').attr('y', 14);
+      gxAxis.selectAll('path,line').attr('stroke', 'var(--color-ink)');
+
+      const gyAxis = gChart.append('g').call(yAxis);
+      gyAxis.selectAll('text').attr('class', 'axis-tick');
+      gyAxis.selectAll('path,line').attr('stroke', 'var(--color-ink)');
+
+      // Axis titles
+      svg.append('text').attr('class', 'axis-title').attr('text-anchor', 'middle')
+        .attr('transform', `translate(${margin.left - 50},${margin.top + chartHeight / 2}) rotate(-90)`)
+        .text('Dividend index');
+
+      svg.append('text').attr('class', 'axis-title').attr('text-anchor', 'middle')
+        .attr('x', margin.left + chartWidth / 2)
+        .attr('y', margin.top + chartHeight + 70)
+        .text('Planning horizon');
+
+      // Area + line
+      const lineGen = d3.line()
+        .x(d => xScalePoint(d.horizon))
+        .y(d => yScaleLinear(d.dividend))
+        .curve(d3.curveMonotoneX);
+
+      const areaGen = d3.area()
+        .x(d => xScalePoint(d.horizon))
+        .y0(chartHeight)
+        .y1(d => yScaleLinear(d.dividend))
+        .curve(d3.curveMonotoneX);
+
+      gChart.append('path').datum(horizonData)
+        .attr('d', areaGen)
+        .attr('fill', 'var(--color-area-fill)')
+        .attr('fill-opacity', 0.65)
+        .attr('aria-hidden', 'true');
+
+      gChart.append('path').datum(horizonData)
+        .attr('d', lineGen)
+        .attr('fill', 'none')
+        .attr('stroke', 'var(--color-ink)')
+        .attr('stroke-width', 2)
+        .attr('aria-hidden', 'true');
+
+      // Data points
+      gChart.selectAll('.point')
+        .data(horizonData)
+        .join('circle')
+          .attr('class', 'point')
+          .attr('cx', d => xScalePoint(d.horizon))
+          .attr('cy', d => yScaleLinear(d.dividend))
+          .attr('r', d => d.dividend === 88 ? 7 : 5)
+          .attr('fill', d => d.dividend === 88 ? 'var(--color-ink)' : 'var(--color-secondary)')
+          .attr('stroke', 'var(--color-white)')
+          .attr('stroke-width', 1.5)
+          .attr('tabindex', 0)
+          .attr('aria-label', d => d.horizon + ': dividend ' + d.dividend)
+          .on('mouseover', (event, d) => showTooltip(event,
+            '<strong>' + d.horizon + '</strong><br>Dividend index: ' + d.dividend +
+            '<br><em>' + d.failure + '</em>'))
+          .on('mousemove', moveTooltip)
+          .on('mouseout', hideTooltip)
+          .on('focus', (event, d) => showTooltip(event,
+            '<strong>' + d.horizon + '</strong><br>Dividend index: ' + d.dividend +
+            '<br><em>' + d.failure + '</em>'))
+          .on('blur', hideTooltip);
+
+      // Value labels above points
+      gChart.selectAll('.value-label')
+        .data(horizonData)
+        .join('text')
+          .attr('class', 'value-label')
+          .attr('text-anchor', 'middle')
+          .attr('x', d => xScalePoint(d.horizon))
+          .attr('y', d => yScaleLinear(d.dividend) - 12)
+          .text(d => d.dividend);
+
+      // Peak callout
+      const peak = horizonData.find(d => d.dividend === 88);
+      const peakX = xScalePoint(peak.horizon);
+      const peakY = yScaleLinear(peak.dividend);
+
+      gChart.append('line')
+        .attr('x1', peakX).attr('y1', peakY - 20)
+        .attr('x2', peakX).attr('y2', peakY - 44)
+        .attr('stroke', 'var(--color-ink)').attr('stroke-width', 1);
+
+      gChart.append('text').attr('class', 'peak-label')
+        .attr('text-anchor', 'middle')
+        .attr('x', peakX).attr('y', peakY - 52)
+        .text('Sweet spot');
+
+      // Tomorrow callout
+      const tomorrow = horizonData[0];
+      const tomorrowX = xScalePoint(tomorrow.horizon);
+      const tomorrowY = yScaleLinear(tomorrow.dividend);
+
+      gChart.append('text').attr('class', 'callout')
+        .attr('text-anchor', 'start')
+        .attr('x', tomorrowX - 30).attr('y', tomorrowY + 30)
+        .text('heavy PCK');
+      gChart.append('text').attr('class', 'callout')
+        .attr('text-anchor', 'start')
+        .attr('x', tomorrowX - 30).attr('y', tomorrowY + 46)
+        .text('revision cost');
+
+      // Full-year callout
+      const fullYear = horizonData[4];
+      const fyX = xScalePoint(fullYear.horizon);
+      const fyY = yScaleLinear(fullYear.dividend);
+
+      gChart.append('text').attr('class', 'callout')
+        .attr('text-anchor', 'end')
+        .attr('x', fyX + 30).attr('y', fyY - 24)
+        .text('discards in-year');
+      gChart.append('text').attr('class', 'callout')
+        .attr('text-anchor', 'end')
+        .attr('x', fyX + 30).attr('y', fyY - 8)
+        .text('PCK accumulation');
+    }
+
+    draw();
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(document.getElementById('chart'));
+  </script>
+</body>
+</html>

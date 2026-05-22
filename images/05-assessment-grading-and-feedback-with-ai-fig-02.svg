@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t05-2 d05-2">
+  <title id="t05-2">What AI matched and where humans still won</title>
+  <desc id="d05-2">A three-column matrix comparing AI and human teacher performance on five feedback criteria from Steiss et al. (2024). AI matched or exceeded humans on criteria-based alignment; humans outperformed AI on accuracy, prioritization, clarity of directions, and supportive tone.</desc>
+  <defs>
+    <style>
+      .ti { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: bold; fill: #2a1a0e; }
+      .sub { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .hdr { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: bold; fill: #4a4540; letter-spacing: 0.5px; }
+      .crit { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 12px; font-weight: bold; fill: #2a1a0e; }
+      .cell { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #2a1a0e; }
+      .cell-dim { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; fill: #8a8480; }
+      .cell-win { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: bold; fill: #fdfcfb; }
+      .cap { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 11px; font-style: italic; fill: #4a4540; }
+      .source { font-family: 'EB Garamond', Georgia, 'Times New Roman', serif; font-size: 10px; fill: #8a8480; letter-spacing: 0.4px; }
+    </style>
+  </defs>
+  <rect width="700" height="420" fill="#fdfcfb"/>
+
+  <text x="32" y="28" class="ti">What AI matched, and where humans still won</text>
+  <text x="32" y="46" class="sub">Steiss et al. (2024) — ChatGPT-3.5 vs teacher feedback on secondary-student essays.</text>
+
+  <!-- Column headers -->
+  <text x="32" y="84" class="hdr">CRITERION</text>
+  <text x="500" y="84" text-anchor="middle" class="hdr">AI</text>
+  <text x="600" y="84" text-anchor="middle" class="hdr">HUMAN</text>
+  <line x1="32" y1="92" x2="668" y2="92" stroke="#c8c4c0" stroke-width="1"/>
+
+  <!-- Row 1 — AI matches -->
+  <rect x="32" y="100" width="636" height="46" fill="#f5f2ee"/>
+  <text x="48" y="122" class="crit">Criteria-based alignment</text>
+  <text x="48" y="138" class="cell-dim">Did the comment hit each rubric criterion?</text>
+  <rect x="478" y="110" width="44" height="26" fill="#2a1a0e"/>
+  <text x="500" y="128" text-anchor="middle" class="cell-win">match</text>
+  <text x="600" y="128" text-anchor="middle" class="cell">—</text>
+
+  <!-- Row 2 -->
+  <rect x="32" y="150" width="636" height="46" fill="#fdfcfb"/>
+  <text x="48" y="172" class="crit">Accuracy</text>
+  <text x="48" y="188" class="cell-dim">Did it correctly diagnose what is on the page?</text>
+  <text x="500" y="178" text-anchor="middle" class="cell">—</text>
+  <rect x="578" y="160" width="44" height="26" fill="#2a1a0e"/>
+  <text x="600" y="178" text-anchor="middle" class="cell-win">win</text>
+
+  <!-- Row 3 -->
+  <rect x="32" y="200" width="636" height="46" fill="#f5f2ee"/>
+  <text x="48" y="222" class="crit">Prioritization</text>
+  <text x="48" y="238" class="cell-dim">Did it name what matters most for this writer?</text>
+  <text x="500" y="228" text-anchor="middle" class="cell">—</text>
+  <rect x="578" y="210" width="44" height="26" fill="#2a1a0e"/>
+  <text x="600" y="228" text-anchor="middle" class="cell-win">win</text>
+
+  <!-- Row 4 -->
+  <rect x="32" y="250" width="636" height="46" fill="#fdfcfb"/>
+  <text x="48" y="272" class="crit">Clarity of directions</text>
+  <text x="48" y="288" class="cell-dim">Could the student act on it without re-reading?</text>
+  <text x="500" y="278" text-anchor="middle" class="cell">—</text>
+  <rect x="578" y="260" width="44" height="26" fill="#2a1a0e"/>
+  <text x="600" y="278" text-anchor="middle" class="cell-win">win</text>
+
+  <!-- Row 5 -->
+  <rect x="32" y="300" width="636" height="46" fill="#f5f2ee"/>
+  <text x="48" y="322" class="crit">Supportive tone</text>
+  <text x="48" y="338" class="cell-dim">Encouraging without sliding into flattery?</text>
+  <text x="500" y="328" text-anchor="middle" class="cell">—</text>
+  <rect x="578" y="310" width="44" height="26" fill="#2a1a0e"/>
+  <text x="600" y="328" text-anchor="middle" class="cell-win">win</text>
+
+  <line x1="32" y1="354" x2="668" y2="354" stroke="#c8c4c0" stroke-width="1"/>
+  <text x="32" y="378" class="cap">The model aligned to the rubric mechanically. It could not tell what mattered for this writer.</text>
+  <text x="32" y="394" class="cap">Rubric alignment and pedagogical effectiveness are not the same property.</text>
+  <text x="32" y="412" class="source">SOURCE — STEISS ET AL. 2024, LEARNING AND INSTRUCTION</text>
+</svg>
