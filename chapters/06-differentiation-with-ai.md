@@ -265,38 +265,6 @@ The AI hits the Lexile band in seconds. Whether the concept survived is a questi
 
 ---
 
-## Prompts
-
-These prompts regenerate the figures in this chapter as standalone D3 v7 HTML files. Paste the prompt into Claude, save the response as the named file, and open it in a browser. The reference implementations in `d3/` are the version this chapter was published with — use them as the floor, not the ceiling.
-
-**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into the Claude project context before running any of these prompts. Those two files pin the D3 v7 CDN, the `var(--color-*)` token palette, the EB Garamond / Inter / JetBrains Mono stack, and the accessibility requirements every figure must satisfy.
-
----
-
-### Figure 6.1 — What the Lexile formula measures, and what it does not
-
-Build a single-panel D3 v7 infographic that decomposes the Lexile formula. Two labeled input tiles stack on the left — "Average sentence length" and "Average word frequency" — each with a one-line gloss describing how the variable moves the score. Both feed into a centered dark formula box labeled "Lexile score" with the sub-line "a single number." From the formula box, an arrow continues right into a tall "Does NOT measure" callout listing four items as em-dash lines: inferential demand, prior knowledge load, causal structure, abstractness of ideas. The callout carries a 4px `var(--color-ink)` left stripe — no accent color is required since the warm grayscale palette carries the contrast. Add a two-line footer: the formula is what the AI optimizes for; the callout is what stays invisible until you ask. Standalone HTML, pinned D3 v7 CDN, inline CSS/JS, ResizeObserver redraw, `prefers-reduced-motion` honored, `role="img"`, `<title>`, `<desc>`, `aria-label` on each input tile and each callout item, tooltip on hover for inputs and callout items.
-
-> Reference implementation: `d3/06-differentiation-with-ai-fig-01.html`
-
----
-
-### Figure 6.2 — Leveling versus scaffolding, side by side
-
-Build a two-panel D3 v7 diagram comparing the two moves teachers call "differentiation," divided by a dashed vertical rule. Left panel — Leveling: a tile labeled "Original passage (900L)" with the gloss "the document the lesson was designed around," a downward arrow labeled "rewrite," and a tile labeled "Rewritten passage (600L)" with the gloss "a different document — fewer terms, shorter clauses." Two annotations below: "extraneous load: reduced" and "germane load: at risk." Cap with a `var(--color-secondary)` filled chip reading "concept may be lost." Right panel — Scaffolding: the same "Original passage (900L)" tile, untouched ("same document the class is reading"), with a 2×2 grid of support tiles beneath it: Sentence frame, Glossary, Graphic organizer, Partner read. Two annotations: "extraneous load: reduced" and "germane load: preserved." Cap with a `var(--color-ink)` filled chip reading "same concept as class." Standalone HTML, pinned D3 v7 CDN, inline CSS/JS, ResizeObserver, `prefers-reduced-motion`, accessible tags, tooltips on every tile.
-
-> Reference implementation: `d3/06-differentiation-with-ai-fig-02.html`
-
----
-
-### Figure 6.3 — The IEP and 504 phase gate
-
-Build a single-row D3 v7 flow diagram of the IEP and 504 phase gate. Three rectangular nodes left to right with step labels (STEP 1, STEP 2 — THE GATE, STEP 3) above them, connected by two solid arrows: (1) "AI proposes" with the sub-lines "from anonymized profile, suggests accommodations from a standard library" and the italic caption "a starting point, not a plan"; (2) "Licensed specialist and team authorize" with sub-lines "review against student history, evaluation results, and response to prior intervention" and a 4px `var(--color-ochre)` left stripe marking the gate; (3) "Teacher implements" with sub-lines "what the team has authorized — no more, no less" and the caption "execution, not authorization." Below the row, render a dashed arc shortcut arrow from node 1 to node 3 in `var(--color-red)`, midpoint crossed by a small white-filled box with a red X and labeled "skips legal authorization & clinical judgment." Pinned D3 v7 CDN, inline CSS/JS, ResizeObserver, `prefers-reduced-motion`, tooltips that expand each sub-line.
-
-> Reference implementation: `d3/06-differentiation-with-ai-fig-03.html`
-
----
-
 ## AI Wayback Machine
 
 The framework this chapter rests on did not start with the Lexile score. It started with a Russian psychologist who died in 1934. **Lev Vygotsky** named the gap between what a student can do alone and what she can do with help the *zone of proximal development*. The support that lives inside that gap — the sentence frame, the partner read, the worked example — is what later researchers called *scaffolding*. The distinction between leveling (which changes the text) and scaffolding (which changes the support around the text) is Vygotsky's distinction made operational. If you take only one idea from the prior literature into your AI-assisted differentiation workflow, take this one.

@@ -243,46 +243,6 @@ Whether the framework holds as AI capability advances. The five-question checkli
 
 ---
 
-## Prompts
-
-Use these prompts with Claude to regenerate the figures in this chapter as interactive D3 v7 charts. Each prompt produces a standalone HTML file you can open in a browser and modify freely. The reference implementations exist in `d3/` for comparison.
-
-**Prerequisites:** Before running any of these prompts, load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context. They define the rendering stack (D3 v7, single-file HTML, the pinned CDN URL), the color tokens (six `var(--color-*)` variables, dark-mode-aware), the type stack (EB Garamond display, Inter body, JetBrains Mono for numerics), and the accessibility floor (`role="img"`, `<title>`, `<desc>`, keyboard reach, reduced-motion suppression). The figures below assume those conventions; the prompts do not restate them.
-
----
-
-### Figure 13.1 — Three independent failure modes of AI-text detection
-
-Build a stacked infographic of three full-width horizontal rows, top-to-bottom. Each row has a numbered red badge at the left (1, 2, 3), then a row title, two lines of detail, and a single italic anchor line below; the right edge of each row carries one large numeric stat with a small caption beneath it. Row 1: tools unreliable — Weber-Wulff 2023, 12 tools across 756 cases, "neither accurate nor reliable"; stat `26%` true-positive at OpenAI's July 2023 withdrawal. Row 2: errors biased — Liang 2023, seven detectors on TOEFL essays; stat `>50%` misclassified, near-perfect on eighth-grade essays. Row 3: institutions walking back — Vanderbilt August 2023; stat `750` wrongly flagged from 1% × 75,000. Footer: "Each row is independent. Any one is enough. Together they constitute a settled case." Each row is keyboard-reachable; tooltips expand the mechanism on hover and on Enter.
-
-> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-01.html`
-
----
-
-### Figure 13.2 — The Bastani result
-
-Build a grouped vertical bar chart of three conditions (Control, GPT Base, GPT Tutor) on two outcomes (practice with AI, exam without). Use `d3.scaleBand` for outer groups, an inner `scaleBand` for the two outcomes, and `d3.scaleLinear` from 0 to 250 for the y-axis with a zero baseline. Values normalized to Control = 100: practice 100 / 148 / 227, exam 100 / 83 / 100. Practice bars in `var(--color-secondary)`; exam bars in `var(--color-red)`. Draw a thin reference line at y = 100 labeled "Control = 100." Annotate GPT Base with "48% practice gain → 17-point exam loss" and GPT Tutor with "127% practice gain — no exam loss." Legend top-right. Bar values above each bar in JetBrains Mono. Caption beneath the chart: "Performance paradox: in-session gain ≠ durable learning." Bars are tab-reachable with `aria-label`; tooltips on hover.
-
-> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-02.html`
-
----
-
-### Figure 13.3 — Five-question diagnostic decision tree
-
-Build a top-down decision tree of five yes/no diagnostic questions arranged in a single vertical column. Each node is a bordered rectangle with the question on the first line and a small italic "smallest move" note on the second. The yes path drops to the next node (solid arrow in `var(--color-ink)`); the no path peels off to the right (dashed arrow in `var(--color-secondary)`) to a single shared "Redesign target — find the smallest move that turns this no into a yes" terminal with a 3px `var(--color-ochre)` left border. Five consecutive yes answers converge at the bottom into an "AI-survivable" terminal filled in `var(--color-red)`. Question text: defense in conversation, novel application beyond training cutoff, process trail, real-time unassisted performance, would artifact alone reveal learning. Each node is keyboard-reachable; tooltip on hover and Enter expands the rationale for that diagnostic.
-
-> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-03.html`
-
----
-
-### Figure 13.4 — Teen ChatGPT-for-schoolwork use by group
-
-Build a horizontal bar chart of U.S. teen ChatGPT-for-schoolwork use, Pew January 2025, with three layers stacked vertically. Top: a single reference bar "All teens" at 26% in `var(--color-red)`. Middle, under an italic eyebrow "By race / ethnicity": Black 31%, Hispanic 31%, White 22%, sorted descending within the subsection. Bottom, under "By household income": higher-income 31%, lower-income 18%, sorted descending. Bars below the reference use `var(--color-secondary)` with a lighter `#787878` for the lowest-value bar in each subsection. Zero baseline; x-axis labeled in percent with five gridlines. Value labels in JetBrains Mono at the end of each bar. A dashed vertical reference line at the 26% all-teen average crosses both subsections, labeled "all-teen average." Caption below the chart explains the equity-asymmetry argument. Each bar is keyboard-reachable; tooltips on hover.
-
-> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-04.html`
-
----
-
 ## AI Wayback Machine
 
 The ideas in this chapter didn't appear from nowhere. **Plato** (~428–348 BCE) recorded the first sustained argument that a new communication technology might *appear* to produce knowledge while corroding it. In the *Phaedrus*, Socrates tells the myth of the god Theuth presenting writing to King Thamus as a remedy for memory. Thamus refuses: writing, he says, produces "forgetfulness in the souls of those who learn it," because they will trust the external marks rather than do the internal work — they will "have the appearance of wisdom, not the reality." That argument is the load-bearing structure under the Bastani result. Detection looks for the external marks. Design asks whether the internal work happened.

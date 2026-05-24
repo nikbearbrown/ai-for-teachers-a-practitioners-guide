@@ -214,42 +214,6 @@ Chapter 12 builds this systematically. The rule for now is simple: if a prompt w
 
 ---
 
-## Prompts
-
-Use these prompts with Claude to generate interactive D3 v7 versions of the
-figures in this chapter. Each produces a standalone HTML file you can open
-in a browser and modify freely.
-
-**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
-your Claude project context before using these prompts. They define the stack,
-naming conventions, color system, and typography the figures use.
-
----
-
-### Figure 3.1 — Pointer versus specification
-
-Build a single self-contained HTML file rendering a two-row pipeline diagram comparing search retrieval and generative conditioning. Upper row labelled "Search engine" — three left-to-right nodes: User keywords, Index lookup, Ranked list — joined by ink-colored arrows; a red "retrieval" badge sits beneath, with a caption "already existed before you typed." Lower row labelled "Generative language model" — three nodes: Prompt tokens, Probability distribution, Token-by-token output — same arrows. From the final node, draw a small red dashed self-loop back to itself, with a red "conditioning" badge and caption "prompt is the entire specification." Footer line: "A search query is a pointer. A prompt is the specification of what gets built." Use only `var(--color-*)` tokens, EB Garamond throughout, dark-mode `@media` block, no animation under `prefers-reduced-motion`. D3 7.9.0 from cdnjs, ResizeObserver redraw, `role="img"` plus `<title>` and `<desc>`.
-
-> Reference implementation: `d3/03-prompting-that-works-fig-01.html`
-
----
-
-### Figure 3.2 — The four-component prompt card
-
-Build a single self-contained HTML file rendering a laminated-card-style reference for the four-component prompt template. Single bordered card on the left, divided by hairline rules into four rows: ROLE, CONTEXT, TASK, CONSTRAINTS. Each row shows the component key in bold serif (`letter-spacing: 0.5px`) and italic slot text with a concrete teacher example beneath. To the right of each row, an ochre arrow leads to a callout headline in `var(--color-ochre)` describing the structural work that line performs, with two dim sub-lines below in `var(--color-secondary)`. On hover or keyboard focus the row's border turns red and a tooltip names the work. Footer line: "Role · Context · Task · Constraints — invisible after thirty prompts, durable across model generations." EB Garamond throughout, dark-mode `@media`, `(event, d)` handlers, accessibility tags, `prefers-reduced-motion` suppression. D3 7.9.0 from cdnjs.
-
-> Reference implementation: `d3/03-prompting-that-works-fig-02.html`
-
----
-
-### Figure 3.3 — The prompting loop
-
-Build a single self-contained HTML file rendering the prompt-iteration loop as a three-node horizontal flow with diagnostic edges. Three nodes labelled ROUND 1 (Vague prompt), ROUND 2 (Four-component), ROUND 3 (Gap-closing follow-up); each round label sits above its node in red bold serif. Each node is a bordered rectangle with a bold serif headline, the actual prompt text in the upper half, a hairline separator, and three short observation lines in `var(--color-secondary)` describing the output. Below each node, an ochre italic annotation names the diagnostic move ("the model fills in the average" / "specification narrows the probability space" / "name what to change, name what to keep"). Between consecutive nodes draw a curved Bézier arrow with a three-line italic diagnostic label describing the gap that triggered the next round. Hover or keyboard focus turns the active node's border red and opens a tooltip naming the round. Footer: "Three prompts. Seven minutes. A lesson plan reusable next year by changing one line." EB Garamond throughout, `var(--color-*)` tokens, dark-mode `@media`, `prefers-reduced-motion` suppression, `(event, d)` handlers, accessibility tags. D3 7.9.0 from cdnjs.
-
-> Reference implementation: `d3/03-prompting-that-works-fig-03.html`
-
----
-
 ## AI Wayback Machine
 
 The discipline behind the four-component prompt — make the student do the work; never give them the answer — is older than computing. **Charlotte Mason** (1842–1923) built a whole pedagogy on it. Her method, developed in the British Parents' National Educational Union from the 1880s onward, asked the child to *narrate* — to retell, in their own words, what they had just read. Mason believed children should encounter primary sources directly, then produce the synthesis themselves. The teacher's job was to set the conditions, ask the precise question, and refuse to summarize on the student's behalf. The same move, exactly, sits inside every prompt that produces real teacher-grade output: name the role, name the task, name the constraints, name the format — then let the model do the synthesis without leaking the answer.

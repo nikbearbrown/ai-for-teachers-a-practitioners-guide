@@ -204,46 +204,6 @@ Chapter 13 turns the workflow around: the same *workflow.md* that saves you time
 
 ---
 
-## Prompts
-
-Use these prompts with Claude to regenerate interactive D3 v7 versions of the figures in this chapter. Each produces a standalone HTML file you can open in a browser and modify freely.
-
-**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context before using these prompts. They define the stack, naming conventions, color system, and typography these figures inherit.
-
----
-
-### Figure 12.1 — Tacit-to-explicit conversion and the decay path
-
-Build a horizontal three-node flow diagram. Left node "Tacit knowledge" lists four lines inside: prompt patterns, trust judgments, phase-gate habits, lives in your head. Centre node "Explicit knowledge" lists four lines: parameterized, labeled, maintained, reusable — fill tinted with a faint ochre wash to mark the captured artefact. Right node "Closed tab — reinvented next Tuesday" has a dashed border in var(--color-red). Connect left-to-centre with a solid arrow labelled "capture event — the prompt worked, saved to workflow.md." Connect left-to-right with a dashed red decay arc looping above, labelled "no capture — knowledge evaporates." Tooltip on every node summarising what the box represents and the cost of skipping the capture step. Standalone HTML, D3 v7 from the pinned CDN, inline CSS and JS, EB Garamond + Inter + JetBrains Mono via Google Fonts, var(--color-*) tokens with prefers-color-scheme dark mode, ResizeObserver redraw, accessible role/title/desc, prefers-reduced-motion respected.
-
-> Reference implementation: `d3/12-building-your-ai-workflow-fig-01.html`
-
----
-
-### Figure 12.2 — Goal system vs habit system
-
-Build a two-track parallel flow diagram. Upper track headed "Goal system — effortful, depletable, willpower-based" runs through five stations: Motivation high, Open tool, Write prompt from scratch, Use output, Close tab — with a dashed loop arrow returning from Close tab to Motivation labelled "next Tuesday — start from scratch." Lower track headed "Habit system — context-cued, lower activation cost" runs through six stations: Sunday 4pm + kitchen table, Context cue, Open workflow.md, Run library entry 01, Phase gate, Done. Render the goal track in var(--color-secondary) and the habit track in var(--color-ink) to mark which one survives a hard Wednesday. Both tracks converge with arrows to a single endpoint block labelled "Output reaches students — same endpoint either way." Tooltip on each station naming the activation cost. Standalone HTML, D3 v7 pinned CDN, inline CSS/JS, EB Garamond / Inter / JetBrains Mono, var(--color-*) with dark-mode @media, ResizeObserver, accessible role/title/desc, prefers-reduced-motion respected.
-
-> Reference implementation: `d3/12-building-your-ai-workflow-fig-02.html`
-
----
-
-### Figure 12.3 — Rogers and CBAM plateau map
-
-Build a two-row stage-progression diagram. Top row: Rogers's five sequential stages — Knowledge, Persuasion, Decision, Implementation, Confirmation — rendered as five connected boxes with linking arrows. Bottom row: CBAM's six condensed stages of concern — Awareness, Personal, Management, Consequence, Collaboration, Refocusing — also connected boxes. Highlight the Implementation box and the Management box with a faint red wash and red border. Insert a solid red plateau flag wedged between Implementation and Confirmation on the top row, labelled "AD HOC ADOPTION — fresh decision every use." Insert a second red plateau flag between Management and Consequence on the bottom row, labelled "STUCK ON LOGISTICS — time and materials still the load." Beneath each row, render an ochre sweep arrow showing the workflow document crossing each plateau, with a single ochre caption "workflow.md moves you past both plateaus." Tooltip on each stage naming what the teacher is doing or worrying about. Standalone HTML, D3 v7 pinned CDN, inline CSS/JS, EB Garamond / Inter / JetBrains Mono, var(--color-*) tokens with dark-mode @media, ResizeObserver, accessible role/title/desc, prefers-reduced-motion respected.
-
-> Reference implementation: `d3/12-building-your-ai-workflow-fig-03.html`
-
----
-
-### Figure 12.4 — Prompt quality over 24 months, with and without maintenance
-
-Build a single line chart. X-axis: months 0 to 24, ticks every three months, axis title "months since the prompt was first captured." Y-axis: relative prompt output quality, zero baseline to 1.0, ticks at 0.00 / 0.25 / 0.50 / 0.75 / 1.00, axis title "prompt output quality (relative)." Plot two series. Line one — "no maintenance" — in var(--color-red), drawn through anchors at (0,1.00), (6,0.80), (12,0.60), (18,0.45), (24,0.30) with monotone interpolation. Line two — "six-month maintenance" — in var(--color-ink), decaying about 0.15 between maintenance events and snapping back to 1.00 at months 6, 12, 18; holds near baseline through month 24. Mark the three maintenance events with vertical ochre dashed lines and the label "30-min review" at the top. Inline labels at the right edge identify each line; gridlines at low opacity. Hover dots on both lines report month, quality, series label. Standalone HTML, D3 v7 pinned CDN, inline CSS/JS, EB Garamond / Inter / JetBrains Mono, var(--color-*) with dark-mode @media, ResizeObserver, accessible role/title/desc, prefers-reduced-motion respected.
-
-> Reference implementation: `d3/12-building-your-ai-workflow-fig-04.html`
-
----
-
 ## AI Wayback Machine
 
 The argument that a teaching week can be made tractable by writing it down belongs to a longer engineering tradition than it sounds. **Henry Laurence Gantt** (1861–1919) was an American mechanical engineer who, working with Frederick Winslow Taylor at Midvale Steel and then on his own, invented the production planning chart that still carries his name. The Gantt chart — horizontal bars on a time axis showing scheduled tasks, their durations, their dependencies, and their actual progress against plan — turned a foreman's tacit week into a wall-sized explicit document anyone on the shop floor could read in five seconds. The United States Army built warships against Gantt's charts in the First World War; the Hoover Dam was built against them; every project-management tool you have ever used is downstream of them. The deep idea is not the bars. The deep idea is that the schedule has to live outside the planner's head, in a form a second person can read, or it does not really exist. *Workflow.md* is the same move at the scale of a single teacher's week: a captured library and a recurring schedule, written down so that future-you can read them on a hard Wednesday without rebuilding them from scratch.

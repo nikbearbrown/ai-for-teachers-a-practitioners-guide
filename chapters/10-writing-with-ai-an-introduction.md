@@ -1,7 +1,6 @@
 # Chapter 10 — Writing with AI: An Introduction
 *The artifact is cheap now. The process is what's left. The process was always the thing.*
 
-
 ---
 
 Here is a thing that happens in a single Tuesday morning.
@@ -231,63 +230,6 @@ And what is the right institutional policy mix? Full prohibition, full permissio
 - Sommers, N. (1980). Revision strategies of student writers and experienced adult writers. *College Composition and Communication*, 31(4), 378–388. https://www.jstor.org/stable/356588
 - Sommers, N. (1982). Responding to student writing. *College Composition and Communication*, 33(2), 148–156. https://wacresources.commons.gc.cuny.edu/files/2014/09/Responding-to-Student-Writing-by-Nancy-Sommers.pdf
 - Vanderbilt University. (2023). Guidance on AI detection and why we're disabling Turnitin's AI detector. https://www.vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/
-
-
----
-
-## Prompts
-
-These prompts regenerate the six figures in this chapter as standalone D3 v7 HTML files. Each renders without a build step, redraws on resize, and inverts under dark mode. Modify the data literal at the top of the script and the rest follows.
-
-**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context before using these prompts. Pin `https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js`. Use EB Garamond throughout. Use the warm grayscale palette (`#2a1a0e`, `#4a4540`, `#8a8480`, `#c8c4c0`, `#f5f2ee`, `#fdfcfb`) routed through `var(--color-*)` tokens. Every chart needs `role="img"`, `<title>`, `<desc>`, ResizeObserver, `(event, d)` handlers, and a `prefers-reduced-motion` block.
-
----
-
-### Figure 10.1 — Two different jobs
-
-Build a two-panel diagram contrasting teacher writing and writing instruction. Each panel contains three labeled boxes — actor, model, artifact — connected by arrows. In the teacher panel, the actor-to-model arrow is solid (substance flows in, the model renders). In the student panel, the actor-to-model arrow is dashed and labeled "bypass" (cognition does not flow; the model drafts unprompted). Both panels end with a fit verdict in italics: "skilled co-writer" vs "ghostwriter (wrong fit)." Wrap each panel in a soft `#f5f2ee` background with a `#8a8480` hairline. Title at the top: "Same model. Opposite uses." Footer caption: "The rules come from the use, not from the tool." Hover on any box should slightly darken its fill.
-
-> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-01.html`
-
----
-
-### Figure 10.2 — Bastani 2025: practice gains, exam losses
-
-Build a grouped bar chart with three groups (Control, GPT Base, GPT Tutor) and two bars per group: practice score (light fill) and unaided exam score (dark fill). Use values Control 50/50, GPT Base 75/35, GPT Tutor 72/60. Zero-based y-axis 0–100. Use `d3.scaleBand` for groups and a nested `d3.scaleBand` for the two-bar pairs. Annotate the GPT Base group with a horizontal arrow and the label "practice-exam gap / cognitive work outsourced." Each bar must be keyboard-focusable with an `aria-label`. Tooltips show group + condition + value. Legend at the bottom. Subtitle: "Bastani et al., 2025 (PNAS), ~1,000 Turkish high-school students."
-
-> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-02.html`
-
----
-
-### Figure 10.3 — Flower &amp; Hayes recursive model
-
-Build a three-node diagram for the recursive writing process: Planning (top center), Translating (bottom left), Reviewing (bottom right). Each node is an ellipse with a label and a one-line description. Connect every pair of nodes with a bidirectional arrow (use SVG markers on both ends — `auto-start-reverse`). Frame the triangle with two horizontal rectangles: "Task environment" above and "Long-term memory" below, connected by dashed feed lines. Hover on a node shows a tooltip with a brief gloss of what that process does. Subtitle credits "After Flower &amp; Hayes, 1981." Footer caption: "Each process can interrupt and call any other. The cognition lives in the loop."
-
-> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-03.html`
-
----
-
-### Figure 10.4 — Liang 2023 detector bias
-
-Build a paired bar chart with two side-by-side groups, each containing seven bars (one per detector). Left group: native English speakers (US 8th-graders) with false-positive rates around 1–5%. Right group: non-native TOEFL writers with false-positive rates between 49% and 74%. Use light fill for the native bars and dark fill for the non-native bars. Overlay a dashed horizontal mean line on each group with a label ("~3% avg." and ">50% avg."). Place a centered diagonal annotation between groups reading "same prose pattern, opposite mechanism." Each bar is focusable with `aria-label` and tooltip. Y-axis 0–100% with gridlines. Footer caption explains the perplexity mechanism.
-
-> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-04.html`
-
----
-
-### Figure 10.5 — Three shifts in writing assessment
-
-Build a vertical stack of three horizontal arrow rows. Each row: a left box (the "from" state), a thick black arrow with marker-end, a right box (the "to" state). Row 1: Product → Process trail. Row 2: First draft → Revision trajectory. Row 3: Submission → Conversation. Each "from" box is narrower (200px); each "to" box is wider (246px) so it visually carries more weight. Under each row, a single italic caption explains the shift's rationale (Sommers, Flower-Hayes, defense as detection). Hover on the "to" box surfaces a tooltip with the practitioner-level move. Closing tagline below the third row: "Together: the artifact is no longer the only thing graded."
-
-> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-05.html`
-
----
-
-### Figure 10.6 — Three instructional uses of AI
-
-Build a 4-row × 4-column table (one dimension column, three pattern columns: Socratic AI, Feedback AI, Elaboration AI). Rows: Student supplies; Model behavior; Residual cognition; Failure mode. Each cell holds a primary line and a smaller italic subordinate line. Header row uses `#f5f2ee` fill with a `#8a8480` hairline below. Column dividers are thin `#8a8480` rules; the outer table border is `#2a1a0e` 1.2px. Each cell is focusable with `aria-label` (e.g., "Socratic AI — Failure mode: re-prompted as drafter") and a tooltip that repeats the cell content. Footer holds two italic lines: the "student's draft" reminder and the "don't police prompts" closing.
-
-> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-06.html`
 
 ---
 

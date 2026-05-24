@@ -192,38 +192,6 @@ Chapter 5 takes the same framework into assessment and feedback — where the ti
 
 ---
 
-## Prompts
-
-Use these prompts with Claude (or another agentic LLM) to regenerate the figures in this chapter as standalone D3 v7 HTML files. Each produces a single browser-runnable file you can open, inspect, and modify.
-
-**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into the model's context before issuing these prompts. They define the stack (D3 v7 from the pinned CDN), naming conventions, the six-variable color system, the EB Garamond / Inter / JetBrains Mono typography stack, and the accessibility requirements every figure must meet.
-
----
-
-### Figure 4.1 — Two layers of a lesson plan
-
-Build a two-column comparison diagram contrasting what AI does well in lesson planning against what only the teacher can supply. Left column header reads "Structural layer — AI does well" with a `var(--color-secondary)` background and white text. Right column header reads "PCK layer — teacher supplies" with a `var(--color-ink)` background and white text. The left column lists six items as stacked rectangular tiles filled with a near-white warm neutral: objectives in verb-list form, timed activity sequence, differentiation templates, exit ticket prompts (first draft), standards citations (verify), and worksheet first drafts. The right column lists four taller tiles filled with `var(--color-border)` and outlined in `var(--color-ink)`: which misconception this class will carry, which analogy backfires for these students, the sub-topic order that does not collapse, and the exit-ticket question that surfaces the right confusion. Render a vertical "the gap where teaching lives" label rotated between the columns. Each tile is hoverable and keyboard-focusable with a tooltip explaining why the item belongs in that column. Standalone HTML, D3 v7, inline CSS and JS, `role="img"` plus `<title>` and `<desc>`, dark-mode CSS variables, ResizeObserver.
-
-> Reference implementation: `d3/04-lesson-planning-with-ai-fig-01.html`
-
----
-
-### Figure 4.2 — Backward design and where prompts collapse it
-
-Build a three-stage horizontal flow diagram for backward design. Stages 1, 2, and 3 sit in a row with thin black borders and warm-neutral fills; Stage 3 takes a slightly darker fill to signal it is where the AI lands. Each stage carries its question beneath the stage name: Stage 1 — "What should students understand?"; Stage 2 — "What evidence shows they understand it?"; Stage 3 — "What activities produce that evidence?" Arrows connect Stage 1 to Stage 2 to Stage 3. Above the row, render a "Default AI prompt" rectangle on the far left with a dashed curved arrow jumping over Stages 1 and 2 directly into Stage 3, marked with an X glyph and the verdict "skips Stages 1 and 2." Below the row, render a "Two-sentence sticky note (90 seconds)" rectangle on the far left feeding curved solid arrows into both Stage 1 and Stage 2, then a separate "Stage 3 AI prompt" rectangle beneath Stage 3 marked with a check. Stage and prompt rectangles are hoverable and keyboard-focusable with tooltips. Standalone HTML, D3 v7, inline CSS and JS, accessibility tags, dark-mode CSS variables, ResizeObserver.
-
-> Reference implementation: `d3/04-lesson-planning-with-ai-fig-02.html`
-
----
-
-### Figure 4.3 — AI dividend by planning horizon
-
-Build a single line-and-area chart on a zero-baselined y-axis. X-axis is a `d3.scalePoint` of five ordered planning horizons: tomorrow's lesson, next week's lesson, unit (2–3 weeks), semester, full year. Y-axis is a linear "dividend index" from 0 to 100, where the dividend is time-saved minus PCK-revision cost. Plot the curve through 18, 52, 88, 64, 32 using `d3.curveMonotoneX`. Shade the area under the curve in a low-opacity warm neutral. Render circles at each point in `var(--color-secondary)`; render the peak (unit, 88) as a larger `var(--color-ink)` circle with a vertical leader line and a bold "Sweet spot" label above it. Place an italic callout near the tomorrow point reading "heavy PCK revision cost" and another near the full-year point reading "discards in-year PCK accumulation." Each data point is keyboard-focusable and hoverable, with a tooltip reporting horizon, dividend index, and the dominant failure mode at that horizon. Standalone HTML, D3 v7, inline CSS and JS, accessibility tags, dark-mode CSS variables, ResizeObserver.
-
-> Reference implementation: `d3/04-lesson-planning-with-ai-fig-03.html`
-
----
-
 ## AI Wayback Machine
 
 The two-sentence sticky note in this chapter — *what should students understand, and what evidence shows they understand it* — did not begin with Grant Wiggins and Jay McTighe in 1998. It began with **Ralph W. Tyler** (1902–1994), the American educator whose 1949 *Basic Principles of Curriculum and Instruction* set out four questions that every curriculum must answer: what educational purposes should the school seek to attain; what educational experiences can be provided that are likely to attain these purposes; how can these educational experiences be effectively organized; and how can we determine whether these purposes are being attained. The *Tyler rationale* — objectives, experiences, organization, evaluation — is the structural skeleton beneath backward design, beneath outcomes-based education, and beneath the lesson-planning workflow in this chapter. When you write Stage 1 and Stage 2 before opening the AI, you are doing Tyler's first and fourth steps; when the AI proposes activities and you sequence them, you are doing his second and third. The chapter's prompt-then-revise workflow is Tyler's rationale with a new tool inserted at the activity-design step.

@@ -280,47 +280,6 @@ Chapter 10 turns toward writing — the writing you do as a teacher and the writ
 
 [^brewer]: Brewer, C. A. ColorBrewer: Color advice for maps and data. <https://colorbrewer2.org>. Harrower, M., & Brewer, C. A. (2003). ColorBrewer.org: An online tool for selecting colour schemes for maps. *The Cartographic Journal*, 40(1), 27–37.
 
-
----
-
-## Prompts
-
-These prompts produce interactive D3 v7 reference implementations of each chapter figure. Each generates a standalone HTML file you can open in a browser and modify freely. Use them as paste-ready starting points when adapting the figure to your own data.
-
-**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into your Claude project context before running any of these prompts. The constitution files pin D3 7.9.0 from cdnjs, the warm `var(--color-*)` palette, the EB Garamond / Inter / JetBrains Mono typography chain, and the accessibility requirements (`role="img"`, `<title>`, `<desc>`, `(event, d)` handlers, ResizeObserver redraw, dark-mode and `prefers-reduced-motion` variants).
-
----
-
-### Figure 9.1 — Truncated axis vs zero baseline
-
-Build a side-by-side comparison of the same six teacher means (Adams 78.2, Brennan 76.8, Connor 75.3, Diaz 74.1, Edelstein 73.6, Sandoval 71.4) rendered twice: a left panel with the y-axis truncated at 70 and a right panel with a zero-baseline 0–100 y-axis and a dashed proficiency benchmark at 70. Both panels share a band scale of teacher names. Annotate the left panel with the visual ratio Adams to Sandoval (about 6 to 1) and the actual ratio (about 1.1 to 1); annotate the right panel with the seven-point cluster range. One series, one fill color (`var(--color-red)`). Title states the finding, not the topic. Include hover tooltips on every bar with teacher name and mean.
-
-> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-01.html`
-
----
-
-### Figure 9.2 — Cairo&apos;s four failure modes
-
-Build a 2×2 grid of cells naming Cairo&apos;s four failure modes of the *compared with what?* check: absolute counts where rates are needed, time series without baseline, cross-section without controls, and single-value claim. Each cell shows a fail-state mini-visual on the left, an arrow, and a fix-state mini-visual on the right. Cell 1 pairs raw counts (30 vs 22) with rates (94% vs 92%). Cell 2 pairs a two-point line with a five-year trajectory. Cell 3 pairs an uncontrolled AP-vs-general bar pair with a matched-controls list. Cell 4 pairs a giant 76% with the same value anchored to state, peer, and target. Hover any cell to surface a tooltip with the full failure description and the fix sentence. Use `var(--color-red)` only for the fix mini-visuals.
-
-> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-02.html`
-
----
-
-### Figure 9.3 — Same mean, three different classes
-
-Build a two-row layout. Top row: three identical zero-baseline bar charts, each showing one bar at value 72 with a panel title *Class A — mean = 72*, *Class B — mean = 72*, *Class C — mean = 72*. Bottom row: three jittered strip plots on the same 40–100 x-axis. Class A is a tight cluster of 14 dots between 70 and 74; class B is bimodal with eight dots near 60 and eight near 84; class C has a long lower tail of eight dots between 45 and 55 and a main cluster of twelve dots between 75 and 78. Each strip panel shows a dashed mean line at 72 with a JetBrains Mono label. Captions below the strip plots: *curriculum is working*, *two groups need different things*, *eight students need intervention*. Hover individual dots for the score value.
-
-> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-03.html`
-
----
-
-### Figure 9.4 — The five-question audit
-
-Build a single printable checklist card listing six rows. Five core rows: (1) What question does this chart answer? (2) Compared with what? (3) Does the y-axis start at zero? (4) Is the title a finding or a topic? (5) Did you check for hidden variance? Plus a sixth, visually emphasized with a red-outline rectangle: when AI is in the loop, does the chart match the data? Each row has an EB Garamond row number on the left, an Inter bold question in the middle, and an Inter regular one-sentence body underneath. Rows separated by 1px `--color-border` dividers. Card framed in a 1.2px `--color-ink` outline. Hover any row to surface a tooltip with the full question and body; row labels turn red on hover.
-
-> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-04.html`
-
 ---
 
 ## AI Wayback Machine

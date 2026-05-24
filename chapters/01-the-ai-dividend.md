@@ -173,34 +173,6 @@ The dividend is real. The ceiling is a hypothesis. The reinvestment is a decisio
 
 ---
 
-## Prompts
-
-Use these prompts with Claude to generate interactive D3 v7 versions of the
-figures in this chapter. Each produces a standalone HTML file you can open
-in a browser and modify freely.
-
-**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
-your Claude project context before using these prompts. They define the stack,
-naming conventions, color system, and typography the figures use.
-
----
-
-### Figure 1.1 — The 5.9-hour anchor
-
-Build a single-file HTML "hero number" figure. Center one display-size value, the string `5.9`, in EB Garamond at roughly 150px in `var(--color-red)`; immediately beneath it set the italic unit `hours per week` in EB Garamond at ~20px in `var(--color-ink)`. Above the number, render a short eyebrow label `THE MEASURED DIVIDEND` in 11px Inter letter-spaced, with a 160px hairline rule in `var(--color-border)` below it. Arrange three callouts around the anchor at 11, 1, and 5 o'clock with one anchor point on each leader pointing to the number. Each callout is a bold 13px Inter title plus 2–3 lines of 13px EB Garamond secondary text. The three titles and bodies: "Weekly users only" (~30% of U.S. public K-12 teachers, not all teachers); "Ad hoc use" (reaching for a tool when a task feels heavy, no systematic workflow); "After the learning curve" (not week one — the return after the investment clears). Leaders are 1px dashed `var(--color-secondary)` terminating in a 2.5px filled dot. Add an italic source caption at the bottom-left. Each callout must be a tab-focusable hit zone with an aria-label and a tooltip that expands the boundary into one sentence. Accessibility: `role="img"`, `<title>` and `<desc>`, prefers-reduced-motion suppression, prefers-color-scheme dark variant.
-
-> Reference implementation: `d3/01-the-ai-dividend-fig-01.html`
-
----
-
-### Figure 1.2 — Three-zone task taxonomy
-
-Build a single-file HTML diagram with three equal-width card rectangles arranged left to right with consistent gaps between them. Card 1 is AI-Appropriate, card 2 is Hybrid, card 3 is Human-Required. Card 3 takes a 2px `var(--color-red)` border to mark non-delegable territory; the other two take a 1px `var(--color-border)` border. Inside each card, top to bottom: an 11px Inter zone tag in `var(--color-secondary)` ("ZONE 1/2/3"), a 22px EB Garamond bold zone title, a 13px italic EB Garamond definition line, a hairline divider, then a vertical list of 4 task examples in 13px EB Garamond, each prefixed by an em dash. Use the example sets in the chapter: production drafts (worksheets, problem variants, summaries, newsletter bullets) for AI-Appropriate; feedback, IEP language, lesson sequencing, parent email drafts for Hybrid; live response, misconception spotting, relationship repair, modelling not-knowing for Human-Required. Between adjacent cards render a horizontal arrow at mid-height with an arrowhead defined once in `<defs>`, then a TEST 1 / TEST 2 label beneath in ochre and an italic two- or three-line question in `var(--color-secondary)`. Test 1 asks whether output will reach a student or parent without review; Test 2 asks whether removing the teacher's cognition would remove what the student needed. Each card is keyboard-focusable with a tooltip elaborating the zone. Accessibility: `role="img"`, `<title>` and `<desc>`, prefers-reduced-motion suppression, prefers-color-scheme dark variant.
-
-> Reference implementation: `d3/01-the-ai-dividend-fig-02.html`
-
----
-
 ## AI Wayback Machine
 
 The instinct to study where a teacher's hours actually go — and to redesign the workflow around what matters — was operationalized in American teacher training in the 1960s and 70s by **Madeline Hunter** (1916–1994). Hunter's ITIP framework (Instructional Theory Into Practice) broke teaching into observable elements: anticipatory set, objective and purpose, input, modelling, checking for understanding, guided practice, closure, independent practice. The point was not to mechanize teaching but to surface the structure underneath good lessons so that the structure could be taught — and so that a teacher overwhelmed by a hundred small decisions could compare their day against a checklist and recover the parts that had drifted. The audit move in this chapter — the social studies teacher writing down where the week's forty-two hours actually go — is Hunter's instinct applied to time instead of to a single lesson.
