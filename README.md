@@ -2,7 +2,7 @@
 
 **Six Hours a Week Back to Teaching — Here Is Exactly Which Tasks to Delegate, How to Delegate Them, and What You Must Never Hand Off**
 
-**Author:** Nik Bear Brown · [bear@bearbrown.co](mailto:bear@bearbrown.co)
+**Author:** Humanitarians AI · [bear@bearbrown.co](mailto:bear@bearbrown.co)
 **Publisher:** Bear Brown, LLC
 **Series:** Practitioner's AI Series · Northeastern University College of Engineering · Bear Brown & Company
 **Edition:** First edition, 2026

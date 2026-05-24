@@ -14,7 +14,7 @@
 
 # AI for Teachers A Practitioner's Guide — Outline
 
-**Author:** Nik Bear Brown
+**Author:** Humanitarians AI
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Working title:** AI for Teachers: A Practitioner's Guide
 **Series:** Practitioner's AI Series · Northeastern University College of Engineering
-**Author:** Nik Bear Brown · ni.brown@neu.edu · Bear Brown & Company
+**Author:** Humanitarians AI · ni.brown@neu.edu · Bear Brown & Company
 **Document:** Full TIKTOC — Complete Architecture
 **Version:** 2.0
 **Status:** Pre-draft — research phase

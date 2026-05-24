@@ -17,7 +17,7 @@
 
 ### Six Hours a Week Back to Teaching — Here Is Exactly Which Tasks to Delegate, How to Delegate Them, and What You Must Never Hand Off
 
-**Nik Bear Brown**
+**Humanitarians AI**
 
 *Practitioner's AI Series · Northeastern University College of Engineering · Bear Brown & Company*
 
@@ -25,9 +25,9 @@
 
 ## Copyright
 
-Copyright © 2026 Nik Bear Brown. All rights reserved.
+Copyright © 2026 Humanitarians AI. All rights reserved.
 
-Published by Bear Brown, LLC.
+Published by Humanitarians AI.
 
 No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.
 
@@ -55,103 +55,66 @@ References to third-party products, services, and frameworks (Claude, ChatGPT, G
 
 ---
 
-## Preface: The Struggle Is the Point
+## Preface
 
-There is a question underneath every question in this book: what is teaching for?
+*What is this book? Why now? Why Humanitarians AI?*
 
-Not what teachers do — that is the subject of the fourteen chapters. What teaching is *for*. What the whole enterprise is trying to produce.
-
-The answer this book assumes is: genuine learning. Not the appearance of learning. Not a portfolio of artifacts that look like learning produced them. Not a credential that signals learning happened. Genuine learning — the kind that changes what a person can do in a situation they have never encountered before.
-
-This distinction matters more now than it ever has. Because generative AI has broken something fundamental about how we have measured learning for most of human educational history.
-
-### The artifact used to be proof of the process
-
-For as long as formal education has existed, the essay proved the thinking. The proof proved the mathematical understanding. The performance proved the skill. We cared about the learning — the internal change — and we measured it through what the learning produced: the artifact.
-
-This worked because there was only one way to produce a good essay: write one. There was only one way to produce a correct proof: understand the mathematics. The artifact and the process that created it were inseparable. Measuring one was measuring the other.
-
-Generative AI severed this connection. A well-structured essay can now be produced in seconds by a system that has performed none of the cognitive work the essay was designed to demonstrate. The artifact exists. The learning that was supposed to produce it did not occur.
-
-This is not a temporary problem that better AI detection will solve. The tools that identify AI-generated writing are trained on today's outputs. Tomorrow's outputs will be different. The arms race between generation and detection has a predictable winner.
-<!-- FACT-CHECK FLAG: UNVERIFIED — see factchecks/00-frontmatter-assertions.md -->
-
-The artifact can no longer reliably tell us whether learning happened.
-
-### Learning is a biological event
-
-Here is what makes this solvable.
-
-Genuine learning is not just a mental event. It is a biological one. When you encounter material that genuinely challenges your current understanding — something that doesn't fit what you already know, that requires you to update your mental model — a cascade of neurological events occurs. Dopamine signals the prediction error. Synaptic connections strengthen. New structures form. Memory consolidates over hours and days.
-
-This is what learning *is*. Not the performance of understanding. The actual physical change in the brain that makes understanding possible.
-
-And here is the thing about biological events: they leave traces.
-
-The student who genuinely grappled with a concept takes more time on harder problems. Makes errors that follow the structure of the concept — wrong in ways that reveal a developing mental model rather than random guessing. Shows improvement when given a hint that activates partial understanding. Remembers the material two weeks later when tested without warning. Demonstrates something different from the student whose artifact was produced by a tool that never triggered any of these events.
-<!-- FACT-CHECK FLAG: UNVERIFIED — see factchecks/00-frontmatter-assertions.md -->
-
-The struggle left evidence. Not in the essay — in the process that produced it.
-
-### The struggle is not the obstacle. It is the mechanism.
-
-This is the insight the whole book rests on.
-
-We have been treating cognitive struggle as the price of learning — the unpleasant thing students go through to get to the knowledge on the other side. The harder the better, in some formulations. If it doesn't hurt it doesn't count.
-
-That is not quite right. Struggle is not a proxy for learning. It is the mechanism of learning. The prediction error — the moment when what you expected and what you encountered do not match — is not an unfortunate side effect of the educational process. It is the trigger that initiates the neurological events that constitute memory formation.
-
-Remove the struggle and you remove the trigger. No struggle, no prediction error. No prediction error, no learning signal. No learning signal, no durable change.
-
-This is what the research shows when students use AI to do their work rather than to support their work. They perform better during the practice session — the AI produces correct answers faster than they could. They perform worse on the subsequent test — because the struggle that would have produced learning never occurred. They felt like they learned. They hadn't. The artifact was fine. The process was bypassed.
-
-The Bastani et al. (2025) study that appears throughout this book is the clearest demonstration: students who used AI during math practice scored 48% higher than the control group during the practice session, then scored 17 percentage points lower on the exam without AI.
-<!-- FACT-CHECK FLAG: CONTRADICTED — see factchecks/00-frontmatter-assertions.md --> Better practice. Worse learning. The struggle was the missing piece.
-
-### Humans + AI, not humans or AI
-
-None of this means AI has no role in education. It means AI has a specific role — and confusing that role with a different one produces harm.
-
-AI is genuinely excellent at the tasks that do not require the learner's cognitive struggle. Drafting the structure so the teacher can teach rather than format. Generating practice problems calibrated to the student's current level. Asking Socratic questions that push thinking rather than providing answers. Producing ten versions of a differentiated material so the teacher can select rather than produce from scratch. Providing immediate feedback on a first draft so revision becomes the cognitive work rather than the entire process.
-
-In all of these, AI is making the *productive* struggle more accessible — removing the obstacles that are not the mechanism of learning so the mechanism can happen more efficiently.
-
-The distinction is not human versus AI. It is cognitive work that constitutes learning versus preparation that enables learning. Humans do the first. AI can do a great deal of the second.
-
-The phase gate — the explicit boundary between what AI handles and what the human must do — is not a restriction on AI capability. It is a specification of which cognitive work needs to happen for learning to occur, and a guarantee that the human is the one doing it.
-
-### What this means for teachers
-
-You are not being asked to do less. You are being asked to do the right things.
-
-The right things are the things only you can do: the live conversation that responds to the actual confusion in the room. The relationship with a student who is losing momentum. The recognition of the misconception embedded in an almost-right answer. The judgment call that no rubric can make. The modeling of what it looks like to not-know-yet and keep going anyway.
-
-AI can prepare the lesson. You teach it. AI can draft the feedback. You know this student. AI can generate the quiz questions. You know which misconceptions this class carries into the material.
-
-The six hours a week this book aims to return to you are six hours of preparation that does not require your professional judgment.
-<!-- FACT-CHECK FLAG: UNVERIFIED — see factchecks/00-frontmatter-assertions.md --> Returning them to you is not reducing your role. It is clarifying which parts of your role are irreplaceable.
-
-The struggle is not being removed from education. The wrong people are being removed from the struggle.
-
-### A note on what follows
-
-The fourteen chapters of this book are practical. Each one addresses a specific task category in a teacher's week, gives you the framework for which parts to delegate and which to keep, and provides the prompts and workflows to do it on Monday morning.
-
-Underneath all of it is the argument of this preface: that human cognition doing human work is the mechanism of human learning, that AI doing human work bypasses that mechanism, and that designing the human-AI division of labor correctly is not merely an efficiency question — it is a pedagogical one.
-
-For readers who want the full theoretical treatment — the neurobiological foundations, the formal framework for measuring genuine learning through process friction traces, the ensemble architecture for probabilistic learning assessment — Appendix G presents the *Frictional* framework in complete form. It is optional reading. Everything you need to implement the book's recommendations is in Chapters 1–14.
-
-But if you want to understand *why* the phase gate is where it is — why this specific division of labor and not some other — Appendix G is the answer.
-
-The struggle is the point. Let's get to work.
-
-— Nik Bear Brown
-Boston, 2026
+This book is part of the **AI+1 series** — a curriculum published by Humanitarians AI, a 501(c)(3) nonprofit, and made available under the principle that graduate-level AI education should not require a graduate tuition bill to access. Every book in the series is free to read. Every book is written for a specific domain, by practitioners who have done the work, for people who are about to.
 
 ---
 
-## References
+## What is this book?
 
-1. Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., & Mariman, R. Generative AI without guardrails can harm learning: Evidence from high school mathematics. Proceedings of the National Academy of Sciences (PNAS), 2025. https://www.pnas.org/doi/10.1073/pnas.2422633122
-2. Glimcher, P. W. Understanding dopamine and reinforcement learning: The dopamine reward prediction error hypothesis. Proceedings of the National Academy of Sciences (PNAS), 2011. https://www.pnas.org/doi/10.1073/pnas.1014269108
-3. Rouhani, N., & Niv, Y. Signed and unsigned reward prediction errors dynamically enhance learning and memory. eLife, 2021. https://pmc.ncbi.nlm.nih.gov/articles/PMC6625913/
+[BOOK-SPECIFIC: one paragraph stating the book's exact scope and the discipline it serves. Name what the reader will be able to do that they cannot do now. Name what the book does *not* cover.]
+
+The organizing frame is the AI+1 argument: you do not need to leave your field to work at the frontier. You need to add the layer of capability your field now requires — the judgment layer, the supervision layer, the reasoning layer that AI cannot perform and that your domain expertise uniquely equips you to hold. This book renders that argument for [DOMAIN].
+
+---
+
+## The Series
+
+Every book in the AI+1 series asks the same question in a different domain: *what does a [domain professional] with AI superpowers actually know how to do?*
+
+The answer is never "write better prompts." It is always a precise account of where human cognition is irreplaceable in that domain — and what it looks like to build and exercise that capacity in practice.
+
+The series draws on the **Irreducibly Human** taxonomy, which organizes human cognitive capacities into seven tiers, from pattern recognition (where machines are already superhuman) to practical wisdom under genuine stakes (where machines are absent by definition). The books do not make this taxonomy explicit in every chapter. It is the architecture the curriculum is built on, not the subject it teaches.
+
+The full taxonomy, the series index, and free digital versions of every book are maintained at [irreducibly.xyz](https://irreducibly.xyz).
+
+---
+
+## Why now
+
+[BOOK-SPECIFIC: one to two paragraphs on the specific urgency in this domain. What is breaking, accelerating, or newly possible in [DOMAIN] because of AI? What is the harm being done right now by the absence of the capability this book teaches?]
+
+The general answer is always the same: AI systems are being deployed faster than the institutions deploying them can evaluate them. The professionals most affected are often the least equipped — not because they are unsophisticated, but because their training was built for a world where the execution layer and the judgment layer lived in the same person. That world is ending. This book is for the transition.
+
+---
+
+## Why Humanitarians AI?
+
+Humanitarians AI is a 501(c)(3) bridge education program. It connects international graduates on OPT with real projects, experienced mentors, and a framework for developing the capacities the AI era most urgently requires — and that most education has never taught. That framework is called Irreducibly Human.
+
+The books in this series are produced using **AI+1**, a software system built by Nik Bear Brown, Associate Teaching Professor in Engineering at Northeastern University, that allows domain-specific textbooks to be written at production scale without sacrificing depth or precision. AI+1 does not generate books. It enables a structured collaborative process in which human judgment — about what matters in a domain, what AI gets wrong in it, and what practitioners actually need to know — is the input, and a rigorously authored book is the output. The system is itself an instantiation of the argument every book in the series makes: AI handles the execution layer, humans supply the judgment layer, and the boundary between them is explicit by design.
+
+Nik Bear Brown's doctorate is in computer science from UCLA, with a major field in computational and systems biology and minor fields in artificial intelligence and statistics. He completed a postdoctoral fellowship in Computational Neurology at Harvard Medical School while teaching at Northeastern. He holds a Master's in Information Design and Data Visualization and an MBA, both from Northeastern, and has taught artificial intelligence, statistics, applied mathematics, and a range of technical and design subjects at Northeastern, UCLA, Santa Monica College, ITT, and the Art Institutes Hollywood. He founded Humanitarians AI in 2019.
+
+The nonprofit was founded on the observation that the most consequential AI failures are not engineering failures — they are judgment failures. The algorithm ran. Nobody was conducting it. Humanitarians AI exists to build the conductors.
+
+[BOOK-SPECIFIC CONTRIBUTOR PARAGRAPH: one paragraph naming the domain expert(s) who supplied the field knowledge this rendering required. This paragraph changes with each book.]
+
+Course materials, slide decks, and assignment scaffolds for courses using this book are available at [bearbrown.co](https://www.bearbrown.co/).
+
+---
+
+## A note on how Humanitarians AI is funded
+
+This book is free because the nonprofit's operating revenue comes from workshop contracts, university licensing, and platform subscriptions — not from the cover price of a textbook. Making the books free is not charity. It is the model.
+
+If your organization wants to run an AI+1 workshop — a half-day, a full day, or a multi-session engagement that delivers the domain-specific capability this book teaches — contact Humanitarians AI at [humanitarians.ai](https://www.humanitarians.ai/). The workshop is where the book becomes practice. The book is what lets the practice stick.
+
+---
+
+*Humanitarians AI*  
+*Boston, Massachusetts*  
+*2026*
