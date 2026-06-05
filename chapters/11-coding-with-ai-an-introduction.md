@@ -1,5 +1,12 @@
 # Chapter 11 — Coding with AI: An Introduction
 
+
+## TL;DR
+
+- The bottleneck was never your lack of syntax.
+- The chapter moves through LLM exercises.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The bottleneck was never your lack of syntax. It was your lack of specification.*
 
 ---
@@ -33,6 +40,7 @@ What changed in 2022–2024 is that the answer became *describe it in English*. 
 The teacher's job in this new arrangement is specification, and specification is not typing. It is thinking. Look at Ms. R's paragraph again. She identified the inputs — four sliders, with ranges and step sizes. She identified the outputs — curve, roots, intercept, equation display. She decomposed the problem into rendering, interaction, and calculation. She anticipated an edge case — what if *a* = 0? She constrained the runtime environment — no internet. Every one of those moves is what Jeannette Wing, in her 2006 *Communications of the ACM* essay "Computational Thinking," called the intellectual work that should survive the syntactic layer: abstraction, decomposition, anticipating failure modes, naming boundaries. The bottleneck for a non-coding teacher building tools with AI is not syntax fluency. It is this thinking. The model can supply the semicolons. It cannot supply the judgment about what the tool should do.
 
 ![the bottleneck shift](../images/11-coding-with-ai-an-introduction-fig-01.png)
+![the bottleneck shift.](images/11-coding-with-ai-an-introduction-fig-01.png)
 *Figure 11.1 — the bottleneck shift.*
 
 ---
@@ -46,6 +54,7 @@ A teacher who writes a paragraph containing all five of those things, in any ord
 That gap is the entire chapter.
 
 ![five-component specification diagram](../images/11-coding-with-ai-an-introduction-fig-02.png)
+![five-component specification diagram.](images/11-coding-with-ai-an-introduction-fig-02.png)
 *Figure 11.2 — five-component specification diagram.*
 
 ---
@@ -81,6 +90,7 @@ Concretely, this is five passes. First, the spec pass: construct three inputs yo
 That is the protocol. Slow the first time. Fast by the fifth.
 
 ![five-pass verification protocol as a numbered checklist](../images/11-coding-with-ai-an-introduction-fig-03.png)
+![five-pass verification protocol as a numbered checklist.](images/11-coding-with-ai-an-introduction-fig-03.png)
 *Figure 11.3 — five-pass verification protocol as a numbered checklist.*
 
 The single most-cited study on AI coding assistants is Peng, Kalliamvakou, Cihon, and Demirer's 2023 study of GitHub Copilot. Professional developers using Copilot completed a clearly specified task 55.8% faster than controls. The number is real. It measures *time-to-complete on a clearly specified task*. It does not measure whether the code is secure, maintainable, or correct on inputs not in the test set.
@@ -156,6 +166,7 @@ The assistant produces about thirty lines of Python. You do not read them. You r
 What made the script safe was not reading the code. It was writing the specification before the code existed, and testing the behavior after.
 
 ![before/after specification comparison](../images/11-coding-with-ai-an-introduction-fig-04.png)
+![before/after specification comparison.](images/11-coding-with-ai-an-introduction-fig-04.png)
 *Figure 11.4 — before/after specification comparison.*
 
 ---
@@ -175,6 +186,7 @@ Wing's 2006 answer pre-dates the question and survives it. Computational thinkin
 Look at Ms. R's polynomial specification again. She identified the inputs and their ranges. She identified the outputs and their labels. She decomposed rendering, interaction, and calculation. She abstracted from the specific cubic to a parameterized polynomial form. She anticipated the edge case where the leading coefficient vanishes. She constrained the runtime environment. A teacher who can do this for a polynomial demo can do it for a missing-assignments script. A teacher who cannot do it cannot. The bottleneck for non-coding teachers building tools with AI is not syntax. It is the thinking Wing named in 2006, which is the same thinking this chapter has been calling specification all along.
 
 ![Wing's computational thinking moves mapped onto Ms](../images/11-coding-with-ai-an-introduction-fig-05.png)
+![Wing's computational thinking moves mapped onto Ms.](images/11-coding-with-ai-an-introduction-fig-05.png)
 *Figure 11.5 — Wing's computational thinking moves mapped onto Ms.*
 
 ---
@@ -222,12 +234,15 @@ The second is maintenance. This chapter says nothing useful about what happens t
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 Hopper invented the first compiler (A-0, 1952) and wrote much of what became COBOL. Her teaching ethos — *the most dangerous phrase in the language is we have always done it that way* — and her habit of explaining computing to non-programmers in their own vocabulary is the disposition this chapter asks teachers to bring to coding with AI. A teacher learning to code is doing what Hopper spent her career doing: insisting that the machine be made legible to the person who needs it, not the other way around.
 
 ![Grace Hopper, 1906-1992. AI-generated portrait based on a public domain photograph.](../images/grace-hopper.jpg)
 *Grace Hopper, 1906-1992. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+![Grace Hopper](../images/grace-hopper-w8h.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 
@@ -243,3 +258,53 @@ Who was Grace Hopper, and how does their work connect to the ideas in this chapt
 - Ask about the critics of Hopper's work and which criticisms still bite today.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 11.1 — the bottleneck shift.
+
+Create a standalone D3 v7 HTML file for a concept map titled "the bottleneck shift.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-01.html`
+
+---
+
+### Figure 11.2 — five-component specification diagram.
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "five-component specification diagram.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-02.html`
+
+---
+
+### Figure 11.3 — five-pass verification protocol as a numbered checklist.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "five-pass verification protocol as a numbered checklist.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-03.html`
+
+---
+
+### Figure 11.4 — before/after specification comparison.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "before/after specification comparison.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-04.html`
+
+---
+
+### Figure 11.5 — Wing's computational thinking moves mapped onto Ms.
+
+Create a standalone D3 v7 HTML file for a concept map titled "Wing's computational thinking moves mapped onto Ms.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/11-coding-with-ai-an-introduction-fig-05.html`

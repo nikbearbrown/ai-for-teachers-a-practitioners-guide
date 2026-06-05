@@ -1,5 +1,12 @@
 # Chapter 12 — Building Your AI Workflow: Monday Morning to End of Year
 
+
+## TL;DR
+
+- Two teachers, same building, same tool, ten hours apart.
+- The chapter moves through The selection problem, named honestly, What the library actually is, The schedule: the other half, Why most teachers plateau, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *Two teachers, same building, same tool, ten hours apart. The gap is not skill. It is what was captured and what was scheduled.*
 
 ---
@@ -15,6 +22,7 @@ This is not a character flaw. It is the natural state of a tool you were never t
 The workflow this chapter describes is what you build when the training was not offered. It is not complicated. It is a document, a schedule, and a maintenance habit. The document captures the prompts that worked. The schedule creates the recurring context in which they get used. The maintenance habit keeps both from rotting. Put the three together and you have converted your accumulated tacit AI knowledge into something explicit — something that works on a hard Wednesday as well as it works on a motivated Sunday.
 
 ![Three-box flow diagram. First box "Tacit knowledge" lists prompt patterns, trust judgments, phase-gate habits living in the teacher's head. An arrow labeled "Capture event — the prompt worked, you save it to workflow.md" leads to a second box "Explicit knowledge" listing parameterized, labeled, maintained, reusable entries. A dashed red decay arrow loops back from the first box to a third box "Closed tab — reinvented next Tuesday," showing what happens when the capture step is skipped.](../images/12-building-your-ai-workflow-fig-01.png)
+![Tacit-to-explicit conversion, and the decay path that runs if the capture event never fires. The workflow](images/12-building-your-ai-workflow-fig-01.png)
 *Figure 12.1 — Tacit-to-explicit conversion, and the decay path that runs if the capture event never fires. The workflow document is the structural insistence that the capture happens.*
 
 ---
@@ -77,6 +85,7 @@ Build 30 percent slack into each block. A block that hits 100 percent utilizatio
 An honest caveat: the habit literature is well-validated for individual behaviors — exercise, snacking, commuting routes. Its application to professional-workflow installation is plausible by extension, not specifically validated for teacher AI workflows. Use it as an operational scaffold, not a guaranteed mechanism.
 
 ![Two parallel horizontal tracks merging at a single endpoint. Upper track labeled "Goal system: effortful, depletable, loses to a hard Wednesday" runs through five stations: motivation high, open tool, write prompt from scratch, use output, close tab — and a loop back to motivation. Lower track labeled "Habit system: context-cued, low activation cost, works whether motivation is high or low" runs through Sunday 4pm at the kitchen table, context triggers behavior, open workflow.md, run library entry 01, phase gate, done. Both tracks merge at a single labeled endpoint "Output reaches students."](../images/12-building-your-ai-workflow-fig-02.png)
+![Goal system versus habit system, after Wood and Neal. Both routes can deliver an output. Only one of them](images/12-building-your-ai-workflow-fig-02.png)
 *Figure 12.2 — Goal system versus habit system, after Wood and Neal. Both routes can deliver an output. Only one of them is robust to a hard Wednesday.*
 
 ---
@@ -94,6 +103,7 @@ Both frameworks say the same thing in different vocabularies: the plateau is str
 The workflow document is the structural support.
 
 ![Two-row plateau map. Top row shows Rogers's five sequential stages — Knowledge, Persuasion, Decision, Implementation, Confirmation — with a red plateau flag wedged between Implementation and Confirmation labeled "ad hoc adoption: tool is used but each use is a fresh decision." Bottom row shows the CBAM stages of concern condensed — Awareness, Personal, Management, Consequence, Collaboration, Refocusing — with a red plateau flag between Management and Consequence labeled "stuck on logistics: do I have time and materials?" An ochre arrow beneath both rows labeled "workflow.md moves you past both plateaus" sweeps from Implementation to Confirmation on top and from Management to Consequence below.](../images/12-building-your-ai-workflow-fig-03.png)
+![Rogers and Hall-Hord, side by side. Two different vocabularies, the same plateau, the same structural fix](images/12-building-your-ai-workflow-fig-03.png)
 *Figure 12.3 — Rogers and Hall-Hord, side by side. Two different vocabularies, the same plateau, the same structural fix.*
 
 ---
@@ -131,6 +141,7 @@ The maintenance move is a calendar entry — twice a year, January and July, 30 
 This is not maintenance for its own sake. It is the difference between a library that degrades and a library that improves. The work takes 30 minutes twice a year. Skipping it costs you the asset you built.
 
 ![Line chart with months 0 to 24 on the x-axis and prompt output quality, relative to an initial baseline of 1.0, on the y-axis from 0 to 1. A solid red "no maintenance" line starts at 1.0 and decays smoothly to roughly 0.60 by month 12 and 0.30 by month 24. A dark "six-month maintenance" line starts at 1.0, decays slightly, snaps back to 1.0 at month 6, decays again, snaps back at months 12 and 18, holding near 1.0 across the full 24 months. Two ochre tick marks at months 6 and 12 mark the 30-minute maintenance calendar events.](../images/12-building-your-ai-workflow-fig-04.png)
+![Prompt output quality with and without a six-month maintenance cycle. The maintenance events are 30 minut](images/12-building-your-ai-workflow-fig-04.png)
 *Figure 12.4 — Prompt output quality with and without a six-month maintenance cycle. The maintenance events are 30 minutes apiece, twice a year. The thing they prevent is the slow degradation that nobody notices until a grading dispute surfaces it.*
 
 ---
@@ -204,8 +215,7 @@ Chapter 13 turns the workflow around: the same *workflow.md* that saves you time
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 The argument that a teaching week can be made tractable by writing it down belongs to a longer engineering tradition than it sounds. **Henry Laurence Gantt** (1861–1919) was an American mechanical engineer who, working with Frederick Winslow Taylor at Midvale Steel and then on his own, invented the production planning chart that still carries his name. The Gantt chart — horizontal bars on a time axis showing scheduled tasks, their durations, their dependencies, and their actual progress against plan — turned a foreman's tacit week into a wall-sized explicit document anyone on the shop floor could read in five seconds. The United States Army built warships against Gantt's charts in the First World War; the Hoover Dam was built against them; every project-management tool you have ever used is downstream of them. The deep idea is not the bars. The deep idea is that the schedule has to live outside the planner's head, in a form a second person can read, or it does not really exist. *Workflow.md* is the same move at the scale of a single teacher's week: a captured library and a recurring schedule, written down so that future-you can read them on a hard Wednesday without rebuilding them from scratch.
 
 ![Henry Gantt, American mechanical engineer (1861–1919). AI-generated portrait based on public-domain reference photographs.](../images/henry-gantt.jpg)
@@ -239,3 +249,45 @@ What changes? What gets better? What gets worse?
 [^rogers]: Rogers, E. M. (2003). *Diffusion of Innovations* (5th ed.). Free Press.
 
 [^cbam]: Hall, G. E., & Hord, S. M. (2020). *Implementing Change: Patterns, Principles, and Potholes* (5th ed.). Pearson Education. SEDL CBAM resources: <https://sedl.org/cbam/>.
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 12.1 — Tacit-to-explicit conversion, and the decay path that runs if the capture event never fires. The workflow
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "Tacit-to-explicit conversion, and the decay path that runs if the capture event never fires. The workflow". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/12-building-your-ai-workflow-fig-01.html`
+
+---
+
+### Figure 12.2 — Goal system versus habit system, after Wood and Neal. Both routes can deliver an output. Only one of them
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "Goal system versus habit system, after Wood and Neal. Both routes can deliver an output. Only one of them". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/12-building-your-ai-workflow-fig-02.html`
+
+---
+
+### Figure 12.3 — Rogers and Hall-Hord, side by side. Two different vocabularies, the same plateau, the same structural fix
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "Rogers and Hall-Hord, side by side. Two different vocabularies, the same plateau, the same structural fix". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/12-building-your-ai-workflow-fig-03.html`
+
+---
+
+### Figure 12.4 — Prompt output quality with and without a six-month maintenance cycle. The maintenance events are 30 minut
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Prompt output quality with and without a six-month maintenance cycle. The maintenance events are 30 minut". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/12-building-your-ai-workflow-fig-04.html`

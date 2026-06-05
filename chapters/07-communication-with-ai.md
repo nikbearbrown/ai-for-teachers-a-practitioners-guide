@@ -1,4 +1,11 @@
 # Chapter 7 — Communication with AI: Parents, Admin, and Documentation
+
+## TL;DR
+
+- You already know what you want to say.
+- The chapter moves through What a teacher's communication week actually is, The right sort, The core move, Translation: what it can do and what it cannot, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The model can polish the container. Only you can supply what goes inside it.*
 
 ---
@@ -22,6 +29,7 @@ AI is very good at register conversion. It is structurally incapable of knowing 
 ## What a teacher's communication week actually is
 
 ![Five horizontal rows mapping a teacher's communication week to five categories, each with a reader's question and an AI role: routine informational, progress and pattern notes, administrative documentation, sensitive communications, and relational-evidence messages.](../images/07-communication-with-ai-fig-01.png)
+![Same week, five different gate positions. The sort happens before the draft.](images/07-communication-with-ai-fig-01.png)
 *Figure 7.1 — Same week, five different gate positions. The sort happens before the draft.*
 
 When teachers describe the communication burden, they usually describe a single category: messages to parents. But a teacher's communication week is four or five tasks wearing the same label.
@@ -53,6 +61,7 @@ Here is the sorting test, stated as three questions rather than a rule.
 Run every message through those three questions before you decide who drafts it. The category names — routine, sensitive — are shorthand for where it lands on the test. They are not determined by genre. Some IEP progress notes are routine. Some parent emails are sensitive. The test tells you which is which.
 
 ![Three-question decision tree starting at the message to draft and branching through the school-board-readable test, the information versus relational-evidence test, and the factual-drift harm test, terminating in four outcomes: stop and rewrite, teacher-only, routine AI lane, or sensitive AI lane.](../images/07-communication-with-ai-fig-02.png)
+![The sort happens before the draft. Same three questions, every message, every time.](images/07-communication-with-ai-fig-02.png)
 *Figure 7.2 — The sort happens before the draft. Same three questions, every message, every time.*
 
 ---
@@ -66,6 +75,7 @@ The highest-leverage principle in this chapter can be stated in one sentence:
 That is not "AI writes teacher communication." It is AI doing the register conversion you would otherwise do by hand. You already had the observation. You already had the judgment about how the family will receive it. What you don't always have, at 6:47 on a Thursday evening, is the energy to render that judgment in sentences that land warmly without bureaucratic stiffness and without over-intimacy. The rendering is form-work. The model is excellent at form-work.
 
 ![Three-step horizontal pipeline: teacher writes bullets (the what — you supply this), model writes prose (the how — model does this), teacher reads prose against bullets (the check — never skip this); a red callout on the third step names it as the step skipped under time pressure and the step that catches failures.](../images/07-communication-with-ai-fig-03.png)
+![The phase gate is three steps. Two of them involve you.](images/07-communication-with-ai-fig-03.png)
 *Figure 7.3 — The phase gate is three steps. Two of them involve you.*
 
 The phase gate is three steps: teacher writes bullets; model writes prose; teacher reads prose against bullets. The third step is what gets skipped under time pressure. The third step is what catches the failures.
@@ -123,6 +133,7 @@ The second is smoothed-over substance. The model's default register is professio
 The third is legal drift. The model produces phrasings — *we will look into this matter*, *out of an abundance of caution* — that carry institutional implications the teacher did not intend and the district has not authorized. The teacher who signs the message is the one who published it. Publisher liability in defamation doctrine runs to the party who publishes, not the party who composed the underlying text — and that principle extends to AI-drafted content the user signs and sends. The case law applying this to school records specifically is still developing. The principle is not.
 
 ![Three stacked panels naming each failure mode in sensitive AI-drafted communication. Panel one fabricated specificity, panel two smoothed-over substance, panel three legal drift. Each panel has three rows: cause, what the parent reads, and what the record shows.](../images/07-communication-with-ai-fig-04.png)
+![Three different failures, one shared cause: the model was asked to invent substance.](images/07-communication-with-ai-fig-04.png)
 *Figure 7.4 — Three different failures, one shared cause: the model was asked to invent substance.*
 
 This is why the gate for sensitive communication is sharper than for routine work: the teacher writes the substance in their own voice — dated, specific, observable, in the format they would want under cross-examination — and then, *and only then*, invites the model to render it in the required format.
@@ -132,6 +143,7 @@ This is why the gate for sensitive communication is sharper than for routine wor
 ## Two emails, one afternoon
 
 ![Split-panel illustration of two afternoon workflows. Left panel: routine case with five bullet notes flowing into a clean draft, labeled four minutes. Right panel: sensitive case with a blank prompt and a model returning a fabricated incident narrative, labeled five minutes now and a documentation crisis later.](../images/07-communication-with-ai-fig-05.png)
+![The two workflows look equally fast in the moment. The difference is invisible until it isn't.](images/07-communication-with-ai-fig-05.png)
 *Figure 7.5 — The two workflows look equally fast in the moment. The difference is invisible until it isn't.*
 
 The fastest way to see the gate in operation is to put two messages side by side.
@@ -173,6 +185,7 @@ The second is that translation is solved. It is usable for routine prose in high
 The third is the most dangerous: *use AI for the hard messages, it's better at staying calm*. The model will produce calmer prose than a tired teacher at 9:47 on a Thursday. The problem is not the calm. The problem is that the model has no judgment about what should be said. It will be calm about details that did not happen. It will be calm about a softened version of a serious incident that needed to land seriously. Calm is the model's default register. *Right* is your responsibility.
 
 ![Two-column Myth versus Reality layout with three rows. Row one: AI handles parent communication versus AI handles register conversion only. Row two: translation is solved versus translation is partial and uneven. Row three: use AI for the hard messages because it stays calm versus the model is calm about details that did not happen.](../images/07-communication-with-ai-fig-06.png)
+![Three plausible-sounding shortcuts. Three predictable failure modes.](images/07-communication-with-ai-fig-06.png)
 *Figure 7.6 — Three plausible-sounding shortcuts. Three predictable failure modes.*
 
 ---
@@ -220,8 +233,7 @@ And defamation in school records. The publisher-liability principle is settled. 
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 The ideas in this chapter didn't appear from nowhere. **Carl Rogers (1902–1987)** built a clinical psychology around an idea that sounds soft and is structurally precise — that human change happens through a specific relational stance, not through technique. *On Becoming a Person* (1961) named the three conditions: unconditional positive regard, congruence (the helper does not perform), and accurate empathy (the helper checks what they heard against what was said). Active listening, the move you may have learned as "reflect back what you heard," is his — and it works for exactly the reason this chapter's gate works. The listener supplies form; the speaker supplies content; the listener confirms by reading back. Rogers' clinical insight is the structural ancestor of the bullets-first discipline. The model converts your bullets into appropriately-toned prose the way a Rogerian counselor reflects content back to the speaker — only the original speaker can supply what is to be said. Apply Rogers to teacher-to-parent, teacher-to-student, and teacher-to-colleague communication and the entire chapter's framework drops out: the relational evidence has to come from the person who actually noticed; the model can polish the container but cannot supply the contents.
 
 ![Carl Rogers, mid-twentieth century. AI-generated portrait based on public-domain photographs.](../images/carl-rogers.jpg)
@@ -241,3 +253,61 @@ Who was Carl Rogers, and how does his person-centered approach connect to the fr
 - Ask it whether Rogers' insistence on congruence — the helper does not perform — survives translation through an AI register-conversion step, and where the seam shows.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 7.1 — Same week, five different gate positions. The sort happens before the draft.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "Same week, five different gate positions. The sort happens before the draft.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-01.html`
+
+---
+
+### Figure 7.2 — The sort happens before the draft. Same three questions, every message, every time.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "The sort happens before the draft. Same three questions, every message, every time.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-02.html`
+
+---
+
+### Figure 7.3 — The phase gate is three steps. Two of them involve you.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "The phase gate is three steps. Two of them involve you.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-03.html`
+
+---
+
+### Figure 7.4 — Three different failures, one shared cause: the model was asked to invent substance.
+
+Create a standalone D3 v7 HTML file for a concept map titled "Three different failures, one shared cause: the model was asked to invent substance.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-04.html`
+
+---
+
+### Figure 7.5 — The two workflows look equally fast in the moment. The difference is invisible until it isn't.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "The two workflows look equally fast in the moment. The difference is invisible until it isn't.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-05.html`
+
+---
+
+### Figure 7.6 — Three plausible-sounding shortcuts. Three predictable failure modes.
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "Three plausible-sounding shortcuts. Three predictable failure modes.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/07-communication-with-ai-fig-06.html`

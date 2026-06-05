@@ -1,5 +1,12 @@
 # Chapter 4 — Lesson Planning and Curriculum Design with AI
 
+
+## TL;DR
+
+- The plan that looks right and the plan that lands are not the same document.
+- The chapter moves through What the evidence actually shows, Why a lesson plan is not one task, Backward design and why most AI prompts get it wrong, The prompt is the primary lever, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The plan that looks right and the plan that lands are not the same document.*
 
 ---
@@ -48,6 +55,7 @@ A lesson plan is a bundle of tasks that the profession has chosen to represent a
 The plan that the AI produces in fifteen minutes is complete at the structural layer. It is a draft at the PCK layer. These are different claims, and treating the structural completeness as overall completeness is the trap.
 
 ![Two-column infographic. Left column, headed "Structural layer — AI does well," lists six items: objectives in verb-list form, timed activity sequence, differentiation templates, exit ticket prompts, standards citations, worksheet first drafts. Right column, headed "PCK layer — teacher supplies," lists four items: which misconception this class will carry, which analogy backfires here, correct sub-topic sequence for this population, the exit ticket question that surfaces the right confusion.](../images/04-lesson-planning-with-ai-fig-01.png)
+![Two layers of a lesson plan. The structural layer is delegable; the PCK layer is not. Treating the first ](images/04-lesson-planning-with-ai-fig-01.png)
 *Figure 4.1 — Two layers of a lesson plan. The structural layer is delegable; the PCK layer is not. Treating the first as the whole is the trap.*
 
 ---
@@ -67,6 +75,7 @@ This switch changes the nature of the output entirely. The model is no longer gu
 The ninety seconds you spend writing the two sentences before opening the prompt is the most important ninety seconds in the workflow. It is also the step that most teachers skip for the first six months of AI lesson planning, then discover, and never skip again.
 
 ![Backward-design flow diagram. Three boxes left to right labeled Stage 1, Stage 2, Stage 3, with arrows between them. Captions beneath each: "What should students understand?" "What evidence shows they understand it?" "What activities produce that evidence?" A skip arrow from a default AI prompt jumps straight to Stage 3, marked with a red X. A second path shows a two-sentence sticky note feeding Stage 1, then Stage 2, then the AI prompt at Stage 3, marked with a green check.](../images/04-lesson-planning-with-ai-fig-02.png)
+![Backward design and where AI prompts collapse it. A default prompt skips Stages 1 and 2 and runs straight](images/04-lesson-planning-with-ai-fig-02.png)
 *Figure 4.2 — Backward design and where AI prompts collapse it. A default prompt skips Stages 1 and 2 and runs straight to Stage 3; the two-sentence sticky note is the ninety-second fix.*
 
 ---
@@ -142,6 +151,7 @@ The practical rule: use AI at the unit level, planned a week or two ahead, with 
 And do not generate a year of plans at once. A year of plans generated in August cannot reflect what you will learn about your class in September. The Tuesday-of-week-eight lesson depends on what surfaced in Tuesday-of-week-seven's exit ticket. PCK accumulates through the year. Locking in annual plans in advance discards that accumulation.
 
 ![Line chart with planning horizon on the x-axis (tomorrow's lesson, next week's lesson, unit at two to three weeks, semester, full year) and AI dividend on the y-axis (time saved minus revision cost). The curve rises steeply from tomorrow to unit level, peaks at the unit, then flattens and dips toward the full-year mark.](../images/04-lesson-planning-with-ai-fig-03.png)
+![AI dividend by planning horizon. Unit-level is the sweet spot; Monday-night single-lesson generation and ](images/04-lesson-planning-with-ai-fig-03.png)
 *Figure 4.3 — AI dividend by planning horizon. Unit-level is the sweet spot; Monday-night single-lesson generation and August year-ahead generation both capture less of the dividend.*
 
 ---
@@ -192,8 +202,7 @@ Chapter 5 takes the same framework into assessment and feedback — where the ti
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 The two-sentence sticky note in this chapter — *what should students understand, and what evidence shows they understand it* — did not begin with Grant Wiggins and Jay McTighe in 1998. It began with **Ralph W. Tyler** (1902–1994), the American educator whose 1949 *Basic Principles of Curriculum and Instruction* set out four questions that every curriculum must answer: what educational purposes should the school seek to attain; what educational experiences can be provided that are likely to attain these purposes; how can these educational experiences be effectively organized; and how can we determine whether these purposes are being attained. The *Tyler rationale* — objectives, experiences, organization, evaluation — is the structural skeleton beneath backward design, beneath outcomes-based education, and beneath the lesson-planning workflow in this chapter. When you write Stage 1 and Stage 2 before opening the AI, you are doing Tyler's first and fourth steps; when the AI proposes activities and you sequence them, you are doing his second and third. The chapter's prompt-then-revise workflow is Tyler's rationale with a new tool inserted at the activity-design step.
 
 ![Ralph W. Tyler, American educator (1902–1994). AI-generated portrait based on public-domain reference photographs.](../images/ralph-tyler.jpg)
@@ -227,3 +236,37 @@ What changes? What gets better? What gets worse?
 [^rand]: RAND Corporation (2025). *Uneven Adoption of Artificial Intelligence Tools Among U.S. Teachers and Principals in the 2023–2024 School Year* (RR-A134-25). <https://www.rand.org/pubs/research_reports/RRA134-25.html>.
 
 [^aila]: Education Endowment Foundation (2025). *Lesson planning using AI lesson assistant, Aila — Teacher Choices Trial.* ~450 Key Stage 2 teachers, 86 English primary schools; results expected 2026. <https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/aila-teacher-choices-trial>.
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 4.1 — Two layers of a lesson plan. The structural layer is delegable; the PCK layer is not. Treating the first 
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "Two layers of a lesson plan. The structural layer is delegable; the PCK layer is not. Treating the first ". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/04-lesson-planning-with-ai-fig-01.html`
+
+---
+
+### Figure 4.2 — Backward design and where AI prompts collapse it. A default prompt skips Stages 1 and 2 and runs straight
+
+Create a standalone D3 v7 HTML file for a concept map titled "Backward design and where AI prompts collapse it. A default prompt skips Stages 1 and 2 and runs straight". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/04-lesson-planning-with-ai-fig-02.html`
+
+---
+
+### Figure 4.3 — AI dividend by planning horizon. Unit-level is the sweet spot; Monday-night single-lesson generation and 
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "AI dividend by planning horizon. Unit-level is the sweet spot; Monday-night single-lesson generation and ". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/04-lesson-planning-with-ai-fig-03.html`

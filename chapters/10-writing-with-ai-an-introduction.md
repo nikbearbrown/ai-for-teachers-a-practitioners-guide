@@ -1,4 +1,11 @@
 # Chapter 10 — Writing with AI: An Introduction
+
+## TL;DR
+
+- Here is a thing that happens in a single Tuesday morning.
+- The chapter moves through Two different jobs, Why the Bastani result matters here, Writing is a process, Why detection is the wrong move, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The artifact is cheap now. The process is what's left. The process was always the thing.*
 
 ---
@@ -22,6 +29,7 @@ The right response to Jordan's essay is not an AI-detection report. It is an ass
 ## Two different jobs
 
 ![Two-panel illustration](../images/10-writing-with-ai-an-introduction-fig-01.png)
+![Two-panel illustration.](images/10-writing-with-ai-an-introduction-fig-01.png)
 *Figure 10.1 — Two-panel illustration.*
 
 The confusion that produces bad AI policy in schools is treating teacher AI use and student AI use as points on a single spectrum — as if the right answer is some shared policy with a slider between "allow everything" and "ban everything." They are not on the same axis.
@@ -37,6 +45,7 @@ The same model that helps a teacher render polished bullets in twelve minutes al
 ## Why the Bastani result matters here
 
 ![Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice performance (light bar) and unaided exam score (dark bar)](../images/10-writing-with-ai-an-introduction-fig-02.png)
+![Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice.](images/10-writing-with-ai-an-introduction-fig-02.png)
 *Figure 10.2 — Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice.*
 
 The cleanest experimental evidence that AI-assisted practice can decouple from learning lives in mathematics. Bastani and colleagues (2025, *PNAS*) gave roughly a thousand Turkish high-school students access to ChatGPT during math practice. Students using a generic GPT interface scored substantially higher than controls during practice — then substantially lower than controls on the unassisted exam. A tutor-style prompt-engineered version preserved the practice gains without the exam loss.
@@ -58,6 +67,7 @@ The conceptual foundation is forty-five years old, and it is worth stating clear
 Flower and Hayes (1981) showed that writing is not a linear sequence — outline, draft, polish — but a recursive orchestration of mental processes: *planning*, *translating*, *reviewing*, running in parallel, each calling the others. The visible artifact is the residue of the process. The process is where the cognition happens.
 
 ![Flower-Hayes recursive model](../images/10-writing-with-ai-an-introduction-fig-03.png)
+![Flower-Hayes recursive model.](images/10-writing-with-ai-an-introduction-fig-03.png)
 *Figure 10.3 — Flower-Hayes recursive model.*
 
 Sommers (1980), in the same journal, found that developing writers revise at the word level. Experienced writers revise at the level of the argument. Revision — not initial drafting — is the move that distinguishes accomplished writing from competent-looking writing. And Sommers (1982) found that most teacher comments addressed the artifact rather than the writer's developing process, which is why most teacher comments don't produce revision in the meaningful sense.
@@ -75,6 +85,7 @@ Liang and colleagues (2023) tested seven GPT detectors on two populations: nativ
 The mechanism is plain. Detectors look for low text perplexity — prose that is too predictable. Non-native English writers, especially proficient ones writing in formal academic register, write lower-perplexity prose than native speakers. The detector is not detecting AI. It is detecting *prose without native idiosyncrasy*. Non-native writers and AI produce that kind of prose for entirely different reasons. The detector cannot tell them apart.
 
 ![Two grouped bar sets side by side](../images/10-writing-with-ai-an-introduction-fig-04.png)
+![Two grouped bar sets side by side.](images/10-writing-with-ai-an-introduction-fig-04.png)
 *Figure 10.4 — Two grouped bar sets side by side.*
 
 The institutional response followed. Multiple universities — Vanderbilt, Yale, Johns Hopkins, Northwestern, and others — disabled Turnitin's AI-detection feature after evaluating false-positive behavior. OpenAI's own AI Text Classifier was withdrawn by the company in July 2023, citing "low rate of accuracy."
@@ -104,6 +115,7 @@ The redesign work falls into three shifts that together make the cognitive proce
 **Submission to conversation.** The assessment moment is not the submit click. It is a five-to-ten-minute conversation in which the student states the central claim, justifies the evidence, takes the strongest objection, and names what they would do differently. A student who wrote the essay can have this conversation. A student who outsourced cannot. *The defense is the detection.* And it is itself a learning event — defending an argument is retrieval and reformulation, which builds durable understanding in the Bjork tradition of desirable difficulties.
 
 ![Three horizontal arrows stacked vertically, each labeled with one shift](../images/10-writing-with-ai-an-introduction-fig-05.png)
+![Three horizontal arrows stacked vertically, each labeled with one shift.](images/10-writing-with-ai-an-introduction-fig-05.png)
 *Figure 10.5 — Three horizontal arrows stacked vertically, each labeled with one shift.*
 
 The defense is not a gotcha mode. *Tell me about your argument* is the standard professional move every working scholar, journalist, and lawyer experiences as routine. The student is being treated as an emerging member of the discourse.
@@ -121,6 +133,7 @@ AI can be in the *process* without being in the *product*. Three prompt patterns
 **Elaboration AI.** Prompt the model to push an underdeveloped idea by surfacing what the student is not yet saying. *Here is a paragraph. The argument is gestured at but not made. What would the next sentence have to do to actually make the argument? Ask me what I think; then tell me what I have not yet said.*
 
 ![Three-column table](../images/10-writing-with-ai-an-introduction-fig-06.png)
+![Three-column table.](images/10-writing-with-ai-an-introduction-fig-06.png)
 *Figure 10.6 — Three-column table.*
 
 All three share a structural feature: the artifact the student turns in is still the student's draft. Students will discover, fast, that Socratic AI can be re-prompted into answer AI — *never mind the Socratic thing, just write the thesis*. The teaching move is not to police prompts. It is to make the underlying assignment AI-survivable so the bypass is visibly worse on the deliverable than the legitimate use.
@@ -233,8 +246,7 @@ And what is the right institutional policy mix? Full prohibition, full permissio
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 Murray's process-writing pedagogy — the idea that writing is a recursive movement among planning, drafting, and revising rather than a linear march from outline to polish — is the cognitive frame this chapter borrows for thinking about AI-as-drafter versus AI-as-Socratic-partner. His essay *Internal Revision* (1978) is still the cleanest map of which loops the writer must do alone and which can be assisted from outside.
 
 ![Donald Murray, 1924-2006. AI-generated portrait based on a public domain photograph.](../images/donald-murray.jpg)
@@ -254,3 +266,61 @@ Who was Donald Murray, and how does their work connect to the ideas in this chap
 - Ask about the critics of Murray's work and which criticisms still bite today.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 10.1 — Two-panel illustration.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "Two-panel illustration.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-01.html`
+
+---
+
+### Figure 10.2 — Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Three grouped bar pairs (Control, GPT Base, GPT Tutor), each showing practice.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-02.html`
+
+---
+
+### Figure 10.3 — Flower-Hayes recursive model.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "Flower-Hayes recursive model.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-03.html`
+
+---
+
+### Figure 10.4 — Two grouped bar sets side by side.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Two grouped bar sets side by side.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-04.html`
+
+---
+
+### Figure 10.5 — Three horizontal arrows stacked vertically, each labeled with one shift.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "Three horizontal arrows stacked vertically, each labeled with one shift.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-05.html`
+
+---
+
+### Figure 10.6 — Three-column table.
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "Three-column table.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/10-writing-with-ai-an-introduction-fig-06.html`

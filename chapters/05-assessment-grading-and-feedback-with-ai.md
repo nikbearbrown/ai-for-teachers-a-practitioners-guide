@@ -1,4 +1,11 @@
 # Chapter 5 — Assessment, Grading, and Feedback with AI
+
+## TL;DR
+
+- A rubric-accurate comment is not the same as a useful one.
+- The chapter moves through Four sub-tasks inside one verb, What the studies actually show, The time savings, stated carefully, The rubric is a measuring instrument, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *A rubric-accurate comment is not the same as a useful one. The difference is where the teacher was.*
 
 ---
@@ -22,6 +29,7 @@ This is where the chapter begins. Not with the time savings — those are real a
 ## Four sub-tasks inside one verb
 
 ![Four horizontal rows, each labeled with one sub-task and a brief descriptor: (1) First-pass scoring](../images/05-assessment-grading-and-feedback-with-ai-fig-01.png)
+![Four horizontal rows, each labeled with one sub-task and a brief descriptor:.](images/05-assessment-grading-and-feedback-with-ai-fig-01.png)
 *Figure 5.1 — Four horizontal rows, each labeled with one sub-task and a brief descriptor:.*
 
 When a teacher says "I have to grade this stack," she is naming four different things at once. Pulling them apart is the first move.
@@ -41,6 +49,7 @@ There is the taxonomy. Sub-tasks one through three are where AI helps. Sub-task 
 ## What the studies actually show
 
 ![Three-column comparison matrix](../images/05-assessment-grading-and-feedback-with-ai-fig-02.png)
+![Three-column comparison matrix.](images/05-assessment-grading-and-feedback-with-ai-fig-02.png)
 *Figure 5.2 — Three-column comparison matrix.*
 
 Two studies establish what AI can do on sub-tasks one and two. Both are recent. Both are worth being precise about.
@@ -82,6 +91,7 @@ Pick five student samples you have already graded — not the easiest five, but 
 The step people skip is that last re-run. They see the offset, trust themselves to correct for it mentally as they review later, and scale immediately. The mental adjustment does not survive thirty essays. By essay forty the systematic upward drift has propagated into the real grade distribution. Calibration that is not closed in the prompt is calibration that is not happening.
 
 ![A two-column timeline showing "Without the re-run" vs](../images/05-assessment-grading-and-feedback-with-ai-fig-03.png)
+![A two-column timeline showing "Without the re-run" vs.](images/05-assessment-grading-and-feedback-with-ai-fig-03.png)
 *Figure 5.3 — A two-column timeline showing "Without the re-run" vs.*
 
 ---
@@ -101,6 +111,7 @@ High inter-rater reliability between an AI and a teacher who share a bias is not
 ## The Bastani parallel at the feedback level
 
 ![Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing practice performance (light bar) and unaided exam score (dark bar)](../images/05-assessment-grading-and-feedback-with-ai-fig-04.png)
+![Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing.](images/05-assessment-grading-and-feedback-with-ai-fig-04.png)
 *Figure 5.4 — Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing.*
 
 This is the chapter's central move, and I want to label it carefully: what follows is a *prediction*, not a measured effect. It is well-motivated by two findings — Bastani et al. (2025) at the practice level, Steiss et al. (2024) on feedback quality — but the direct feedback-level analog has not been run as a trial.
@@ -146,6 +157,7 @@ The lesson restated: the work is not delegated. The drafting is. The judgment st
 The limit: this worked because the rubric was tight, the responses were short, and the misconceptions she was looking for were ones she had already named for herself. If the rubric had been six overlapping levels, or the responses had been three-page essays, or she was teaching this unit for the first time and did not yet know what to look for, the workflow would have produced less savings and required more review. The dividend scales with the clarity of the teacher's prior judgment.
 
 !["When the calibration workflow earns its time savings"](../images/05-assessment-grading-and-feedback-with-ai-fig-05.png)
+!["When the calibration workflow earns its time savings".](images/05-assessment-grading-and-feedback-with-ai-fig-05.png)
 *Figure 5.5 — "When the calibration workflow earns its time savings".*
 
 ---
@@ -169,6 +181,7 @@ If any of the four conditions is missing, the workflow has stopped helping. It m
 ## Formative versus summative — where the gate slides
 
 ![A horizontal sliding scale from "formative" (left) to "summative" (right), with the phase gate represented as a vertical marker that shifts rightward (toward more human involvement) as stakes increase](../images/05-assessment-grading-and-feedback-with-ai-fig-06.png)
+![A horizontal sliding scale from "formative" (left) to "summative" (right), with.](images/05-assessment-grading-and-feedback-with-ai-fig-06.png)
 *Figure 5.6 — A horizontal sliding scale from "formative" (left) to "summative" (right), with.*
 
 A formative assessment is for learning: a draft, a check-for-understanding, a low-stakes problem set the student uses to figure out what she does not yet know. A summative assessment is of learning: a final exam, a graded essay, a record that goes on the transcript. The legal, ethical, and pedagogical demands on the two are different, and the phase gate sits in different places along the workflow.
@@ -234,12 +247,15 @@ The last is the formative-summative gate placement question. The principle — t
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 Thorndike founded American educational measurement. His law of effect, connectionist theory of learning, and the maxim *anything that exists, exists in some quantity, and so can be measured* are the chapter's framework for AI-assisted assessment in one line. The discipline he insisted on — that an assessment instrument is a tool that can be sharpened, audited, and replaced — is exactly what this chapter asks teachers to bring to AI-generated rubrics, drafts, and feedback.
 
 ![Edward Thorndike, 1874-1949. AI-generated portrait based on a public domain photograph.](../images/edward-thorndike.jpg)
 *Edward Thorndike, 1874-1949. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+![Edward Thorndike](../images/edward-thorndike-nst.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 
@@ -255,3 +271,61 @@ Who was Edward Thorndike, and how does their work connect to the ideas in this c
 - Ask about the critics of Thorndike's work and which criticisms still bite today.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 5.1 — Four horizontal rows, each labeled with one sub-task and a brief descriptor:.
+
+Create a standalone D3 v7 HTML file for a concept map titled "Four horizontal rows, each labeled with one sub-task and a brief descriptor:.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-01.html`
+
+---
+
+### Figure 5.2 — Three-column comparison matrix.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Three-column comparison matrix.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-02.html`
+
+---
+
+### Figure 5.3 — A two-column timeline showing "Without the re-run" vs.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "A two-column timeline showing "Without the re-run" vs.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-03.html`
+
+---
+
+### Figure 5.4 — Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Three grouped bar pairs (Control, GPT Base, GPT Tutor), each pair showing.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-04.html`
+
+---
+
+### Figure 5.5 — "When the calibration workflow earns its time savings".
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled ""When the calibration workflow earns its time savings".". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-05.html`
+
+---
+
+### Figure 5.6 — A horizontal sliding scale from "formative" (left) to "summative" (right), with.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "A horizontal sliding scale from "formative" (left) to "summative" (right), with.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/05-assessment-grading-and-feedback-with-ai-fig-06.html`

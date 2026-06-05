@@ -1,37 +1,42 @@
 # AI for Teachers A Practitioner's Guide
 
-**Publisher:** Humanitarians AI  
-**Edition:** 2026  
-**License:** CC BY 4.0 for text; AI+1 marks and cover design are trademarks of Humanitarians AI.
+AI+1, Hands on. Domain specific. No generic prompts.
 
-## Overview
+**Author:** Humanitarians AI Incorporated  
+**Publisher:** Humanitarians AI Incorporated, a 501(c)(3) nonprofit organization  
+**Copyright:** Copyright © 2026 Humanitarians AI Incorporated. All rights reserved.  
+**Edition:** 2026
 
-AI for Teachers A Practitioner's Guide is part of the AI+1 series from Humanitarians AI. The book asks what a AI for Teachers practitioner can do with AI while preserving the human judgment, accountability, and domain expertise that the tool cannot supply.
+## Summary
 
-The book's front matter explains the copyright, CC BY 4.0 license, distribution model, AI and errata disclosure, and the Humanitarians AI publishing context. The introduction frames the reader's path through the chapters: where AI helps, where it fails, and how to keep the boundary between execution and judgment visible.
+*AI for Teachers A Practitioner's Guide* is a structured textbook for readers who need a clear path through the subject rather than a loose collection of explanations. It begins with Chapter 1 — The AI Dividend: What Teachers Actually Get Back, moves through 14 core chapters, and ends with Chapter 14 — What to Tell Your Students: AI Literacy in the Classroom.
+
+AI matters to *AI for Teachers A Practitioner's Guide* because the modern textbook is no longer only a static container. It is also part of a learning system: searchable, remixable, explainable, and increasingly connected to tools such as Medhavy. For Humanitarians AI books, the relevant question is not whether AI can replace the learner or the teacher. It cannot. The useful question is what AI can make easier to inspect: definitions, worked examples, misconceptions, practice sequences, alternate explanations, and the structure of an argument. This book treats AI as infrastructure for open, public-interest learning infrastructure. The chapters should still stand on their own as readable prose, but they are also designed to be legible to an intelligent textbook system.
 
 ## Table of Contents
 
-- [Chapter 1 — The AI Dividend: What Teachers Actually Get Back](chapters/01-the-ai-dividend.md)
-- [Chapter 2 — The Phase Gate: What AI Handles, What You Must Keep](chapters/02-the-phase-gate.md)
-- [Chapter 3 — Prompting That Works: The Foundation Skill](chapters/03-prompting-that-works.md)
-- [Chapter 4 — Lesson Planning and Curriculum Design with AI](chapters/04-lesson-planning-with-ai.md)
-- [Chapter 5 — Assessment, Grading, and Feedback with AI](chapters/05-assessment-grading-and-feedback-with-ai.md)
-- [Chapter 6 — Differentiation with AI: Reading Levels, Scaffolds, and Supports](chapters/06-differentiation-with-ai.md)
-- [Chapter 7 — Communication with AI: Parents, Admin, and Documentation](chapters/07-communication-with-ai.md)
-- [Chapter 8 — Making Slides With AI](chapters/08-making-slides-with-ai.md)
-- [Chapter 9 — Making Graphs and Data Visualizations with AI](chapters/09-making-graphs-and-data-visualizations-with-ai.md)
-- [Chapter 10 — Writing with AI: An Introduction](chapters/10-writing-with-ai-an-introduction.md)
-- [Chapter 11 — Coding with AI: An Introduction](chapters/11-coding-with-ai-an-introduction.md)
-- [Chapter 12 — Building Your AI Workflow: Monday Morning to End of Year](chapters/12-building-your-ai-workflow.md)
-- [Chapter 13 — Academic Integrity, Privacy, and Honest Use](chapters/13-academic-integrity-privacy-and-honest-use.md)
-- [Chapter 14 — What to Tell Your Students: AI Literacy in the Classroom](chapters/14-what-to-tell-your-students.md)
-- [The Fundamental Themes](chapters/97-fundamenta-themes.md)
+- **Chapter 1: Chapter 1 — The AI Dividend: What Teachers Actually Get Back.** - There is a number at the center of this chapter. - The chapter moves through The number and where it lives, What the six hours are actually recovering, A taxonomy you can use, What gets harder when you ignore the categories,...
+- **Chapter 2: Chapter 2 — The Phase Gate: What AI Handles, What You Must Keep.** - Doing the cognitive work the workflow was designed to skip. - The chapter moves through What a gate actually is, Why the operation is the thing, The jagged frontier, The irreducibly human content, and related ideas. - Read it for the...
+- **Chapter 3: Chapter 3 — Prompting That Works: The Foundation Skill.** - The model has no context the prompt does not supply. - The chapter moves through LLM exercises. - Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop. *The model has no...
+- **Chapter 4: Chapter 4 — Lesson Planning and Curriculum Design with AI.** - The plan that looks right and the plan that lands are not the same document. - The chapter moves through What the evidence actually shows, Why a lesson plan is not one task, Backward design and why most AI prompts get...
+- **Chapter 5: Chapter 5 — Assessment, Grading, and Feedback with AI.** - A rubric-accurate comment is not the same as a useful one. - The chapter moves through Four sub-tasks inside one verb, What the studies actually show, The time savings, stated carefully, The rubric is a measuring instrument, and related ideas. -...
+- **Chapter 6: Chapter 6 — Differentiation with AI: Reading Levels, Scaffolds, and Supports.** - Here is a deceptively simple fact about how readability scores work. - The chapter moves through Two things that look the same and aren't, What Bjork says about this, The WIDA vocabulary, and why it matters for prompts, IEP and 504:...
+- **Chapter 7: Chapter 7 — Communication with AI: Parents, Admin, and Documentation.** - You already know what you want to say. - The chapter moves through What a teacher's communication week actually is, The right sort, The core move, Translation: what it can do and what it cannot, and related ideas. - Read it...
+- **Chapter 8: Chapter 8 — Making Slides With AI.** - AI slide generators reliably produce decks that look professional and teach poorly. - The chapter moves through LLM exercises. - Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop. *AI slide...
+- **Chapter 9: Chapter 9 — Making Graphs and Data Visualizations with AI.** - In 1954 Darrell Huff published a small book called How to Lie with Statistics. - The chapter moves through The question before the chart, Two instruments that catch most chart dishonesty, Distributions over means: where the equity story lives, The five-question...
+- **Chapter 10: Chapter 10 — Writing with AI: An Introduction.** - Here is a thing that happens in a single Tuesday morning. - The chapter moves through Two different jobs, Why the Bastani result matters here, Writing is a process, Why detection is the wrong move, and related ideas. - Read it...
+- **Chapter 11: Chapter 11 — Coding with AI: An Introduction.** - The bottleneck was never your lack of syntax. - The chapter moves through LLM exercises. - Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop. *The bottleneck was never your lack...
+- **Chapter 12: Chapter 12 — Building Your AI Workflow: Monday Morning to End of Year.** - Two teachers, same building, same tool, ten hours apart. - The chapter moves through The selection problem, named honestly, What the library actually is, The schedule: the other half, Why most teachers plateau, and related ideas. - Read it for the...
+- **Chapter 13: Chapter 13 — Academic Integrity, Privacy, and Honest Use.** - The professor who referred 23% of her students taught less that semester than at any point in her career. - The chapter moves through Why detection cannot work, The Bastani result: what it actually says, What makes an assignment AI-survivable, A...
+- **Chapter 14: Chapter 14 — What to Tell Your Students: AI Literacy in the Classroom.** - The students using AI to avoid the work get the news coverage. - The chapter moves through LLM exercises. - Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop. *The students...
 
-## Copyright and License
+## Files
 
-Copyright © 2026 Humanitarians AI. The text is licensed under CC BY 4.0. See [LICENSE.md](LICENSE.md) for full terms, including trademark restrictions for AI+1 marks and cover design.
+- `chapters/00-frontmatter.md` — title page, copyright, dedication, and preface
+- `chapters/00-introduction.md` — roadmap and book-level AI note
+- `chapters/99-back-matter.md` — acknowledgments, author note, references placeholder, and Medhavy note
+- `LICENSE.md` — rights and reuse terms
 
-## Errata
+## Medhavy
 
-Errata, corrections, and suspected mistakes may be submitted through [humanitarians.ai](https://www.humanitarians.ai/).
+This book is prepared for Kindle, online publication, and integration with Medhavy: https://www.medhavy.com/

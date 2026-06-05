@@ -1,5 +1,12 @@
 # Chapter 6 — Differentiation with AI: Reading Levels, Scaffolds, and Supports
 
+
+## TL;DR
+
+- Here is a deceptively simple fact about how readability scores work.
+- The chapter moves through Two things that look the same and aren't, What Bjork says about this, The WIDA vocabulary, and why it matters for prompts, IEP and 504: where the phase gate is legal, not pedagogical, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *Speed is the problem. The AI hits the Lexile band in seconds, and the question you didn't ask is whether the concept survived.*
 
 ---
@@ -13,6 +20,7 @@ Here is the deception. The Lexile formula does not measure inferential demand. I
 The speed is precisely the problem. AI produces a structurally correct lower-Lexile version in twelve minutes, and the version looks finished. The question of whether the concept the lesson was designed to teach is still in the document — that question is invisible unless you ask it.
 
 ![Two input boxes labeled "Average sentence length" and "Average word frequency" feeding into a single formula box that outputs a Lexile score. To the right, a callout lists what the formula does not measure: inferential demand, prior knowledge load, causal structure, abstractness of ideas.](../images/06-differentiation-with-ai-fig-01.png)
+![What the Lexile formula measures and what it does not. Two surface statistics in; one number out. Everyth](images/06-differentiation-with-ai-fig-01.png)
 *Figure 6.1 — What the Lexile formula measures and what it does not. Two surface statistics in; one number out. Everything that decides whether the concept survived sits in the callout.*
 
 This chapter is about asking it.
@@ -36,6 +44,7 @@ This is the failure mode AI-assisted differentiation is particularly susceptible
 The discipline: every time you accept a lower-band version of a passage, ask whether the simplification dropped any of the work the lesson was designed to do. There is a one-sentence test. *Would I be teaching the same concept tomorrow if every student were on this version?* If no, you have not differentiated. You have quietly routed some students out of the lesson.
 
 ![Two parallel columns. Leveling on the left shows an original passage being rewritten into a different document; arrows label "extraneous load reduced" and "germane load at risk." Scaffolding on the right shows the original text untouched, surrounded by sentence frames, a glossary, and a graphic organizer; arrows label "extraneous load reduced" and "germane load preserved." Both end with a student reading. The scaffolding column carries a checkmark on "same concept as class"; the leveling column carries a warning on "concept may be lost."](../images/06-differentiation-with-ai-fig-02.png)
+![Leveling versus scaffolding. The same student ends up reading something more accessible in both columns; ](images/06-differentiation-with-ai-fig-02.png)
 *Figure 6.2 — Leveling versus scaffolding. The same student ends up reading something more accessible in both columns; only one of the two leaves the concept the lesson was designed to teach inside the document.*
 
 ---
@@ -79,6 +88,7 @@ The phase gate, stated: AI proposes from an anonymized profile. The licensed spe
 The reason this gate exists is not procedural caution. It is that the team holds knowledge the model cannot have: the student's history, the interventions that have and haven't worked, the clinical judgment that distinguishes an accommodation that opens access from one that removes challenge inappropriately. A teacher who accepts AI-generated accommodations without team review has not just violated a procedural requirement under IDEA. She has skipped the substantive judgment the gate exists to protect.
 
 ![Three sequential boxes with arrows. Box 1: "AI proposes — from anonymized profile, suggests accommodations from standard library." Box 2: "Licensed specialist and team authorize — review against student history, evaluation results, and response to prior intervention." Box 3: "Teacher implements — what the team has authorized, no more." A red X marks a shortcut arrow from Box 1 directly to Box 3, labeled "skips legal authorization and clinical judgment."](../images/06-differentiation-with-ai-fig-03.png)
+![The IEP and 504 phase gate. The middle box is the legal act, performed by the team. The shortcut arrow lo](images/06-differentiation-with-ai-fig-03.png)
 *Figure 6.3 — The IEP and 504 phase gate. The middle box is the legal act, performed by the team. The shortcut arrow looks like efficiency and reads, in court and in practice, as the skipped step.*
 
 ---
@@ -265,12 +275,15 @@ The AI hits the Lexile band in seconds. Whether the concept survived is a questi
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 The framework this chapter rests on did not start with the Lexile score. It started with a Russian psychologist who died in 1934. **Lev Vygotsky** named the gap between what a student can do alone and what she can do with help the *zone of proximal development*. The support that lives inside that gap — the sentence frame, the partner read, the worked example — is what later researchers called *scaffolding*. The distinction between leveling (which changes the text) and scaffolding (which changes the support around the text) is Vygotsky's distinction made operational. If you take only one idea from the prior literature into your AI-assisted differentiation workflow, take this one.
 
 ![Lev Vygotsky, circa 1930. AI-generated portrait based on public domain photographs.](../images/lev-vygotsky.jpg)
 *Lev Vygotsky (1896–1934). AI-generated portrait based on public domain photographs (Wikimedia Commons).*
+
+![Lev Vygotsky](../images/lev-vygotsky-755.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 
@@ -289,3 +302,37 @@ surprising thing about the publication history of his work.
 - Ask it about why Vygotsky's work was suppressed in the USSR for almost three decades, and what that does to the timeline of how scaffolding entered Western education research.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 6.1 — What the Lexile formula measures and what it does not. Two surface statistics in; one number out. Everyth
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "What the Lexile formula measures and what it does not. Two surface statistics in; one number out. Everyth". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/06-differentiation-with-ai-fig-01.html`
+
+---
+
+### Figure 6.2 — Leveling versus scaffolding. The same student ends up reading something more accessible in both columns; 
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "Leveling versus scaffolding. The same student ends up reading something more accessible in both columns; ". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/06-differentiation-with-ai-fig-02.html`
+
+---
+
+### Figure 6.3 — The IEP and 504 phase gate. The middle box is the legal act, performed by the team. The shortcut arrow lo
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "The IEP and 504 phase gate. The middle box is the legal act, performed by the team. The shortcut arrow lo". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/06-differentiation-with-ai-fig-03.html`

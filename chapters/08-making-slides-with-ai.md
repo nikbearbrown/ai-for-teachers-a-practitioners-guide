@@ -1,5 +1,12 @@
 # Chapter 8 — Making Slides With AI
 
+
+## TL;DR
+
+- AI slide generators reliably produce decks that look professional and teach poorly.
+- The chapter moves through LLM exercises.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *AI slide generators reliably produce decks that look professional and teach poorly. The fix is not a better tool. It is a vocabulary for what is wrong.*
 
 ---
@@ -39,6 +46,7 @@ The practical translation is hard to argue with once you see it: **if you are ab
 The misconception worth naming: *putting talking points on the slide helps students who struggle to follow audio.* This conflates two different students. The one sitting in the room with the speaker is harmed by redundant text — the verbal-channel collision degrades the explanation she is trying to follow in real time. The one studying alone later is helped by a separate document — which is exactly what the populated notes field, exported, becomes. One slide cannot serve both students simultaneously. The fix is not to choose one student over the other. The fix is to produce both artifacts.
 
 ![two-artifact model](../images/08-making-slides-with-ai-fig-01.png)
+![two-artifact model.](images/08-making-slides-with-ai-fig-01.png)
 *Figure 8.1 — two-artifact model.*
 
 ---
@@ -85,6 +93,7 @@ The first is **seductive detail**. Harp and Mayer (1998), in the *Journal of Edu
 The second is **wrong visual form**. A bulleted list is the slide editor's default for almost everything. It is the right form for exactly one kind of content: lists, where the items have no temporal, causal, or comparative relationship to each other beyond co-membership. It is the wrong form for comparisons (use a 2×2 or table), for processes (use a directed diagram), for distributions (use a chart), for single large quantities (use a number set at large size and get out of the way). Cleveland and McGill (1984), in the *Journal of the American Statistical Association*, ranked visual encodings by how accurately the eye perceives them: position along a common scale beats length beats angle beats area beats color. When a slide uses bullets to show a comparison, the audience must translate the bullets into a mental table before they can compare anything. That translation is cognitive work the slide should have done already. The author's job is to match visual form to content structure, not to accept the editor's default.
 
 ![content-type to visual-form matching guide](../images/08-making-slides-with-ai-fig-02.png)
+![content-type to visual-form matching guide.](images/08-making-slides-with-ai-fig-02.png)
 *Figure 8.2 — content-type to visual-form matching guide.*
 
 The third is **decorative color**. Slide nineteen in the 11:42 p.m. deck has a five-color bar chart of three categorical variables. There are more colors than categories. The eye sees variation that does not encode meaning, hunts for the pattern, finds none, and disengages. Color on a teaching slide should answer one of two questions: *what category is this?* or *how much of this?* If it answers neither — if it is decoration — it is spending visual bandwidth on nothing. The discipline is to count the categories the chart needs to distinguish and use exactly that many colors, chosen from a palette designed for distinguishability. Cynthia Brewer's ColorBrewer 2.0 is the canonical reference. Two accessibility constraints that should not be negotiable: roughly 8% of men and 0.5% of women have red-green color blindness. Any distinction that matters should be encoded on a second channel — shape, label, position — in addition to color.
@@ -119,6 +128,7 @@ So here is the diagnostic. Five questions. Thirty seconds per slide. Five minute
 Run it on every AI-generated deck before it ships. The misuse to flag is applying the diagnostic to one slide and stopping. The deck-level pass is what catches structural failures — repeated topic labels, repeated redundancy — that slide-by-slide review misses.
 
 ![the five-question diagnostic formatted as a printable half-page card](../images/08-making-slides-with-ai-fig-03.png)
+![the five-question diagnostic formatted as a printable half-page card.](images/08-making-slides-with-ai-fig-03.png)
 *Figure 8.3 — the five-question diagnostic formatted as a printable half-page card.*
 
 ---
@@ -186,6 +196,7 @@ The result:
 The rewrite required no new content. It required deciding what each region of the slide was *for* — headline carries the claim, body carries the visual, notes field carries the explanation — and prompting the tool to honor that division.
 
 ![before/after slide anatomy](../images/08-making-slides-with-ai-fig-04.png)
+![before/after slide anatomy.](images/08-making-slides-with-ai-fig-04.png)
 *Figure 8.4 — before/after slide anatomy.*
 
 One honest note: I cannot promise the AI rebuilds the diagram correctly on the first try. AI image generation for technical diagrams is uneven. The practical workflow is to prompt for the diagram in words, build it in your slide editor, and verify every label by hand. The teacher remains responsible for content accuracy. The phase gate from Chapter 2 — *content accuracy gate* — still applies. Every AI-generated material is reviewed for errors before it reaches students.
@@ -201,6 +212,7 @@ The teacher who pastes a textbook figure unchanged into a slide is producing a f
 A practical rule from Robert Bringhurst's *The Elements of Typographic Style* (Hartley & Marks, 4th ed. 2013): for display typography — and projection is display typography — size ratios between hierarchical elements should approach 2:1. A title at 44 pt over body at 22 pt is 2:1 and visible at the back of the room. A title at 32 pt over body at 28 pt is a 1.14× ratio — functionally invisible at projection distance. I should be honest: Bringhurst derived this from the modular scales of book typography, not from a controlled study of instructional slides. The rule works in practice; the empirical case for the exact ratio is missing from the literature I can name.
 
 ![textbook figure vs](../images/08-making-slides-with-ai-fig-05.png)
+![textbook figure vs.](images/08-making-slides-with-ai-fig-05.png)
 *Figure 8.5 — textbook figure vs.*
 
 ---
@@ -240,12 +252,15 @@ The second is what I called "AI makes good slides." What AI makes is *plausible*
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 Vignelli's New York City subway signage and his Knoll identity standards manuals are the load-bearing precedents for what this chapter argues a teacher's slide system should be — a typographic constitution that holds across every use, that does not need to be redesigned each time it ships, that earns its consistency from constraint. His insistence that *the life of a designer is a life of fight against the ugliness* maps directly onto the chapter's argument for owning your DESIGN.md before you let any AI build a slide for you.
 
 ![Massimo Vignelli, 1931-2014. AI-generated portrait based on a public domain photograph.](../images/massimo-vignelli.jpg)
 *Massimo Vignelli, 1931-2014. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+![Massimo Vignelli](../images/massimo-vignelli-1rt.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 
@@ -261,3 +276,53 @@ Who was Massimo Vignelli, and how does their work connect to the ideas in this c
 - Ask about the critics of Vignelli's work and which criticisms still bite today.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 8.1 — two-artifact model.
+
+Create a standalone D3 v7 HTML file for a concept map titled "two-artifact model.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-01.html`
+
+---
+
+### Figure 8.2 — content-type to visual-form matching guide.
+
+Create a standalone D3 v7 HTML file for a concept map titled "content-type to visual-form matching guide.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-02.html`
+
+---
+
+### Figure 8.3 — the five-question diagnostic formatted as a printable half-page card.
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "the five-question diagnostic formatted as a printable half-page card.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-03.html`
+
+---
+
+### Figure 8.4 — before/after slide anatomy.
+
+Create a standalone D3 v7 HTML file for a concept map titled "before/after slide anatomy.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-04.html`
+
+---
+
+### Figure 8.5 — textbook figure vs.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "textbook figure vs.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/08-making-slides-with-ai-fig-05.html`

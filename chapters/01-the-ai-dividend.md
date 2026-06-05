@@ -1,5 +1,12 @@
 # Chapter 1 — The AI Dividend: What Teachers Actually Get Back
 
+
+## TL;DR
+
+- There is a number at the center of this chapter.
+- The chapter moves through The number and where it lives, What the six hours are actually recovering, A taxonomy you can use, What gets harder when you ignore the categories, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *Not what they hoped for. Not what the headlines said. What they actually got.*
 
 ---
@@ -11,6 +18,7 @@ You may have heard a different number. Twenty hours a week. A full day. Half the
 The chapter's job is to show you what 5.9 hours actually means: where it comes from, what it does not include, and how to figure out which six hours belong to your week specifically.
 
 ![A display-size 5.9 hrs/week as the visual anchor, with three callout labels naming the boundaries of the claim — weekly AI users only, ad-hoc use without systematic workflow design, and "after the learning curve, not week one."](../images/01-the-ai-dividend-fig-01.png)
+![The 5.9-hour number is specific and bounded, not a universal promise.](images/01-the-ai-dividend-fig-01.png)
 *Figure 1.1 — The 5.9-hour number is specific and bounded, not a universal promise.*
 
 ---
@@ -75,6 +83,7 @@ The test I use for human-required is: *would delegating this task remove somethi
 This taxonomy is a sorting question, not a verdict. Two teachers doing the same nominal activity may sort it differently, and both may be right. For one teacher, essay grading is mostly structural first-pass work — hybrid. For another, essay grading is how she catches the misconception that determines tomorrow's lesson — human-required, even though the margin comments could be delegated without harm. The taxonomy is useful because it forces the question, not because it returns a universal answer.
 
 ![Three zones arranged left-to-right — AI-Appropriate, Hybrid, Human-Required — with two-to-three concrete task examples in each zone, and the two decision tests labeled at the boundaries between zones.](../images/01-the-ai-dividend-fig-02.png)
+![The three-zone task taxonomy. Sort your own tasks on the first read; you will revisit the boundaries ever](images/01-the-ai-dividend-fig-02.png)
 *Figure 1.2 — The three-zone task taxonomy. Sort your own tasks on the first read; you will revisit the boundaries every month.*
 
 ---
@@ -173,8 +182,7 @@ The dividend is real. The ceiling is a hypothesis. The reinvestment is a decisio
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 The instinct to study where a teacher's hours actually go — and to redesign the workflow around what matters — was operationalized in American teacher training in the 1960s and 70s by **Madeline Hunter** (1916–1994). Hunter's ITIP framework (Instructional Theory Into Practice) broke teaching into observable elements: anticipatory set, objective and purpose, input, modelling, checking for understanding, guided practice, closure, independent practice. The point was not to mechanize teaching but to surface the structure underneath good lessons so that the structure could be taught — and so that a teacher overwhelmed by a hundred small decisions could compare their day against a checklist and recover the parts that had drifted. The audit move in this chapter — the social studies teacher writing down where the week's forty-two hours actually go — is Hunter's instinct applied to time instead of to a single lesson.
 
 ![Madeline Hunter, circa 1980. AI-generated portrait based on a public domain photograph.](../images/madeline-hunter.jpg)
@@ -194,3 +202,29 @@ Who was Madeline Hunter, and how does her ITIP framework connect to the time-aud
 - Ask about the criticism Hunter's framework received from researchers in the 1990s — what survives and what doesn't?
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 1.1 — The 5.9-hour number is specific and bounded, not a universal promise.
+
+Create a standalone D3 v7 HTML file for a concept map titled "The 5.9-hour number is specific and bounded, not a universal promise.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/01-the-ai-dividend-fig-01.html`
+
+---
+
+### Figure 1.2 — The three-zone task taxonomy. Sort your own tasks on the first read; you will revisit the boundaries ever
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "The three-zone task taxonomy. Sort your own tasks on the first read; you will revisit the boundaries ever". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/01-the-ai-dividend-fig-02.html`

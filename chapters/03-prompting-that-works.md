@@ -1,5 +1,12 @@
 # Chapter 3 — Prompting That Works: The Foundation Skill
 
+
+## TL;DR
+
+- The model has no context the prompt does not supply.
+- The chapter moves through LLM exercises.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The model has no context the prompt does not supply. Everything else follows from that.*
 
 ---
@@ -46,6 +53,7 @@ A generative language model does something entirely different. When you type int
 This means the prompt is carrying a weight that a search query never does. A search query is a pointer. A prompt is the entire specification of what gets built.
 
 ![Two-panel diagram comparing a search engine pipeline (user keywords feeding an index lookup, returning a ranked list of pre-existing documents, with an arrow labeled retrieval) and a generative model pipeline (prompt tokens feeding a probability distribution, generating token-by-token output, with an arrow labeled conditioning).](../images/03-prompting-that-works-fig-01.png)
+![Pointer versus specification. A search query selects from what already exists; a prompt builds something ](images/03-prompting-that-works-fig-01.png)
 *Figure 3.1 — Pointer versus specification. A search query selects from what already exists; a prompt builds something that did not exist until you asked.*
 
 And here is the consequence that matters for teachers: the model has no context the prompt does not supply.
@@ -66,6 +74,7 @@ There is a structure that forces you to supply what an ad-hoc prompt forgets. Di
     CONSTRAINTS: [What to avoid, what format to use, what the output will be used for.]
 
 ![A laminated-card-style reference of the four-component prompt template. ROLE, CONTEXT, TASK, and CONSTRAINTS appear on the left as a stacked card with example slots; ochre callouts on the right name the structural work each line performs.](../images/03-prompting-that-works-fig-02.png)
+![The four-component card. Each line does distinct structural work; after thirty prompts the moves become r](images/03-prompting-that-works-fig-02.png)
 *Figure 3.2 — The four-component card. Each line does distinct structural work; after thirty prompts the moves become reflex.*
 
 Each line does distinct work, and it is worth understanding what that work is — because once you do, the structure becomes reflex rather than a checklist.
@@ -148,6 +157,7 @@ What comes back: a revised lab where students observe condensation forming insid
 Three prompts. Seven minutes of typing. A lesson plan reusable next year by changing one line.
 
 ![A three-node horizontal flowchart of the prompting loop. Round 1: a one-line vague prompt produces a generic lesson-plan output, annotated the model fills in the average. Round 2: a four-component prompt produces a usable draft, annotated specification narrows the probability space. Round 3: a gap-closing follow-up produces the final draft, annotated name what to change, name what to keep. Arrows between nodes are labeled with the diagnostic observation that triggered the next round.](../images/03-prompting-that-works-fig-03.png)
+![The prompting loop. Three rounds, seven minutes, one reusable lesson plan. Each round narrows the probabi](images/03-prompting-that-works-fig-03.png)
 *Figure 3.3 — The prompting loop. Three rounds, seven minutes, one reusable lesson plan. Each round narrows the probability space; the first output's job is to reveal what you forgot to specify.*
 
 Notice what made round two so much better than round one. The teacher knew that "plants get food from soil" is the misconception to address. She knew that "produce" is ambiguous for 5th-graders. A teacher without that domain knowledge cannot write those constraints. The four-component structure is a tool for getting the model to deploy *your* knowledge of your classroom. It is not a substitute for having the knowledge. AI extends teacher judgment. The prompt is where that extension happens.
@@ -214,8 +224,7 @@ Chapter 12 builds this systematically. The rule for now is simple: if a prompt w
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 The discipline behind the four-component prompt — make the student do the work; never give them the answer — is older than computing. **Charlotte Mason** (1842–1923) built a whole pedagogy on it. Her method, developed in the British Parents' National Educational Union from the 1880s onward, asked the child to *narrate* — to retell, in their own words, what they had just read. Mason believed children should encounter primary sources directly, then produce the synthesis themselves. The teacher's job was to set the conditions, ask the precise question, and refuse to summarize on the student's behalf. The same move, exactly, sits inside every prompt that produces real teacher-grade output: name the role, name the task, name the constraints, name the format — then let the model do the synthesis without leaking the answer.
 
 ![Charlotte Mason, circa 1890. AI-generated portrait based on a public domain photograph.](../images/charlotte-mason.jpg)
@@ -235,3 +244,37 @@ Who was Charlotte Mason, and how does her "narration" method connect to the four
 - Ask it about Mason's six-volume *Home Education* series and which volume contains her sharpest pedagogical claim.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 3.1 — Pointer versus specification. A search query selects from what already exists; a prompt builds something 
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "Pointer versus specification. A search query selects from what already exists; a prompt builds something ". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/03-prompting-that-works-fig-01.html`
+
+---
+
+### Figure 3.2 — The four-component card. Each line does distinct structural work; after thirty prompts the moves become r
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "The four-component card. Each line does distinct structural work; after thirty prompts the moves become r". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/03-prompting-that-works-fig-02.html`
+
+---
+
+### Figure 3.3 — The prompting loop. Three rounds, seven minutes, one reusable lesson plan. Each round narrows the probabi
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "The prompting loop. Three rounds, seven minutes, one reusable lesson plan. Each round narrows the probabi". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/03-prompting-that-works-fig-03.html`

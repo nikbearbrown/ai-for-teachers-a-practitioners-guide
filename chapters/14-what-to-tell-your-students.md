@@ -1,5 +1,12 @@
 # Chapter 14 — What to Tell Your Students: AI Literacy in the Classroom
 
+
+## TL;DR
+
+- The students using AI to avoid the work get the news coverage.
+- The chapter moves through LLM exercises.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The students using AI to avoid the work get the news coverage. The students who want to use AI to do the work better are getting nothing from us.*
 
 ---
@@ -29,6 +36,7 @@ It is not the same as the calculator analogy, and I want to spend a paragraph he
 Same tool. Different operation. Different brain state at the end.
 
 ![two-column diagram](../images/14-what-to-tell-your-students-fig-01.png)
+![two-column diagram.](images/14-what-to-tell-your-students-fig-01.png)
 *Figure 14.1 — two-column diagram.*
 
 ---
@@ -48,6 +56,7 @@ I want to flag the numbers carefully. The published figures show a roughly 17% *
 The takeaway for your students is one sentence: **the prompt determines the outcome.** Asking the AI to think for you and asking the AI to make you think harder are different cognitive operations with different effects on what ends up in your head, and the difference is large enough to flip you from passing to failing.
 
 ![bar chart showing the Bastani three-group results](../images/14-what-to-tell-your-students-fig-02.png)
+![bar chart showing the Bastani three-group results.](images/14-what-to-tell-your-students-fig-02.png)
 *Figure 14.2 — bar chart showing the Bastani three-group results.*
 
 ---
@@ -69,6 +78,7 @@ This is what the Bastani study measured. The unconstrained-AI group raised their
 Call this the **fluency trap**: smooth output produces a feeling of understanding the brain has not earned. It is what makes the Bastani gap inevitable. It is also what makes the gap invisible to the student until exam day, by which point they cannot fix it.
 
 ![storage strength vs](../images/14-what-to-tell-your-students-fig-03.png)
+![storage strength vs.](images/14-what-to-tell-your-students-fig-03.png)
 *Figure 14.3 — storage strength vs.*
 
 ---
@@ -98,6 +108,7 @@ Here is the exact prompt to give students for the Feynman direction:
 That prompt turns Claude or ChatGPT or Gemini from an answer machine into a Socratic interlocutor. One sentence. No special tool required.
 
 ![annotated screenshot mockup of a Feynman test conversation](../images/14-what-to-tell-your-students-fig-04.png)
+![annotated screenshot mockup of a Feynman test conversation.](images/14-what-to-tell-your-students-fig-04.png)
 *Figure 14.4 — annotated screenshot mockup of a Feynman test conversation.*
 
 ---
@@ -124,6 +135,7 @@ The same six uses scale from middle school to graduate school:
 The vocabulary, examples, and degree of student autonomy do not stay constant across grade levels. The mechanism — the brain only learns from the work it does itself — does not change.
 
 ![the capability table formatted as a classroom poster](../images/14-what-to-tell-your-students-fig-05.png)
+![the capability table formatted as a classroom poster.](images/14-what-to-tell-your-students-fig-05.png)
 *Figure 14.5 — the capability table formatted as a classroom poster.*
 
 ---
@@ -145,6 +157,7 @@ The numbers do the teaching. You facilitate. The students who got a near-zero ga
 One limit worth naming explicitly: this is a single class period on a single concept under controlled conditions. It does not prove anything about AI in general. It produces a felt example of the gap the Bastani study measured at population scale. The student now has a personal data point. The Bastani study is the published version of the same phenomenon with a randomized design and a thousand students. Both are useful. Neither alone is decisive. Together they teach the principle.
 
 ![performance-paradox demonstration flow](../images/14-what-to-tell-your-students-fig-06.png)
+![performance-paradox demonstration flow.](images/14-what-to-tell-your-students-fig-06.png)
 *Figure 14.6 — performance-paradox demonstration flow.*
 
 ---
@@ -199,8 +212,7 @@ Then the student decides — based on their own honest accounting, not on a teac
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 Freire's *Pedagogy of the Oppressed* (1968) draws the line between banking-model education (depositing facts into students) and dialogic education (problem-posing, mutual inquiry). What teachers should tell students about AI is the banking-versus-dialogic distinction transposed onto a new tool — and Freire is the precedent for taking the question seriously rather than treating it as classroom management. The chapter's stance — that the conversation with students about AI is itself the teaching — is Freire's central move applied to the present.
 
 ![Paulo Freire, 1921-1997. AI-generated portrait based on a public domain photograph.](../images/paulo-freire.jpg)
@@ -220,3 +232,61 @@ Who was Paulo Freire, and how does their work connect to the ideas in this chapt
 - Ask about the critics of Freire's work and which criticisms still bite today.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 14.1 — two-column diagram.
+
+Create a standalone D3 v7 HTML file for a concept map titled "two-column diagram.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-01.html`
+
+---
+
+### Figure 14.2 — bar chart showing the Bastani three-group results.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "bar chart showing the Bastani three-group results.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-02.html`
+
+---
+
+### Figure 14.3 — storage strength vs.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "storage strength vs.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-03.html`
+
+---
+
+### Figure 14.4 — annotated screenshot mockup of a Feynman test conversation.
+
+Create a standalone D3 v7 HTML file for a concept map titled "annotated screenshot mockup of a Feynman test conversation.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-04.html`
+
+---
+
+### Figure 14.5 — the capability table formatted as a classroom poster.
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "the capability table formatted as a classroom poster.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-05.html`
+
+---
+
+### Figure 14.6 — performance-paradox demonstration flow.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "performance-paradox demonstration flow.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/14-what-to-tell-your-students-fig-06.html`

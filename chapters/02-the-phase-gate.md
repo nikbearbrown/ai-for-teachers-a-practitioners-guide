@@ -1,4 +1,11 @@
 # Chapter 2 — The Phase Gate: What AI Handles, What You Must Keep
+
+## TL;DR
+
+- Doing the cognitive work the workflow was designed to skip.
+- The chapter moves through What a gate actually is, Why the operation is the thing, The jagged frontier, The irreducibly human content, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *Doing the cognitive work the workflow was designed to skip.*
 
 ---
@@ -16,6 +23,7 @@ Then three parents called in the same week. Not about the scores. About the feed
 Each comment was rubric-accurate. Each one was wrong. Each one had been approved. The approval took about three seconds per essay.
 
 ![failed-workflow flowchart of the opening case](../images/02-the-phase-gate-fig-01.png)
+![failed-workflow flowchart of the opening case.](images/02-the-phase-gate-fig-01.png)
 *Figure 2.1 — failed-workflow flowchart of the opening case.*
 
 The district shut the tool down. The vendor was not at fault. The rubric was not at fault. What failed was simpler and harder to see: the workflow had been designed so that a specific operation — *did the teacher who knows this student actually read this comment and ask whether it fits?* — did not have to occur. The click happened. The operation did not. The phrase "human in the loop" was accurate on the dashboard. It was not accurate as a description of what was happening in the room.
@@ -29,6 +37,7 @@ This chapter is about what makes a phase gate an actual gate — not a phrase, n
 ## What a gate actually is
 
 ![A split diagram](../images/02-the-phase-gate-fig-02.png)
+![A split diagram.](images/02-the-phase-gate-fig-02.png)
 *Figure 2.2 — A split diagram.*
 
 A phase gate is not a checkbox. It is not a policy that says "teachers must review all AI output." Those things may exist around a gate. Neither is a gate.
@@ -44,6 +53,7 @@ A defined downstream action that occurs only after the human acts — specific, 
 Here is the test, stated plainly: name the upstream task, the cognitive operation, and the downstream action in one sentence each. If you cannot, there is no gate. There is only a phrase.
 
 ![three-component gate anatomy](../images/02-the-phase-gate-fig-03.png)
+![three-component gate anatomy.](images/02-the-phase-gate-fig-03.png)
 *Figure 2.3 — three-component gate anatomy.*
 
 The opening case fails the test immediately. The cognitive operation — *does this fit this student?* — is not named. It is implied, the way "you should probably think about it" is implied, which is to say it is not structurally present at all. The dashboard records the click. Nobody can tell, from the dashboard, whether the operation happened. That is not a minor design flaw. That is the design. The click is easy to require. The operation is harder to require. Workflows under time pressure produce the click and skip the operation, predictably, every time.
@@ -59,6 +69,7 @@ Learning — actual learning, the kind that persists — is a biological event. 
 This is not a metaphor or an encouraging slogan. It is the mechanism. And it has a direct consequence for what AI does to learning when the gate is in the wrong place.
 
 ![Bar chart showing the three Bastani conditions](../images/02-the-phase-gate-fig-04.png)
+![Bar chart showing the three Bastani conditions.](images/02-the-phase-gate-fig-04.png)
 *Figure 2.4 — Bar chart showing the three Bastani conditions.*
 
 Bastani and colleagues (2025) ran roughly a thousand Turkish high school students through three conditions in mathematics: no AI, an unscaffolded GPT-4 chatbot, and a version of the same model wrapped in teacher-designed prompts that gave hints calibrated to the curriculum rather than direct answers. During practice, students with the unscaffolded chatbot outperformed the no-AI group by roughly 48%. Students with the scaffolded version outperformed them by 127%. So far: AI helps, more carefully designed AI helps more. The press reported this part.
@@ -80,6 +91,7 @@ This is the Bastani finding, scaled to the professional. The fluency trap is not
 ## The jagged frontier
 
 ![A rough, irregular boundary line dividing a task-space grid into "AI helps" and "AI hurts" zones, with several example teaching tasks plotted as labeled dots](../images/02-the-phase-gate-fig-05.png)
+![A rough, irregular boundary line dividing a task-space grid into "AI helps" and.](images/02-the-phase-gate-fig-05.png)
 *Figure 2.5 — A rough, irregular boundary line dividing a task-space grid into "AI helps" and.*
 
 One tempting response to all of this is a uniform policy: all AI output gets human review, or no AI output gets deployed. The problem is that AI capability is not uniform.
@@ -99,6 +111,7 @@ There is a specific kind of knowledge that AI cannot have access to, regardless 
 Lee Shulman named it in his 1985 AERA presidential address: *pedagogical content knowledge*. PCK is the fusion of subject-matter knowledge and pedagogical knowledge that lets a teacher answer questions like: which mistakes do students predictably make when they first encounter related rates? Which analogies clarify the binomial distribution, and which quietly mislead? When the standard explanation fails, what do I reach for next? These are not subject-matter questions and they are not generic-pedagogy questions. They are questions about this topic with this kind of learner, built from repeated direct contact with learners struggling with exactly this material.
 
 ![PCK Venn diagram showing two overlapping circles](../images/02-the-phase-gate-fig-06.png)
+![PCK Venn diagram showing two overlapping circles.](images/02-the-phase-gate-fig-06.png)
 *Figure 2.6 — PCK Venn diagram showing two overlapping circles.*
 
 A large language model can have encyclopedic subject-matter knowledge. It has zero PCK for the class sitting in front of you. It does not know which misconception load this group carried in from the prior unit. It does not know that two students are still off-balance from something that happened last week. It does not know that the analogy it just produced — clear, concise, plausible — is precisely the analogy that, in your experience with this age group, locks in the wrong intuition and takes three weeks to undo. The gate is where your PCK enters the workflow. Until it does, the workflow is producing rubric-accurate artifacts that are pedagogically disconnected from your students.
@@ -112,6 +125,7 @@ This is also what makes the 99.4% approval rate in the opening case a signal rat
 The table below is a working map of the cognitive operations that have to remain with humans in AI-assisted instructional workflows. It is grounded in Bastani, Dell'Acqua, Shulman, Hattie, Elish, and FERPA — synthesized here as a practitioner framework, not presented as a settled list from prior literature. Adapt it to your context.
 
 ![twelve-gate cluster map](../images/02-the-phase-gate-fig-07.png)
+![twelve-gate cluster map.](images/02-the-phase-gate-fig-07.png)
 *Figure 2.7 — twelve-gate cluster map.*
 
 | # | Gate | Description | Risk tier |
@@ -153,6 +167,7 @@ Two notes. Gates 6 and 11 route work away from the classroom teacher to a licens
 ## The surgical timeout
 
 ![Two-panel illustration](../images/02-the-phase-gate-fig-08.png)
+![Two-panel illustration.](images/02-the-phase-gate-fig-08.png)
 *Figure 2.8 — Two-panel illustration.*
 
 Before any surgical incision in a modern operating room, the team pauses. The surgeon names the patient, names the procedure, names the side, confirms allergies and antibiotic timing. Every member of the team listens. Only after the timeout does the incision occur.
@@ -168,6 +183,7 @@ Where the analogy breaks: a surgical timeout is performed in front of witnesses,
 ## Three things people get wrong
 
 ![three-column misconception-vs-mechanism comparison card](../images/02-the-phase-gate-fig-09.png)
+![three-column misconception-vs-mechanism comparison card.](images/02-the-phase-gate-fig-09.png)
 *Figure 2.9 — three-column misconception-vs-mechanism comparison card.*
 
 The first is that the gate is about distrust of AI. It is not. The gate is calibrated to which cognitive operation must remain with a human — and that does not change based on how capable the AI gets. Gate 9 (PCK misconception) requires the teacher's judgment about this class. A more capable AI does not have access to this class. The gate stays.
@@ -177,6 +193,7 @@ The second is that if the AI is right, no gate is needed. This was the structura
 The third is that gates slow you down. They take some time. They save more. Gate 1 — rubric calibration on five essays before bulk grading — costs roughly 25 minutes. It recovers the three to five hours that the bulk pass would otherwise need to be re-checked essay by essay, plus the time-cost-with-interest of unwinding a systematically biased grade distribution discovered four weeks later. The deeper version of the misconception treats all time costs as equivalent. The 25 minutes of rubric calibration is cognitively dense time — it is what the teacher's expertise is for. The three to five hours of essay-by-essay second-guessing is cognitively wasteful time — it is the teacher performing the calibration anyway, spread thinly across 120 instances instead of concentrated in five. The gate moves the work to where it is most efficient.
 
 ![A time-cost comparison for Gate 1](../images/02-the-phase-gate-fig-10.png)
+![A time-cost comparison for Gate 1.](images/02-the-phase-gate-fig-10.png)
 *Figure 2.10 — A time-cost comparison for Gate 1.*
 
 ---
@@ -217,12 +234,15 @@ I don't have a good answer to this. Chapter 9 takes up the professional developm
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 Skinner's programmed instruction and teaching machines (1954-58) are the chapter's intellectual ancestor: design the contingency, set the schedule, decide what counts as a successful response, and let the learner work through the gate one frame at a time. The phase-gate framework this chapter develops for AI use is Skinner's instinct re-applied to a teacher's day rather than a single student's worksheet.
 
 ![B.F. Skinner, 1904-1990. AI-generated portrait based on a public domain photograph.](../images/bf-skinner.jpg)
 *B.F. Skinner, 1904-1990. AI-generated portrait based on a public domain photograph (Wikimedia Commons).*
+
+![B.F. Skinner](../images/b-f-skinner-7v9.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 
@@ -238,3 +258,93 @@ Who was B.F. Skinner, and how does their work connect to the ideas in this chapt
 - Ask about the critics of Skinner's work and which criticisms still bite today.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 2.1 — failed-workflow flowchart of the opening case.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "failed-workflow flowchart of the opening case.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-01.html`
+
+---
+
+### Figure 2.10 — A time-cost comparison for Gate 1.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "A time-cost comparison for Gate 1.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-10.html`
+
+---
+
+### Figure 2.2 — A split diagram.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "A split diagram.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-02.html`
+
+---
+
+### Figure 2.3 — three-component gate anatomy.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "three-component gate anatomy.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-03.html`
+
+---
+
+### Figure 2.4 — Bar chart showing the three Bastani conditions.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Bar chart showing the three Bastani conditions.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-04.html`
+
+---
+
+### Figure 2.5 — A rough, irregular boundary line dividing a task-space grid into "AI helps" and.
+
+Create a standalone D3 v7 HTML file for a concept map titled "A rough, irregular boundary line dividing a task-space grid into "AI helps" and.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-05.html`
+
+---
+
+### Figure 2.6 — PCK Venn diagram showing two overlapping circles.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "PCK Venn diagram showing two overlapping circles.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-06.html`
+
+---
+
+### Figure 2.7 — twelve-gate cluster map.
+
+Create a standalone D3 v7 HTML file for a phase-gate workflow diagram titled "twelve-gate cluster map.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-07.html`
+
+---
+
+### Figure 2.8 — Two-panel illustration.
+
+Create a standalone D3 v7 HTML file for a side-by-side comparison diagram titled "Two-panel illustration.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-08.html`
+
+---
+
+### Figure 2.9 — three-column misconception-vs-mechanism comparison card.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "three-column misconception-vs-mechanism comparison card.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/02-the-phase-gate-fig-09.html`

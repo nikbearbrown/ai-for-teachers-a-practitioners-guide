@@ -1,4 +1,11 @@
 # Chapter 13 — Academic Integrity, Privacy, and Honest Use
+
+## TL;DR
+
+- The professor who referred 23% of her students taught less that semester than at any point in her career.
+- The chapter moves through Why detection cannot work, The Bastani result: what it actually says, What makes an assignment AI-survivable, A research paper, redesigned, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The professor who referred 23% of her students taught less that semester than at any point in her career. Her students learned less. The detector was not the wrong tool for the right job. It was the right tool for the wrong job.*
 
 ---
@@ -26,6 +33,7 @@ This chapter is the redesign.
 ## Why detection cannot work
 
 ![Three stacked horizontal rows, each a failure mode of AI-text detection: row one names tools as unreliable with the Weber-Wulff 2023 anchor and the OpenAI 26% withdrawal note; row two names errors as biased with the Liang 2023 anchor and the >50% TOEFL misclassification; row three names institutions walking back with the Vanderbilt arithmetic 1% × 75,000 = 750 wrongly flagged. A footer notes each row is independent.](../images/13-academic-integrity-privacy-and-honest-use-fig-01.png)
+![Three independent failure modes. Any one is enough to disqualify detection as a primary tool; together th](images/13-academic-integrity-privacy-and-honest-use-fig-01.png)
 *Figure 13.1 — Three independent failure modes. Any one is enough to disqualify detection as a primary tool; together they constitute a settled case.*
 
 There are three separate reasons, and they are independent — any one of them is enough.
@@ -49,6 +57,7 @@ Even if all three problems were solved tomorrow — the tools became reliable, t
 ## The Bastani result: what it actually says
 
 ![Grouped bar chart comparing three conditions (Control, GPT Base, GPT Tutor) on two outcomes: practice performance and unaided exam score. The GPT Base practice bar rises 48% above control while its exam bar drops 17 points below; the GPT Tutor practice bar rises 127% above control while its exam bar stays at the control level. Callouts annotate each gap.](../images/13-academic-integrity-privacy-and-honest-use-fig-02.png)
+![The Bastani result. Same model. Same students. The only variable was the pedagogical wrapper around the p](images/13-academic-integrity-privacy-and-honest-use-fig-02.png)
 *Figure 13.2 — The Bastani result. Same model. Same students. The only variable was the pedagogical wrapper around the prompt.*
 
 Before arriving at the design, there is one study that has to be understood precisely, because popular summaries have garbled it in both directions.
@@ -82,6 +91,7 @@ If detection cannot work, what does? The answer is design: assignments built so 
 An assignment is AI-survivable if a student who outsources the entire artifact to AI is detectably worse off than a student who did the work — without requiring detection software.
 
 ![A five-stage vertical decision tree of diagnostic questions, each as a yes/no branch — defense in conversation, novel application beyond training cutoff, process trail required, real-time unassisted performance, would a good artifact alone reveal learning. Five yes nodes converge on an AI-survivable terminal; any no branches to a redesign-target terminal with a smallest-move callout.](../images/13-academic-integrity-privacy-and-honest-use-fig-03.png)
+![The five-question diagnostic. Run this on one assignment at a time. The goal is the smallest move that co](images/13-academic-integrity-privacy-and-honest-use-fig-03.png)
 *Figure 13.3 — The five-question diagnostic. Run this on one assignment at a time. The goal is the smallest move that converts a "no" to a "yes."*
 
 Five questions do the diagnostic work:
@@ -191,6 +201,7 @@ The third is that more enforcement equals more integrity. The opening case is th
 ## The equity dimension
 
 ![Horizontal bar chart of ChatGPT-for-schoolwork usage rates by demographic group from Pew January 2025: Black teens 31%, Hispanic teens 31%, White teens 22%, overall teens 26%, alongside higher-income vs lower-income family rates. Zero baseline; the all-teen average bar uses the red accent.](../images/13-academic-integrity-privacy-and-honest-use-fig-04.png)
+![Teen ChatGPT-for-schoolwork use by group (Pew 2025). Bans and requirements both interact asymmetrically w](images/13-academic-integrity-privacy-and-honest-use-fig-04.png)
 *Figure 13.4 — Teen ChatGPT-for-schoolwork use by group (Pew 2025). Bans and requirements both interact asymmetrically with what students have at home.*
 
 The chapter has to hold a difficult finding: AI use among teens is not uniformly distributed, and the patterns matter for policy.
@@ -243,8 +254,7 @@ Whether the framework holds as AI capability advances. The five-question checkli
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 The ideas in this chapter didn't appear from nowhere. **Plato** (~428–348 BCE) recorded the first sustained argument that a new communication technology might *appear* to produce knowledge while corroding it. In the *Phaedrus*, Socrates tells the myth of the god Theuth presenting writing to King Thamus as a remedy for memory. Thamus refuses: writing, he says, produces "forgetfulness in the souls of those who learn it," because they will trust the external marks rather than do the internal work — they will "have the appearance of wisdom, not the reality." That argument is the load-bearing structure under the Bastani result. Detection looks for the external marks. Design asks whether the internal work happened.
 
 ![Plato, Athenian philosopher (~428–348 BCE). AI-generated portrait based on a public domain engraving of the classical bust.](../images/plato.jpg)
@@ -262,3 +272,45 @@ Who was Plato, and how does the Phaedrus dialogue's critique of writing — that
 
 - Ask it to rewrite the Theuth and Thamus myth with AI as Theuth and a 2026 teacher as Thamus — what does the king refuse, and on what grounds?
 - Ask it about the difference between *anamnesis* (recollection as recovering knowledge the soul already has) and the externalized "knowledge" the dialogue criticizes — which of this chapter's five diagnostic questions tests for the difference?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 13.1 — Three independent failure modes. Any one is enough to disqualify detection as a primary tool; together th
+
+Create a standalone D3 v7 HTML file for a concept map titled "Three independent failure modes. Any one is enough to disqualify detection as a primary tool; together th". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-01.html`
+
+---
+
+### Figure 13.2 — The Bastani result. Same model. Same students. The only variable was the pedagogical wrapper around the p
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "The Bastani result. Same model. Same students. The only variable was the pedagogical wrapper around the p". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-02.html`
+
+---
+
+### Figure 13.3 — The five-question diagnostic. Run this on one assignment at a time. The goal is the smallest move that co
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "The five-question diagnostic. Run this on one assignment at a time. The goal is the smallest move that co". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-03.html`
+
+---
+
+### Figure 13.4 — Teen ChatGPT-for-schoolwork use by group (Pew 2025). Bans and requirements both interact asymmetrically w
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Teen ChatGPT-for-schoolwork use by group (Pew 2025). Bans and requirements both interact asymmetrically w". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/13-academic-integrity-privacy-and-honest-use-fig-04.html`

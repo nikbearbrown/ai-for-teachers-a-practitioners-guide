@@ -1,5 +1,12 @@
 # Chapter 9 — Making Graphs and Data Visualizations with AI
 
+
+## TL;DR
+
+- In 1954 Darrell Huff published a small book called How to Lie with Statistics.
+- The chapter moves through The question before the chart, Two instruments that catch most chart dishonesty, Distributions over means: where the equity story lives, The five-question audit, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The chart looks professional. The chart is wrong. The professional appearance is the problem.*
 
 ---
@@ -13,6 +20,7 @@ AI makes this problem faster. A teacher with a spreadsheet of student scores can
 This chapter is about the five-question audit that catches what AI gets wrong, and about one equity move that changes what education charts reveal. You will need neither statistics training nor programming experience. You will need to run five questions on every chart before it leaves the building.
 
 ![Side-by-side comparison of the same six-teacher bar chart](../images/09-making-graphs-and-data-visualizations-with-ai-fig-01.png)
+![Side-by-side comparison of the same six-teacher bar chart.](images/09-making-graphs-and-data-visualizations-with-ai-fig-01.png)
 *Figure 9.1 — Side-by-side comparison of the same six-teacher bar chart.*
 
 ---
@@ -72,6 +80,7 @@ There are four common ways this check exposes a lying chart.
 Cairo's framework treats chart choice not as an aesthetic decision but as an ethical one. A chart that misleads its reader is testimony, and the witness has a professional obligation to the accuracy of what the chart claims. This framing should not be softened. It permanently changes how you read charts, which is the point.
 
 ![Cairo's "compared with what?" four failure modes](../images/09-making-graphs-and-data-visualizations-with-ai-fig-02.png)
+![Cairo's "compared with what?" four failure modes.](images/09-making-graphs-and-data-visualizations-with-ai-fig-02.png)
 *Figure 9.2 — Cairo's "compared with what?" four failure modes.*
 
 The mechanical version of the same principle comes from Edward Tufte's *The Visual Display of Quantitative Information*.[^tufte] His **proportional ink** rule is simple: the visual magnitude of a mark should be proportional to the quantity it encodes. For a bar chart, this means the bar starts at zero. Its visible length encodes the magnitude of the value. A bar chart with a y-axis that starts at 60 encodes (value − 60), not value. The reader's eye does not correct for the truncation. The reader perceives the bar at face length and draws the wrong conclusion about the difference.
@@ -99,6 +108,7 @@ The sentence to carry out of this section: if your equity question is *who is be
 The prompting consequence is direct. When the question is about subgroup performance, the AI tool's default is wrong. The prompt must specify the chart type — a box plot faceted by demographic group, a strip plot with median overlaid — or the output will be a bar chart that hides the answer to your own question.
 
 ![Three charts of the same class with mean = 72](../images/09-making-graphs-and-data-visualizations-with-ai-fig-03.png)
+![Three charts of the same class with mean = 72.](images/09-making-graphs-and-data-visualizations-with-ai-fig-03.png)
 *Figure 9.3 — Three charts of the same class with mean = 72.*
 
 ---
@@ -120,6 +130,7 @@ Five questions. Run them on every chart before it leaves the building. The full 
 A sixth question applies whenever AI is in the loop and it takes two additional minutes: **does the chart match the data you gave it?** AI tools hallucinate. They occasionally invent tick values, relabel axes, auto-round data, or group categories in ways the prompt did not request. Always verify chart values against the source spreadsheet for at least a sample of the values. Three percent of charts containing a fabricated value is enough to embarrass you at a board meeting. The verification is not optional.
 
 ![Five-question audit as a checklist card](../images/09-making-graphs-and-data-visualizations-with-ai-fig-04.png)
+![Five-question audit as a checklist card.](images/09-making-graphs-and-data-visualizations-with-ai-fig-04.png)
 *Figure 9.4 — Five-question audit as a checklist card.*
 
 ---
@@ -282,8 +293,7 @@ Chapter 10 turns toward writing — the writing you do as a teacher and the writ
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 Bertin's *Sémiologie graphique* (1967) — the seven retinal variables, the systematic decomposition of any chart into mark, channel, and question — is the chart-selection vocabulary every teacher needs before they ask AI to make a graph. The chapter's framework is Bertin operationalized for the classroom-data use case: name the question first, choose the channel that answers it, accept that the chart's job is to make one comparison legible, not to make many comparisons available.
 
 ![Jacques Bertin, 1918-2010. AI-generated portrait based on a public domain photograph.](../images/jacques-bertin.jpg)
@@ -303,3 +313,45 @@ Who was Jacques Bertin, and how does their work connect to the ideas in this cha
 - Ask about the critics of Bertin's work and which criticisms still bite today.
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 9.1 — Side-by-side comparison of the same six-teacher bar chart.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Side-by-side comparison of the same six-teacher bar chart.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-01.html`
+
+---
+
+### Figure 9.2 — Cairo's "compared with what?" four failure modes.
+
+Create a standalone D3 v7 HTML file for a concept map titled "Cairo's "compared with what?" four failure modes.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-02.html`
+
+---
+
+### Figure 9.3 — Three charts of the same class with mean = 72.
+
+Create a standalone D3 v7 HTML file for a bar or comparison chart titled "Three charts of the same class with mean = 72.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-03.html`
+
+---
+
+### Figure 9.4 — Five-question audit as a checklist card.
+
+Create a standalone D3 v7 HTML file for a checklist or diagnostic card titled "Five-question audit as a checklist card.". Use teacher AI-workflow states: learning goal, AI draft, teacher review gate, classroom use, equity check, and student evidence. Encode the AI-assisted step with one red mark and all teacher-controlled checks with neutral ink. Include direct labels, a zero baseline if values are shown, short annotations, accessible SVG title and description, responsive redraw with ResizeObserver, dark-mode CSS variables, and reduced-motion handling. Use the D3 7.9.0 CDN and inline CSS/JS only.
+
+> Reference implementation: `d3/09-making-graphs-and-data-visualizations-with-ai-fig-04.html`
