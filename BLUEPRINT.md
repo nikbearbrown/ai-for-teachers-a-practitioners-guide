@@ -1,9 +1,9 @@
-# TIKTOC — AI for Teachers: A Practitioner's Guide
+# BLUEPRINT — AI for Teachers: A Practitioner's Guide
 
 **Working title:** AI for Teachers: A Practitioner's Guide
 **Series:** Practitioner's AI Series · Northeastern University College of Engineering
 **Author:** Humanitarians AI · ni.brown@neu.edu · Bear Brown & Company
-**Document:** Full TIKTOC — Complete Architecture
+**Document:** Full BLUEPRINT — Complete Architecture
 **Version:** 2.0
 **Status:** Pre-draft — research phase
 
@@ -135,7 +135,7 @@ The struggle is not the obstacle to learning. It is the mechanism of learning. A
 
 ---
 
-## Chapter-by-Chapter TIKTOC
+## Chapter-by-Chapter BLUEPRINT
 
 ---
 
@@ -858,7 +858,7 @@ Brown, N.B. (2026). *Frictional: Measuring the Struggle: Process Friction Traces
 
 ---
 
-*TIKTOC v2.0 — Full Architecture · Pre-draft / Research phase*
+*BLUEPRINT v2.0 — Full Architecture · Pre-draft / Research phase*
 *All chapters specified with sufficient detail for research note generation*
 *Preface, all 14 chapters, conclusion, and 7 appendices documented*
 *No chapter prose written — research phase precedes drafting*
